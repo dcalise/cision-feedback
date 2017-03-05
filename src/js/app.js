@@ -11,6 +11,8 @@ import './config/app.templates';
 import './layout';
 import './components';
 import './home';
+import './feedback';
+import './feedback-create';
 import './profile';
 import './article';
 import './services';
@@ -23,6 +25,8 @@ const requires = [
   'app.layout',
   'app.components',
   'app.home',
+  'app.feedback',
+  'app.feedback-create',
   'app.profile',
   'app.article',
   'app.services'

@@ -1,0 +1,68 @@
+<section class="container">
+  <h1>Feedback List</h1>
+</section>
+
+<section class="container">
+  <a class="btn btn-success pull-right"
+    ui-sref="app.feedback-create">
+    Submit Feedback
+  </a>
+  <form class="form-inline">
+    <div class="form-group">
+      <label class="sr-only" for="search">Search</label>
+      <input type="text" class="form-control" id="search" placeholder="Search...">
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select class="form-control" id="status">
+        <option>All</option>
+        <option>Open</option>
+        <option>On Hold</option>
+        <option>Closed</option>
+      </select>
+    </div>
+  </form>
+  
+</section>
+
+<section class="container">
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Status</th>
+      <th>Subject</th>
+      <th>Accounts Requested</th>
+      <th>Total Value</th>
+      <th>Date</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="label label-success">New</span></td>
+        <td>Request subject 1</td>
+        <td>1</td>
+        <td>$1,000</td>
+        <td>02/22/2017</td>
+      </tr>
+      <tr>
+        <td><span class="label label-default">Closed</span></td>
+        <td>Request subject 3</td>
+        <td>1</td>
+        <td>$3,000</td>
+        <td>01/19/2017</td>
+      </tr>
+      <tr>
+        <td><span class="label label-success">New</span></td>
+        <td>Request subject 4</td>
+        <td>1</td>
+        <td>$11,000</td>
+        <td>12/01/2016</td>
+      </tr>
+      <tr>
+        <td><span class="label label-danger">On Hold</span></td>
+        <td>Request subject 5</td>
+        <td>3</td>
+        <td>$4,000</td>
+        <td>02/01/2016</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

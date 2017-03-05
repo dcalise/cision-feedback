@@ -1,0 +1,5 @@
+.main {
+  section:not(:last-child) {
+    margin-bottom: ($padding-large-vertical * 3);
+  }
+}
