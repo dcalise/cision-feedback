@@ -14,6 +14,7 @@ import './home';
 import './feedback';
 import './feedback-create';
 import './profile';
+import './request';
 import './article';
 import './services';
 
@@ -28,6 +29,7 @@ const requires = [
   'app.feedback',
   'app.feedback-create',
   'app.profile',
+  'app.request',
   'app.article',
   'app.services'
 ];
