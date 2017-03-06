@@ -23,10 +23,10 @@
  var FeatureSchema = new mongoose.Schema({
   subject : String,
   description: String,
-  type: String,
+  status: String,
   account: {
     name: String,
-    type: String,
+    accountType: String,
     id: String,
     value: Number
   },
@@ -35,7 +35,6 @@
     email: String,
     department: String
   },
-  status: String,
   dateCreated: { type: Date, default: Date.now }
 });
 
@@ -63,9 +62,9 @@ app.post('/api/features', function(req, res) {
   feature.status = 'New';
   feature.account = {
     name: req.body.account.name,
-    type: req.body.account.type,
-    email: req.body.account.email,
-    name: req.body.account.value
+    accountType: req.body.account.accountType,
+    id: req.body.account.id,
+    value: req.body.account.value
   };
   feature.requester = {
     name: req.body.requester.name,
