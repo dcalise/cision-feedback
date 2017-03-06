@@ -2,6 +2,7 @@
  var express  = require('express');
  var app      = express();                               // create our app w/ express
  var mongoose = require('mongoose');                     // mongoose for mongodb
+ var autoIncrement = require('mongoose-auto-increment');
  var morgan = require('morgan');             // log requests to the console (express4)
  var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
  var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
@@ -9,7 +10,8 @@
  
  // configuration =================
  
- mongoose.connect('mongodb://cision:c1s10n@olympia.modulusmongo.net:27017/P8upihiw');     // connect to mongoDB database on modulus.io
+ var connection = mongoose.connect('mongodb://cision:c1s10n@olympia.modulusmongo.net:27017/P8upihiw');     // connect to mongoDB database on modulus.io
+ autoIncrement.initialize(connection);
  
  app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
  app.use(morgan('dev'));                                         // log every request to the console
@@ -38,7 +40,9 @@
   dateCreated: { type: Date, default: Date.now }
 });
 
-var Feature = mongoose.model('Feature', FeatureSchema);
+FeatureSchema.plugin(autoIncrement.plugin, 'Feature');
+
+var Feature = connection.model('Feature', FeatureSchema);
 
 // routes ======================================================================
 
@@ -46,17 +50,28 @@ var Feature = mongoose.model('Feature', FeatureSchema);
 // get all features
 app.get('/api/features', function(req, res) {
   Feature.find(function(err, features) {
-
     if (err)
     res.send(err);
-    
     res.json(features);
+  });
+});
+
+
+// get single feature
+app.get('/api/features/:feature_id', function(req, res) {
+  Feature.find({
+    _id : req.params.feature_id
+  }, function(err, feature) {
+    if (err)
+    res.send(err);
+    res.json(feature);
   });
 });
 
 app.post('/api/features', function(req, res) {
   
   var feature = new Feature;
+
   feature.subject = req.body.subject;
   feature.description = req.body.description;
   feature.status = 'New';
@@ -86,16 +101,11 @@ app.post('/api/features', function(req, res) {
 app.delete('/api/features/:feature_id', function(req, res) {
   Feature.remove({
     _id : req.params.feature_id
-  }, function(err, feature) {
-    if (err)
-    res.send(err);
-    
-    // get and return all the features after you create another
-    Feature.find(function(err, features) {
-      if (err)
-      res.send(err)
-      res.json(features);
-    });
+  }, function(err, feature,numAffected) {
+     if (err) {
+      res.send(err);
+    }
+    res.json();
   });
 });
 

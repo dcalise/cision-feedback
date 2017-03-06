@@ -21,7 +21,7 @@ class FeedbackCreateCtrl {
 
     this._Features.add(this.featureForm).then(
       (feature) => {
-        this._$state.go('app.feedback');
+        this._$state.go('app.features');
       },
       (err) => {
         this.featureForm.isSubmitting = false;
