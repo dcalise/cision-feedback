@@ -8,20 +8,21 @@ export default class Features {
 
 
   // Add Feature
-  // add(slug, payload) {
-  //   return this._$http({
-  //     url: `${this._AppConstants.api}/features/${slug}/comments`,
-  //     method: 'POST',
-  //     data: { comment: { body: payload } }
-  //   }).then((res) => res.data.comment);
-
-  // }
+  add(feature) {
+    // console.log(feature.subject);
+    // console.log(feature.account.name);
+    return this._$http({
+      url: `${this._AppConstants.api}/features`,
+      method: 'POST',
+      data: feature
+    });
+  }
 
   getAll() {
     return this._$http({
       url: `${this._AppConstants.api}/features`,
       method: 'GET',
-    }).then((res) => res.data.features);
+    }).then((res) => res.data);
 
   }
 

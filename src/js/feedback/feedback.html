@@ -35,33 +35,13 @@
       <th>Date</th>
     </thead>
     <tbody>
-      <tr ui-sref="app.request">
-        <td><span class="label label-success">New</span></td>
-        <td>Request subject 1</td>
+      <tr ui-sref="app.request"
+        ng-repeat="feature in $ctrl.features">
+        <td><span class="label label-success">{{feature.status}}</span></td>
+        <td>{{feature.subject}}</td>
         <td>1</td>
-        <td>$1,000</td>
-        <td>02/22/2017</td>
-      </tr>
-      <tr ui-sref="app.request">
-        <td><span class="label label-default">Closed</span></td>
-        <td>Request subject 3</td>
-        <td>1</td>
-        <td>$3,000</td>
-        <td>01/19/2017</td>
-      </tr>
-      <tr ui-sref="app.request">
-        <td><span class="label label-success">New</span></td>
-        <td>Request subject 4</td>
-        <td>1</td>
-        <td>$11,000</td>
-        <td>12/01/2016</td>
-      </tr>
-      <tr ui-sref="app.request">
-        <td><span class="label label-danger">On Hold</span></td>
-        <td>Request subject 5</td>
-        <td>3</td>
-        <td>$4,000</td>
-        <td>02/01/2016</td>
+        <td>{{feature.account.value}}</td>
+        <td>{{feature.dateCreated | date }}</td>
       </tr>
     </tbody>
   </table>

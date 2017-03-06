@@ -3,18 +3,20 @@
 </section>
 
 <section class="container">
-  <form class="form-horizontal" ng-submit="$ctrl.createFeature()">
-    <fieldset ng-disabled="$ctrl.isSubmitting">
+  <form class="form-horizontal feature-form" ng-submit="$ctrl.addFeature()">
+    <fieldset ng-disabled="$ctrl.featureForm.isSubmitting">
       <div class="form-group">
         <label for="subject" class="col-sm-2 control-label">Subject</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="subject" placeholder="Subject...">
+          <input type="text" class="form-control" id="subject"
+            ng-model="$ctrl.featureForm.subject">
         </div>
       </div>
       <div class="form-group">
         <label for="description" class="col-sm-2 control-label">Description</label>
         <div class="col-sm-10">
-          <input type="textarea" class="form-control" id="description" placeholder="Describe your request...">
+          <input type="textarea" class="form-control" id="description"
+            ng-model="$ctrl.featureForm.description">
         </div>
       </div>
       <div class="row">
@@ -26,13 +28,15 @@
       <div class="form-group">
         <label for="account-name" class="col-sm-2 control-label">Account Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="account-name" placeholder="Enter the account name...">
+          <input type="text" class="form-control" id="account-name"
+            ng-model="$ctrl.featureForm.account.name">
         </div>
       </div>
       <div class="form-group">
         <label for="account-type" class="col-sm-2 control-label">Account Type</label>
         <div class="col-sm-10">
-          <select class="form-control">
+          <select class="form-control" 
+            ng-model="$ctrl.featureForm.type">
             <option>Current Customer</option>
             <option>Potential Customer</option>
             <option>Former Customer</option>
@@ -42,7 +46,8 @@
       <div class="form-group">
         <label for="cision-point-id" class="col-sm-2 control-label">CisionPoint ID</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="cision-point-id" placeholder="Enter the account CisionPoint ID...">
+          <input type="text" class="form-control" id="cision-point-id"
+            ng-model="$ctrl.featureForm.account.id">
         </div>
       </div>
       <div class="form-group">
@@ -50,7 +55,8 @@
         <div class="col-sm-2">
           <div class="input-group">
             <div class="input-group-addon">$</div>
-            <input type="text" class="form-control" id="account-value" placeholder="Amount">
+            <input type="text" class="form-control" id="account-value"
+              ng-model="$ctrl.featureForm.account.value">
           </div>
         </div>
       </div>
@@ -63,19 +69,22 @@
       <div class="form-group">
         <label for="rep-name" class="col-sm-2 control-label">Your name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="rep-name">
+          <input type="text" class="form-control" id="rep-name"
+            ng-model="$ctrl.featureForm.requester.name">
         </div>
       </div>
       <div class="form-group">
         <label for="rep-email" class="col-sm-2 control-label">Your email</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="rep-email">
+          <input type="email" class="form-control" id="rep-email"
+            ng-model="$ctrl.featureForm.requester.email">
         </div>
       </div>
       <div class="form-group">
         <label for="rep-department" class="col-sm-2 control-label">Your department</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="rep-department">
+          <input type="text" class="form-control" id="rep-department"
+            ng-model="$ctrl.featureForm.requester.department">
         </div>
       </div>
     </fieldset>

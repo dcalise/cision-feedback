@@ -1,23 +1,18 @@
 class FeedbackCtrl {
-  constructor(AppConstants, $http, $q) {
+  constructor(AppConstants, Features, $http, $q) {
     'ngInject';
 
     this._AppConstants = AppConstants;
     this._$http = $http;
     this._$q = $q;
+    this._Features = Features;
 
+    Features.getAll().then(
+      (features) => this.features = features
+    );
+    
   }
-  getFeatures() {
-    $http.get(this._AppConstants.api + '/features')
-      .success(function(res) {
-        console.log(res);
-        console.log('success');
-      })
-      .error(function(err) {
-        console.log('errors');
-        console.log(err);
-      });
-  }
+  
 }
 
 
