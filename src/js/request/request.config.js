@@ -4,7 +4,7 @@ function RequestConfig($stateProvider) {
   $stateProvider
   .state('app.request', {
     url: '/request',
-    controller: 'RequestDetailCtrl',
+    controller: 'RequestCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'request/request.html',
     title: 'Request Detail'
