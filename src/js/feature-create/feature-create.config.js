@@ -3,7 +3,7 @@ function FeatureCreateConfig($stateProvider) {
 
   $stateProvider
   .state('app.feature-create', {
-    url: '/feature/create',
+    url: '/features/create',
     controller: 'FeatureCreateCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'feature-create/feature-create.html',
