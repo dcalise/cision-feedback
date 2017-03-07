@@ -137,7 +137,7 @@ app.get('/', function(req, res) {
 });
 
 
-app.use('/api', apiRoutes);
+app.use('/api/users', apiRoutes);
 
 app.get('/setup', function(req, res){
   var dan = new User({
