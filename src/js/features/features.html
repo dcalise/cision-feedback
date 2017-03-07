@@ -35,11 +35,11 @@
       <th>Date</th>
     </thead>
     <tbody>
-      <tr ui-sref="app.request"
-        ng-repeat="feature in $ctrl.features">
+      <tr ng-repeat="feature in $ctrl.features"
+      ui-sref="app.feature({id:feature._id})">
         <td><span class="label label-success">{{feature.status}}</span></td>
         <td>{{feature.subject}}</td>
-        <td>1</td>
+        <td>{{feature._id}}</td>
         <td>{{feature.account.value}}</td>
         <td>{{feature.dateCreated | date }}</td>
       </tr>
