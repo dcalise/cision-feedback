@@ -1,0 +1,10 @@
+.request-header {
+  .label {
+    font-size: 65%;
+  }
+  .total {
+    padding: $padding-large-vertical $padding-large-horizontal;
+    background: rgba($brand-success, .4);
+    font-size: 24px;
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "name": "conduit-angularjs",
+  "name": "cision-feedback",
   "version": "1.0.0",
-  "description": "Angular frontend for Conduit",
-  "author": "Thinkster",
+  "description": "Cision Feedback Application",
+  "author": "dcalise",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.0-rc.2",
@@ -12,17 +12,26 @@
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
     "browserify-ngannotate": "^2.0.0",
+    "cors": "^2.8.1",
+    "express": "^4.15.0",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
-    "gulp-util": "^3.0.7",
-    "marked": "^0.3.5",
-    "vinyl-source-stream": "^1.1.0",
     "gulp-uglify": "^1.5.3",
-    "merge-stream": "^1.0.0"
+    "gulp-util": "^3.0.7",
+    "jsonwebtoken": "^7.3.0",
+    "marked": "^0.3.5",
+    "merge-stream": "^1.0.0",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.4.12",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
-    "gulp-sass": "^3.1.0"
+    "body-parser": "^1.17.0",
+    "gulp-sass": "^3.1.0",
+    "nodemon": "^1.11.0"
   }
 }

@@ -1,0 +1,22 @@
+<section class="container request-header">
+  <h1>{{$ctrl.feature.subject}}<span class="label label-success label-sm ml-sm">{{$ctrl.feature.status}}</span></h1>
+
+  <span class="pull-right total">${{$ctrl.feature.account.value | number }}</span>
+  <div><strong>Requested by:</strong> {{$ctrl.feature.requester.name}}</div>
+  <div><strong>Department:</strong> {{$ctrl.feature.requester.department}}</div>
+  <div><strong>Account:</strong> {{$ctrl.feature.account.name}}</div>
+</section>
+
+<section class="container">
+  <h3>Original Request</h3>
+  <p>{{$ctrl.feature.description}}</p>
+</section>
+
+<section class="container">
+  <h3>PM Response</h3>
+  <p>There are no more vowels to buy.</p>
+</section>
+
+<section class="container">
+  <customer-list></customer-list>
+</section>
