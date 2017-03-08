@@ -10,7 +10,7 @@
 
  var jwt = require('jsonwebtoken');
  var config = require('./config');
- var User = require('./app/models/user');
+//  var User = require('./app/models/user');
  
  // configuration =================
  
@@ -26,8 +26,14 @@
  app.use(methodOverride());
  app.use(cors({origin: 'http://localhost:4000'}));
  
- // define model =================
- var FeatureSchema = new mongoose.Schema({
+
+// =====================================
+// ============ FEATURE API ============
+// =====================================
+
+// define model ========================
+
+var FeatureSchema = new mongoose.Schema({
   subject : String,
   description: String,
   status: String,
@@ -49,18 +55,120 @@ FeatureSchema.plugin(autoIncrement.plugin, 'Feature');
 
 var Feature = connection.model('Feature', FeatureSchema);
 
-// routes ======================================================================
+// define routes =======================
+// get all features
+app.get('/api/features', function(req, res) {
+  Feature.find(function(err, features) {
+    if (err)
+    res.send(err);
+    res.json(features);
+  });
+});
 
-// api ---------------------------------------------------------------------
-// users
+// get single feature
+app.get('/api/features/:feature_id', function(req, res) {
+  Feature.find({
+    _id : req.params.feature_id
+  }, function(err, feature) {
+    if (err)
+    res.send(err);
+    res.json(feature);
+  });
+});
+
+// create new feature
+app.post('/api/features', function(req, res) {
+  
+  var feature = new Feature;
+
+  feature.subject = req.body.subject;
+  feature.description = req.body.description;
+  feature.status = 'New';
+  feature.account = {
+    name: req.body.account.name,
+    accountType: req.body.account.accountType,
+    id: req.body.account.id,
+    value: req.body.account.value
+  };
+  feature.requester = {
+    name: req.body.requester.name,
+    email: req.body.requester.email,
+    department: req.body.requester.department
+  }
+
+  feature.save(function(err, feature, numAffected) {
+    if (err) {
+      res.send(err);
+    }
+    res.json();
+  });
+
+});
+
+// delete a feature
+app.delete('/api/features/:feature_id', function(req, res) {
+  Feature.remove({
+    _id : req.params.feature_id
+  }, function(err, feature,numAffected) {
+     if (err) {
+      res.send(err);
+    }
+    res.json();
+  });
+});
+
+
+// =====================================
+// ============= USER API ==============
+// =====================================
+
+// define model ========================
+var UserSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  username: { type: String, index: { unique: true }},
+  department: String,
+  password: String,
+  admin: Boolean,
+  dateCreated: { type: Date, default: Date.now }
+});
+
+UserSchema.plugin(autoIncrement.plugin, 'User');
+
+var User = connection.model('User', UserSchema);
+
+// define routes =======================
+// create user
+
 var apiRoutes = express.Router();
 
+app.post('/api/users/new', function(req, res) {
+  
+  var user = new User;
+
+  
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.username = req.body.username;
+  user.department = req.body.department;
+  user.password = req.body.password;
+  user.admin = req.body.admin;
+
+  user.save(function(err, user, numAffected) {
+    if (err) {
+      res.send(err);
+    }
+    res.json();
+  });
+
+});
+
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
-apiRoutes.post('/authenticate', function(req, res) {
+apiRoutes.post('/users/authenticate', function(req, res) {
 
   // find the user
   User.findOne({
-    name: req.body.name
+    username: req.body.username
   }, function(err, user) {
 
     if (err) throw err;
@@ -76,7 +184,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 
         // if user is found and password is right
         // create a token
-        var token = jwt.sign(user, app.get('superSecret'), {
+        var token = jwt.sign(user.lastName + user.username + user.lastName, app.get('superSecret'), {
           // expiresInMinutes: 1440 // expires in 24 hours
         });
 
@@ -125,97 +233,33 @@ apiRoutes.use(function(req, res, next) {
   }
 });
 
-// route to return all users
-apiRoutes.get('/users', function(req, res) {
+// *********************************
+// ALL ROUTES AFTER THIS ARE BLOCKED
+// *********************************
+
+// return all users
+apiRoutes.get('/users/list', function(req, res) {
   User.find({}, function(err, users) {
     res.json(users);
   });
-});   
+});  
 
-app.get('/', function(req, res) {
-    res.send('Hello! The API is at http://localhost:8080/api');
-});
-
-
-app.use('/api/users', apiRoutes);
-
-app.get('/setup', function(req, res){
-  var dan = new User({
-    name: 'Dan Calise',
-    password: 'password',
-    admin: true
-  });
-
-  dan.save(function(err) {
-    if (err) throw err;
-
-    console.log('user saved');
-    res.json({succes: true});
-  });
-});
-
-
-// get all features
-app.get('/api/features', function(req, res) {
-  Feature.find(function(err, features) {
-    if (err)
-    res.send(err);
-    res.json(features);
-  });
-});
-
-
-// get single feature
-app.get('/api/features/:feature_id', function(req, res) {
-  Feature.find({
-    _id : req.params.feature_id
-  }, function(err, feature) {
-    if (err)
-    res.send(err);
-    res.json(feature);
-  });
-});
-
-app.post('/api/features', function(req, res) {
-  
-  var feature = new Feature;
-
-  feature.subject = req.body.subject;
-  feature.description = req.body.description;
-  feature.status = 'New';
-  feature.account = {
-    name: req.body.account.name,
-    accountType: req.body.account.accountType,
-    id: req.body.account.id,
-    value: req.body.account.value
-  };
-  feature.requester = {
-    name: req.body.requester.name,
-    email: req.body.requester.email,
-    department: req.body.requester.department
-  }
-
-  feature.save(function(err, feature, numAffected) {
-    if (err) {
-      res.send(err);
-    }
-    res.json();
-  });
-
-  
-});
-
-// delete a feature
-app.delete('/api/features/:feature_id', function(req, res) {
-  Feature.remove({
-    _id : req.params.feature_id
-  }, function(err, feature,numAffected) {
+// delete a user
+app.delete('/api/users/:user_id', function(req, res) {
+  User.remove({
+    admin : true
+  }, function(err, user,numAffected) {
      if (err) {
       res.send(err);
     }
     res.json();
   });
 });
+
+app.use('/api/', apiRoutes);
+
+// FEATURES
+
 
 
 // listen (start app with node server.js) ======================================
