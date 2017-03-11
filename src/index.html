@@ -12,6 +12,19 @@
 
     <div ui-view class="main"></div>
 
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-auth.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCtCQXKeaDMgB82gS7oSQigLpC1C7ctHTo",
+        authDomain: "cision-feedback.firebaseapp.com",
+        databaseURL: "https://cision-feedback.firebaseio.com",
+        storageBucket: "cision-feedback.appspot.com",
+        messagingSenderId: "1051446450630"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="main.js"></script>
 
   </body>

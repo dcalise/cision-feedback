@@ -9,6 +9,7 @@ const methodOverride = require('method-override'); // simulate DELETE and PUT (e
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const connection = require('./services/db');
+const firebase = require('./services/firebase');
  
 const Feature = require('./models/features');
 const config = require('./config');
