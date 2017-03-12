@@ -1,105 +1,33 @@
-export default class User {
-  constructor(JWT, AppConstants, $http, $state, $q) {
-    'ngInject';
+angular.module('angularfireSlackApp')
+  .factory('Users', function($firebaseArray, $firebaseObject){
+    var usersRef = firebase.database().ref('users');
+    var connectedRef = firebase.database().ref('.info/connected');
+    var users = $firebaseArray(usersRef);
 
-    this._JWT = JWT;
-    this._AppConstants = AppConstants;
-    this._$http = $http;
-    this._$state = $state;
-    this._$q = $q;
+    var Users = {
+      getProfile: function(uid){
+        return $firebaseObject(usersRef.child(uid));
+      },
+      getDisplayName: function(uid){
+        return users.$getRecord(uid).displayName;
+      },
+      getGravatar: function(uid){
+        return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
+      },
+      setOnline: function(uid){
+        var connected = $firebaseObject(connectedRef);
+        var online = $firebaseArray(usersRef.child(uid+'/online'));
 
-    this.current = null;
+        connected.$watch(function (){
+          if(connected.$value === true){
+            online.$add(true).then(function(connectedRef){
+              connectedRef.onDisconnect().remove();
+            });
+          }
+        });
+      },
+      all: users
+    };
 
-  }
-
-
-  attemptAuth(type, credentials) {
-    let route = (type === 'login') ? '/login' : '';
-    return this._$http({
-      url: this._AppConstants.api + '/users' + route,
-      method: 'POST',
-      data: {
-        user: credentials
-      }
-    }).then(
-      (res) => {
-        this._JWT.save(res.data.user.token);
-        this.current = res.data.user;
-
-        return res;
-      }
-    );
-  }
-
-  // update(fields) {
-  //   return this._$http({
-  //     url:  this._AppConstants.api + '/user',
-  //     method: 'PUT',
-  //     data: { user: fields }
-  //   }).then(
-  //     (res) => {
-  //       this.current = res.data.user;
-  //       return res.data.user;
-  //     }
-  //   )
-  // }
-
-  // logout() {
-  //   this.current = null;
-  //   this._JWT.destroy();
-  //   this._$state.go(this._$state.$current, null, { reload: true });
-  // }
-
-  // verifyAuth() {
-  //   let deferred = this._$q.defer();
-
-  //   // check for JWT token
-  //   if (!this._JWT.get()) {
-  //     deferred.resolve(false);
-  //     return deferred.promise;
-  //   }
-
-  //   if (this.current) {
-  //     deferred.resolve(true);
-
-  //   } else {
-  //     this._$http({
-  //       url: this._AppConstants.api + '/user',
-  //       method: 'GET',
-  //       headers: {
-  //         Authorization: 'Token ' + this._JWT.get()
-  //       }
-  //     }).then(
-  //       (res) => {
-  //         this.current = res.data.user;
-  //         deferred.resolve(true);
-  //       },
-
-  //       (err) => {
-  //         this._JWT.destroy();
-  //         deferred.resolve(false);
-  //       }
-  //     )
-  //   }
-
-  //   return deferred.promise;
-  // }
-
-
-  // ensureAuthIs(bool) {
-  //   let deferred = this._$q.defer();
-
-  //   this.verifyAuth().then((authValid) => {
-  //     if (authValid !== bool) {
-  //       this._$state.go('app.home')
-  //       deferred.resolve(false);
-  //     } else {
-  //       deferred.resolve(true);
-  //     }
-
-  //   });
-
-  //   return deferred.promise;
-  // }
-
-}
+    return Users;
+  });
