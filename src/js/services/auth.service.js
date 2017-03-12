@@ -1,9 +1,28 @@
 export default class Auth {
-  constructor($firebaseAuth) {
+  constructor($firebaseAuth, $state) {
     'ngInject';
     
     this._auth = $firebaseAuth;
+    this._$state = $state;
     
+  }
+
+  login(creds) {
+    console.log(creds);
+    // Auth.$signInWithEmailAndPassword(email, password).then(function (auth){
+    //   this._$state.go('home');
+    // }, function (error){
+    //   authCtrl.error = error;
+    // });
+  }
+
+  register(creds) {
+    console.log(creds);
+    // Auth.$signInWithEmailAndPassword(email, password).then(function (auth){
+    //   this._$state.go('home');
+    // }, function (error){
+    //   authCtrl.error = error;
+    // });
   }
 
   // login() {
