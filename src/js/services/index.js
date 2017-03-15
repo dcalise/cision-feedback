@@ -9,7 +9,7 @@ servicesModule.service('Features', FeaturesService);
 import AuthService from './auth.service';
 servicesModule.service('Auth', AuthService);
 
-import UserService from './auth.service';
+import UserService from './user.service';
 servicesModule.service('Users', UserService);
 
 export default servicesModule;
