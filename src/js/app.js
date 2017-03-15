@@ -44,7 +44,6 @@ const requires = [
 window.app = angular.module('app', requires)
   .constant('AppConstants', constants)
   .config(appConfig)
-  // .config(firebaseConfig)
   .run(appRun);
 
 angular.bootstrap(document, ['app'], {

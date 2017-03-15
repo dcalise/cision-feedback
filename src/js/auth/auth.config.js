@@ -7,26 +7,43 @@ function AuthConfig($stateProvider, $httpProvider) {
     url: '/login',
     controller: 'AuthCtrl as $ctrl',
     templateUrl: 'auth/login.html',
-    title: 'Sign in'
-    // resolve: {
-    //   auth: function(User) {
-    //     return User.ensureAuthIs(false);
-    //   }
-    // }
+    title: 'Sign in',
+    resolve: {
+      requireNoAuth: function($state, Auth){
+        return Auth.$requireSignIn().then(
+          (auth) => {
+            $state.go('app.home')
+          },
+          (err) => {
+            console.log(err)
+            return
+          }
+        ) 
+      }
+    }
+   
   })
 
   .state('app.register', {
     url: '/register',
     controller: 'AuthCtrl as $ctrl',
     templateUrl: 'auth/register.html',
-    title: 'Sign up'
-    // resolve: {
-    //   auth: function(User) {
-    //     return User.ensureAuthIs(false);
-    //   }
-    // }
-  });
+    title: 'Sign up',
+    resolve: {
+      requireNoAuth: function($state, Auth){
+        return Auth.$requireSignIn().then(
+          (auth) => {
+            $state.go('app.home')
+          },
+          (err) => {
+            console.log(err)
+            return
+          }
+        ) 
+      }
+    }
+  })
 
-};
+}
 
 export default AuthConfig;

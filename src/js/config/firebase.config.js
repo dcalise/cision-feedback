@@ -4,6 +4,7 @@ import 'angularfire';
 function FirebaseConfig() {
   'ngInject';
 
+  console.log('asdasd');
   var config = {
     apiKey: "AIzaSyCtCQXKeaDMgB82gS7oSQigLpC1C7ctHTo",
     authDomain: "cision-feedback.firebaseapp.com",

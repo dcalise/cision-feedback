@@ -2,9 +2,8 @@ class AuthCtrl {
   constructor(Auth, $state) {
     'ngInject';
 
-    this._Auth = Auth.auth;
+    this._Auth = Auth;
     this._$state = $state;
-    console.log(Auth);
 
     this.user = {
       email: '',

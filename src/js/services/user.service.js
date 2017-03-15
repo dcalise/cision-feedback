@@ -1,5 +1,7 @@
-angular.module('angularfireSlackApp')
-  .factory('Users', function($firebaseArray, $firebaseObject){
+export default class Users {
+  constructor($firebaseArray, $firebaseObject) {
+    'ngInject';
+
     var usersRef = firebase.database().ref('users');
     var connectedRef = firebase.database().ref('.info/connected');
     var users = $firebaseArray(usersRef);
@@ -28,6 +30,7 @@ angular.module('angularfireSlackApp')
       },
       all: users
     };
-
-    return Users;
-  });
+    
+  }
+  
+}
