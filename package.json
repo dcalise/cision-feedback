@@ -5,6 +5,7 @@
   "author": "dcalise",
   "dependencies": {
     "angular": "^1.5.0-rc.2",
+    "angular-md5": "^0.1.10",
     "angular-ui-router": "^0.3.2",
     "angularfire": "^2.3.0",
     "babel-preset-es2015": "^6.3.13",
