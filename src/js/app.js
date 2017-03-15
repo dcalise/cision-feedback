@@ -1,6 +1,7 @@
 import angular from 'angular';
 import * as firebase from "firebase";
 import 'angularfire';
+import 'angular-md5';
 
 // Import our app config files
 import constants  from './config/app.constants';
@@ -27,6 +28,7 @@ import './services';
 const requires = [
   'ui.router',
   'firebase',
+  'angular-md5',
   'templates',
   'app.auth',
   'app.layout',
