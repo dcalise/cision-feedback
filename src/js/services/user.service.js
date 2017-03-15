@@ -1,36 +1,31 @@
 export default class Users {
-  constructor($firebaseArray, $firebaseObject) {
+  constructor($firebaseArray, $firebaseObject, Auth, $state) {
     'ngInject';
 
-    var usersRef = firebase.database().ref('users');
-    var connectedRef = firebase.database().ref('.info/connected');
-    var users = $firebaseArray(usersRef);
+    this._$firebaseObject = $firebaseObject;
+    this._$firebaseArray = $firebaseArray;
+    this._Auth = Auth;
+    this._$state = $state;
 
-    var Users = {
-      getProfile: function(uid){
-        return $firebaseObject(usersRef.child(uid));
-      },
-      getDisplayName: function(uid){
-        return users.$getRecord(uid).displayName;
-      },
-      getGravatar: function(uid){
-        return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
-      },
-      setOnline: function(uid){
-        var connected = $firebaseObject(connectedRef);
-        var online = $firebaseArray(usersRef.child(uid+'/online'));
-
-        connected.$watch(function (){
-          if(connected.$value === true){
-            online.$add(true).then(function(connectedRef){
-              connectedRef.onDisconnect().remove();
-            });
-          }
-        });
-      },
-      all: users
-    };
+    this._usersRef = firebase.database().ref('users');
+    this._users = $firebaseArray(this._usersRef);
     
+    this.all = this._users;
+    
+  }
+
+  getProfile(uid) {
+    return this._$firebaseObject(this._usersRef.child(uid))
+  }
+
+  getDisplayName(uid) {
+    return this._users.$getRecord(uid).displayName;
+  }
+
+  signOut() {
+    this._Auth.$signOut().then(
+      () => this._$state.go('app.login')
+    );
   }
   
 }
