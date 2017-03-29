@@ -6,6 +6,11 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
     .state('app', {
       abstract: true,
       templateUrl: 'layout/app-view.html',
+      resolve: {
+        currentAuth: function(Auth) {
+          return Auth.$waitForSignIn()
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('/');

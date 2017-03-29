@@ -7,12 +7,7 @@ function HomeConfig($stateProvider) {
     controller: 'HomeCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'home/home.html',
-    title: 'Home',
-    resolve: {
-      currentAuth: function(Auth) {
-        return Auth.$waitForSignIn()
-      }
-    }
+    title: 'Home'
   });
 
 };

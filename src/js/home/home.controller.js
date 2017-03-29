@@ -1,9 +1,7 @@
 class HomeCtrl {
-  constructor(AppConstants, currentAuth) {
+  constructor(AppConstants) {
     'ngInject';
-
     this.appName = AppConstants.appName;
-    this._currentAuth = currentAuth;
   }
 
 
