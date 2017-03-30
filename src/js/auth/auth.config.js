@@ -15,7 +15,6 @@ function AuthConfig($stateProvider, $httpProvider) {
             $state.go('app.home')
           },
           (err) => {
-            console.log(err)
             return
           }
         ) 
@@ -36,7 +35,6 @@ function AuthConfig($stateProvider, $httpProvider) {
             $state.go('app.home')
           },
           (err) => {
-            console.log(err)
             return
           }
         ) 

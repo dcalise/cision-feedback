@@ -7,7 +7,12 @@ function FeatureCreateConfig($stateProvider) {
     controller: 'FeatureCreateCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'feature-create/feature-create.html',
-    title: 'Create New Feature Request'
+    title: 'Create New Feature Request',
+    resolve: {
+      "currentAuth": ["Auth", function(Auth) {
+        return Auth.$requireSignIn()
+      }]
+    }
   });
 
 };
