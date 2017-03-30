@@ -9,9 +9,14 @@ function HomeConfig($stateProvider) {
     templateUrl: 'home/home.html',
     title: 'Home',
     resolve: {
-      "currentAuth": function(Auth) {
+      currentAuth: function(Auth) {
+        return Auth.$requireSignIn()
+      },
+      profile: function(Users, Auth) {
         return Auth.$requireSignIn().then(
-          (auth) => console.log(this)
+          (auth) => {
+            return Users.getProfile(auth.uid).$loaded()
+          }
         )
       }
     }
