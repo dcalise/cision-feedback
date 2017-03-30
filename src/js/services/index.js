@@ -12,8 +12,5 @@ servicesModule.service('Auth', AuthService);
 import UserService from './user.service';
 servicesModule.service('Users', UserService);
 
-import CurrentUserService from './current-user.service';
-servicesModule.service('CurrentUser', CurrentUserService);
-
 
 export default servicesModule;
