@@ -15,7 +15,7 @@ export default class Features {
 
 
   // Add Feature
-  add(feature) {
+  add(feature, currentAuth, profile) {
     this._features.$add({
       subject: feature.subject,
       description: feature.description,
@@ -26,9 +26,9 @@ export default class Features {
         value: feature.account.value
       },
       requester: {
-        name: feature.requester.name,
-        email: feature.requester.email,
-        department: feature.requester.department
+        name: profile.firstName + ' ' + profile.lastName,
+        email: currentAuth.email,
+        department: profile.department
       }
     })
     // return this._$http({
