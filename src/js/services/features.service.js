@@ -16,7 +16,7 @@ export default class Features {
 
   // Add Feature
   add(feature, currentAuth, profile) {
-    this._features.$add({
+    return this._features.$add({
       subject: feature.subject,
       description: feature.description,
       account: {
@@ -25,17 +25,8 @@ export default class Features {
         id: feature.account.id,
         value: feature.account.value
       },
-      requester: {
-        name: profile.firstName + ' ' + profile.lastName,
-        email: currentAuth.email,
-        department: profile.department
-      }
+      requesterUID: currentAuth.uid
     })
-    // return this._$http({
-    //   url: `${this._AppConstants.api}/features`,
-    //   method: 'POST',
-    //   data: feature
-    // });
   }
 
   getFeature(slug) {
