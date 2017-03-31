@@ -9,9 +9,16 @@ function FeatureCreateConfig($stateProvider) {
     templateUrl: 'feature-create/feature-create.html',
     title: 'Create New Feature Request',
     resolve: {
-      "currentAuth": ["Auth", function(Auth) {
+      currentAuth: function(Auth) {
         return Auth.$requireSignIn()
-      }]
+      },
+      profile: function(Users, Auth) {
+        return Auth.$requireSignIn().then(
+          (auth) => {
+            return Users.getProfile(auth.uid).$loaded()
+          }
+        )
+      }
     }
   });
 

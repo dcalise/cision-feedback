@@ -7,13 +7,7 @@ class FeedbackCreateCtrl {
     this._$q = $q;
     this._Features = Features;
     this._$state = $state;
-
-    Features.getAll().then(
-      (features) => {
-        this.features = features
-        // console.log(this);
-      }
-    );
+    
   }
 
    addFeature(){
