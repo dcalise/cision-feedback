@@ -19,13 +19,17 @@ export default class Features {
     return this._features.$add({
       subject: feature.subject,
       description: feature.description,
-      account: {
+      accounts: [{
         name: feature.account.name,
         accountType: feature.account.accountType,
         id: feature.account.id,
         value: feature.account.value
-      },
-      requesterUID: currentAuth.uid
+      }],
+      requesterUID: currentAuth.uid,
+      status: 'New',
+      dateCreated: Date.now(),
+      lastUpdated: null,
+      editedBy: null
     })
   }
 
@@ -46,14 +50,6 @@ export default class Features {
     );
 
     return deferred.promise;
-  }
-
-  getAll() {
-    return this._$http({
-      url: `${this._AppConstants.api}/features`,
-      method: 'GET',
-    }).then((res) => res.data);
-
   }
 
 }

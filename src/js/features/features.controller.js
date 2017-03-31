@@ -2,9 +2,9 @@ class FeaturesCtrl {
   constructor(Features, $http, $q) {
     'ngInject';
 
-    Features.getAll().then(
-      (features) => this.features = features
-    );
+    this._Features = Features;
+
+    this.features = this._Features.all
     
   }
   

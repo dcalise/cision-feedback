@@ -9,9 +9,16 @@ function FeaturesConfig($stateProvider) {
     templateUrl: 'features/features.html',
     title: 'Features',
     resolve: {
-      "currentAuth": ["Auth", function(Auth) {
+      currentAuth: function(Auth) {
         return Auth.$requireSignIn()
-      }]
+      },
+      profile: function(Users, Auth) {
+        return Auth.$requireSignIn().then(
+          (auth) => {
+            return Users.getProfile(auth.uid).$loaded()
+          }
+        )
+      }
     }
   });
 
