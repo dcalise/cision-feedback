@@ -9,13 +9,15 @@ export default class Accounts {
   }
 
   add(account) {
-    name: account.name,
-    accountType: account.accountType,
-    cid: account.cid,
-    country: account.country,
-    value: account.value,
-    dateCreated: Date.now(),
-    lastUpdated: null,
-    editedBy: null
+    return this.accounts.$add({
+      name: account.name,
+      accountType: account.accountType,
+      cid: account.cid,
+      // country: account.country,
+      value: account.value,
+      dateCreated: Date.now(),
+      lastUpdated: null,
+      editedBy: null
+    })
   }
 }

@@ -1,26 +1,34 @@
 class FeedbackCreateCtrl {
-  constructor(AppConstants, Features, $http, $q, $state, profile, currentAuth) {
+  constructor(Accounts, Features, $state, profile, currentAuth) {
     'ngInject';
 
-    this._AppConstants = AppConstants;
-    this._$http = $http;
-    this._$q = $q;
     this._$state = $state;
 
+    this._Accounts = Accounts;
     this._Features = Features;
     this._currentAuth = currentAuth;
     this._profile = profile;
     
   }
 
-   addFeature(){
+  addAccount() {
+    this._Accounts.add(this.accountForm).then(
+      (account) => {
+        console.log(account)
+      },
+      (error) => { console.log(account) }
+    )
+  }
+
+  addFeature() {
     this.featureForm.isSubmitting = true;
 
     this._Features.add(this.featureForm, this._currentAuth, this._profile).then(
-      (feature) => {
-        this._$state.go('app.features');
+      () => {
+        this.featureForm.isSubmitting = false;
+        console.log('added!');
       },
-      (err) => {
+      () => {
         this.featureForm.isSubmitting = false;
         console.log('errors');
         console.log(err);
