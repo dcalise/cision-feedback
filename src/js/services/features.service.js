@@ -1,9 +1,8 @@
 export default class Features {
-  constructor($firebaseArray, $firebaseObject, AppConstants, $http, $q) {
+  constructor($firebaseArray, $firebaseObject, AppConstants, $q) {
     'ngInject';
 
     this._AppConstants = AppConstants;
-    this._$http = $http;
     this._$q = $q;
 
 
