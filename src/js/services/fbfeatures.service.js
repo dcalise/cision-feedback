@@ -1,11 +1,11 @@
-export default class Users {
-  constructor($firebaseArray, $firebaseObject, Auth, $state) {
+export default class Fbfeatures {
+  constructor($firebaseArray, $firebaseObject, $state, $q) {
     'ngInject';
 
     this._$firebaseObject = $firebaseObject;
     this._$firebaseArray = $firebaseArray;
-    this._Auth = Auth;
     this._$state = $state;
+    this._$q = $q;
 
     this._usersRef = firebase.database().ref('users');
     this._users = $firebaseArray(this._usersRef);

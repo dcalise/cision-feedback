@@ -7,7 +7,19 @@ function FeaturesConfig($stateProvider) {
     controller: 'FeaturesCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'features/features.html',
-    title: 'Features'
+    title: 'Features',
+    resolve: {
+      currentAuth: function(Auth) {
+        return Auth.$requireSignIn()
+      },
+      profile: function(Users, Auth) {
+        return Auth.$requireSignIn().then(
+          (auth) => {
+            return Users.getProfile(auth.uid).$loaded()
+          }
+        )
+      }
+    }
   });
 
 };

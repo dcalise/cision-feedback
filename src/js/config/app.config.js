@@ -2,12 +2,11 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
   'ngInject';
 
   // $httpProvider.interceptors.push(authInterceptor);
-
   $stateProvider
-  .state('app', {
-    abstract: true,
-    templateUrl: 'layout/app-view.html'
-  });
+    .state('app', {
+      abstract: true,
+      templateUrl: 'layout/app-view.html'
+    });
 
   $urlRouterProvider.otherwise('/');
 

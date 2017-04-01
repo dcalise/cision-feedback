@@ -1,22 +1,36 @@
 export default class Features {
-  constructor(AppConstants, $http, $q) {
+  constructor($firebaseArray, $firebaseObject, AppConstants, $http, $q) {
     'ngInject';
 
     this._AppConstants = AppConstants;
     this._$http = $http;
     this._$q = $q;
+
+
+    this._featuresRef = firebase.database().ref('features');
+    this._features = $firebaseArray(this._featuresRef);
+
+    this.all = this._features;
   }
 
 
   // Add Feature
-  add(feature) {
-    // console.log(feature.subject);
-    // console.log(feature.account.name);
-    return this._$http({
-      url: `${this._AppConstants.api}/features`,
-      method: 'POST',
-      data: feature
-    });
+  add(feature, currentAuth, profile) {
+    return this._features.$add({
+      subject: feature.subject,
+      description: feature.description,
+      accounts: [{
+        name: feature.account.name,
+        accountType: feature.account.accountType,
+        id: feature.account.id,
+        value: feature.account.value
+      }],
+      requesterUID: currentAuth.uid,
+      status: 'New',
+      dateCreated: Date.now(),
+      lastUpdated: null,
+      editedBy: null
+    })
   }
 
   getFeature(slug) {
@@ -36,21 +50,6 @@ export default class Features {
     );
 
     return deferred.promise;
-  }
-
-  // getFeature(id) {
-  //   return this._$http({
-  //     url: `${this._AppConstants.api}/features/${id}`,
-  //     method: 'GET',
-  //   }).then((res) => res);
-  // }
-
-  getAll() {
-    return this._$http({
-      url: `${this._AppConstants.api}/features`,
-      method: 'GET',
-    }).then((res) => res.data);
-
   }
 
 }
