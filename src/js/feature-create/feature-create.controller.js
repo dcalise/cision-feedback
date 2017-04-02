@@ -11,12 +11,21 @@ class FeedbackCreateCtrl {
     
   }
 
-  addAccount() {
+  addAccountAndFeature() {
     this._Accounts.add(this.accountForm).then(
       (account) => {
-        console.log(account)
+        console.log(account.key);
+        this._Features.add(this.featureForm, this._currentAuth, this._profile, account.key).then(
+          () => {
+            this._$state.go('app.features');
+          },
+          () => {
+            this.featureForm.isSubmitting = false;
+            console.log('errors');
+          }
+        )
       },
-      (error) => { console.log(account) }
+      (error) => { console.log(error) }
     )
   }
 

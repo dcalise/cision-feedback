@@ -14,16 +14,11 @@ export default class Features {
 
 
   // Add Feature
-  add(feature, currentAuth, profile) {
+  add(feature, currentAuth, profile, accountKey) {
     return this._features.$add({
       subject: feature.subject,
       description: feature.description,
-      // accounts: [{
-      //   name: feature.account.name,
-      //   accountType: feature.account.accountType,
-      //   id: feature.account.id,
-      //   value: feature.account.value
-      // }],
+      accounts: [accountKey],
       requesterUID: currentAuth.uid,
       status: 'New',
       dateCreated: Date.now(),
