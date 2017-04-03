@@ -11,12 +11,17 @@ class FeaturesCtrl {
       angular.forEach(features, function(feature) {
 
         feature.accountsMeta = [];
+        feature.totalValue = 0;
         angular.forEach(feature.accounts, function(account) {
           Accounts.getAccount(account).then(
-            (account) => feature.accountsMeta.push(account)
+            (account) => {
+              feature.accountsMeta.push(account)
+              feature.totalValue += account.value
+            }
           )
         })
-        
+
+
       })
     });
     
