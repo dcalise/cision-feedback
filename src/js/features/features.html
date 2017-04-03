@@ -42,7 +42,7 @@
         <td><span class="label label-success">{{feature.status}}</span></td>
         <td>{{feature.subject}}</td>
         <!--todo: put total value here-->
-        <td>{{::$ctrl._Accounts.getAccount(feature.accounts[0]).name}}</td>
+        <td>{{feature.accountsMeta[0].name}}</td>
         <td>{{feature.dateCreated | date }}</td>
       </tr>
     </tbody>
