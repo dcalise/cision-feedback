@@ -20,4 +20,12 @@ export default class Accounts {
       editedBy: null
     })
   }
+
+  getAccount(accountKey) {
+    return this.accounts.$loaded().then(
+      (accounts) => {
+        return accounts.$getRecord(accountKey)
+      }
+    )
+  }
 }

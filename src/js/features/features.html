@@ -41,9 +41,8 @@
       ui-sref="app.feature({id:feature._id})">
         <td><span class="label label-success">{{feature.status}}</span></td>
         <td>{{feature.subject}}</td>
-        <td>{{feature.accounts[0].name}}</td>
         <!--todo: put total value here-->
-        <td>{{feature.accounts[0].value}}</td>
+        <td>{{::$ctrl._Accounts.getAccount(feature.accounts[0]).name}}</td>
         <td>{{feature.dateCreated | date }}</td>
       </tr>
     </tbody>
