@@ -1,5 +1,5 @@
 class FeatureCtrl {
-  constructor(Features, Accounts, $stateParams) {
+  constructor(Features, Accounts, $stateParams, Users) {
     'ngInject';
 
     Features.getFeature($stateParams.id).then(
@@ -15,7 +15,7 @@ class FeatureCtrl {
             }
           )
         })
-        console.log(feature.accountsMeta)
+        feature.requester = Users.getProfile(feature.requesterUID);
         this.feature = feature
 
       }
