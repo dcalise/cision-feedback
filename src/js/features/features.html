@@ -22,39 +22,39 @@
 <section class="container">
   <table class="table table-striped table-hover">
     <thead>
-      <th>
+      <th class="sortable">
         <span ng-click="$ctrl.sortType = 'status'; $ctrl.sortReverse = !$ctrl.sortReverse">
           Status
           <span ng-show="$ctrl.sortType == 'status' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
           <span ng-show="$ctrl.sortType == 'status' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
         </span>
       </th>
-      <th>
+      <th class="sortable">
         <span ng-click="$ctrl.sortType = 'subject'; $ctrl.sortReverse = !$ctrl.sortReverse">
           Subject
           <span ng-show="$ctrl.sortType == 'subject' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
           <span ng-show="$ctrl.sortType == 'subject' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
         </span>
       </th>
-      <th>
-        <span ng-click="$ctrl.sortType = 'name'; $ctrl.sortReverse = !$ctrl.sortReverse">
+      <th class="sortable">
+        <span ng-click="$ctrl.sortType = 'accountsMeta[0].name'; $ctrl.sortReverse = !$ctrl.sortReverse">
           Original Requester
-          <span ng-show="$ctrl.sortType == 'name' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-          <span ng-show="$ctrl.sortType == 'name' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
+          <span ng-show="$ctrl.sortType == 'accountsMeta[0].name' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
+          <span ng-show="$ctrl.sortType == 'accountsMeta[0].name' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
         </span>
       </th>
-      <th>
+      <th class="sortable">
         <span ng-click="$ctrl.sortType = 'totalValue'; $ctrl.sortReverse = !$ctrl.sortReverse">
           Total Value
           <span ng-show="$ctrl.sortType == 'totalValue' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
           <span ng-show="$ctrl.sortType == 'totalValue' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
         </span>
       </th>
-      <th>
-        <span ng-click="$ctrl.sortType = 'date'; $ctrl.sortReverse = !$ctrl.sortReverse">
+      <th class="sortable">
+        <span ng-click="$ctrl.sortType = 'dateCreated'; $ctrl.sortReverse = !$ctrl.sortReverse">
           Date
-          <span ng-show="$ctrl.sortType == 'date' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-          <span ng-show="$ctrl.sortType == 'date' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
+          <span ng-show="$ctrl.sortType == 'dateCreated' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
+          <span ng-show="$ctrl.sortType == 'dateCreated' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
         </span>
       </th>
     </thead>

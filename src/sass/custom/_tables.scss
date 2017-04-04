@@ -4,3 +4,8 @@
     background-color: $table-bg-hover;
   }
 }
+
+table th.sortable:hover {
+  cursor: pointer;
+  color: $brand-primary;
+}
