@@ -3,10 +3,9 @@
 <section class="container request-header">
   <h1>{{$ctrl.feature.subject}}<span class="label label-success label-sm ml-sm">{{$ctrl.feature.status}}</span></h1>
 
-  <span class="pull-right total">${{$ctrl.feature.account.value | number }}</span>
-  <div><strong>Requested by:</strong> {{$ctrl.feature.requester.name}}</div>
-  <div><strong>Department:</strong> {{$ctrl.feature.requester.department}}</div>
-  <div><strong>Account:</strong> {{$ctrl.feature.account.name}}</div>
+  <span class="pull-right total">{{$ctrl.feature.totalValue | currency }}</span>
+  <div><strong>Requested by:</strong> {{$ctrl.feature.requester.firstName}} {{$ctrl.feature.requester.lastName}}<em ng-show="$ctrl.feature.requester.department">, {{$ctrl.feature.requester.department}}</em></div>
+  <div><strong>Requested for:</strong> {{$ctrl.feature.accountsMeta[0].name}}</div>
 </section>
 
 <section class="container">
@@ -20,5 +19,26 @@
 </section>
 
 <section class="container">
-  <customer-list></customer-list>
+  <!--todo: make this modular-->
+  <a class="btn btn-info pull-right mt-lg"
+    ui-sref="app.add-customer">
+    Add Customer
+  </a>
+  <h3>Customer Summary</h3>
+  <table class="table table-striped">
+    <thead>
+      <th>Account Name</th>
+      <th>Account Value</th>
+      <th>CisionPoint ID</th>
+      <th>Type</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="account in $ctrl.feature.accountsMeta">
+        <td>{{account.name}}</td>
+        <td>{{account.value}}</td>
+        <td>{{account.cid}}</td>
+        <td>{{account.accountType}}</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
