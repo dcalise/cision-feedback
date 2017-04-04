@@ -1,9 +1,8 @@
 export default class Features {
-  constructor($firebaseArray, $firebaseObject, AppConstants, $http, $q) {
+  constructor($firebaseArray, $firebaseObject, AppConstants, $q) {
     'ngInject';
 
     this._AppConstants = AppConstants;
-    this._$http = $http;
     this._$q = $q;
 
 
@@ -15,16 +14,11 @@ export default class Features {
 
 
   // Add Feature
-  add(feature, currentAuth, profile) {
+  add(feature, currentAuth, profile, accountKey) {
     return this._features.$add({
       subject: feature.subject,
       description: feature.description,
-      accounts: [{
-        name: feature.account.name,
-        accountType: feature.account.accountType,
-        id: feature.account.id,
-        value: feature.account.value
-      }],
+      accounts: [accountKey],
       requesterUID: currentAuth.uid,
       status: 'New',
       dateCreated: Date.now(),
@@ -33,23 +27,23 @@ export default class Features {
     })
   }
 
-  getFeature(slug) {
-    let deferred = this._$q.defer();
+  // getFeature(slug) {
+  //   let deferred = this._$q.defer();
 
-    if (!slug.replace(" ", "")) {
-      deferred.reject("Feature slug is empty");
-      return deferred.promise;
-    }
+  //   if (!slug.replace(" ", "")) {
+  //     deferred.reject("Feature slug is empty");
+  //     return deferred.promise;
+  //   }
 
-    this._$http({
-      url: this._AppConstants.api + '/features/' + slug,
-      method: 'GET'
-    }).then(
-      (res) => deferred.resolve(res.data[0]),
-      (err) => deferred.reject(err)
-    );
+  //   this._$http({
+  //     url: this._AppConstants.api + '/features/' + slug,
+  //     method: 'GET'
+  //   }).then(
+  //     (res) => deferred.resolve(res.data[0]),
+  //     (err) => deferred.reject(err)
+  //   );
 
-    return deferred.promise;
-  }
+  //   return deferred.promise;
+  // }
 
 }
