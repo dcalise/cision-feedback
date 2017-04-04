@@ -27,23 +27,12 @@ export default class Features {
     })
   }
 
-  // getFeature(slug) {
-  //   let deferred = this._$q.defer();
-
-  //   if (!slug.replace(" ", "")) {
-  //     deferred.reject("Feature slug is empty");
-  //     return deferred.promise;
-  //   }
-
-  //   this._$http({
-  //     url: this._AppConstants.api + '/features/' + slug,
-  //     method: 'GET'
-  //   }).then(
-  //     (res) => deferred.resolve(res.data[0]),
-  //     (err) => deferred.reject(err)
-  //   );
-
-  //   return deferred.promise;
-  // }
+  getFeature(slug) {
+    return this._features.$loaded().then(
+      (features) => {
+        return features.$getRecord(slug)
+      }
+    )
+  }
 
 }
