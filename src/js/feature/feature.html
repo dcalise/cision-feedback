@@ -20,10 +20,10 @@
 
 <section class="container">
   <!--todo: make this modular-->
-  <a class="btn btn-info pull-right mt-lg"
+  <!--<a class="btn btn-info pull-right mt-lg"
     ui-sref="app.add-customer">
     Add Customer
-  </a>
+  </a>-->
   <h3>Customer Summary</h3>
   <table class="table table-striped">
     <thead>
@@ -35,10 +35,53 @@
     <tbody>
       <tr ng-repeat="account in $ctrl.feature.accountsMeta">
         <td>{{account.name}}</td>
-        <td>{{account.value}}</td>
+        <td>{{account.value | currency}}</td>
         <td>{{account.cid}}</td>
         <td>{{account.accountType}}</td>
       </tr>
     </tbody>
   </table>
+</section>
+
+<section class="container">
+  <form class="form-horizontal account-form" ng-submit="$ctrl.addAccountAndFeature()">
+    <fieldset ng-disabled="$ctrl.accountForm.isSubmitting">
+      <div class="form-group">
+        <label for="account-name" class="col-sm-2 control-label">Account Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="account-name"
+            ng-model="$ctrl.accountForm.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="account-type" class="col-sm-2 control-label">Account Type</label>
+        <div class="col-sm-10">
+          <select class="form-control" 
+            ng-model="$ctrl.accountForm.accountType">
+            <option>Current Customer</option>
+            <option>Potential Customer</option>
+            <option>Former Customer</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cision-point-id" class="col-sm-2 control-label">Customer ID</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="cision-point-id"
+            ng-model="$ctrl.accountForm.cid">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="account-value" class="col-sm-2 control-label">Account Value</label>
+        <div class="col-sm-2">
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input type="text" class="form-control" id="account-value"
+              ng-model="$ctrl.accountForm.value">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-success pull-right">Submit</button>
+  </form>
 </section>

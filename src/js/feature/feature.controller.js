@@ -2,6 +2,9 @@ class FeatureCtrl {
   constructor(Features, Accounts, $stateParams, Users) {
     'ngInject';
 
+    this._Accounts = Accounts;
+    this._Features = Features;
+
     Features.getFeature($stateParams.id).then(
       (feature) => {
 
@@ -22,6 +25,16 @@ class FeatureCtrl {
     )
 
   }
+
+  addAccountAndFeature() {
+    this._Accounts.add(this.accountForm).then(
+      (account) => {
+        console.log(account)
+      },
+      (error) => { console.log(error) }
+    )
+  }
+
 }
 
 
