@@ -16,7 +16,7 @@ class FeaturesCtrl {
             Accounts.getAccount(account).then(
               (account) => {
                 feature.accountsMeta.push(account)
-                feature.totalValue += account.value
+                feature.totalValue += parseInt(account.value)
               }
             )
           })
