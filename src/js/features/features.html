@@ -13,7 +13,7 @@
     <div class="form-group">
       <label class="sr-only" for="search">Search</label>
       <input type="text" class="form-control" id="search" placeholder="Search..." 
-        ng-model="query[subject]">
+        ng-model="searchFeatures">
     </div>
   </form>
   
@@ -59,7 +59,7 @@
       </th>
     </thead>
     <tbody>
-      <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortType:$ctrl.sortReverse"
+      <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:searchFeatures"
       ui-sref="app.feature({id:feature.$id})">
         <td><span class="label label-success">{{feature.status}}</span></td>
         <td>{{feature.subject}}</td>
