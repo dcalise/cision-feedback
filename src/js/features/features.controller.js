@@ -24,6 +24,10 @@ class FeaturesCtrl {
         })
       }
     )
+
+    this.sortType = 'subject';
+    this.sortReverse = false;  // set the default sort order
+    this.searchFeatures = ''; 
   }
   
 }
