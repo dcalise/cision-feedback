@@ -26,10 +26,11 @@ class FeatureCtrl {
 
   }
 
-  addAccountAndFeature() {
+  addAccount() {
     this._Accounts.add(this.accountForm).then(
       (account) => {
-        console.log(account)
+        this.feature.accounts.push(account.key)
+        console.log(this.feature)
       },
       (error) => { console.log(error) }
     )
