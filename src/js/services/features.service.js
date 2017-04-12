@@ -6,7 +6,6 @@ export default class Features {
     this._$q = $q;
     this._$firebaseObject = $firebaseObject;
 
-
     this._featuresRef = firebase.database().ref('features');
     this._features = $firebaseArray(this._featuresRef);
 
