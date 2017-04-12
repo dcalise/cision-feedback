@@ -31,20 +31,14 @@ class FeatureCtrl {
   addAccount() {
     this._Accounts.add(this.accountForm).then(
       (account) => {
-        this._feature.accounts.push(account)
-        // this._Features.addAccountToFeature(account.key, this._feature.$id).then(
-        //   (feature) => {
-        //     this.feature = feature
-        //     this.feature.$save()
-        //   }
-        // )
-        this._feature.$save().then(
-          () => console.log(this._feature)
-        )
-        // this.feature.$save().then(
-        //   () => console.log(this.feature)
-        // )
+        console.log(account.key)
+        this._feature.accounts.push(account.key)
 
+
+        return this._feature.$save().then(
+          () => console.log(this._feature),
+          (error) => console.log(error)
+        )
 
       },
       (error) => { console.log(error) }
