@@ -3,19 +3,21 @@ export default class Comments {
     'ngInject';
 
     this._$firebaseObject = $firebaseObject;
+    this._$firebaseArray = $firebaseArray;
 
-    this._commentsRef = fiebase.database().ref('comments');
-    this._commments = $firebaseArray(this._commentsRef);
+    this._commentsRef = firebase.database().ref('comments');
+    this._comments = $firebaseArray(this._commentsRef);
 
     this.all = this._comments;
   }
 
-  add(feature, currentAuth, profile, comment) {
+  add(currentAuth, comment, featureKey) {
     return this._comments.$add({
       message: comment.message,
       dateCreated: Date.now(),
       lastEdited: null,
-      author: currentAuth.uid
+      author: currentAuth.uid,
+      feature: featureKey
     })
   }
 }
