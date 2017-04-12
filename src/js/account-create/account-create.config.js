@@ -1,13 +1,13 @@
-function FeatureConfig($stateProvider) {
+function AccountCreateConfig($stateProvider) {
   'ngInject';
 
   $stateProvider
-  .state('app.feature', {
-    url: '/feature/:id',
-    controller: 'FeatureCtrl',
+  .state('app.account-create', {
+    url: '/account/create',
+    controller: 'AccountCreateCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'feature/feature.html',
-    title: 'Feature Detail',
+    templateUrl: 'account-create/account-create.html',
+    title: 'Add New Account',
     resolve: {
       currentAuth: function(Auth) {
         return Auth.$requireSignIn()
@@ -18,13 +18,10 @@ function FeatureConfig($stateProvider) {
             return Users.getProfile(auth.uid).$loaded()
           }
         )
-      },
-      feature: function(Features, $stateParams) {
-        return Features.getFeature($stateParams.id).$loaded()
       }
     }
   });
 
 };
 
-export default FeatureConfig;
+export default AccountCreateConfig;
