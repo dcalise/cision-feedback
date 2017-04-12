@@ -8,7 +8,7 @@ class FeatureCtrl {
     this._currentAuth = currentAuth
     this._comments = comments
 
-    console.log(this._comments)
+    // console.log(this._comments)
     this._Accounts = Accounts
     this._Comments = Comments
     this._Features = Features
@@ -20,6 +20,8 @@ class FeatureCtrl {
     this.comment.message = ''
 
     this.listAccounts()
+
+    this.getCommentMeta()
 
   }
 
@@ -47,17 +49,19 @@ class FeatureCtrl {
         lastEdited: null,
         author: this._currentAuth.uid,
       }).then(
-        (comments) => console.log(comments),
+        (comments) => {
+          this.getCommentMeta()
+          this.comment.message = ''
+        },
         (error) => console.log(error)
-      )
-      // this._Comments.add(this._currentAuth, this.comment, this._feature.$id).then(
-      //   (comment) => {
-      //     console.log(comment)
-      //     this.comment.message = ''
-      //   },
-      //   (error) => console.log(error)
-      // )   
+      ) 
     }
+  }
+
+  getCommentMeta() {
+    angular.forEach(this._comments, (comment) => {
+      comment.authorMeta = this._Users.getProfile(comment.author);
+    })
   }
 
   addAccount() {
