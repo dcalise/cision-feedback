@@ -11,7 +11,10 @@ class FeatureCtrl {
 
     this._featureDetail = {}
 
+    this.listAccounts();
+
   }
+
   listAccounts() {
     this._featureDetail.accountsMeta = []
     this._featureDetail.totalValue = 0
