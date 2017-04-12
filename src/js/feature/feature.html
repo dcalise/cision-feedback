@@ -14,8 +14,13 @@
 </section>
 
 <section class="container">
-  <h3>PM Response</h3>
-  <p>There are no more vowels to buy.</p>
+  <h3>Comments</h3>
+  <form ng-submit="$ctrl.addComment()">
+    <textarea class="form-control" rows="3"
+      ng-model="$ctrl.comment.message">
+    </textarea>
+    <button type="submit" class="btn btn-success pull-right">Add Comment</button>
+  </form>
 </section>
 
 <section class="container">
