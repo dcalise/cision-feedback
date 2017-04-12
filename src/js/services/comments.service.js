@@ -20,4 +20,8 @@ export default class Comments {
       feature: featureKey
     })
   }
+
+  forFeature(featureKey) {
+    return this._$firebaseObject(this._commentsRef.child(featureKey))
+  }
 }

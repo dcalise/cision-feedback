@@ -1,11 +1,14 @@
 class FeatureCtrl {
-  constructor(feature, currentAuth, Comments, Features, Accounts, $stateParams, Users) {
+  constructor(feature, currentAuth, comments, Comments, Features, Accounts, $stateParams, Users) {
     'ngInject';
 
     this._$stateParams = $stateParams
 
     this._feature = feature
     this._currentAuth = currentAuth
+    this._comments = comments
+
+    console.log(this._comments)
     this._Accounts = Accounts
     this._Comments = Comments
     this._Features = Features
@@ -37,13 +40,23 @@ class FeatureCtrl {
 
   addComment() {
     if (this.comment.message.length > 0) {
-      this._Comments.add(this._currentAuth, this.comment, this._feature.$id).then(
-        (comment) => {
-          console.log(comment)
-          this.comment.message = ''
-        },
+
+      this._comments.$add({
+        message: this.comment.message,
+        dateCreated: Date.now(),
+        lastEdited: null,
+        author: this._currentAuth.uid,
+      }).then(
+        (comments) => console.log(comments),
         (error) => console.log(error)
-      )   
+      )
+      // this._Comments.add(this._currentAuth, this.comment, this._feature.$id).then(
+      //   (comment) => {
+      //     console.log(comment)
+      //     this.comment.message = ''
+      //   },
+      //   (error) => console.log(error)
+      // )   
     }
   }
 
