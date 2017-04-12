@@ -6,6 +6,9 @@ let servicesModule = angular.module('app.services', []);
 import AccountsService from './accounts.service';
 servicesModule.service('Accounts', AccountsService);
 
+import CommentsService from './comments.service';
+servicesModule.service('Comments', CommentsService);
+
 import FeaturesService from './features.service';
 servicesModule.service('Features', FeaturesService);
 
