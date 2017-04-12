@@ -1,19 +1,25 @@
 class FeatureCtrl {
-  constructor(feature, Features, Accounts, $stateParams, Users) {
+  constructor(feature, currentAuth, Comments, Features, Accounts, $stateParams, Users) {
     'ngInject';
 
-    this._$stateParams = $stateParams;
+    this._$stateParams = $stateParams
 
-    this._feature = feature;
-    this._Accounts = Accounts;
-    this._Features = Features;
-    this._Users = Users;
+    this._feature = feature
+    this._currentAuth = currentAuth
+    this._Accounts = Accounts
+    this._Comments = Comments
+    this._Features = Features
+    this._Users = Users
 
     this._featureDetail = {}
 
-    this.listAccounts();
+    this.comment = {}
+    this.comment.message = ''
+
+    this.listAccounts()
 
   }
+
 
   listAccounts() {
     this._featureDetail.accountsMeta = []
@@ -27,6 +33,18 @@ class FeatureCtrl {
       )
     })
     this._featureDetail.requester = this._Users.getProfile(this._feature.requesterUID);
+  }
+
+  addComment() {
+    if (this.comment.message.length > 0) {
+      this._Comments.add(this._currentAuth, this.comment, this._feature.$id).then(
+        (comment) => {
+          console.log(comment)
+          this.comment.message = ''
+        },
+        (error) => console.log(error)
+      )   
+    }
   }
 
   addAccount() {
