@@ -5,7 +5,7 @@
   }
 }
 
-table th.sortable:hover {
+table th.sortable span:hover {
   cursor: pointer;
   color: $brand-primary;
 }
