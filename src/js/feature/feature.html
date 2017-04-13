@@ -1,29 +1,52 @@
 <app-header></app-header>
 
 <section class="container request-header">
-  <h1>{{$ctrl.feature.subject}}<span class="label label-success label-sm ml-sm">{{$ctrl.feature.status}}</span></h1>
+  <h1>{{::$ctrl._feature.subject}}<span class="label label-success label-sm ml-sm">{{::$ctrl._feature.status}}</span></h1>
 
-  <span class="pull-right total">{{$ctrl.feature.totalValue | currency }}</span>
-  <div><strong>Requested by:</strong> {{$ctrl.feature.requester.firstName}} {{$ctrl.feature.requester.lastName}}<em ng-show="$ctrl.feature.requester.department">, {{$ctrl.feature.requester.department}}</em></div>
-  <div><strong>Requested for:</strong> {{$ctrl.feature.accountsMeta[0].name}}</div>
+  <span class="pull-right total">{{$ctrl._featureDetail.totalValue | currency }}</span>
+  <div><strong>Requested by:</strong> {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<em ng-show="$ctrl._featureDetail.requester.department">, {{::$ctrl._featureDetail.requester.department}}</em></div>
+  <div><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</div>
 </section>
 
 <section class="container">
   <h3>Original Request</h3>
-  <p>{{$ctrl.feature.description}}</p>
+  <p>{{$ctrl._feature.description}}</p>
 </section>
 
 <section class="container">
-  <h3>PM Response</h3>
-  <p>There are no more vowels to buy.</p>
+
+  <h3>Comments</h3>
+
+  <div class="comment" ng-repeat="comment in $ctrl._comments">
+    <div class="comment__message">
+      {{ comment.message }}
+    </div>
+    <div class="comment__meta small">
+    <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
+    <span class="commenta__meta__date"><em>{{ comment.dateCreated | date:'short' }}</em></span>
+    </div>
+  </div>
+
+  <form class="message-form" ng-submit="$ctrl.addComment()">
+
+    <div class="input-group">
+      <textarea class="form-control" rows="3"
+        ng-model="$ctrl.comment.message">
+      </textarea>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Add Comment</button>
+      </span>
+    </div>
+
+  </form>
 </section>
 
 <section class="container">
   <!--todo: make this modular-->
-  <a class="btn btn-info pull-right mt-lg"
+  <!--<a class="btn btn-info pull-right mt-lg"
     ui-sref="app.add-customer">
     Add Customer
-  </a>
+  </a>-->
   <h3>Customer Summary</h3>
   <table class="table table-striped">
     <thead>
@@ -33,12 +56,55 @@
       <th>Type</th>
     </thead>
     <tbody>
-      <tr ng-repeat="account in $ctrl.feature.accountsMeta">
+      <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
         <td>{{account.name}}</td>
-        <td>{{account.value}}</td>
+        <td>{{account.value | currency}}</td>
         <td>{{account.cid}}</td>
         <td>{{account.accountType}}</td>
       </tr>
     </tbody>
   </table>
+</section>
+
+<section class="container">
+  <form class="form-horizontal account-form" ng-submit="$ctrl.addAccount()">
+    <fieldset ng-disabled="$ctrl.accountForm.isSubmitting">
+      <div class="form-group">
+        <label for="account-name" class="col-sm-2 control-label">Account Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="account-name"
+            ng-model="$ctrl.accountForm.name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="account-type" class="col-sm-2 control-label">Account Type</label>
+        <div class="col-sm-10">
+          <select class="form-control" 
+            ng-model="$ctrl.accountForm.accountType">
+            <option>Current Customer</option>
+            <option>Potential Customer</option>
+            <option>Former Customer</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cision-point-id" class="col-sm-2 control-label">Customer ID</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="cision-point-id"
+            ng-model="$ctrl.accountForm.cid">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="account-value" class="col-sm-2 control-label">Account Value</label>
+        <div class="col-sm-2">
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input type="text" class="form-control" id="account-value"
+              ng-model="$ctrl.accountForm.value">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-success pull-right">Submit</button>
+  </form>
 </section>

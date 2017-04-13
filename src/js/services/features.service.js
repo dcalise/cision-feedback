@@ -4,7 +4,7 @@ export default class Features {
 
     this._AppConstants = AppConstants;
     this._$q = $q;
-
+    this._$firebaseObject = $firebaseObject;
 
     this._featuresRef = firebase.database().ref('features');
     this._features = $firebaseArray(this._featuresRef);
@@ -12,6 +12,15 @@ export default class Features {
     this.all = this._features;
   }
 
+
+  addAccountToFeature(account, uid) {
+    return this.getFeature(uid).then(
+      (feature) => {
+        feature.accounts.push(account)
+        return feature;
+      }
+    )
+  }
 
   // Add Feature
   add(feature, currentAuth, profile, accountKey) {
@@ -26,13 +35,8 @@ export default class Features {
       editedBy: null
     })
   }
-
   getFeature(slug) {
-    return this._features.$loaded().then(
-      (features) => {
-        return features.$getRecord(slug)
-      }
-    )
+    return this._$firebaseObject(this._featuresRef.child(slug))
   }
 
 }
