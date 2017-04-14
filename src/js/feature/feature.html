@@ -16,46 +16,53 @@
           <div class="section-header">
             <h4>Original Request</h4>
           </div>
-          <p>{{$ctrl._feature.description}}</p>
+          <div class="col-sm-12">
+            <p>{{$ctrl._feature.description}}</p>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
+          <ng-click ng-click="$ctrl.showComments = false">
           <div class="section-header"
             ng-click="$ctrl.showComments = false">
             <h4>Comments</h4>
           </div>
 
-          <div class="comment" ng-repeat="comment in $ctrl._comments"
+          <div class="col-sm-12">
+            <div class="comment" ng-repeat="comment in $ctrl._comments"
             ng-hide="$ctrl.showComments">
-            <div class="comment__meta">
-              <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
-              <span class="comment__meta__date small">&mdash; {{ comment.dateCreated | date:'short' }}</span>
+              <div class="comment__meta">
+                <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
+                <span class="comment__meta__date small">&mdash; {{ comment.dateCreated | date:'short' }}</span>
+              </div>
+              <div class="comment__message">
+                {{ comment.message }}
+              </div>
+              <hr/>
             </div>
-            <div class="comment__message">
-              {{ comment.message }}
-            </div>
-            <hr/>
-          </div>
+            
+            <form class="message-form"
+              ng-show="$ctrl.showComment"
+              ng-submit="$ctrl.addComment()">
 
-          <form class="message-form"
-            ng-show="$ctrl.showComment"
-            ng-submit="$ctrl.addComment()">
+              <div class="form-group">
+                <textarea class="form-control" rows="3"
+                  ng-model="$ctrl.comment.message">
+                </textarea>
+              </div>
+              <button class="btn btn-default"
+                ng-click="$ctrl.resetComment()" type="button">Cancel</button>
+              <button class="btn btn-info" type="submit">Add Comment</button>
 
-            <div class="form-group">
-              <textarea class="form-control" rows="3"
-                ng-model="$ctrl.comment.message">
-              </textarea>
-            </div>
+            </form>
             <button class="btn btn-default"
-              ng-click="$ctrl.resetComment()" type="button">Cancel</button>
-            <button class="btn btn-info" type="submit">Add Comment</button>
+              ng-hide="$ctrl.showComment"
+              ng-click="$ctrl.showComment = true">Comment
+            </button>
+          </div>
+          
 
-          </form>
-          <button class="btn btn-default"
-            ng-hide="$ctrl.showComment"
-            ng-click="$ctrl.showComment = true">Comment
-          </button>
         </div>
       </div>
     </div>
