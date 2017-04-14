@@ -93,25 +93,30 @@
     ui-sref="app.add-customer">
     Add Customer
   </a>-->
-  <div class="section-header">
-    <h4>Customer Summary</h4>
+  <div class="section-header"
+    ng-class="{'closed':!$ctrl.showCustomerSummary}"
+    ng-click="$ctrl.showCustomerSummary = !$ctrl.showCustomerSummary">
+    <h4>Original Request</h4>
   </div>
-  <table class="table table-striped">
-    <thead>
-      <th>Account Name</th>
-      <th>Account Value</th>
-      <th>CisionPoint ID</th>
-      <th>Type</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
-        <td>{{account.name}}</td>
-        <td>{{account.value | currency}}</td>
-        <td>{{account.cid}}</td>
-        <td>{{account.accountType}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="col-sm-12"
+    ng-show="$ctrl.showCustomerSummary">
+    <table class="table table-striped">
+      <thead>
+        <th>Account Name</th>
+        <th>Account Value</th>
+        <th>CisionPoint ID</th>
+        <th>Type</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
+          <td>{{account.name}}</td>
+          <td>{{account.value | currency}}</td>
+          <td>{{account.cid}}</td>
+          <td>{{account.accountType}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section class="container">
