@@ -1,10 +1,40 @@
 .section-header {
   h4 {
+    position: relative;
     display: inline-block;
     padding-right: 8px;
     margin-top: 0;
     margin-bottom: ($padding-large-vertical * 1.5);
     background: #fff;
+    &:before {
+      display: none;
+      position: absolute;
+      top: 5px;
+      left: -13px;
+      content: "\f123";
+      font-family: "Ionicons";
+      speak: none;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      text-rendering: auto;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: $gray-light;
+    }
+    &:hover:before {
+      display: block;
+    }
+  }
+  &.closed h4:before {
+    display:block;
+    content: "\f125";
+    top: 4px;
+    left: -9px;
+    color: $text-color;
   }
 }
 

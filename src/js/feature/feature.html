@@ -13,25 +13,30 @@
       </div>
       <div class="row section">
         <div class="col-sm-12">
-          <div class="section-header">
+          <div class="section-header"
+            ng-class="{'closed':!$ctrl.showOgRequest}"
+            ng-click="$ctrl.showOgRequest = !$ctrl.showOgRequest">
             <h4>Original Request</h4>
           </div>
-          <div class="col-sm-12">
+          <div class="col-sm-12"
+            ng-show="$ctrl.showOgRequest">
             <p>{{$ctrl._feature.description}}</p>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <ng-click ng-click="$ctrl.showComments = false">
+
           <div class="section-header"
-            ng-click="$ctrl.showComments = false">
+            ng-class="{'closed':!$ctrl.showComments}"
+            ng-click="$ctrl.showComments = !$ctrl.showComments">
             <h4>Comments</h4>
           </div>
 
-          <div class="col-sm-12">
-            <div class="comment" ng-repeat="comment in $ctrl._comments"
-            ng-hide="$ctrl.showComments">
+          <div class="col-sm-12"
+            ng-show="$ctrl.showComments">
+            <div class="comment"
+              ng-repeat="comment in $ctrl._comments">
               <div class="comment__meta">
                 <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
                 <span class="comment__meta__date small">&mdash; {{ comment.dateCreated | date:'short' }}</span>

@@ -18,6 +18,9 @@ class FeatureCtrl {
 
     this.comment = {}
     this.comment.message = ''
+    
+    this.showOgRequest = true
+    this.showComments = true
 
     this.listAccounts()
 
