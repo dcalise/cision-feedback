@@ -1,0 +1,20 @@
+.section-header {
+  h4 {
+    display: inline-block;
+    padding-right: 8px;
+    margin-top: 0;
+    margin-bottom: ($padding-large-vertical * 1.5);
+    background: #fff;
+  }
+}
+
+h1 {
+  small {
+    display: block;
+    &.value {
+      color: $brand-success;
+      font-weight: 700;
+    }
+  }
+  margin-bottom: ($padding-large-vertical * 4);
+}

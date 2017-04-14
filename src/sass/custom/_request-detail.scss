@@ -1,14 +1,12 @@
 .request-header {
-  .label {
-    font-size: 65%;
-  }
-  .total {
-    padding: $padding-large-vertical $padding-large-horizontal;
-    background: rgba($brand-success, .4);
-    font-size: 24px;
-  }
+  li { margin-bottom: 5px; }
 }
-
 .comment {
-  margin-bottom: ($padding-large-vertical * 2)
+  margin-bottom: ($padding-large-vertical * 2);
+  .comment__meta {
+    margin-bottom: ($padding-large-vertical * 1);
+    .comment__meta__date {
+      color: $gray-light;
+    }
+  }
 }

@@ -1,44 +1,78 @@
 <app-header></app-header>
 
-<section class="container request-header">
-  <h1>{{::$ctrl._feature.subject}}<span class="label label-success label-sm ml-sm">{{::$ctrl._feature.status}}</span></h1>
-
-  <span class="pull-right total">{{$ctrl._featureDetail.totalValue | currency }}</span>
-  <div><strong>Requested by:</strong> {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<em ng-show="$ctrl._featureDetail.requester.department">, {{::$ctrl._featureDetail.requester.department}}</em></div>
-  <div><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</div>
-</section>
-
 <section class="container">
-  <h3>Original Request</h3>
-  <p>{{$ctrl._feature.description}}</p>
-</section>
+  <div class="row">
+    <div class="col-sm-8 request-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>
+            {{::$ctrl._feature.subject}}
+            <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
+          </h1>
+        </div>
+      </div>
+      <div class="row section">
+        <div class="col-sm-12">
+          <div class="section-header">
+            <h4>Original Request</h4>
+          </div>
+          <p>{{$ctrl._feature.description}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="section-header"
+            ng-click="$ctrl.showComments = false">
+            <h4>Comments</h4>
+          </div>
 
-<section class="container">
+          <div class="comment" ng-repeat="comment in $ctrl._comments"
+            ng-hide="$ctrl.showComments">
+            <div class="comment__meta">
+              <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
+              <span class="comment__meta__date small">&mdash; {{ comment.dateCreated | date:'short' }}</span>
+            </div>
+            <div class="comment__message">
+              {{ comment.message }}
+            </div>
+            <hr/>
+          </div>
 
-  <h3>Comments</h3>
+          <form class="message-form"
+            ng-show="$ctrl.showComment"
+            ng-submit="$ctrl.addComment()">
 
-  <div class="comment" ng-repeat="comment in $ctrl._comments">
-    <div class="comment__message">
-      {{ comment.message }}
+            <div class="form-group">
+              <textarea class="form-control" rows="3"
+                ng-model="$ctrl.comment.message">
+              </textarea>
+            </div>
+            <button class="btn btn-default"
+              ng-click="$ctrl.resetComment()" type="button">Cancel</button>
+            <button class="btn btn-info" type="submit">Add Comment</button>
+
+          </form>
+          <button class="btn btn-default"
+            ng-hide="$ctrl.showComment"
+            ng-click="$ctrl.showComment = true">Comment
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="comment__meta small">
-    <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
-    <span class="commenta__meta__date"><em>{{ comment.dateCreated | date:'short' }}</em></span>
+    <div class="col-sm-4">
+      <ul class="list-unstyled mt-xl">
+        <li><strong>Status:</strong>  <span class="label label-success">{{::$ctrl._feature.status}}</span></li>
+        <li><strong>Requested by:</strong> {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<em ng-show="$ctrl._featureDetail.requester.department">, {{::$ctrl._featureDetail.requester.department}}</em></li>
+        <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
+      </ul>
     </div>
   </div>
+</section>
 
-  <form class="message-form" ng-submit="$ctrl.addComment()">
 
-    <div class="input-group">
-      <textarea class="form-control" rows="3"
-        ng-model="$ctrl.comment.message">
-      </textarea>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Add Comment</button>
-      </span>
-    </div>
+<section class="container">
 
-  </form>
+  
 </section>
 
 <section class="container">
@@ -47,7 +81,9 @@
     ui-sref="app.add-customer">
     Add Customer
   </a>-->
-  <h3>Customer Summary</h3>
+  <div class="section-header">
+    <h4>Customer Summary</h4>
+  </div>
   <table class="table table-striped">
     <thead>
       <th>Account Name</th>

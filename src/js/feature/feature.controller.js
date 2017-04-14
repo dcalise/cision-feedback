@@ -64,6 +64,18 @@ class FeatureCtrl {
     })
   }
 
+  resetComment() {
+    if (this.comment.message.length > 0) {
+      let sure = confirm('Are you sure you want to delete your draft?')
+      if (sure == true ) {
+        this.comment.message = '';
+        this.showComment = false;
+      }
+    } else {
+      this.showComment = false;
+    }
+  }
+
   addAccount() {
     this._Accounts.add(this.accountForm).then(
       (account) => {
