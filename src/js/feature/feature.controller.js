@@ -80,6 +80,18 @@ class FeatureCtrl {
     }
   }
 
+  resetAccountForm() {
+    if (this.accountForm) {
+      let sure = confirm('Are you sure you want to delete your draft?')
+      if (sure == true ) {
+        this.accountForm = {}
+        this.showAccountForm = false
+      }
+    } else {
+      this.showAccountForm = false
+    }
+  }
+
   addAccount() {
     this._Accounts.add(this.accountForm).then(
       (account) => {
