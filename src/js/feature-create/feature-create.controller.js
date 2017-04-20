@@ -8,7 +8,6 @@ class FeedbackCreateCtrl {
     this._Features = Features;
     this._currentAuth = currentAuth;
     this._profile = profile;
-    
   }
 
   addAccountAndFeature() {
