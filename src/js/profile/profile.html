@@ -21,7 +21,13 @@
 
       <div class="col-sm-4">
         <div class="form-group">
-          <input required type="text" class="form-control" placeholder="Department" ng-model="$ctrl._profile.department">
+          <select class="form-control" 
+            ng-model="$ctrl._profile.department">
+            <option>UX</option>
+            <option>Product</option>
+            <option>Marketing</option>
+            <option>Other</option>
+          </select>
         </div>
       </div>
 

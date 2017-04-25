@@ -56,6 +56,7 @@ class FeatureCtrl {
         (comments) => {
           this.getCommentMeta()
           this.comment.message = ''
+          this.showComment = false
         },
         (error) => console.log(error)
       ) 
