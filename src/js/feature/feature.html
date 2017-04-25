@@ -123,17 +123,51 @@
       ng-submit="$ctrl.addAccount()">
       <fieldset ng-disabled="$ctrl.accountForm.isSubmitting">
         <div class="form-group">
+          <label for="account-type" class="control-label">Platform</label>
+          <select class="form-control" 
+            ng-model="$ctrl.accountForm.platform">
+            <option>PRN customer on the OMC</option>
+            <option>MV (and won’t upgrade)</option>
+            <option>Net new C3 customer (no legacy platform)</option>
+            <option>On C3 (upgraded from CPRE)</option>
+            <option>On C3 (upgraded from CP)</option>
+            <option>On C3 (upgraded from MyG)</option>
+            <option>On C3 (upgraded from PRWeb subscription)</option>
+            <option>On C3 (upgraded from PRN Agility)</option>
+            <option>On CPRE (and won't upgrade)</option>
+            <option>On CP (and won't upgrade)</option>
+            <option>On MyG (and won't upgrade)</option>
+            <option>PRWeb subscription (and won't upgrade)</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="account-name" class="control-label">Account Name</label>
           <input type="text" class="form-control" id="account-name"
             ng-model="$ctrl.accountForm.name">
         </div>
         <div class="form-group">
+          <label for="account-type" class="col-sm-2 control-label">Country</label>
+          <select class="form-control" 
+            ng-model="$ctrl.accountForm.country">
+            <option>USA</option>
+            <option>UK</option>
+            <option>Canada</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Nordics</option>
+            <option>LatAm</option>
+            <option>Asia</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="account-type" class="control-label">Account Type</label>
           <select class="form-control" 
             ng-model="$ctrl.accountForm.accountType">
-            <option>Current Customer</option>
-            <option>Potential Customer</option>
-            <option>Former Customer</option>
+            <option>Current customer</option>
+            <option>Lost customer</option>
+            <option>Prospect in-cycle</option>
+            <option>Prospect loss</option>
           </select>
         </div>
         <div class="form-group">
