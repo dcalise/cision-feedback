@@ -10,10 +10,11 @@ export default class Accounts {
 
   add(account) {
     return this.accounts.$add({
+      platform: account.platform,
       name: account.name,
       accountType: account.accountType,
       cid: account.cid,
-      // country: account.country,
+      country: account.country,
       value: account.value,
       dateCreated: Date.now(),
       lastUpdated: null,
