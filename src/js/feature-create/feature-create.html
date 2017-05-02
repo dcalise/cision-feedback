@@ -30,6 +30,24 @@
 
       <label><input type="checkbox" ng-model="new" ng-init="new=true" /> New?</label>
 
+      <div angucomplete-alt id="ex2"
+        placeholder="Search people"
+        pause="300"
+        clear-selected="true"
+        selected-object="$ctrl.selectedAccounts"
+        local-data="$ctrl._Accounts.all"
+        local-search="$ctrl.accountSearch"
+        title-field="name"
+        description-field="cid"
+        minlength="1"
+        input-class="form-control form-control-small"
+        match-class="highlight">
+      </div>
+
+      <div class="" ng-show="$ctrl.selectedAccounts">
+        You selected <span class="bold-span">{{$ctrl.selectedAccounts.originalObject.name}} {{$ctrl.selectedAccounts.originalObject.cid}}</span>
+      </div>
+
       <div class="form-group"
         ng-if="!new">
         <label for="lookup" class="col-sm-2 control-label">Account:</label>
