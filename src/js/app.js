@@ -2,6 +2,7 @@ import angular from 'angular';
 import * as firebase from "firebase";
 import 'angularfire';
 import 'angular-md5';
+import 'angucomplete-alt';
 
 // Import our app config files
 import constants  from './config/app.constants';
@@ -41,7 +42,8 @@ const requires = [
   'app.feature-create',
   'app.profile',
   'app.article',
-  'app.services'
+  'app.services',
+  'angucomplete-alt'
 ];
 
 // Mount on window for testing

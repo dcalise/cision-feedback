@@ -4,6 +4,7 @@
   "description": "Cision Feedback Application",
   "author": "dcalise",
   "dependencies": {
+    "angucomplete-alt": "^3.0.0",
     "angular": "^1.5.0-rc.2",
     "angular-md5": "^0.1.10",
     "angular-ui-router": "^0.3.2",
