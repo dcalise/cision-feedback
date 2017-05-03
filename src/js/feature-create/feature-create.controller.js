@@ -9,6 +9,7 @@ class FeedbackCreateCtrl {
     this._currentAuth = currentAuth;
     this._profile = profile;
 
+    // add existing accounts
     this.accountForm = {
       new: false
     }
@@ -32,17 +33,7 @@ class FeedbackCreateCtrl {
 
   }
 
-  accountSearch(str, accounts) {
-    var matches = [];
-    accounts.forEach(function(account) {
-      if (account.name.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0 || account.cid.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) {
-        matches.push(account);
-      }
-    });
-    return matches;
-  };
-
-  removeAccount(i) {
+  removeAccountFromAddList(i) {
     this.accountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
