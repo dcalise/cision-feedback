@@ -29,4 +29,14 @@ export default class Accounts {
       }
     )
   }
+
+  accountSearch(str, accounts) {
+    var matches = [];
+    accounts.forEach(function(account) {
+      if (account.name.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0 || account.cid.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) {
+        matches.push(account);
+      }
+    });
+    return matches;
+  };
 }
