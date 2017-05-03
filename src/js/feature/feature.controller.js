@@ -27,8 +27,34 @@ class FeatureCtrl {
 
     this.getCommentMeta()
 
+    // add existing accounts
+    this.accountForm = {
+      new: false
+    }
+
+    this.accountsMeta = []
+
+    this.accountSelected = (selected) => {
+      if (selected) {
+        this.getAccountMeta(selected.originalObject.$id)
+        return this.accountForm.selectedAccounts.push(selected.originalObject.$id)
+      }
+    }
+
+    this.getAccountMeta = (accountId) => {
+     return Accounts.getAccount(accountId).then(
+       (account) => {
+         this.accountsMeta.push(account)
+       }
+     )
+    }
+
   }
 
+  removeAccountFromAddList(i) {
+    this.accountsMeta.splice(i,1)
+    this.accountForm.selectedAccounts.splice(i,1)
+  }
 
   listAccounts() {
     this._featureDetail.accountsMeta = []
@@ -94,19 +120,30 @@ class FeatureCtrl {
   }
 
   addAccount() {
-    this._Accounts.add(this.accountForm).then(
-      (account) => {
-        console.log(account.key)
-        this._feature.accounts.push(account.key)
+    if (this.accountForm.new === true) {
+      this._Accounts.add(this.accountForm).then(
+        (account) => {
+          this._feature.accounts.push(account.key)
 
-        return this._feature.$save().then(
-          () => this.listAccounts(),
-          (error) => console.log(error)
-        )
+          return this._feature.$save().then(
+            () => this.listAccounts(),
+            (error) => console.log(error)
+          )
 
-      },
-      (error) => { console.log(error) }
-    )
+        },
+        (error) => { console.log(error) }
+      )
+    } else {
+      this._feature.accounts = this._feature.accounts.concat(this.accountForm.selectedAccounts)
+      return this._feature.$save().then(
+        () => {
+          this.listAccounts()
+          this.accountsMeta = []
+          this.accountForm.selectedAccounts = []
+        },
+        (error) => console.log(error)
+      )
+    }
   }
 
 }
