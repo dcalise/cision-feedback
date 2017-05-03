@@ -29,7 +29,10 @@
       </div>
 
       <label><input type="checkbox" ng-model="$ctrl.accountForm.new" /> New?</label>
-
+      
+      <ul>
+        <li ng-repeat="account in $ctrl.accountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccount($index)" class="ion-close-circled"></i></li>
+      </ul>
       <div class="form-group"
         ng-if="!$ctrl.accountForm.new">
         <label for="lookup" class="col-sm-2 control-label">Account:</label>

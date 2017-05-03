@@ -13,10 +13,21 @@ class FeedbackCreateCtrl {
       new: false
     }
 
+    this.accountsMeta = []
+
     this.accountSelected = (selected) => {
       if (selected) {
+        this.getAccountMeta(selected.originalObject.$id)
         return this.accountForm.selectedAccounts.push(selected.originalObject.$id)
       }
+    }
+
+    this.getAccountMeta = (accountId) => {
+     return Accounts.getAccount(accountId).then(
+       (account) => {
+         this.accountsMeta.push(account)
+       }
+     )
     }
 
   }
@@ -30,6 +41,11 @@ class FeedbackCreateCtrl {
     });
     return matches;
   };
+
+  removeAccount(i) {
+    this.accountsMeta.splice(i,1)
+    this.accountForm.selectedAccounts.splice(i,1)
+  }
 
   addAccountAndFeature() {
     if (this.accountForm.new === true) {
