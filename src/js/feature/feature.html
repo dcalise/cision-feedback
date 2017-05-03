@@ -122,17 +122,17 @@
     <form class="account-form" 
       ng-submit="$ctrl.addAccount()">
 
-      <label><input type="checkbox" ng-model="$ctrl.accountForm.new" /> New?</label>
+      <label><input type="checkbox" ng-model="$ctrl.new" /> New?</label>
       
       
       <fieldset ng-disabled="$ctrl.accountForm.isSubmitting">
 
         <ul
-          ng-if="!$ctrl.accountForm.new">
-          <li ng-repeat="account in $ctrl.accountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
+          ng-if="!$ctrl.new">
+          <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
         </ul>
         <div class="form-group"
-          ng-if="!$ctrl.accountForm.new">
+          ng-if="!$ctrl.new">
           <label for="lookup" class="col-sm-2 control-label">Account:</label>
           <div class="col-sm-10">
             <div angucomplete-alt id="ex2"
@@ -155,7 +155,7 @@
         </div>
         <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
 
-        <div ng-if="$ctrl.accountForm.new">
+        <div ng-if="$ctrl.new">
           <div class="form-group">
             <label for="account-type" class="control-label">Platform</label>
             <select class="form-control" 

@@ -10,11 +10,9 @@ class FeedbackCreateCtrl {
     this._profile = profile;
 
     // add existing accounts
-    this.accountForm = {
-      new: false
-    }
+    this.new = false;
 
-    this.accountsMeta = []
+    this.existingAccountsMeta = []
 
     this.accountSelected = (selected) => {
       if (selected) {
@@ -26,7 +24,7 @@ class FeedbackCreateCtrl {
     this.getAccountMeta = (accountId) => {
      return Accounts.getAccount(accountId).then(
        (account) => {
-         this.accountsMeta.push(account)
+         this.existingAccountsMeta.push(account)
        }
      )
     }
@@ -34,12 +32,12 @@ class FeedbackCreateCtrl {
   }
 
   removeAccountFromAddList(i) {
-    this.accountsMeta.splice(i,1)
+    this.existingAccountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
 
   addAccountAndFeature() {
-    if (this.accountForm.new === true) {
+    if (this.new === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
           this._Features.add(this.featureForm, this._currentAuth, this._profile, account.key).then(

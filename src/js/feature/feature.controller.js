@@ -28,11 +28,9 @@ class FeatureCtrl {
     this.getCommentMeta()
 
     // add existing accounts
-    this.accountForm = {
-      new: false
-    }
+    this.new = false
 
-    this.accountsMeta = []
+    this.existingAccountsMeta = []
 
     this.accountSelected = (selected) => {
       if (selected) {
@@ -44,7 +42,7 @@ class FeatureCtrl {
     this.getAccountMeta = (accountId) => {
      return Accounts.getAccount(accountId).then(
        (account) => {
-         this.accountsMeta.push(account)
+         this.existingAccountsMeta.push(account)
        }
      )
     }
@@ -52,7 +50,7 @@ class FeatureCtrl {
   }
 
   removeAccountFromAddList(i) {
-    this.accountsMeta.splice(i,1)
+    this.existingAccountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
 
@@ -108,11 +106,13 @@ class FeatureCtrl {
   }
 
   resetAccountForm() {
-    if (this.accountForm) {
+    if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
       let sure = confirm('Are you sure you want to delete your draft?')
       if (sure == true ) {
         this.accountForm = {}
         this.showAccountForm = false
+        this.existingAccountsMeta = []
+        this.accountForm.selectedAccounts = []
       }
     } else {
       this.showAccountForm = false
@@ -120,7 +120,7 @@ class FeatureCtrl {
   }
 
   addAccount() {
-    if (this.accountForm.new === true) {
+    if (this.new === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
           this._feature.accounts.push(account.key)
@@ -138,8 +138,11 @@ class FeatureCtrl {
       return this._feature.$save().then(
         () => {
           this.listAccounts()
-          this.accountsMeta = []
-          this.accountForm.selectedAccounts = []
+          // reset add existing
+          this.existingAccountsMeta = []
+          // reset form
+          this.accountForm = {}
+          this.showAccountForm = false
         },
         (error) => console.log(error)
       )
