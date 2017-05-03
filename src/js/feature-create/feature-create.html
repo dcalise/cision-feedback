@@ -31,7 +31,7 @@
       <label><input type="checkbox" ng-model="$ctrl.accountForm.new" /> New?</label>
       
       <ul>
-        <li ng-repeat="account in $ctrl.accountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccount($index)" class="ion-close-circled"></i></li>
+        <li ng-repeat="account in $ctrl.accountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
       </ul>
       <div class="form-group"
         ng-if="!$ctrl.accountForm.new">
@@ -43,7 +43,7 @@
             clear-selected="true"
             selected-object="$ctrl.accountSelected"
             local-data="$ctrl._Accounts.all"
-            local-search="$ctrl.accountSearch"
+            local-search="$ctrl._Accounts.accountSearch"
             title-field="name"
             description-field="cid"
             minlength="1"
