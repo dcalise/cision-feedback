@@ -24,10 +24,13 @@ export default class Features {
 
   // Add Feature
   add(feature, currentAuth, profile, accountKey) {
+    if (!Array.isArray(accountKey)) {
+      accountKey = [accountKey]
+    }
     return this._features.$add({
       subject: feature.subject,
       description: feature.description,
-      accounts: [accountKey],
+      accounts: accountKey,
       requesterUID: currentAuth.uid,
       status: 'New',
       dateCreated: Date.now(),
