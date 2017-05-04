@@ -10,10 +10,11 @@ export default class Accounts {
 
   add(account) {
     return this.accounts.$add({
+      platform: account.platform,
       name: account.name,
       accountType: account.accountType,
       cid: account.cid,
-      // country: account.country,
+      country: account.country,
       value: account.value,
       dateCreated: Date.now(),
       lastUpdated: null,
@@ -28,4 +29,14 @@ export default class Accounts {
       }
     )
   }
+
+  accountSearch(str, accounts) {
+    var matches = [];
+    accounts.forEach(function(account) {
+      if (account.name.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0 || account.cid.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) {
+        matches.push(account);
+      }
+    });
+    return matches;
+  };
 }
