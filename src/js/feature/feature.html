@@ -133,24 +133,22 @@
         </ul>
         <div class="form-group"
           ng-if="!$ctrl.new">
-          <label for="lookup" class="col-sm-2 control-label">Account:</label>
-          <div class="col-sm-10">
-            <div angucomplete-alt id="ex2"
-              placeholder="Enter account name or ID"
-              pause="300"
-              clear-selected="true"
-              selected-object="$ctrl.accountSelected"
-              local-data="$ctrl._Accounts.all"
-              local-search="$ctrl._Accounts.accountSearch"
-              title-field="name"
-              description-field="cid"
-              minlength="1"
-              input-class="form-control form-control-small"
-              match-class="highlight">
-            </div>
-            <div class="" ng-show="$ctrl.selectedAccounts">
-              You selected <span class="bold-span">{{$ctrl.selectedAccounts}}</span>
-            </div>
+          <label for="lookup" class="control-label">Account:</label>
+          <div angucomplete-alt
+            placeholder="Enter account name or ID"
+            pause="300"
+            clear-selected="true"
+            selected-object="$ctrl.accountSelected"
+            local-data="$ctrl._Accounts.all"
+            local-search="$ctrl._Accounts.accountSearch"
+            title-field="name"
+            description-field="cid"
+            minlength="1"
+            input-class="form-control form-control-small"
+            match-class="highlight">
+          </div>
+          <div class="" ng-show="$ctrl.selectedAccounts">
+            You selected <span class="bold-span">{{$ctrl.selectedAccounts}}</span>
           </div>
         </div>
         <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
@@ -221,7 +219,7 @@
       </fieldset>
       <button class="btn btn-default"
         ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
-      <button type="submit" class="btn btn-info">Submit</button>
+      <button type="submit" class="btn btn-info">Add Account</button>
     </form>
   </div>
   <button type="button" class="btn btn-default"
