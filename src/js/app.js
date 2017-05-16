@@ -3,6 +3,7 @@ import * as firebase from "firebase";
 import 'angularfire';
 import 'angular-md5';
 import 'angucomplete-alt';
+import 'angular-validation-match';
 
 // Import our app config files
 import constants  from './config/app.constants';
@@ -43,7 +44,8 @@ const requires = [
   'app.profile',
   'app.article',
   'app.services',
-  'angucomplete-alt'
+  'angucomplete-alt',
+  'validation.match'
 ];
 
 // Mount on window for testing

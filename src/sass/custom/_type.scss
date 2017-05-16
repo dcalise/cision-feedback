@@ -53,3 +53,8 @@ h1 {
 .meta {
   color: $gray-light;
 }
+
+.form-errors {
+  color: $brand-danger;
+  font-weight: bold;
+}

@@ -9,20 +9,34 @@
   <div class="row">
     <div class="col-sm-4">
 
-      <div ng-show="$ctrl.error">
+      <div class="form-errors"
+        ng-show="$ctrl.error">
         <span>{{ $ctrl.error.message }}</span>
       </div>
+      <div class="form-errors"
+        data-ng-show="register.confirmPassword.$error.match">Passwords do not match!</div>
+      
 
-      <form ng-submit="$ctrl.submitRegister()">
+      <form name="register" ng-submit="!register.confirmPassword.$error.match && $ctrl.submitRegister()">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" placeholder="Email" ng-model="$ctrl.formData.email">
+          <input type="email" id="email" class="form-control" required
+            ng-model="$ctrl.formData.email">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" class="form-control" placeholder="Password" ng-model="$ctrl.formData.password">
+          <input type="password" name="password"
+            class="form-control {{ (register.confirmPassword.$error.match) ? 'ng-invalid' : ''; }}"
+            ng-model="$ctrl.formData.password">
         </div>
-        <input type="submit" class="btn btn-default" value="Register">
+        <div class="form-group">
+          <label for="password-confirm">Confirm Password</label>
+          <input ng-model="$ctrl.formData.passwordConfirm" type="password"
+            class="form-control"
+            data-match="$ctrl.formData.password"
+            name="confirmPassword" />
+        </div>
+        <input type="submit" class="btn btn-success" value="Register">
       </form>
 
     </div>
