@@ -9,11 +9,11 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
     });
 
   $urlRouterProvider.otherwise('/');
-  $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: true,
-    rewriteLinks: true
-  });
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: true,
+  //   rewriteLinks: true
+  // });
 
 }
 
