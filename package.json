@@ -7,6 +7,7 @@
     "angucomplete-alt": "^3.0.0",
     "angular": "^1.5.0-rc.2",
     "angular-md5": "^0.1.10",
+    "angular-toastr": "^2.1.1",
     "angular-ui-router": "^0.3.2",
     "angular-validation-match": "^1.9.0",
     "angularfire": "^2.3.0",

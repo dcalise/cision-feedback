@@ -1,4 +1,4 @@
-function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider, toastrConfig) {
   'ngInject';
 
   // $httpProvider.interceptors.push(authInterceptor);
@@ -14,6 +14,16 @@ function AppConfig($httpProvider, $stateProvider, $locationProvider, $urlRouterP
   //   requireBase: true,
   //   rewriteLinks: true
   // });
+  angular.extend(toastrConfig, {
+    autoDismiss: false,
+    containerId: 'toast-container',
+    maxOpened: 0,    
+    newestOnTop: true,
+    positionClass: 'toast-top-center',
+    preventDuplicates: false,
+    preventOpenDuplicates: false,
+    target: 'body'
+  });
 
 }
 
