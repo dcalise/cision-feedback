@@ -122,7 +122,7 @@
     <form class="account-form" 
       ng-submit="$ctrl.addAccount()">
 
-      <label><input type="checkbox" ng-model="$ctrl.new" /> New?</label>
+      <label><input type="checkbox" ng-model="$ctrl.new" /> New Account</label>
       
       
       <fieldset ng-disabled="$ctrl.accountForm.isSubmitting">
@@ -222,8 +222,10 @@
       <button type="submit" class="btn btn-info">Add Account</button>
     </form>
   </div>
-  <button type="button" class="btn btn-default"
-    ng-hide="$ctrl.showAccountForm"
-    ng-click="$ctrl.showAccountForm = true">Add Account
-  </button>
+  <div class="col-sm-6">
+    <button type="button" class="btn btn-default"
+      ng-hide="$ctrl.showAccountForm"
+      ng-click="$ctrl.showAccountForm = true">Add Account
+    </button>
+  </div>
 </section>
