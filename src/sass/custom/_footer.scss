@@ -1,4 +1,8 @@
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: $padding-large-vertical 0;
   margin-top: ($padding-large-vertical * 7);
   background: $gray;
