@@ -19,6 +19,17 @@
             <textarea type="textarea" class="form-control" id="description"
               ng-model="$ctrl.featureForm.description" rows="5"></textarea>
           </div>
+          <div class="form-group">
+            <label for="labels">Labels</label><br>
+            <select class="form-control" name="labels" ng-model="$ctrl.featureForm.labels" multiple>
+              <option>Contacts functionality</option>
+              <option>Contacts content</option>
+              <option>Connect functionality</option>
+              <option>News functionality</option>
+              <option>News content</option>
+              <option>Insights functionality</option>
+            </select>
+          </div>
           <div class="row">
             <div class="col-sm-12">
               <h3>Account Info</h3>
