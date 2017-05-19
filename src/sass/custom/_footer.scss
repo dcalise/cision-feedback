@@ -7,6 +7,7 @@ footer {
   margin-top: ($padding-large-vertical * 7);
   background: $gray;
   color: $footer-text-color;
+  z-index: $zindex-navbar;
   a {
     color: $footer-link-color;
     text-decoration: underline;
