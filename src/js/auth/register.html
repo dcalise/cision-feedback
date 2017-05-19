@@ -11,10 +11,12 @@
 
       <div class="form-errors"
         ng-show="$ctrl.error">
-        <span>{{ $ctrl.error.message }}</span>
+        <p>{{ $ctrl.error.message }}</p>
       </div>
       <div class="form-errors"
-        data-ng-show="register.confirmPassword.$error.match">Passwords do not match!</div>
+        data-ng-show="register.confirmPassword.$error.match">
+        Passwords do not match!
+      </div>
       
 
       <form name="register" ng-submit="!register.confirmPassword.$error.match && $ctrl.submitRegister()">
@@ -36,7 +38,16 @@
             data-match="$ctrl.formData.password"
             name="confirmPassword" />
         </div>
-        <input type="submit" class="btn btn-success" value="Register">
+        <div class="media">
+          <div class="media-body media-middle">
+            <span>
+              Already have an acccount? <a ui-sref="app.login">Login here.</a>
+            </span>
+          </div>
+          <div class="media-right media-middle">
+            <input type="submit" class="btn btn-success pull-right" value="Register">
+          </div>
+        </div>
       </form>
 
     </div>
