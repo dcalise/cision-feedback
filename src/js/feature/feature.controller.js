@@ -65,7 +65,7 @@ class FeatureCtrl {
         }
       )
     })
-    this._featureDetail.requester = this._Users.getProfile(this._feature.requesterUID);
+    this._featureDetail.requester = this._Users.getProfile(this._feature.requesterUID)
   }
 
   addComment() {
