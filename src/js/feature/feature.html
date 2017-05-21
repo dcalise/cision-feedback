@@ -70,10 +70,15 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 request-sidebar">
       <ul class="list-unstyled mt-xl">
         <li><strong>Status:</strong>  <span class="label label-success">{{::$ctrl._feature.status}}</span></li>
-        <li><strong>Requested by:</strong> {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<em ng-show="$ctrl._featureDetail.requester.department">, {{::$ctrl._featureDetail.requester.department}}</em></li>
+        <li>
+          <strong>Requested by:</strong><br>
+          {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>
+          <em ng-show="$ctrl._featureDetail.requester.department">{{::$ctrl._featureDetail.requester.department}}</em><br>
+          <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
+        </li>
         <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
         <li>
           <span ng-repeat="label in $ctrl._feature.labels" class="label label-default mr-xs" >{{label}}</span>
@@ -108,6 +113,8 @@
         <th>Account Value</th>
         <th>Account ID</th>
         <th>Type</th>
+        <th>Platform</th>
+        <th>Country</th>
       </thead>
       <tbody>
         <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
@@ -115,6 +122,8 @@
           <td>{{account.value | currency}}</td>
           <td>{{account.cid}}</td>
           <td>{{account.accountType}}</td>
+          <td>{{account.platform}}</td>
+          <td>{{account.country}}</td>
         </tr>
       </tbody>
     </table>

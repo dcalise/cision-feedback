@@ -12,6 +12,7 @@ class ProfileCtrl {
 
   updateProfile() {
     this._profile.emailHash = this._md5.createHash(this._auth.email)
+    this._profile.email = this._auth.email
     this._profile.$save().then(
       this._toastr.success('Profile saved')
     )
