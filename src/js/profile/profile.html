@@ -13,20 +13,29 @@
       <div class="col-sm-4">
 
         <div class="form-group">
-          <label for="cision-point-id" class="control-label">First Name</label>
+          <label for="email" class="control-label">Email</label>
+          <input required type="text" class="form-control" readonly
+            ng-model="::$ctrl._auth.email">
+        </div>
+        
+        <div class="form-group">
+          <label for="first-name" class="control-label">First Name</label>
           <input required type="text" class="form-control" required
+            id="first-name"
             ng-model="$ctrl._profile.firstName">
         </div>
 
         <div class="form-group">
-          <label for="cision-point-id" class="control-label">Last Name</label>
+          <label for="last-name" class="control-label">Last Name</label>
           <input required type="text" class="form-control" required
+            id="last-name"
             ng-model="$ctrl._profile.lastName">
         </div>
 
         <div class="form-group">
-          <label for="cision-point-id" class="control-label">Department</label>
-          <select class="form-control" 
+          <label for="department" class="control-label">Department</label>
+          <select class="form-control"
+            id="department"
             ng-model="$ctrl._profile.department">
             <option>Cision Global Insights</option>
             <option>Client Development</option>
