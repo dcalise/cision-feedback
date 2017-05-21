@@ -50,6 +50,10 @@ h1 {
   margin-bottom: ($padding-large-vertical * 4);
 }
 
+h1.page-title {
+  margin-bottom: 0;
+}
+
 .meta {
   color: $gray-light;
 }

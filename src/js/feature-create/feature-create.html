@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <section class="container">
-  <h1>Create new request</h1>
+  <h1 class="page-title">Submit New Feature Request</h1>
 </section>
 
 <section class="container">
@@ -62,6 +62,18 @@
           <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
           <div ng-if="$ctrl.new">
             <div class="form-group">
+              <label for="account-name" class="control-label">Account Name</label>
+              <input type="text" class="form-control" id="account-name"
+                ng-model="$ctrl.accountForm.name">
+            </div>
+            <div class="form-group">
+              <label for="cision-point-id" class="control-label">Account ID</label>
+              <input type="text" class="form-control" id="cision-point-id"
+                ng-model="$ctrl.accountForm.cid">
+              <div class="col-sm-10">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="account-type" class="control-label">Platform</label>
               <select class="form-control" 
                 ng-model="$ctrl.accountForm.platform">
@@ -78,11 +90,6 @@
                 <option>On MyG (and won't upgrade)</option>
                 <option>PRWeb subscription (and won't upgrade)</option>
               </select>
-            </div>
-            <div class="form-group">
-              <label for="account-name" class="control-label">Account Name</label>
-              <input type="text" class="form-control" id="account-name"
-                ng-model="$ctrl.accountForm.name">
             </div>
             <div class="form-group">
               <label for="account-type" class="control-label">Country</label>
@@ -108,13 +115,6 @@
                 <option>Prospect in-cycle</option>
                 <option>Prospect loss</option>
               </select>
-            </div>
-            <div class="form-group">
-              <label for="cision-point-id" class="control-label">Account ID</label>
-              <input type="text" class="form-control" id="cision-point-id"
-                ng-model="$ctrl.accountForm.cid">
-              <div class="col-sm-10">
-              </div>
             </div>
             <div class="form-group">
               <label for="account-value" class="control-label">Account Value</label>
