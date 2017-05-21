@@ -6,7 +6,7 @@
 
 <section class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-md-6 col-sm-12">
       <form class="feature-form" ng-submit="$ctrl.addAccountAndFeature()">
         <fieldset ng-disabled="$ctrl.featureForm.isSubmitting">
           <div class="form-group">
@@ -21,7 +21,7 @@
           </div>
           <div class="form-group">
             <label for="labels">Labels</label><br>
-            <select class="form-control" name="labels" ng-model="$ctrl.featureForm.labels" multiple>
+            <select class="form-control" name="labels" size="6" ng-model="$ctrl.featureForm.labels" multiple>
               <option>Contacts functionality</option>
               <option>Contacts content</option>
               <option>Connect functionality</option>
