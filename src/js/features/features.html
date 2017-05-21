@@ -30,6 +30,13 @@
         </span>
       </th>
       <th class="sortable">
+        <span ng-click="$ctrl.sortType = 'labels'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          Labels
+          <span ng-show="$ctrl.sortType == 'labels' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
+          <span ng-show="$ctrl.sortType == 'labels' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
+        </span>
+      </th>
+      <th class="sortable">
         <span ng-click="$ctrl.sortType = 'subject'; $ctrl.sortReverse = !$ctrl.sortReverse">
           Subject
           <span ng-show="$ctrl.sortType == 'subject' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
@@ -44,17 +51,17 @@
         </span>
       </th>
       <th class="sortable">
-        <span ng-click="$ctrl.sortType = 'totalValue'; $ctrl.sortReverse = !$ctrl.sortReverse">
-          Total Value
-          <span ng-show="$ctrl.sortType == 'totalValue' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-          <span ng-show="$ctrl.sortType == 'totalValue' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
-        </span>
-      </th>
-      <th class="sortable">
         <span ng-click="$ctrl.sortType = 'dateCreated'; $ctrl.sortReverse = !$ctrl.sortReverse">
           Date
           <span ng-show="$ctrl.sortType == 'dateCreated' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
           <span ng-show="$ctrl.sortType == 'dateCreated' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
+        </span>
+      </th>
+      <th class="sortable text-right">
+        <span ng-click="$ctrl.sortType = 'totalValue'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          Total Value
+          <span ng-show="$ctrl.sortType == 'totalValue' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
+          <span ng-show="$ctrl.sortType == 'totalValue' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
         </span>
       </th>
     </thead>
@@ -62,10 +69,11 @@
       <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:searchFeatures"
       ui-sref="app.feature({id:feature.$id})">
         <td><span class="label label-success">{{feature.status}}</span></td>
+        <td><span ng-repeat="label in feature.labels"><span class="label label-default mr-xs" >{{label}}</span><br/></span></td>
         <td>{{feature.subject}}</td>
         <td>{{feature.accountsMeta[0].name}}</td>
-        <td>{{feature.totalValue | currency}}</td>
         <td>{{feature.dateCreated | date }}</td>
+        <td align="right">{{feature.totalValue | currency}}</td>
       </tr>
     </tbody>
   </table>
