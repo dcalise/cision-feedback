@@ -105,10 +105,13 @@ class FeatureCtrl {
     }
   }
 
-  resetAccountForm() {
+  resetAccountForm(added) {
     if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
-      let sure = confirm('Are you sure you want to delete your draft?')
-      if (sure == true ) {
+      let sure;
+      if (!added) {
+        sure = confirm('Are you sure you want to delete your draft?')
+      }
+      if (sure || added) {
         this.accountForm = {}
         this.showAccountForm = false
         this.existingAccountsMeta = []
@@ -126,7 +129,10 @@ class FeatureCtrl {
           this._feature.accounts.push(account.key)
 
           return this._feature.$save().then(
-            () => this.listAccounts(),
+            () => {
+              this.listAccounts()
+              this.resetAccountForm(true)
+            },
             (error) => console.log(error)
           )
 
