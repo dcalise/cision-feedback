@@ -19,6 +19,13 @@ function FeatureConfig($stateProvider) {
           }
         )
       },
+      profile: function(Users, Auth) {
+        return Auth.$requireSignIn().then(
+          (auth) => {
+            return Users.getProfile(auth.uid).$loaded()
+          }
+        )
+      },
       feature: function(Features, $stateParams) {
         return Features.getFeature($stateParams.id).$loaded()
       },

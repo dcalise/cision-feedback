@@ -1,5 +1,5 @@
 class FeatureCtrl {
-  constructor(feature, currentAuth, comments, Comments, Features, Accounts, $stateParams, Users) {
+  constructor(feature, currentAuth, comments, profile, Comments, Features, Accounts, $stateParams, Users) {
     'ngInject';
 
     this._$stateParams = $stateParams
@@ -7,8 +7,11 @@ class FeatureCtrl {
     this._feature = feature
     this._currentAuth = currentAuth
     this._comments = comments
+    
+    if (profile.roles.admin === true) {
+      this.userIsAdmin = true
+    }
 
-    // console.log(this._comments)
     this._Accounts = Accounts
     this._Comments = Comments
     this._Features = Features
