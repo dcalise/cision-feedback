@@ -126,6 +126,9 @@ class FeatureCtrl {
     if (this.new === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
+          if (!this._feature.accounts) {
+            this._feature.accounts = []
+          }
           this._feature.accounts.push(account.key)
 
           return this._feature.$save().then(
@@ -140,7 +143,11 @@ class FeatureCtrl {
         (error) => { console.log(error) }
       )
     } else {
-      this._feature.accounts = this._feature.accounts.concat(this.accountForm.selectedAccounts)
+      if (!this._feature.accounts) { 
+        this._feature.accounts = this.accountForm.selectedAccounts
+      } else {
+        this._feature.accounts = this._feature.accounts.concat(this.accountForm.selectedAccounts)
+      }
       return this._feature.$save().then(
         () => {
           this.listAccounts()
