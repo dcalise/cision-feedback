@@ -33,7 +33,9 @@ export default class Features {
       subject: feature.subject,
       requesterUID: currentAuth.uid,
       status: 'New',
-      labels: feature.labels,
+      labels: feature.labels || null,
+      compGap: feature.compGap || null,
+      legacyGap: feature.legacyGap,
       dateCreated: Date.now(),
       lastUpdated: null,
       editedBy: null

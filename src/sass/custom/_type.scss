@@ -48,6 +48,9 @@ h1 {
     }
   }
   margin-bottom: ($padding-large-vertical * 4);
+  .feature-detail & {
+    margin-bottom: $padding-large-vertical;
+  }
 }
 
 h1.page-title {
