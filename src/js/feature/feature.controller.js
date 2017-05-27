@@ -65,7 +65,7 @@ class FeatureCtrl {
         }
       )
     })
-    this._featureDetail.requester = this._Users.getProfile(this._feature.requesterUID);
+    this._featureDetail.requester = this._Users.getProfile(this._feature.requesterUID)
   }
 
   addComment() {
@@ -105,10 +105,13 @@ class FeatureCtrl {
     }
   }
 
-  resetAccountForm() {
+  resetAccountForm(added) {
     if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
-      let sure = confirm('Are you sure you want to delete your draft?')
-      if (sure == true ) {
+      let sure;
+      if (!added) {
+        sure = confirm('Are you sure you want to delete your draft?')
+      }
+      if (sure || added) {
         this.accountForm = {}
         this.showAccountForm = false
         this.existingAccountsMeta = []
@@ -123,10 +126,16 @@ class FeatureCtrl {
     if (this.new === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
+          if (!this._feature.accounts) {
+            this._feature.accounts = []
+          }
           this._feature.accounts.push(account.key)
 
           return this._feature.$save().then(
-            () => this.listAccounts(),
+            () => {
+              this.listAccounts()
+              this.resetAccountForm(true)
+            },
             (error) => console.log(error)
           )
 
@@ -134,7 +143,11 @@ class FeatureCtrl {
         (error) => { console.log(error) }
       )
     } else {
-      this._feature.accounts = this._feature.accounts.concat(this.accountForm.selectedAccounts)
+      if (!this._feature.accounts) { 
+        this._feature.accounts = this.accountForm.selectedAccounts
+      } else {
+        this._feature.accounts = this._feature.accounts.concat(this.accountForm.selectedAccounts)
+      }
       return this._feature.$save().then(
         () => {
           this.listAccounts()

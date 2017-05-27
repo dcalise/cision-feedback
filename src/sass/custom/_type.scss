@@ -48,8 +48,20 @@ h1 {
     }
   }
   margin-bottom: ($padding-large-vertical * 4);
+  .feature-detail & {
+    margin-bottom: $padding-large-vertical;
+  }
+}
+
+h1.page-title {
+  margin-bottom: 0;
 }
 
 .meta {
   color: $gray-light;
+}
+
+.form-errors {
+  color: $brand-danger;
+  font-weight: bold;
 }

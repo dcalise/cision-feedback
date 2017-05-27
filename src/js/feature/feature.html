@@ -1,14 +1,31 @@
 <app-header></app-header>
 
-<section class="container">
+<section class="container feature-detail">
   <div class="row">
-    <div class="col-sm-8 request-header">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1>
-            {{::$ctrl._feature.subject}}
-            <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
-          </h1>
+    <div class="col-sm-8 feature-header">
+      <div class="section">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>
+              {{::$ctrl._feature.subject}}
+              <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
+            </h1>
+          </div>
+        </div>
+        <div class="row mb-xs"
+          ng-show="$ctrl._feature.labels">
+          <div class="col-sm-12">
+            <span ng-repeat="label in $ctrl._feature.labels" class="label label-default mr-xs" >{{label}}</span>
+            </div>
+        </div>
+        <div class="row"
+          ng-show="$ctrl._feature.compGap || $ctrl._feature.legacyGap">
+          <div class="col-sm-12">
+            <span class="label label-danger mr-xs"
+              ng-show="$ctrl._feature.compGap">Competitive Gap</span>
+            <span class="label label-danger mr-xs"
+              ng-show="$ctrl._feature.legacyGap">Legacy Gap</span>
+          </div>
         </div>
       </div>
       <div class="row section">
@@ -70,10 +87,15 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 feature-sidebar">
       <ul class="list-unstyled mt-xl">
         <li><strong>Status:</strong>  <span class="label label-success">{{::$ctrl._feature.status}}</span></li>
-        <li><strong>Requested by:</strong> {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<em ng-show="$ctrl._featureDetail.requester.department">, {{::$ctrl._featureDetail.requester.department}}</em></li>
+        <li>
+          <strong>Requested by:</strong><br>
+          {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>
+          <em ng-show="$ctrl._featureDetail.requester.department">{{::$ctrl._featureDetail.requester.department}}</em><br>
+          <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
+        </li>
         <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
       </ul>
     </div>
@@ -102,16 +124,20 @@
     <table class="table table-striped">
       <thead>
         <th>Account Name</th>
-        <th>Account Value</th>
         <th>Account ID</th>
         <th>Type</th>
+        <th>Platform</th>
+        <th>Country</th>
+        <th class="text-right">Account Value</th>
       </thead>
       <tbody>
         <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
           <td>{{account.name}}</td>
-          <td>{{account.value | currency}}</td>
           <td>{{account.cid}}</td>
           <td>{{account.accountType}}</td>
+          <td>{{account.platform}}</td>
+          <td>{{account.country}}</td>
+          <td align="right">{{account.value | currency}}</td>
         </tr>
       </tbody>
     </table>
@@ -121,20 +147,17 @@
     ng-show="$ctrl.showAccountForm">
     <form class="account-form" 
       ng-submit="$ctrl.addAccount()">
-
-      <label><input type="checkbox" ng-model="$ctrl.new" /> New?</label>
       
-      
-      <fieldset ng-disabled="$ctrl.accountForm.isSubmitting">
+      <fieldset class="account-form"
+        ng-disabled="$ctrl.accountForm.isSubmitting">
 
-        <ul
-          ng-if="!$ctrl.new">
-          <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
-        </ul>
-        <div class="form-group"
-          ng-if="!$ctrl.new">
-          <label for="lookup" class="col-sm-2 control-label">Account:</label>
-          <div class="col-sm-10">
+        <!-- existing account -->
+        <div ng-if="!$ctrl.new">
+          <ul class="list-unstyled">
+            <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
+          </ul>
+          <div class="form-group">
+            <label for="lookup" class="control-label">Account:</label>
             <div angucomplete-alt id="ex2"
               placeholder="Enter account name or ID"
               pause="300"
@@ -148,14 +171,30 @@
               input-class="form-control form-control-small"
               match-class="highlight">
             </div>
-            <div class="" ng-show="$ctrl.selectedAccounts">
-              You selected <span class="bold-span">{{$ctrl.selectedAccounts}}</span>
+          </div>
+          <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
+
+          Can't find your customer? <a ng-click="$ctrl.new = true" class="btn btn-link">Click here.</a> 
+          <button type="submit" class="btn btn-info pull-right">Add Customer</button>
+          <button class="btn btn-default pull-right mr-sm"
+            ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
+          
+        </div>
+
+        <!-- new account -->
+        <div ng-if="$ctrl.new">
+          <div class="form-group">
+            <label for="account-name" class="control-label">Account Name</label>
+            <input type="text" class="form-control" id="account-name"
+              ng-model="$ctrl.accountForm.name">
+          </div>
+          <div class="form-group">
+            <label for="cision-point-id" class="control-label">Account ID</label>
+            <input type="text" class="form-control" id="cision-point-id"
+              ng-model="$ctrl.accountForm.cid">
+            <div class="col-sm-10">
             </div>
           </div>
-        </div>
-        <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
-
-        <div ng-if="$ctrl.new">
           <div class="form-group">
             <label for="account-type" class="control-label">Platform</label>
             <select class="form-control" 
@@ -175,12 +214,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="account-name" class="control-label">Account Name</label>
-            <input type="text" class="form-control" id="account-name"
-              ng-model="$ctrl.accountForm.name">
-          </div>
-          <div class="form-group">
-            <label for="account-type" class="col-sm-2 control-label">Country</label>
+            <label for="account-type" class="control-label">Country</label>
             <select class="form-control" 
               ng-model="$ctrl.accountForm.country">
               <option>USA</option>
@@ -205,11 +239,6 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="cision-point-id" class="control-label">Account ID</label>
-            <input type="text" class="form-control" id="cision-point-id"
-              ng-model="$ctrl.accountForm.cid">
-          </div>
-          <div class="form-group">
             <label for="account-value" class="control-label">Account Value</label>
             <div class="input-group">
               <div class="input-group-addon">$</div>
@@ -217,15 +246,19 @@
                 ng-model="$ctrl.accountForm.value">
             </div>
           </div>
+          Is your customer already in our database? <a ng-click="$ctrl.new = false" class="btn btn-link">Click here.</a> 
+          <button type="submit" class="btn btn-info pull-right">Add Customer</button>
+          <button class="btn btn-default pull-right mr-sm"
+            ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
         </div>
       </fieldset>
-      <button class="btn btn-default"
-        ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
-      <button type="submit" class="btn btn-info">Submit</button>
+      
     </form>
   </div>
-  <button type="button" class="btn btn-default"
-    ng-hide="$ctrl.showAccountForm"
-    ng-click="$ctrl.showAccountForm = true">Add Account
-  </button>
+  <div class="col-sm-6">
+    <button type="button" class="btn btn-default"
+      ng-hide="$ctrl.showAccountForm"
+      ng-click="$ctrl.showAccountForm = true">Add Customer to Request
+    </button>
+  </div>
 </section>

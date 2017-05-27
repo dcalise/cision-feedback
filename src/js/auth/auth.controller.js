@@ -5,6 +5,7 @@ class AuthCtrl {
     this._$state = $state;
     this._Auth = Auth;
    
+    this.error = {};
   }
 
   submitLogin() {
@@ -12,7 +13,7 @@ class AuthCtrl {
     this._Auth.$signInWithEmailAndPassword(this.formData.email, this.formData.password).then(
       (res) => {
         this.isSubmitting = false;
-        this._$state.go('app.home')
+        this._$state.go('app.features')
       },
       (err) => {
         this.isSubmitting = false;
@@ -21,17 +22,23 @@ class AuthCtrl {
     )
   }
   submitRegister() {
-    this.isSubmitting = true;
-    this._Auth.$createUserWithEmailAndPassword(this.formData.email, this.formData.password).then(
-      (res) => {
-        this.isSubmitting = false;
-        this._$state.go('app.home')
-      },
-      (err) => {
-        this.isSubmitting = false;
-        this.error = err;
-      }
-    )
+    let domain = this.formData.email.split('@')[1];
+    if (domain === 'prnewswire.com' || domain === 'cision.com' || domain === 'prnewswire.co.uk' || domain === 'multivu.com' || domain === 'gorkana.com' || domain === 'newswire.ca') {
+      this.isSubmitting = true;
+      this._Auth.$createUserWithEmailAndPassword(this.formData.email, this.formData.password).then(
+        (res) => {
+          this.isSubmitting = false;
+          this._$state.go('app.profile')
+        },
+        (err) => {
+          this.isSubmitting = false;
+          this.error = err;
+        }
+      )
+    } else {
+      this.error.message = "Sorry, you can't register with that email address. Please contact the administrator for for information."
+    }
+
   }
 }
 

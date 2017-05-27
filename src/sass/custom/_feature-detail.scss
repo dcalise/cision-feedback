@@ -1,4 +1,4 @@
-.request-header {
+.feature-header {
   li { margin-bottom: 5px; }
 }
 .comment {
@@ -17,4 +17,8 @@
     background-color: $gray-lightest;
     border-left-color: $gray-lighter;
   }
+}
+
+.feature-sidebar li {
+  margin-bottom: $padding-small-vertical;
 }

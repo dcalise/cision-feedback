@@ -1,28 +1,38 @@
 <app-header-login></app-header-login>
 
 <section class="container">
-  <h1>Login</h1>
+  <h1 class="page-title">Login</h1>
 </section>
 
 <section class="container">
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-md-4 col-sm-6">
 
-      <div ng-show="$ctrl.error">
-        <span>{{ $ctrl.error.message }}</span>
+      <div class="form-errors"
+        ng-show="$ctrl.error">
+        <p>{{ $ctrl.error.message }}</p>
       </div>
 
       <form ng-submit="$ctrl.submitLogin()">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" placeholder="Email" ng-model="$ctrl.formData.email">
+          <input type="email" id="email" class="form-control" placeholder="Email" ng-model="$ctrl.formData.email" required>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" class="form-control" placeholder="Password" ng-model="$ctrl.formData.password">
+          <input type="password" id="password" class="form-control" placeholder="Password" ng-model="$ctrl.formData.password" required>
         </div>
-        <input type="submit" class="btn btn-default" value="Login">
+        <div class="media">
+          <div class="media-body media-middle">
+            <span>
+              Don't have an acccount? <a ui-sref="app.register">Register here.</a>
+            </span>
+          </div>
+          <div class="media-right media-middle">
+            <input type="submit" class="btn btn-success pull-right" value="Login">
+          </div>
+        </div>
       </form>
 
     </div>

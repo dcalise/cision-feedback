@@ -28,11 +28,14 @@ export default class Features {
       accountKey = [accountKey]
     }
     return this._features.$add({
-      subject: feature.subject,
-      description: feature.description,
       accounts: accountKey,
+      description: feature.description,
+      subject: feature.subject,
       requesterUID: currentAuth.uid,
       status: 'New',
+      labels: feature.labels || null,
+      compGap: feature.compGap || null,
+      legacyGap: feature.legacyGap || null,
       dateCreated: Date.now(),
       lastUpdated: null,
       editedBy: null
