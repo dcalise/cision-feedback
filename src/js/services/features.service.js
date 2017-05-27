@@ -35,7 +35,7 @@ export default class Features {
       status: 'New',
       labels: feature.labels || null,
       compGap: feature.compGap || null,
-      legacyGap: feature.legacyGap,
+      legacyGap: feature.legacyGap || null,
       dateCreated: Date.now(),
       lastUpdated: null,
       editedBy: null
