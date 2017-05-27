@@ -175,7 +175,7 @@
           <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
 
           Can't find your customer? <a ng-click="$ctrl.new = true" class="btn btn-link">Click here.</a> 
-          <button type="submit" class="btn btn-info pull-right">Add Account</button>
+          <button type="submit" class="btn btn-info pull-right">Add Customer</button>
           <button class="btn btn-default pull-right mr-sm"
             ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
           
@@ -247,7 +247,7 @@
             </div>
           </div>
           Is your customer already in our database? <a ng-click="$ctrl.new = false" class="btn btn-link">Click here.</a> 
-          <button type="submit" class="btn btn-info pull-right">Add Account</button>
+          <button type="submit" class="btn btn-info pull-right">Add Customer</button>
           <button class="btn btn-default pull-right mr-sm"
             ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
         </div>
@@ -258,7 +258,7 @@
   <div class="col-sm-6">
     <button type="button" class="btn btn-default"
       ng-hide="$ctrl.showAccountForm"
-      ng-click="$ctrl.showAccountForm = true">Add Account
+      ng-click="$ctrl.showAccountForm = true">Add Customer to Request
     </button>
   </div>
 </section>
