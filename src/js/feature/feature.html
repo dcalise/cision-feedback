@@ -1,14 +1,31 @@
 <app-header></app-header>
 
-<section class="container">
+<section class="container feature-detail">
   <div class="row">
-    <div class="col-sm-8 request-header">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1>
-            {{::$ctrl._feature.subject}}
-            <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
-          </h1>
+    <div class="col-sm-8 feature-header">
+      <div class="section">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>
+              {{::$ctrl._feature.subject}}
+              <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
+            </h1>
+          </div>
+        </div>
+        <div class="row mb-xs"
+          ng-show="$ctrl._feature.labels">
+          <div class="col-sm-12">
+            <span ng-repeat="label in $ctrl._feature.labels" class="label label-default mr-xs" >{{label}}</span>
+            </div>
+        </div>
+        <div class="row"
+          ng-show="$ctrl._feature.compGap || $ctrl._feature.legacyGap">
+          <div class="col-sm-12">
+            <span class="label label-danger mr-xs"
+              ng-show="$ctrl._feature.compGap">Competitive Gap</span>
+            <span class="label label-danger mr-xs"
+              ng-show="$ctrl._feature.legacyGap">Legacy Gap</span>
+          </div>
         </div>
       </div>
       <div class="row section">
@@ -70,7 +87,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4 request-sidebar">
+    <div class="col-sm-4 feature-sidebar">
       <ul class="list-unstyled mt-xl">
         <li><strong>Status:</strong>  <span class="label label-success">{{::$ctrl._feature.status}}</span></li>
         <li>
@@ -80,9 +97,6 @@
           <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
         </li>
         <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
-        <li>
-          <span ng-repeat="label in $ctrl._feature.labels" class="label label-default mr-xs" >{{label}}</span>
-        </li>
       </ul>
     </div>
   </div>
