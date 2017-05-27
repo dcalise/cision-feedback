@@ -20,14 +20,63 @@
               ng-model="$ctrl.featureForm.description" rows="5"></textarea>
           </div>
           <div class="form-group">
-            <label for="labels">Labels</label><br>
-            <select class="form-control" name="labels" size="6" ng-model="$ctrl.featureForm.labels" multiple>
+            <label for="platform-product">Platform or Product</label>
+            <select class="form-control" id="platform-product"
+              ng-model="$ctrl.featureForm.product">
+              <option>C3</option>
+              <option>Media Studio</option>
+              <option>Multimedia</option>
+              <option>Visibility Reports</option>
+              <option>MNR</option>
+              <option>Distrobution</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control" multiple size="6"
+              ng-if="$ctrl.featureForm.product == 'C3'"
+              ng-model="$ctrl.featureForm.labels">
               <option>Contacts functionality</option>
               <option>Contacts content</option>
               <option>Connect functionality</option>
               <option>News functionality</option>
               <option>News content</option>
               <option>Insights functionality</option>
+            </select>
+            <select class="form-control" multiple size="3"
+              ng-if="$ctrl.featureForm.product == 'Media Studio'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Media Studio</option>
+              <option>Media Studio</option>
+              <option>Media Studio</option>
+            </select>
+            <select class="form-control" multiple size="3"
+              ng-if="$ctrl.featureForm.product == 'Multimedia'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Multimedia</option>
+              <option>Multimedia</option>
+              <option>Multimedia</option>
+            </select>
+            <select class="form-control" multiple size="3"
+              ng-if="$ctrl.featureForm.product == 'Visibility Reports'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Visibility Reports</option>
+              <option>Visibility Reports</option>
+              <option>Visibility Reports</option>
+            </select>
+            <select class="form-control" multiple size="3"
+              ng-if="$ctrl.featureForm.product == 'MNR'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>MNR</option>
+              <option>MNR</option>
+              <option>MNR</option>
+            </select>
+            <select class="form-control" multiple size="4"
+              ng-if="$ctrl.featureForm.product == 'Distrobution'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Newslines</option>
+              <option>Invoices</option>
+              <option>Add-ons</option>
+              <option>Other</option>
             </select>
           </div>
           <div class="row">

@@ -33,6 +33,7 @@ export default class Features {
       subject: feature.subject,
       requesterUID: currentAuth.uid,
       status: 'New',
+      product: feature.product,
       labels: feature.labels,
       dateCreated: Date.now(),
       lastUpdated: null,
