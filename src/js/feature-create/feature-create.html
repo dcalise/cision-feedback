@@ -10,12 +10,12 @@
       <form class="feature-form" ng-submit="$ctrl.addAccountAndFeature()">
         <fieldset ng-disabled="$ctrl.featureForm.isSubmitting">
           <div class="form-group">
-            <label for="subject" class="control-label">Subject</label>
+            <label for="subject" class="control-label">Feature Summary</label>
             <input type="text" class="form-control" id="subject"
               ng-model="$ctrl.featureForm.subject">
           </div>
           <div class="form-group">
-            <label for="description" class="control-label">Description</label>
+            <label for="description" class="control-label">Description of Feature</label>
             <textarea type="textarea" class="form-control" id="description" required rows="5"
               ng-model="$ctrl.featureForm.description"></textarea>
           </div>
@@ -49,7 +49,7 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <h3>Account Info</h3>
+              <h3>Customer Details</h3>
               <hr/>
             </div>
           </div>
@@ -143,7 +143,7 @@
             </div>
           </div>
         </fieldset>
-        <button type="submit" class="btn btn-success pull-right">Submit</button>
+        <button type="submit" class="btn btn-success pull-right">Submit Feature Request</button>
       </form>
     </div>
   </div>
