@@ -147,38 +147,41 @@
     ng-show="$ctrl.showAccountForm">
     <form class="account-form" 
       ng-submit="$ctrl.addAccount()">
-
-      <label><input type="checkbox" ng-model="$ctrl.new" /> New Account</label>
       
-      
-      <fieldset ng-disabled="$ctrl.accountForm.isSubmitting">
+      <fieldset class="account-form"
+        ng-disabled="$ctrl.accountForm.isSubmitting">
 
-        <ul
-          ng-if="!$ctrl.new">
-          <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
-        </ul>
-        <div class="form-group"
-          ng-if="!$ctrl.new">
-          <label for="lookup" class="control-label">Account:</label>
-          <div angucomplete-alt
-            placeholder="Enter account name or ID"
-            pause="300"
-            clear-selected="true"
-            selected-object="$ctrl.accountSelected"
-            local-data="$ctrl._Accounts.all"
-            local-search="$ctrl._Accounts.accountSearch"
-            title-field="name"
-            description-field="cid"
-            minlength="1"
-            input-class="form-control form-control-small"
-            match-class="highlight">
+        <!-- existing account -->
+        <div ng-if="!$ctrl.new">
+          <ul class="list-unstyled">
+            <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
+          </ul>
+          <div class="form-group">
+            <label for="lookup" class="control-label">Account:</label>
+            <div angucomplete-alt id="ex2"
+              placeholder="Enter account name or ID"
+              pause="300"
+              clear-selected="true"
+              selected-object="$ctrl.accountSelected"
+              local-data="$ctrl._Accounts.all"
+              local-search="$ctrl._Accounts.accountSearch"
+              title-field="name"
+              description-field="cid"
+              minlength="1"
+              input-class="form-control form-control-small"
+              match-class="highlight">
+            </div>
           </div>
-          <div class="" ng-show="$ctrl.selectedAccounts">
-            You selected <span class="bold-span">{{$ctrl.selectedAccounts}}</span>
-          </div>
+          <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
+
+          Can't find your customer? <a ng-click="$ctrl.new = true" class="btn btn-link">Click here.</a> 
+          <button type="submit" class="btn btn-info pull-right">Add Account</button>
+          <button class="btn btn-default pull-right mr-sm"
+            ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
+          
         </div>
-        <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
 
+        <!-- new account -->
         <div ng-if="$ctrl.new">
           <div class="form-group">
             <label for="account-name" class="control-label">Account Name</label>
@@ -186,9 +189,11 @@
               ng-model="$ctrl.accountForm.name">
           </div>
           <div class="form-group">
-            <label for="account-id" class="control-label">Account ID</label>
-            <input type="text" class="form-control" id="account-id"
+            <label for="cision-point-id" class="control-label">Account ID</label>
+            <input type="text" class="form-control" id="cision-point-id"
               ng-model="$ctrl.accountForm.cid">
+            <div class="col-sm-10">
+            </div>
           </div>
           <div class="form-group">
             <label for="account-type" class="control-label">Platform</label>
@@ -241,11 +246,13 @@
                 ng-model="$ctrl.accountForm.value">
             </div>
           </div>
+          Is your customer already in our database? <a ng-click="$ctrl.new = false" class="btn btn-link">Click here.</a> 
+          <button type="submit" class="btn btn-info pull-right">Add Account</button>
+          <button class="btn btn-default pull-right mr-sm"
+            ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
         </div>
       </fieldset>
-      <button class="btn btn-default"
-        ng-click="$ctrl.resetAccountForm()" type="button">Cancel</button>
-      <button type="submit" class="btn btn-info">Add Account</button>
+      
     </form>
   </div>
   <div class="col-sm-6">

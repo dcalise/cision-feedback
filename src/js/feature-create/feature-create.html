@@ -53,6 +53,9 @@
               <hr/>
             </div>
           </div>
+        </fieldset>
+        <fieldset class="account-form"
+          ng-disabled="$ctrl.featureForm.isSubmitting">
           
           <!-- existing account -->
           <div ng-if="!$ctrl.new">
@@ -149,8 +152,6 @@
             Is your customer already in our database? <a ng-click="$ctrl.new = false" class="btn btn-link">Click here.</a> <button type="submit" class="btn btn-success pull-right">Submit Feature Request</button>
           </div>
         </fieldset>
-        <div>
-        </div>
       </form>
     </div>
   </div>
