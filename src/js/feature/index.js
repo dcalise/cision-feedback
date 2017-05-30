@@ -11,4 +11,7 @@ featureModule.config(FeatureConfig);
 import FeatureCtrl from './feature.controller';
 featureModule.controller('FeatureCtrl', FeatureCtrl);
 
+import Comment from './comment.component';
+featureModule.component('comment', Comment);
+
 export default featureModule;

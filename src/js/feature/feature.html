@@ -52,16 +52,11 @@
 
           <div class="col-sm-12"
             ng-show="$ctrl.showComments">
-            <div class="comment"
-              ng-repeat="comment in $ctrl._comments">
-              <div class="comment__meta">
-                <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
-                <span class="comment__meta__date small">&mdash; {{ comment.dateCreated | date:'short' }}</span>
-              </div>
-              <div class="comment__message">
-                {{ comment.message }}
-              </div>
-            </div>
+
+            <comment ng-repeat="cmt in $ctrl._comments"
+              data="cmt"
+              delete-cb="$ctrl.deleteComment(cmt.$id, $index)">
+            </comment>
             
             <form class="message-form"
               ng-show="$ctrl.showComment"
