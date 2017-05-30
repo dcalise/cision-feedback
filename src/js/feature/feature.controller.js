@@ -1,14 +1,19 @@
 class FeatureCtrl {
-  constructor(feature, currentAuth, comments, Comments, Features, Accounts, $stateParams, Users) {
+  constructor(feature, currentAuth, comments, profile, Comments, Features, Accounts, $stateParams, $state, Users) {
     'ngInject';
 
     this._$stateParams = $stateParams
+    
+    this._$state = $state;
 
     this._feature = feature
     this._currentAuth = currentAuth
     this._comments = comments
+    
+    if (profile.roles.admin === true) {
+      this.userIsAdmin = true
+    }
 
-    // console.log(this._comments)
     this._Accounts = Accounts
     this._Comments = Comments
     this._Features = Features
@@ -87,7 +92,7 @@ class FeatureCtrl {
     }
   }
 
-  deleteComment(commentId, index) {\
+  deleteComment(commentId, index) {
     this._comments.$remove(index)
   }
 
@@ -107,6 +112,10 @@ class FeatureCtrl {
     } else {
       this.showComment = false;
     }
+  }
+
+  updateStatus() {
+    return this._feature.$save()
   }
 
   resetAccountForm(added) {

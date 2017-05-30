@@ -1,0 +1,10 @@
+.inline-edit {
+  display: inline-block;
+  .form-control {
+    padding: 0;
+    margin-bottom: -3px;
+    box-shadow: none;
+    height: auto;
+    line-height: initial;
+  }
+}

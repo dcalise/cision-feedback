@@ -28,6 +28,14 @@
     </ul>
     <ul class="nav navbar-nav pull-right">
       
+      <li class="nav-item"
+        ng-show="$ctrl.userIsAdmin">
+        <a class="nav-link"
+          ui-sref-active="active"
+          ui-sref="app.feature">
+          Edit
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link"
           ui-sref-active="active"

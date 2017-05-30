@@ -32,7 +32,7 @@ export default class Features {
       description: feature.description,
       subject: feature.subject,
       requesterUID: currentAuth.uid,
-      status: 'New',
+      status: 'Received',
       labels: feature.labels || null,
       compGap: feature.compGap || null,
       legacyGap: feature.legacyGap || null,
