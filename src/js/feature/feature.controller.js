@@ -87,6 +87,10 @@ class FeatureCtrl {
     }
   }
 
+  deleteComment(commentId, index) {\
+    this._comments.$remove(index)
+  }
+
   getCommentMeta() {
     angular.forEach(this._comments, (comment) => {
       comment.authorMeta = this._Users.getProfile(comment.author);
