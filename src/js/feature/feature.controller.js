@@ -92,7 +92,7 @@ class FeatureCtrl {
     }
   }
 
-  deleteComment(commentId, index) {\
+  deleteComment(commentId, index) {
     this._comments.$remove(index)
   }
 
