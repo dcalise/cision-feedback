@@ -1,0 +1,9 @@
+<div class="comment">
+  <div class="comment__meta">
+    <span class="comment__meta__name">{{$ctrl.data.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
+    <span class="comment__meta__date small">&mdash; {{ $ctrl.data.dateCreated | date:'short' }}</span>
+  </div>
+  <div class="comment__message">
+    {{ $ctrl.data.message }}
+  </div>
+</div>
