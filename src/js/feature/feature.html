@@ -55,7 +55,7 @@
 
             <comment ng-repeat="cmt in $ctrl._comments"
               data="cmt"
-              delete-cb="$ctrl.deleteComment(cmt.id, $index)">
+              delete-cb="$ctrl.deleteComment(cmt.$id, $index)">
             </comment>
             
             <form class="message-form"

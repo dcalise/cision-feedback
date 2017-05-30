@@ -1,12 +1,16 @@
 class CommentCtrl {
-  constructor() {
+  constructor(Auth) {
     'ngInject';
 
-    // if (User.current) {
-    //   this.canModify = (User.current.username === this.data.author.username);
-    // } else {
-    //   this.canModify = false;
-    // }
+    Auth.$requireSignIn().then(
+      (auth) => {
+        if (auth.uid) {
+          this.canModify = (auth.uid === this.data.author)
+        } else {
+          this.canModify = false;
+        }
+      }
+    )
 
   }
 }
