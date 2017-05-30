@@ -114,6 +114,10 @@ class FeatureCtrl {
     }
   }
 
+  updateStatus(data) {
+    return this._feature.$save()
+  }
+
   resetAccountForm(added) {
     if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
       let sure;

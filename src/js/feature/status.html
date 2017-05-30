@@ -3,14 +3,14 @@
   <span class="label label-success">
     {{$ctrl.data}}
   </span>
-  <i class="ion-edit ml-sm" ng-click="$ctrl.changeStatus()"></i>
+  <i class="ion-edit ml-xs" ng-click="$ctrl.changeStatus()"></i>
 </span>
-<form class="form-inline" 
+<form class="form-inline inline-edit" 
   ng-show="$ctrl.editing">
   <select class="form-control"
     ng-model="$ctrl.data">
     <option value="New">New</option>
     <option value="Old">Old</option>
   </select>
-  <i class="ion-edit ml-sm" ng-click="$ctrl.changeStatus()"></i>
+  <i class="ion-checkmark ml-xs" ng-click="$ctrl.changeStatus({status:$ctrl.data})"></i>
 </form>

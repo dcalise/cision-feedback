@@ -86,7 +86,8 @@
     <div class="col-sm-4 feature-sidebar">
       <ul class="list-unstyled mt-xl">
         <li><strong>Status:</strong>  <status 
-          data="$ctrl._feature.status"></status>
+          data="$ctrl._feature.status"
+          update-status="$ctrl.updateStatus(status)"></status>
         </li>
         <li>
           <strong>Requested by:</strong><br>
