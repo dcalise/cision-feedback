@@ -85,7 +85,9 @@
     </div>
     <div class="col-sm-4 feature-sidebar">
       <ul class="list-unstyled mt-xl">
-        <li><strong>Status:</strong>  <span class="label label-success">{{::$ctrl._feature.status}}</span></li>
+        <li><strong>Status:</strong>  <status 
+          data="$ctrl._feature.status"></status>
+        </li>
         <li>
           <strong>Requested by:</strong><br>
           {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>

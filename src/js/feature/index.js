@@ -14,4 +14,7 @@ featureModule.controller('FeatureCtrl', FeatureCtrl);
 import Comment from './comment.component';
 featureModule.component('comment', Comment);
 
+import Status from './status.component';
+featureModule.component('status', Status);
+
 export default featureModule;
