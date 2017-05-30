@@ -15,11 +15,17 @@ class StatusCtrl {
       }
     )
 
+    let initStatus;
     this.changeStatus = function(data) {
       if (this.editing) {
-        this.updateStatus(data)
+        if (data.status === 'cancel') {
+          this.data = initStatus
+        } else {
+          this.updateStatus(status)
+        }
         this.editing = false
       } else {
+        initStatus = this.data
         this.editing = true
       }
     }

@@ -9,8 +9,14 @@
   ng-show="$ctrl.editing">
   <select class="form-control"
     ng-model="$ctrl.data">
-    <option value="New">New</option>
-    <option value="Old">Old</option>
+    <option>Received</option>
+    <option>Viewed</option>
+    <option>Under Review</option>
+    <option>Moved to Backlog</option>
+    <option>Released</option>
+    <option>Closed</option>
+    <option>On Hold</option>
   </select>
+  <i class="ion-close ml-xs" ng-click="$ctrl.changeStatus({status:'cancel'})"></i>
   <i class="ion-checkmark ml-xs" ng-click="$ctrl.changeStatus({status:$ctrl.data})"></i>
 </form>

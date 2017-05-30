@@ -114,7 +114,7 @@ class FeatureCtrl {
     }
   }
 
-  updateStatus(data) {
+  updateStatus() {
     return this._feature.$save()
   }
 
