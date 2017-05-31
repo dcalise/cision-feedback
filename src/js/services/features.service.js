@@ -29,15 +29,19 @@ export default class Features {
     }
     return this._features.$add({
       accounts: accountKey,
-      description: feature.description,
+      description: feature.description || null,
       subject: feature.subject,
       requesterUID: currentAuth.uid,
       status: 'New',
       product: feature.product,
-      labels: feature.labels,
+      location: feature.location || null,
+      labels: feature.labels || null,
       dateCreated: Date.now(),
-      lastUpdated: null,
-      editedBy: null
+      events: {
+        lastUpdated: null,
+        viewedBy: null,
+        editedBy: null
+      }
     })
   }
   getFeature(slug) {
