@@ -39,7 +39,7 @@ let Status = {
     updateStatus: '&'
   },
   controller: StatusCtrl,
-  templateUrl: 'feature/status.html'
+  templateUrl: 'feature/components/status/status.html'
 };
 
 export default Status;

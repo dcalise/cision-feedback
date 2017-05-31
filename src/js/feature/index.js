@@ -11,10 +11,10 @@ featureModule.config(FeatureConfig);
 import FeatureCtrl from './feature.controller';
 featureModule.controller('FeatureCtrl', FeatureCtrl);
 
-import Comment from './comment.component';
+import Comment from './components/comment/comment.component';
 featureModule.component('comment', Comment);
 
-import Status from './status.component';
+import Status from './components/status/status.component';
 featureModule.component('status', Status);
 
 export default featureModule;
