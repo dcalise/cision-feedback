@@ -6,6 +6,11 @@
       <div class="section">
         <div class="row">
           <div class="col-sm-12">
+            <span class="meta"
+              ng-if="$ctrl._feature.product">
+              {{$ctrl._feature.product}}
+              <span ng-if="$ctrl._feature.location"> <i class="ion-arrow-right-b"?></i> {{$ctrl._feature.location}}</span>
+            </span>
             <h1>
               {{::$ctrl._feature.subject}}
               <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
