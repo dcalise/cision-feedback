@@ -29,16 +29,21 @@ export default class Features {
     }
     return this._features.$add({
       accounts: accountKey,
-      description: feature.description,
+      description: feature.description || null,
       subject: feature.subject,
       requesterUID: currentAuth.uid,
       status: 'Received',
-      labels: feature.labels || null,
       compGap: feature.compGap || null,
       legacyGap: feature.legacyGap || null,
+      product: feature.product,
+      location: feature.location || null,
+      labels: feature.labels || null,
       dateCreated: Date.now(),
-      lastUpdated: null,
-      editedBy: null
+      events: {
+        lastUpdated: null,
+        viewedBy: null,
+        editedBy: null
+      }
     })
   }
   getFeature(slug) {

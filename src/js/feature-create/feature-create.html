@@ -20,14 +20,90 @@
               ng-model="$ctrl.featureForm.description"></textarea>
           </div>
           <div class="form-group">
-            <label for="labels">Labels</label><br>
-            <select class="form-control" name="labels" size="6" ng-model="$ctrl.featureForm.labels" multiple>
-              <option>Contacts functionality</option>
-              <option>Contacts content</option>
-              <option>Connect functionality</option>
-              <option>News functionality</option>
-              <option>News content</option>
-              <option>Insights functionality</option>
+            <label for="platform-product">Platform or Product</label>
+            <select class="form-control" id="platform-product"
+              ng-model="$ctrl.featureForm.product">
+              <option>C3</option>
+              <option>Distribution</option>
+              <option>Media Studio</option>
+              <option>Multimedia</option>
+              <option>Visibility Reports</option>
+              <option>MNR</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <!-- c3 -->
+            <select class="form-control"
+              ng-if="$ctrl.featureForm.product == 'C3'"
+              ng-model="$ctrl.featureForm.location">
+              <option>News</option>
+              <option>Contacts</option>
+              <option>Connect</option>
+            </select>
+          </div>
+          <div class="form-group">
+
+            <select class="form-control" multiple size="14"
+              ng-if="$ctrl.featureForm.product == 'C3' && $ctrl.featureForm.location == 'News'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Searching News</option>
+              <option>Saved Searches</option>
+              <option value="Viewing News Results">Viewing News Results (MD and Grid)</option>
+              <option>Filtering Results</option>
+              <option value="News Forwards">News Forwards (automated or manual)</option>
+              <option>Analytics Dashboards</option>
+              <option>Exporting</option>
+              <option>Clip Report</option>
+              <option>Executive Report</option>
+              <option>Tags</option>
+              <option>Advanced Analytics</option>
+              <option>Prominence and Impact</option>
+              <option>Auto Toning</option>
+              <option>Adding Clips Manually</option>
+            </select>
+
+
+            <select class="form-control" multiple size="13"
+              ng-if="$ctrl.featureForm.product == 'C3' && $ctrl.featureForm.location == 'Contacts'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Searching Contacts</option>
+              <option>Searching Outlets</option>
+              <option>Searching Ed Cals</option>
+              <option>Viewing Results</option>
+              <option>Filtering Results</option>
+              <option>Contact Profile Page</option>
+              <option>Outlet Profile Page</option>
+              <option>Exporting</option>
+              <option>My Lists</option>
+              <option>Recommendations</option>
+              <option>HARO</option>
+              <option>Media Updates</option>
+              <option>Private Contacts</option>
+            </select>
+
+            <select class="form-control" multiple size="7"
+              ng-if="$ctrl.featureForm.product == 'C3' && $ctrl.featureForm.location == 'Connect'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Social Publishing</option>
+              <option>PRWeb</option>
+              <option>PRN</option>
+              <option>Custom Activities</option>
+              <option>Content Calendar</option>
+              <option>Campaigns</option>
+              <option>Streams</option>
+            </select>
+          </div>
+
+
+          <!--distribution -->
+          <div class="form-group">
+            <select class="form-control" multiple size="4"
+              ng-if="$ctrl.featureForm.product == 'Distribution'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Newslines</option>
+              <option>Pricing</option>
+              <option>Recommendations</option>
+              <option>Other</option>
             </select>
           </div>
           <div class="form-group">
