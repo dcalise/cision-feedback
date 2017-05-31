@@ -7,7 +7,7 @@ class StatusCtrl {
       (auth) => {
         Users.getProfile(auth.uid).$loaded().then(
           (profile) => {
-            if (profile.roles.admin) {
+            if (profile.roles && profile.roles.admin === true) {
               this.admin = true;
             }
           }

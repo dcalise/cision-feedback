@@ -10,7 +10,7 @@ class FeatureCtrl {
     this._currentAuth = currentAuth
     this._comments = comments
     
-    if (profile.roles.admin === true) {
+    if (profile.roles && profile.roles.admin === true) {
       this.userIsAdmin = true
     }
 

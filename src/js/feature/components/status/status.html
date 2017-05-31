@@ -3,7 +3,7 @@
   <span class="label label-success">
     {{$ctrl.data}}
   </span>
-  <i class="ion-edit ml-xs" ng-click="$ctrl.changeStatus()"></i>
+  <i class="ion-edit ml-xs" ng-show="$ctrl.admin" ng-click="$ctrl.changeStatus()"></i>
 </span>
 <form class="form-inline inline-edit" 
   ng-show="$ctrl.editing">
