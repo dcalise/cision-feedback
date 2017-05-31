@@ -6,6 +6,11 @@
       <div class="section">
         <div class="row">
           <div class="col-sm-12">
+            <span class="meta"
+              ng-if="$ctrl._feature.product">
+              {{$ctrl._feature.product}}
+              <span ng-if="$ctrl._feature.location"> <i class="ion-arrow-right-b"?></i> {{$ctrl._feature.location}}</span>
+            </span>
             <h1>
               {{::$ctrl._feature.subject}}
               <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
@@ -52,16 +57,11 @@
 
           <div class="col-sm-12"
             ng-show="$ctrl.showComments">
-            <div class="comment"
-              ng-repeat="comment in $ctrl._comments">
-              <div class="comment__meta">
-                <span class="comment__meta__name">{{comment.authorMeta.firstName}} {{comment.authorMeta.lastName}}</span>
-                <span class="comment__meta__date small">&mdash; {{ comment.dateCreated | date:'short' }}</span>
-              </div>
-              <div class="comment__message">
-                {{ comment.message }}
-              </div>
-            </div>
+
+            <comment ng-repeat="cmt in $ctrl._comments"
+              data="cmt"
+              delete-cb="$ctrl.deleteComment(cmt.$id, $index)">
+            </comment>
             
             <form class="message-form"
               ng-show="$ctrl.showComment"
@@ -89,7 +89,10 @@
     </div>
     <div class="col-sm-4 feature-sidebar">
       <ul class="list-unstyled mt-xl">
-        <li><strong>Status:</strong>  <span class="label label-success">{{::$ctrl._feature.status}}</span></li>
+        <li><strong>Status:</strong>  <status 
+          data="$ctrl._feature.status"
+          update-status="$ctrl.updateStatus(status)"></status>
+        </li>
         <li>
           <strong>Requested by:</strong><br>
           {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>

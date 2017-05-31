@@ -5,7 +5,7 @@
 .mb-xl {margin-bottom: 30px;}
 .mb-xxl {margin-bottom: 70px;}
 .mb-no,
-.mb-none {margin-bottom: none!important;}
+.mb-none {margin-bottom: 0!important;}
 
 .mt-xs {margin-top: 5px;}
 .mt-sm {margin-top: 10px;}
@@ -14,7 +14,7 @@
 .mt-xl {margin-top: 30px;}
 .mt-xxl {margin-top: 70px;}
 .mt-no,
-.mt-none {margin-top: none!important;}
+.mt-none {margin-top: 0!important;}
 
 .ml-xs {margin-left: 5px;}
 .ml-sm {margin-left: 10px;}
@@ -23,7 +23,7 @@
 .ml-xl {margin-left: 30px;}
 .ml-xxl {margin-left: 70px;}
 .ml-no,
-.ml-none {margin-left: none!important;}
+.ml-none {margin-left: 0!important;}
 
 .mr-xs {margin-right: 5px;}
 .mr-sm {margin-right: 10px;}
@@ -32,7 +32,7 @@
 .mr-xl {margin-right: 30px;}
 .mr-xxl {margin-right: 70px;}
 .mr-no,
-.mr-none {margin-right: none!important;}
+.mr-none {margin-right: 0!important;}
 
 .nowrap {
   white-space: nowrap;
