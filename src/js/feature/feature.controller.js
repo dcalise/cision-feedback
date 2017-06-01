@@ -62,9 +62,10 @@ class FeatureCtrl {
   listAccounts() {
     this._featureDetail.accountsMeta = []
     this._featureDetail.totalValue = 0
-    angular.forEach(this._feature.accounts, (account) => {
-      this._Accounts.getAccount(account).then(
+    angular.forEach(this._feature.accounts, (accountObject) => {
+      this._Accounts.getAccount(accountObject.accountKey).then(
         (account) => {
+          account.tie = accountObject.accountTie
           this._featureDetail.accountsMeta.push(account)
           this._featureDetail.totalValue += parseInt(account.value)
         }

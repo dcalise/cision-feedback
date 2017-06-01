@@ -40,7 +40,11 @@ class FeedbackCreateCtrl {
     if (this.new === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
-          this._Features.add(this.featureForm, this._currentAuth, this._profile, account.key).then(
+          let accountTieObject = {
+            accountKey: account.key,
+            accountTie: this.featureForm.accountTie
+          }
+          this._Features.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
             () => {
               this._$state.go('app.features');
             },

@@ -193,6 +193,14 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="relationship" class="control-label">Relationship</label>
+              <select class="form-control"
+                ng-model="$ctrl.featureForm.accountTie">
+                <option>wont upgrade</option>
+                <option>other</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="account-type" class="control-label">Country</label>
               <select class="form-control" 
                 ng-model="$ctrl.accountForm.country">
