@@ -16,8 +16,13 @@ class FeedbackCreateCtrl {
 
     this.accountSelected = (selected) => {
       if (selected) {
+        console.log(selected)
         this.getAccountMeta(selected.originalObject.$id)
-        return this.accountForm.selectedAccounts.push(selected.originalObject.$id)
+        let accountTieObject = {
+          accountKey: selected.originalObject.$id,
+          accountTie: null
+        }
+        return this.accountForm.selectedAccounts.push(accountTieObject)
       }
     }
 

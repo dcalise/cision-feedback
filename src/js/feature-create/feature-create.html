@@ -140,7 +140,7 @@
                 {{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span>
                 <div class="form-group inline-edit">
                   <select class="form-control"
-                    ng-model="$ctrl.featureForm.accountTie">
+                    ng-model="$ctrl.accountForm.selectedAccounts[$index].accountTie">
                     <option>Received</option>
                     <option>Viewed</option>
                     <option>Under Review</option>
