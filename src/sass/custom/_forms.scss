@@ -8,3 +8,15 @@
     line-height: initial;
   }
 }
+
+.form-group.search {
+  position: relative;
+  input {
+    padding-right: 22px;
+  }
+  i {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+}
