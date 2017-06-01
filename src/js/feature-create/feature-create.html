@@ -136,7 +136,22 @@
           <!-- existing account -->
           <div ng-if="!$ctrl.new">
             <ul class="list-unstyled">
-              <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">{{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span> <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i></li>
+              <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">
+                {{ account.name }} <span class="meta">&mdash; {{ account.cid }}</span>
+                <div class="form-group inline-edit">
+                  <select class="form-control"
+                    ng-model="$ctrl.featureForm.accountTie">
+                    <option>Received</option>
+                    <option>Viewed</option>
+                    <option>Under Review</option>
+                    <option>Moved to Backlog</option>
+                    <option>Released</option>
+                    <option>Closed</option>
+                    <option>On Hold</option>
+                  </select>
+                </div>
+                <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i>
+              </li>
             </ul>
             <div class="form-group">
               <label for="lookup" class="control-label">Account:</label>
