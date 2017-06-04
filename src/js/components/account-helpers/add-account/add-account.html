@@ -1,7 +1,7 @@
 <fieldset class="account-form">
   
   <!-- existing account -->
-  <div ng-if="!$ctrl.new">
+  <div ng-if="!$ctrl.newAccount">
     <div class="form-group">
       <label for="lookup" class="control-label">Account:</label>
       <div angucomplete-alt id="ex2"
@@ -38,12 +38,12 @@
     </ul>
     <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
 
-    Can't find your customer? <a ng-click="$ctrl.new = true" class="btn btn-link">Click here.</a> <button type="submit" class="btn btn-success pull-right">Submit Feature Request</button>
+    Can't find your customer? <a ng-click="$ctrl.newAccount = true" class="btn btn-link">Click here.</a> <button type="submit" class="btn btn-success pull-right">Submit Feature Request</button>
     
   </div>
 
   <!-- new account -->
-  <div ng-if="$ctrl.new">
+  <div ng-if="$ctrl.newAccount">
     <div class="form-group">
       <label for="account-name" class="control-label">Account Name</label>
       <input type="text" class="form-control" id="account-name"
@@ -115,6 +115,6 @@
           ng-model="$ctrl.accountForm.value">
       </div>
     </div>
-    Is your customer already in our database? <a ng-click="$ctrl.new = false" class="btn btn-link">Click here.</a> <button type="submit" class="btn btn-success pull-right">Submit Feature Request</button>
+    Is your customer already in our database? <a ng-click="$ctrl.newAccount = false" class="btn btn-link">Click here.</a> <button type="submit" class="btn btn-success pull-right">Submit Feature Request</button>
   </div>
 </fieldset>

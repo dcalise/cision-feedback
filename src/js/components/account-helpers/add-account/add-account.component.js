@@ -32,12 +32,12 @@ class AddAccountCtrl {
     this.existingAccountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
-  
+
 }
 
 let AddAccount = {
   bindings: {
-    data: '=',
+    newAccount: '=',
     featureForm: '=',
     accountForm: '=',
     searchData: '<',

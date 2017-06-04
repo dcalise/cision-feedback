@@ -12,7 +12,7 @@ class FeedbackCreateCtrl {
   }
 
   addAccountAndFeature() {
-    if (this.new === true) {
+    if (this.newAccount === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
           let accountTieObject = {
