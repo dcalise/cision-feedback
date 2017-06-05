@@ -58,13 +58,13 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="account-type" class="control-label">Platform</label>
+      <label for="account-type" class="control-label">Platform or Product</label>
       <select class="form-control" 
         ng-model="$ctrl.accountForm.platform">
         <option ng-repeat="option in $ctrl.platformOptions">{{option}}</option>
       </select>
     </div>
-    <div class="form-group"
+    <div class="form-group ml-xl"
       ng-show="$ctrl.accountForm.platform == 'C3'">
       <label for="account-type" class="control-label">Prior Platform</label>
       <select class="form-control" 

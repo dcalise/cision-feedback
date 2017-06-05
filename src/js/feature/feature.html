@@ -123,19 +123,17 @@
     <table class="table table-striped">
       <thead>
         <th>Account Name</th>
-        <th>Account ID</th>
         <th>Type</th>
         <th>Platform</th>
-        <th>Relationship</th>
+        <th>Relationship to Request</th>
         <th>Country</th>
         <th class="text-right">Account Value</th>
       </thead>
       <tbody>
         <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
-          <td>{{account.name}}</td>
-          <td>{{account.cid}}</td>
+          <td>{{account.name}}<br><span class="meta small light">{{account.cid}}</span></td>
           <td>{{account.accountType}}</td>
-          <td>{{account.platform}}</td>
+          <td>{{account.platform}}<br><span class="meta small light">from {{account.priorPlatform}}</span></td>
           <td>{{account.tie}}</td>
           <td>{{account.country}}</td>
           <td align="right">{{account.value | currency}}</td>
