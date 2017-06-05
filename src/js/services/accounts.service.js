@@ -9,6 +9,7 @@ export default class Accounts {
   }
 
   add(account) {
+    account.value = account.value.replace(/\D/g,'')
     return this.accounts.$add({
       platform: account.platform || null,
       priorPlatform: account.priorPlatform || null,
