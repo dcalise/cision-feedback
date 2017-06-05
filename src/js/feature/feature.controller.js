@@ -119,7 +119,10 @@ class FeatureCtrl {
           return this._feature.$save().then(
             () => {
               this.listAccounts()
-              this.resetAccountForm(true)
+              this.accountForm = {
+                selectedAccounts: []
+              }
+              this._$scope.resetExistingAccountForm()
             },
             (error) => console.log(error)
           )

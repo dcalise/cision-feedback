@@ -4,6 +4,34 @@ class AddAccountCtrl {
 
     this._$scope = $scope
 
+    this.accountTieOptions = [
+      'Platform GAP. Customer will not upgrade to C3 without this feature',
+      'Customer CHURNED because this feature was not available',
+      'Customer AT RISK because this feature is not available',
+      'Prospect LOST because this feature is not available',
+      'None of the above'
+    ]
+    this.platformOptions = [
+      'C3',
+      'OMC',
+      'CPRE',
+      'CP',
+      'MyGorkana',
+      'MediaVantage',
+      'PRWeb Subscription',
+      'Visible',
+    ]
+    this.priorPlatformOptions = [
+      'CPRE',
+      'CP',
+      'PRWeb Subscription',
+      'MyGorkana',
+      'MediaVantage',
+      'OMC',
+      'Upgraded from Agility',
+      'Net New',
+    ]
+
     this.accountSelected = (selected) => {
       if (selected) {
         this.getAccountMeta(selected.originalObject.$id)
