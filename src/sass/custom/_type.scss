@@ -63,6 +63,9 @@ h1.page-title {
 
 .meta {
   color: $gray-light;
+  &.light {
+    color: lighten($gray-light, 20%);
+  }
 }
 
 .form-errors {
