@@ -1,10 +1,11 @@
 class FeatureCtrl {
-  constructor(feature, currentAuth, comments, profile, Comments, Features, Accounts, $stateParams, $state, Users) {
+  constructor(feature, currentAuth, comments, profile, Comments, Features, Accounts, $stateParams, $state, Users, $scope) {
     'ngInject';
 
     this._$stateParams = $stateParams
     
-    this._$state = $state;
+    this._$state = $state
+    this._$scope = $scope
 
     this._feature = feature
     this._currentAuth = currentAuth
@@ -32,31 +33,14 @@ class FeatureCtrl {
 
     this.getCommentMeta()
 
-    // add existing accounts
-    this.new = false
-
-    this.existingAccountsMeta = []
-
-    this.accountSelected = (selected) => {
-      if (selected) {
-        this.getAccountMeta(selected.originalObject.$id)
-        return this.accountForm.selectedAccounts.push(selected.originalObject.$id)
-      }
+    // reset account form
+    $scope.resetExistingAccountForm = function() {
+      if($scope.reset) $scope.reset.resetForm();
     }
+    $scope.setResetForm = function(reset){
+      $scope.reset = reset;
+    };
 
-    this.getAccountMeta = (accountId) => {
-     return Accounts.getAccount(accountId).then(
-       (account) => {
-         this.existingAccountsMeta.push(account)
-       }
-     )
-    }
-
-  }
-
-  removeAccountFromAddList(i) {
-    this.existingAccountsMeta.splice(i,1)
-    this.accountForm.selectedAccounts.splice(i,1)
   }
 
   listAccounts() {
@@ -128,8 +112,7 @@ class FeatureCtrl {
       if (sure || added) {
         this.accountForm = {}
         this.showAccountForm = false
-        this.existingAccountsMeta = []
-        this.accountForm.selectedAccounts = []
+        this._$scope.resetExistingAccountForm()
       }
     } else {
       this.showAccountForm = false
@@ -137,13 +120,17 @@ class FeatureCtrl {
   }
 
   addAccount() {
-    if (this.new === true) {
+    if (this.newAccount === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
+          let accountTieObject = {
+            accountKey: account.key,
+            accountTie: this.featureForm.accountTie
+          }
           if (!this._feature.accounts) {
             this._feature.accounts = []
           }
-          this._feature.accounts.push(account.key)
+          this._feature.accounts.push(accountTieObject)
 
           return this._feature.$save().then(
             () => {
@@ -166,10 +153,13 @@ class FeatureCtrl {
         () => {
           this.listAccounts()
           // reset add existing
-          this.existingAccountsMeta = []
+          // this.reset()
           // reset form
-          this.accountForm = {}
+          this.accountForm = {
+            selectedAccounts: []
+          }
           this.showAccountForm = false
+          this._$scope.resetExistingAccountForm()
         },
         (error) => console.log(error)
       )
