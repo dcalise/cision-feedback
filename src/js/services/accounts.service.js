@@ -17,6 +17,7 @@ export default class Accounts {
       cid: account.cid,
       country: account.country,
       value: account.value,
+      customerNotes: account.customerNotes || null,
       dateCreated: Date.now(),
       lastUpdated: null,
       editedBy: null
