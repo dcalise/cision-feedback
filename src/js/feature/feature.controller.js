@@ -103,22 +103,6 @@ class FeatureCtrl {
     return this._feature.$save()
   }
 
-  resetAccountForm(added) {
-    if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
-      let sure;
-      if (!added) {
-        sure = confirm('Are you sure you want to delete your draft?')
-      }
-      if (sure || added) {
-        this.accountForm = {}
-        this.showAccountForm = false
-        this._$scope.resetExistingAccountForm()
-      }
-    } else {
-      this.showAccountForm = false
-    }
-  }
-
   addAccount() {
     if (this.newAccount === true) {
       this._Accounts.add(this.accountForm).then(
@@ -152,13 +136,9 @@ class FeatureCtrl {
       return this._feature.$save().then(
         () => {
           this.listAccounts()
-          // reset add existing
-          // this.reset()
-          // reset form
           this.accountForm = {
             selectedAccounts: []
           }
-          this.showAccountForm = false
           this._$scope.resetExistingAccountForm()
         },
         (error) => console.log(error)

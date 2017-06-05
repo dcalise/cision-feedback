@@ -2,11 +2,10 @@ class AddAccountCtrl {
   constructor(Accounts, $scope) {
     'ngInject';
 
-    this.new = false;
-    
+    this._$scope = $scope
+
     this.accountSelected = (selected) => {
       if (selected) {
-        console.log(selected)
         this.getAccountMeta(selected.originalObject.$id)
         let accountTieObject = {
           accountKey: selected.originalObject.$id,
@@ -41,6 +40,22 @@ class AddAccountCtrl {
     this.existingAccountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
+
+  resetAccountForm(added) {
+    if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
+      let sure;
+      if (!added) {
+        sure = confirm('Are you sure you want to delete your draft?')
+      }
+      if (sure || added) {
+        this.accountForm = {}
+        this._$scope.$ctrl.existingAccountsMeta = [];
+        this._$scope.$parent.showAccountForm = false
+      }
+    } else {
+      this._$scope.showAccountForm = false
+    }
+  }
   
 }
 
@@ -50,6 +65,7 @@ let AddAccount = {
     resetForm: '&',
     featureForm: '=',
     accountForm: '=',
+    createFeature: '<',
     searchData: '<',
     searchFunction: '<'
   },

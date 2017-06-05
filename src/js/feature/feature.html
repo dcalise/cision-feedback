@@ -144,12 +144,13 @@
     </table>
   </div>
   
-  <div class="col-sm-6"
-    ng-show="$ctrl.showAccountForm">
+  <div class="col-sm-8"
+    ng-show="$ctrl._$scope.showAccountForm">
     <form class="account-form" 
       ng-submit="$ctrl.addAccount()">
       
       <add-account
+        create-feature="false"
         new-account="$ctrl.newAccount"
         reset-form="setResetForm(reset)"
         existing-accounts-meta="$ctrl.existingAccountsMeta"
@@ -161,12 +162,10 @@
       
     </form>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-8">
     <button type="button" class="btn btn-default"
-      ng-hide="$ctrl.showAccountForm"
-      ng-click="$ctrl.showAccountForm = true">Add Customer to Request
+      ng-hide="$ctrl._$scope.showAccountForm"
+      ng-click="$ctrl._$scope.showAccountForm = true">Add Customer to Request
     </button>
   </div>
 </section>
-
-<button type="button" ng-click="resetAccountForm()">ParentToChildButton</button>
