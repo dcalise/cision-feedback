@@ -9,38 +9,17 @@ class FeedbackCreateCtrl {
     this._currentAuth = currentAuth;
     this._profile = profile;
 
-    // add existing accounts
-    this.new = false;
-
-    this.existingAccountsMeta = []
-
-    this.accountSelected = (selected) => {
-      if (selected) {
-        this.getAccountMeta(selected.originalObject.$id)
-        return this.accountForm.selectedAccounts.push(selected.originalObject.$id)
-      }
-    }
-
-    this.getAccountMeta = (accountId) => {
-     return Accounts.getAccount(accountId).then(
-       (account) => {
-         this.existingAccountsMeta.push(account)
-       }
-     )
-    }
-
-  }
-
-  removeAccountFromAddList(i) {
-    this.existingAccountsMeta.splice(i,1)
-    this.accountForm.selectedAccounts.splice(i,1)
   }
 
   addAccountAndFeature() {
-    if (this.new === true) {
+    if (this.newAccount === true) {
       this._Accounts.add(this.accountForm).then(
         (account) => {
-          this._Features.add(this.featureForm, this._currentAuth, this._profile, account.key).then(
+          let accountTieObject = {
+            accountKey: account.key,
+            accountTie: this.featureForm.accountTie
+          }
+          this._Features.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
             () => {
               this._$state.go('app.features');
             },

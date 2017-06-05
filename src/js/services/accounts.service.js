@@ -10,7 +10,8 @@ export default class Accounts {
 
   add(account) {
     return this.accounts.$add({
-      platform: account.platform,
+      platform: account.platform || null,
+      priorPlatform: account.priorPlatform || null,
       name: account.name,
       accountType: account.accountType,
       cid: account.cid,
