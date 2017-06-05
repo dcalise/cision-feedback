@@ -53,7 +53,7 @@ class AddAccountCtrl {
         this._$scope.$parent.showAccountForm = false
       }
     } else {
-      this._$scope.showAccountForm = false
+      this._$scope.$parent.showAccountForm = false
     }
   }
   
