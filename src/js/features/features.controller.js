@@ -1,5 +1,5 @@
 class FeaturesCtrl {
-  constructor(FeatureService, Accounts, $http, $q) {
+  constructor(FeatureService, AccountService, $http, $q) {
     'ngInject';
 
     this._FeatureService = FeatureService;
@@ -13,7 +13,7 @@ class FeaturesCtrl {
           feature.accountsMeta = [];
           feature.totalValue = 0;
           angular.forEach(feature.accounts, function(account) {
-            Accounts.getAccount(account.accountKey).then(
+            AccountsService.getAccount(account.accountKey).then(
               (account) => {
                 feature.accountsMeta.push(account)
                 feature.totalValue += parseInt(account.value)

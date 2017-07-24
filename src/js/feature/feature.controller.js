@@ -1,5 +1,5 @@
 class FeatureCtrl {
-  constructor(feature, currentAuth, comments, profile, Comments, FeatureService, Accounts, $stateParams, $state, Users, $scope) {
+  constructor(feature, currentAuth, comments, profile, Comments, FeatureService, AccountService, $stateParams, $state, Users, $scope) {
     'ngInject';
 
     this._$stateParams = $stateParams
@@ -15,7 +15,7 @@ class FeatureCtrl {
       this.userIsAdmin = true
     }
 
-    this._Accounts = Accounts
+    this._AccountService = AccountService
     this._Comments = Comments
     this._FeatureService = FeatureService
     this._Users = Users
@@ -47,7 +47,7 @@ class FeatureCtrl {
     this._featureDetail.accountsMeta = []
     this._featureDetail.totalValue = 0
     angular.forEach(this._feature.accounts, (accountObject) => {
-      this._Accounts.getAccount(accountObject.accountKey).then(
+      this._AccountService.getAccount(accountObject.accountKey).then(
         (account) => {
           account.tie = accountObject.accountTie
           this._featureDetail.accountsMeta.push(account)
@@ -105,7 +105,7 @@ class FeatureCtrl {
 
   addAccount() {
     if (this.newAccount === true) {
-      this._Accounts.add(this.accountForm).then(
+      this._AccountService.add(this.accountForm).then(
         (account) => {
           let accountTieObject = {
             accountKey: account.key,

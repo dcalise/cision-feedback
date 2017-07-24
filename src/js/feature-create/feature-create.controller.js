@@ -1,10 +1,10 @@
 class FeedbackCreateCtrl {
-  constructor(Accounts, FeatureService, $state, profile, currentAuth) {
+  constructor(AccountService, FeatureService, $state, profile, currentAuth) {
     'ngInject';
 
     this._$state = $state;
 
-    this._Accounts = Accounts;
+    this._AccountService = AccountService;
     this._FeatureService = FeatureService;
     this._currentAuth = currentAuth;
     this._profile = profile;
@@ -13,7 +13,7 @@ class FeedbackCreateCtrl {
 
   addAccountAndFeature() {
     if (this.newAccount === true) {
-      this._Accounts.add(this.accountForm).then(
+      this._AccountService.add(this.accountForm).then(
         (account) => {
           let accountTieObject = {
             accountKey: account.key,
