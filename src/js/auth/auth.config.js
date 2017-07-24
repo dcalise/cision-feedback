@@ -9,10 +9,10 @@ function AuthConfig($stateProvider, $httpProvider) {
     templateUrl: 'auth/login.html',
     title: 'Sign in',
     resolve: {
-      requireNoAuth: function($state, Auth){
-        return Auth.$requireSignIn().then(
+      requireNoAuth: function($state, AuthService){
+        return AuthService.$requireSignIn().then(
           (auth) => {
-            $state.go('app.features')
+            $state.go('app.feature-list')
           },
           (err) => {
             return
@@ -29,10 +29,10 @@ function AuthConfig($stateProvider, $httpProvider) {
     templateUrl: 'auth/register.html',
     title: 'Sign up',
     resolve: {
-      requireNoAuth: function($state, Auth){
-        return Auth.$requireSignIn().then(
+      requireNoAuth: function($state, AuthService){
+        return AuthService.$requireSignIn().then(
           (auth) => {
-            $state.go('app.features')
+            $state.go('app.feature-list')
           },
           (err) => {
             return

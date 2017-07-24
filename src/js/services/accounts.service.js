@@ -1,4 +1,4 @@
-export default class Accounts {
+export default class AccountService {
   constructor($firebaseArray, $firebaseObject) {
     'ngInject';
 

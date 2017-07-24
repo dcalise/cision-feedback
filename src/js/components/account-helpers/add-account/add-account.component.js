@@ -1,5 +1,5 @@
 class AddAccountCtrl {
-  constructor(Accounts, $scope) {
+  constructor(AccountService, $scope) {
     'ngInject';
 
     this._$scope = $scope
@@ -46,7 +46,7 @@ class AddAccountCtrl {
     this.existingAccountsMeta = []
 
     this.getAccountMeta = (accountId) => {
-     return Accounts.getAccount(accountId).then(
+     return AccountService.getAccount(accountId).then(
        (account) => {
          this.existingAccountsMeta.push(account)
        }
