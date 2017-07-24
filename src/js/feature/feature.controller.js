@@ -1,5 +1,5 @@
 class FeatureCtrl {
-  constructor(feature, currentAuth, comments, profile, CommentService, FeatureService, AccountService, $stateParams, $state, Users, $scope) {
+  constructor(feature, currentAuth, comments, profile, CommentService, FeatureService, AccountService, $stateParams, $state, UserService, $scope) {
     'ngInject';
 
     this._$stateParams = $stateParams
@@ -18,7 +18,7 @@ class FeatureCtrl {
     this._AccountService = AccountService
     this._CommentService = CommentService
     this._FeatureService = FeatureService
-    this._Users = Users
+    this._UserService = UserService
 
     this._featureDetail = {}
 
@@ -55,7 +55,7 @@ class FeatureCtrl {
         }
       )
     })
-    this._featureDetail.requester = this._Users.getProfile(this._feature.requesterUID)
+    this._featureDetail.requester = this._UserService.getProfile(this._feature.requesterUID)
   }
 
   addComment() {
@@ -83,7 +83,7 @@ class FeatureCtrl {
 
   getCommentMeta() {
     angular.forEach(this._comments, (comment) => {
-      comment.authorMeta = this._Users.getProfile(comment.author);
+      comment.authorMeta = this._UserService.getProfile(comment.author);
     })
   }
 

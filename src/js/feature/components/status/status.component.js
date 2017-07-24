@@ -1,11 +1,11 @@
 class StatusCtrl {
-  constructor(AuthService, Users) {
+  constructor(AuthService, UserService) {
     'ngInject';
     
     this.admin = false;
     AuthService.$requireSignIn().then(
       (auth) => {
-        Users.getProfile(auth.uid).$loaded().then(
+        UserService.getProfile(auth.uid).$loaded().then(
           (profile) => {
             if (profile.roles && profile.roles.admin === true) {
               this.admin = true;

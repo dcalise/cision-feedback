@@ -1,4 +1,4 @@
-export default class Users {
+export default class UserService {
   constructor($firebaseArray, $firebaseObject, AuthService, $state) {
     'ngInject';
 

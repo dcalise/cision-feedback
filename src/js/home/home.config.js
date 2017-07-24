@@ -12,10 +12,10 @@ function HomeConfig($stateProvider) {
       currentAuth: function(AuthService) {
         return AuthService.$requireSignIn()
       },
-      profile: function(Users, AuthService) {
+      profile: function(UserService, AuthService) {
         return AuthService.$requireSignIn().then(
           (auth) => {
-            return Users.getProfile(auth.uid).$loaded()
+            return UserService.getProfile(auth.uid).$loaded()
           }
         )
       }
