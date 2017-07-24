@@ -8,8 +8,8 @@ import FeatureDetailConfig from './feature-detail.config';
 featureDetailModule.config(FeatureDetailConfig);
 
 // Controllers
-import FeatureCtrl from './feature-detail.controller';
-featureDetailModule.controller('FeatureCtrl', FeatureCtrl);
+import FeatureDetailCtrl from './feature-detail.controller';
+featureDetailModule.controller('FeatureDetailCtrl', FeatureDetailCtrl);
 
 import Comment from './components/comment/comment.component';
 featureDetailModule.component('comment', Comment);

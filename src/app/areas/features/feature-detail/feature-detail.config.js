@@ -4,7 +4,7 @@ function FeatureDetailConfig($stateProvider) {
   $stateProvider
   .state('app.feature-detail', {
     url: '/feature/:id',
-    controller: 'FeatureCtrl',
+    controller: 'FeatureDetailCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'areas/features/feature-detail/feature-detail.html',
     title: 'Feature Detail',

@@ -1,4 +1,4 @@
-class FeatureCtrl {
+class FeatureDetailCtrl {
   constructor(feature, currentAuth, comments, profile, CommentService, FeatureService, AccountService, $stateParams, $state, UserService, $scope) {
     'ngInject';
 
@@ -152,4 +152,4 @@ class FeatureCtrl {
 }
 
 
-export default FeatureCtrl;
+export default FeatureDetailCtrl;
