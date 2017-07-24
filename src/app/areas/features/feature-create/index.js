@@ -11,5 +11,4 @@ featureCreateModule.config(FeatureCreateConfig);
 import FeatureCreateCtrl from './feature-create.controller';
 featureCreateModule.controller('FeatureCreateCtrl', FeatureCreateCtrl);
 
-
 export default featureCreateModule;
