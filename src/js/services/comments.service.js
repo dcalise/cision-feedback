@@ -1,8 +1,7 @@
 export default class Comments {
-  constructor($firebaseArray, $firebaseObject) {
+  constructor($firebaseArray) {
     'ngInject';
 
-    this._$firebaseObject = $firebaseObject;
     this._$firebaseArray = $firebaseArray;
 
     this._commentsRef = firebase.database().ref('comments');
