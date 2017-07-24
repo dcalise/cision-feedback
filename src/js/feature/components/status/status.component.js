@@ -1,9 +1,9 @@
 class StatusCtrl {
-  constructor(Auth, Users) {
+  constructor(AuthService, Users) {
     'ngInject';
     
     this.admin = false;
-    Auth.$requireSignIn().then(
+    AuthService.$requireSignIn().then(
       (auth) => {
         Users.getProfile(auth.uid).$loaded().then(
           (profile) => {

@@ -9,11 +9,11 @@ function FeatureCreateConfig($stateProvider) {
     templateUrl: 'feature-create/feature-create.html',
     title: 'Create New Feature Request',
     resolve: {
-      currentAuth: function(Auth) {
-        return Auth.$requireSignIn()
+      currentAuth: function(AuthService) {
+        return AuthService.$requireSignIn()
       },
-      profile: function(Users, Auth) {
-        return Auth.$requireSignIn().then(
+      profile: function(Users, AuthService) {
+        return AuthService.$requireSignIn().then(
           (auth) => {
             return Users.getProfile(auth.uid).$loaded()
           }

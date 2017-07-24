@@ -8,13 +8,13 @@ function ProfileConfig($stateProvider) {
       controllerAs: '$ctrl',
       templateUrl: 'profile/profile.html',
       resolve: {
-        auth: function($state, Users, Auth) {
-          return Auth.$requireSignIn().catch(
+        auth: function($state, Users, AuthService) {
+          return AuthService.$requireSignIn().catch(
             () => $state.go('app.login')
           )
         },
-        profile: function(Users, Auth) {
-          return Auth.$requireSignIn().then(
+        profile: function(Users, AuthService) {
+          return AuthService.$requireSignIn().then(
             (auth) => {
               return Users.getProfile(auth.uid).$loaded()
             }

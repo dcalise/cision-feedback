@@ -9,8 +9,8 @@ function AuthConfig($stateProvider, $httpProvider) {
     templateUrl: 'auth/login.html',
     title: 'Sign in',
     resolve: {
-      requireNoAuth: function($state, Auth){
-        return Auth.$requireSignIn().then(
+      requireNoAuth: function($state, AuthService){
+        return AuthService.$requireSignIn().then(
           (auth) => {
             $state.go('app.features')
           },
@@ -29,8 +29,8 @@ function AuthConfig($stateProvider, $httpProvider) {
     templateUrl: 'auth/register.html',
     title: 'Sign up',
     resolve: {
-      requireNoAuth: function($state, Auth){
-        return Auth.$requireSignIn().then(
+      requireNoAuth: function($state, AuthService){
+        return AuthService.$requireSignIn().then(
           (auth) => {
             $state.go('app.features')
           },

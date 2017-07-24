@@ -13,7 +13,7 @@ import FeatureService from './features.service';
 servicesModule.service('FeatureService', FeatureService);
 
 import AuthService from './auth.service';
-servicesModule.service('Auth', AuthService);
+servicesModule.service('AuthService', AuthService);
 
 import UserService from './user.service';
 servicesModule.service('Users', UserService);

@@ -1,8 +1,8 @@
 class CommentCtrl {
-  constructor(Auth) {
+  constructor(AuthService) {
     'ngInject';
 
-    Auth.$requireSignIn().then(
+    AuthService.$requireSignIn().then(
       (auth) => {
         if (auth.uid) {
           this.canModify = (auth.uid === this.data.author)
