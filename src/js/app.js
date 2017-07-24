@@ -19,11 +19,11 @@ import './account-create';
 import './auth';
 import './layout';
 import './components';
-import './home';
-import './feature-detail';
-import './feature-list';
-import './feature-create';
-import './profile';
+import './areas/root';
+import './areas/features/feature-detail';
+import './areas/features/feature-list';
+import './areas/features/feature-create';
+import './areas/profile';
 import './services';
 
 

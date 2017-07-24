@@ -1,13 +1,13 @@
-function FeaturesConfig($stateProvider) {
+function HomeConfig($stateProvider) {
   'ngInject';
 
   $stateProvider
-  .state('app.feature-list', {
-    url: '/features',
-    controller: 'FeaturesCtrl',
+  .state('app.home', {
+    url: '/',
+    controller: 'HomeCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'feature-list/feature-list.html',
-    title: 'Features',
+    templateUrl: 'areas/root/home.html',
+    title: 'Home',
     resolve: {
       currentAuth: function(AuthService) {
         return AuthService.$requireSignIn()
@@ -24,4 +24,4 @@ function FeaturesConfig($stateProvider) {
 
 };
 
-export default FeaturesConfig;
+export default HomeConfig;
