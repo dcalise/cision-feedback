@@ -1,8 +1,8 @@
 class CommentCtrl {
-  constructor(Auth) {
+  constructor(AuthService) {
     'ngInject';
 
-    Auth.$requireSignIn().then(
+    AuthService.$requireSignIn().then(
       (auth) => {
         if (auth.uid) {
           this.canModify = (auth.uid === this.data.author)
@@ -21,7 +21,7 @@ let Comment = {
     deleteCb: '&'
   },
   controller: CommentCtrl,
-  templateUrl: 'feature/components/comment/comment.html'
+  templateUrl: 'feature-detail/components/comment/comment.html'
 };
 
 export default Comment;

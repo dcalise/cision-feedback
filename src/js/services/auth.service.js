@@ -1,4 +1,4 @@
-export default class Auth {
+export default class AuthService {
   constructor($firebaseAuth) {
     'ngInject';
 

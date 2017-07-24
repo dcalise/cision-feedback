@@ -9,13 +9,13 @@ function AccountCreateConfig($stateProvider) {
     templateUrl: 'account-create/account-create.html',
     title: 'Add New Account',
     resolve: {
-      currentAuth: function(Auth) {
-        return Auth.$requireSignIn()
+      currentAuth: function(AuthService) {
+        return AuthService.$requireSignIn()
       },
-      profile: function(Users, Auth) {
-        return Auth.$requireSignIn().then(
+      profile: function(UserService, AuthService) {
+        return AuthService.$requireSignIn().then(
           (auth) => {
-            return Users.getProfile(auth.uid).$loaded()
+            return UserService.getProfile(auth.uid).$loaded()
           }
         )
       }

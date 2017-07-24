@@ -1,11 +1,11 @@
 class StatusCtrl {
-  constructor(Auth, Users) {
+  constructor(AuthService, UserService) {
     'ngInject';
     
     this.admin = false;
-    Auth.$requireSignIn().then(
+    AuthService.$requireSignIn().then(
       (auth) => {
-        Users.getProfile(auth.uid).$loaded().then(
+        UserService.getProfile(auth.uid).$loaded().then(
           (profile) => {
             if (profile.roles && profile.roles.admin === true) {
               this.admin = true;
@@ -39,7 +39,7 @@ let Status = {
     updateStatus: '&'
   },
   controller: StatusCtrl,
-  templateUrl: 'feature/components/status/status.html'
+  templateUrl: 'feature-detail/components/status/status.html'
 };
 
 export default Status;

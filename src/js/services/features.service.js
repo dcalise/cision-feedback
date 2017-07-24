@@ -1,4 +1,4 @@
-export default class Features {
+export default class FeatureService {
   constructor($firebaseArray, $firebaseObject, AppConstants, $q) {
     'ngInject';
 

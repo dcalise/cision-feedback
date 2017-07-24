@@ -1,11 +1,11 @@
 class ProfileCtrl {
-  constructor(md5, auth, profile, Users, toastr) {
+  constructor(md5, auth, profile, UserService, toastr) {
     'ngInject';
 
     this._md5 = md5;
     this._auth = auth;
     this._profile = profile;
-    this._Users = Users;
+    this._UserService = UserService;
     this._toastr = toastr;
 
   }
@@ -19,7 +19,7 @@ class ProfileCtrl {
   }
 
   signOut() {
-    this._Users.signOut()
+    this._UserService.signOut()
   }
 }
 

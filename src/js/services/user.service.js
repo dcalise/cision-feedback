@@ -1,10 +1,10 @@
-export default class Users {
-  constructor($firebaseArray, $firebaseObject, Auth, $state) {
+export default class UserService {
+  constructor($firebaseArray, $firebaseObject, AuthService, $state) {
     'ngInject';
 
     this._$firebaseObject = $firebaseObject;
     this._$firebaseArray = $firebaseArray;
-    this._Auth = Auth;
+    this._AuthService = AuthService;
     this._$state = $state;
 
     this._usersRef = firebase.database().ref('users');
@@ -23,7 +23,7 @@ export default class Users {
   }
 
   signOut() {
-    this._Auth.$signOut().then(
+    this._AuthService.$signOut().then(
       () => this._$state.go('app.login')
     );
   }
