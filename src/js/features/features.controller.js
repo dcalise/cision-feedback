@@ -13,7 +13,7 @@ class FeaturesCtrl {
           feature.accountsMeta = [];
           feature.totalValue = 0;
           angular.forEach(feature.accounts, function(account) {
-            AccountsService.getAccount(account.accountKey).then(
+            AccountService.getAccount(account.accountKey).then(
               (account) => {
                 feature.accountsMeta.push(account)
                 feature.totalValue += parseInt(account.value)
