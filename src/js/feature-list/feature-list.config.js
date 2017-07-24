@@ -6,7 +6,7 @@ function FeaturesConfig($stateProvider) {
     url: '/features',
     controller: 'FeaturesCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'feature-list/features.html',
+    templateUrl: 'feature-list/feature-list.html',
     title: 'Features',
     resolve: {
       currentAuth: function(AuthService) {

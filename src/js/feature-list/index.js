@@ -1,16 +1,16 @@
 import angular from 'angular';
 
 // Create the module where our functionality can attach to
-let featuresModule = angular.module('app.feature-list', []);
+let featureListModule = angular.module('app.feature-list', []);
 
 // Include our UI-Router config settings
-import FeaturesConfig from './features.config';
-featuresModule.config(FeaturesConfig);
+import FeatureListConfig from './feature-list.config';
+featureListModule.config(FeatureListConfig);
 
 
 // Controllers
-import FeaturesCtrl from './features.controller';
-featuresModule.controller('FeaturesCtrl', FeaturesCtrl);
+import FeaturesCtrl from './feature-list.controller';
+featureListModule.controller('FeaturesCtrl', FeaturesCtrl);
 
 
-export default featuresModule;
+export default featureListModule;
