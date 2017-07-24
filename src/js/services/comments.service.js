@@ -1,4 +1,4 @@
-export default class Comments {
+export default class CommentService {
   constructor($firebaseArray) {
     'ngInject';
 

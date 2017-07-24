@@ -1,5 +1,5 @@
 class FeatureCtrl {
-  constructor(feature, currentAuth, comments, profile, Comments, FeatureService, AccountService, $stateParams, $state, Users, $scope) {
+  constructor(feature, currentAuth, comments, profile, CommentService, FeatureService, AccountService, $stateParams, $state, Users, $scope) {
     'ngInject';
 
     this._$stateParams = $stateParams
@@ -16,7 +16,7 @@ class FeatureCtrl {
     }
 
     this._AccountService = AccountService
-    this._Comments = Comments
+    this._CommentService = CommentService
     this._FeatureService = FeatureService
     this._Users = Users
 
