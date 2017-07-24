@@ -21,7 +21,7 @@ let Comment = {
     deleteCb: '&'
   },
   controller: CommentCtrl,
-  templateUrl: 'feature/components/comment/comment.html'
+  templateUrl: 'feature-detail/components/comment/comment.html'
 };
 
 export default Comment;

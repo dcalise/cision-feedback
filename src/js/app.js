@@ -20,8 +20,8 @@ import './auth';
 import './layout';
 import './components';
 import './home';
-import './feature';
-import './features';
+import './feature-detail';
+import './feature-list';
 import './feature-create';
 import './profile';
 import './services';
@@ -38,8 +38,8 @@ const requires = [
   'app.layout',
   'app.components',
   'app.home',
-  'app.feature',
-  'app.features',
+  'app.feature-detail',
+  'app.feature-list',
   'app.feature-create',
   'app.profile',
   'app.services',

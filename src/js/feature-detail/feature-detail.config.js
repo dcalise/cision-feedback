@@ -1,12 +1,12 @@
-function FeatureConfig($stateProvider) {
+function FeatureDetailConfig($stateProvider) {
   'ngInject';
 
   $stateProvider
-  .state('app.feature', {
+  .state('app.feature-detail', {
     url: '/feature/:id',
     controller: 'FeatureCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'feature/feature.html',
+    templateUrl: 'feature-detail/feature-detail.html',
     title: 'Feature Detail',
     resolve: {
       currentAuth: function(AuthService) {
@@ -30,4 +30,4 @@ function FeatureConfig($stateProvider) {
 
 };
 
-export default FeatureConfig;
+export default FeatureDetailConfig;

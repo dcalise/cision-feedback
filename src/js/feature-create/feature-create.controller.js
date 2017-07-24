@@ -22,7 +22,7 @@ class FeedbackCreateCtrl {
           // TODO: can we delete profile argument?
           this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
             () => {
-              this._$state.go('app.features');
+              this._$state.go('app.feature-list');
             },
             () => {
               this.featureForm.isSubmitting = false;
@@ -35,7 +35,7 @@ class FeedbackCreateCtrl {
     } else {
       this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, this.accountForm.selectedAccounts).then(
         () => {
-          this._$state.go('app.features');
+          this._$state.go('app.feature-list');
         },
         (err) => {
           this.featureForm.isSubmitting = false;

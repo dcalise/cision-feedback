@@ -12,7 +12,7 @@ function AuthConfig($stateProvider, $httpProvider) {
       requireNoAuth: function($state, AuthService){
         return AuthService.$requireSignIn().then(
           (auth) => {
-            $state.go('app.features')
+            $state.go('app.feature-list')
           },
           (err) => {
             return
@@ -32,7 +32,7 @@ function AuthConfig($stateProvider, $httpProvider) {
       requireNoAuth: function($state, AuthService){
         return AuthService.$requireSignIn().then(
           (auth) => {
-            $state.go('app.features')
+            $state.go('app.feature-list')
           },
           (err) => {
             return

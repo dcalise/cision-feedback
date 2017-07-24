@@ -2,11 +2,11 @@ function FeaturesConfig($stateProvider) {
   'ngInject';
 
   $stateProvider
-  .state('app.features', {
+  .state('app.feature-list', {
     url: '/features',
     controller: 'FeaturesCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'features/features.html',
+    templateUrl: 'feature-list/features.html',
     title: 'Features',
     resolve: {
       currentAuth: function(AuthService) {

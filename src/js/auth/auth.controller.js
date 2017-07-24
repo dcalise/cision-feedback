@@ -13,7 +13,7 @@ class AuthCtrl {
     this._AuthService.$signInWithEmailAndPassword(this.formData.email, this.formData.password).then(
       (res) => {
         this.isSubmitting = false;
-        this._$state.go('app.features')
+        this._$state.go('app.feature-list')
       },
       (err) => {
         this.isSubmitting = false;
