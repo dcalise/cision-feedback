@@ -1,10 +1,10 @@
-function FeaturesConfig($stateProvider) {
+function FeatureListConfig($stateProvider) {
   'ngInject';
 
   $stateProvider
   .state('app.feature-list', {
     url: '/features',
-    controller: 'FeaturesCtrl',
+    controller: 'FeatureListCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'areas/features/feature-list/feature-list.html',
     title: 'Features',
@@ -24,4 +24,4 @@ function FeaturesConfig($stateProvider) {
 
 };
 
-export default FeaturesConfig;
+export default FeatureListConfig;

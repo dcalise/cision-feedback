@@ -9,8 +9,8 @@ featureListModule.config(FeatureListConfig);
 
 
 // Controllers
-import FeaturesCtrl from './feature-list.controller';
-featureListModule.controller('FeaturesCtrl', FeaturesCtrl);
+import FeatureListCtrl from './feature-list.controller';
+featureListModule.controller('FeatureListCtrl', FeatureListCtrl);
 
 
 export default featureListModule;
