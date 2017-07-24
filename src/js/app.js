@@ -24,7 +24,6 @@ import './feature';
 import './features';
 import './feature-create';
 import './profile';
-import './article';
 import './services';
 
 
@@ -43,7 +42,6 @@ const requires = [
   'app.features',
   'app.feature-create',
   'app.profile',
-  'app.article',
   'app.services',
   'angucomplete-alt',
   'validation.match',
