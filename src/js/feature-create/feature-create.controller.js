@@ -19,6 +19,7 @@ class FeedbackCreateCtrl {
             accountKey: account.key,
             accountTie: this.featureForm.accountTie
           }
+          // TODO: can we delete profile argument?
           this._Features.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
             () => {
               this._$state.go('app.features');
