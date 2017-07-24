@@ -19,8 +19,8 @@ function FeatureConfig($stateProvider) {
           }
         )
       },
-      feature: function(Features, $stateParams) {
-        return Features.getFeature($stateParams.id).$loaded()
+      feature: function(FeatureService, $stateParams) {
+        return FeatureService.getFeature($stateParams.id).$loaded()
       },
       comments: function($stateParams, Comments){
         return Comments.forFeature($stateParams.id).$loaded();

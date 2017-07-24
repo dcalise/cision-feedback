@@ -1,11 +1,11 @@
 class FeedbackCreateCtrl {
-  constructor(Accounts, Features, $state, profile, currentAuth) {
+  constructor(Accounts, FeatureService, $state, profile, currentAuth) {
     'ngInject';
 
     this._$state = $state;
 
     this._Accounts = Accounts;
-    this._Features = Features;
+    this._FeatureService = FeatureService;
     this._currentAuth = currentAuth;
     this._profile = profile;
 
@@ -20,7 +20,7 @@ class FeedbackCreateCtrl {
             accountTie: this.featureForm.accountTie
           }
           // TODO: can we delete profile argument?
-          this._Features.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
+          this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
             () => {
               this._$state.go('app.features');
             },
@@ -33,7 +33,7 @@ class FeedbackCreateCtrl {
         (error) => { console.log(error) }
       )
     } else {
-      this._Features.add(this.featureForm, this._currentAuth, this._profile, this.accountForm.selectedAccounts).then(
+      this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, this.accountForm.selectedAccounts).then(
         () => {
           this._$state.go('app.features');
         },
@@ -48,7 +48,7 @@ class FeedbackCreateCtrl {
   addFeature() {
     this.featureForm.isSubmitting = true;
 
-    this._Features.add(this.featureForm, this._currentAuth, this._profile).then(
+    this._FeatureService.add(this.featureForm, this._currentAuth, this._profile).then(
       () => {
         this.featureForm.isSubmitting = false;
         console.log('added!');

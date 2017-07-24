@@ -9,8 +9,8 @@ servicesModule.service('Accounts', AccountsService);
 import CommentsService from './comments.service';
 servicesModule.service('Comments', CommentsService);
 
-import FeaturesService from './features.service';
-servicesModule.service('Features', FeaturesService);
+import FeatureService from './features.service';
+servicesModule.service('FeatureService', FeatureService);
 
 import AuthService from './auth.service';
 servicesModule.service('Auth', AuthService);

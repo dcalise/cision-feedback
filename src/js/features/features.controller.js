@@ -1,10 +1,10 @@
 class FeaturesCtrl {
-  constructor(Features, Accounts, $http, $q) {
+  constructor(FeatureService, Accounts, $http, $q) {
     'ngInject';
 
-    this._Features = Features;
+    this._FeatureService = FeatureService;
 
-    this.features = this._Features.all
+    this.features = this._FeatureService.all
 
     this.features.$loaded().then(
       (features) => {
