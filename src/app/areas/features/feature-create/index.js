@@ -7,10 +7,8 @@ let featureCreateModule = angular.module('app.feature-create', []);
 import FeatureCreateConfig from './feature-create.config';
 featureCreateModule.config(FeatureCreateConfig);
 
-
 // Controllers
 import FeatureCreateCtrl from './feature-create.controller';
 featureCreateModule.controller('FeatureCreateCtrl', FeatureCreateCtrl);
-
 
 export default featureCreateModule;

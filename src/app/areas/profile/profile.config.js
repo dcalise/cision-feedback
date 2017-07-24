@@ -6,7 +6,7 @@ function ProfileConfig($stateProvider) {
       url: '/profile',
       controller: 'ProfileCtrl',
       controllerAs: '$ctrl',
-      templateUrl: 'profile/profile.html',
+      templateUrl: 'areas/profile/profile.html',
       resolve: {
         auth: function($state, UserService, AuthService) {
           return AuthService.$requireSignIn().catch(

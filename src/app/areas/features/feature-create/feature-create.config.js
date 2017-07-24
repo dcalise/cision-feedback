@@ -6,7 +6,7 @@ function FeatureCreateConfig($stateProvider) {
     url: '/features/create',
     controller: 'FeatureCreateCtrl',
     controllerAs: '$ctrl',
-    templateUrl: 'feature-create/feature-create.html',
+    templateUrl: 'areas/features/feature-create/feature-create.html',
     title: 'Create New Feature Request',
     resolve: {
       currentAuth: function(AuthService) {
