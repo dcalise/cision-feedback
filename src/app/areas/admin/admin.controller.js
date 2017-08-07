@@ -23,19 +23,19 @@ class AdminCtrl {
 
   addLabel(label) {
     this._LabelService.addLabel(label.name, label.description).then(
-      (label) => console.log(label)
+      () => this.labelForm = {}
     );
   }
 
   addLocation(location) {
     this._LabelService.addLocation(location.name, location.description, location.labels).then(
-      (location) => console.log(location)
+      () => this.locationForm = {}
     );
   }
 
   addProduct(product) {
     this._LabelService.addProduct(product.name, product.description, product.locations).then(
-      (product) => console.log(product)
+      () => this.productForm = {}
     );
   }
 
