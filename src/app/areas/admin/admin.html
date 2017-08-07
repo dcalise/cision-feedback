@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<section class="container labels"
+  ng-if="$ctrl.admin === true">
+  <div class="row">
+    
+    <form class="label-form" ng-submit="$ctrl.addLabel($ctrl.labelForm.name)">
+      <fieldset>
+        <div class="form-group">
+          <label for="label-name" class="control-label">Label</label>
+          <input type="text" class="form-control" id="label-name" required
+            ng-model="$ctrl.labelForm.name">
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-info pull-right" >Submit Feature Request</button>
+    </form>
+
+  </div>
+</section>
