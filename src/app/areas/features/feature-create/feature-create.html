@@ -21,10 +21,12 @@
           </div>
           <div class="form-group">
             <label for="platform-product">Platform or Product</label>
+            <p class="meta">Select the platform our product currently being used by the customer</p>
             <select class="form-control" id="platform-product" required
               ng-model="$ctrl.featureForm.product">
               <option>C3</option>
-              <option>Distribution</option>
+              <option>Web Distribution</option>
+              <option>Wire Distribution</option>
               <option>Media Studio</option>
               <option>Multimedia</option>
               <option>Visibility Reports</option>
@@ -97,15 +99,49 @@
 
           <!--distribution -->
           <div class="form-group ml-xl">
-            <select class="form-control" multiple size="4"
-              ng-if="$ctrl.featureForm.product == 'Distribution'"
-              ng-model="$ctrl.featureForm.labels">
-              <option>Newslines</option>
-              <option>Pricing</option>
-              <option>Recommendations</option>
-              <option>Other</option>
+            <select class="form-control"
+              ng-if="$ctrl.featureForm.product == 'Web Distribution'"
+              ng-model="$ctrl.featureForm.location">
+              <option>PRWeb ecommerce</option>
+              <option>iReach</option>
+              <option value="PRWeb subscription CPRE">PRWeb subscription CPRE (legacy)</option>
+              <option>PRWeb subscription C3</option>
             </select>
           </div>
+
+
+          <div class="form-group ml-xl">
+            <select class="form-control"
+              ng-if="$ctrl.featureForm.product == 'Wire Distribution'"
+              ng-model="$ctrl.featureForm.location">
+              <option>OMC US</option>
+              <option>OMC CNW</option>
+              <option>OMC LATAM</option>
+              <option>CNW Access</option>
+              <option>Asia Portal</option>
+              <option>C3 Wire Distribution</option>
+              <option>EU Portal</option>
+              <option>India Portal</option>
+              <option>UK Disclosure</option>
+              <option>France Disclose</option>
+            </select>
+          </div>
+
+          <div class="form-group ml-xl">
+            <select class="form-control" multiple size="8"
+              ng-if="$ctrl.featureForm.product == 'Web Distribution' || $ctrl.featureForm.product == 'Wire Distribution'"
+              ng-model="$ctrl.featureForm.labels">
+              <option>Pricing and Packaging</option>
+              <option>Reporting</option>
+              <option value="Viewing News Results">General Usability</option>
+              <option>Distribution Options and Networks</option>
+              <option value="System Performance">System Performance (compatibility, mobile-friendly, etc)</option>
+              <option value="Regional Customization">Regional Customization (translations, packages, etc)</option>
+              <option>Security</option>
+              <option>Other</option> 
+            </select>
+          </div>
+
           <div class="form-group">
             <label>Is this feature something available in another platform?</label>
           </div>
