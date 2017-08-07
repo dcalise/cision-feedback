@@ -31,9 +31,10 @@ export default class LabelService {
     })
   }
 
-  addLabels(name, description, locations) {
+  addLabel(name, description) {
     return this._labels.$add({
-      displayName: name
+      displayName: name,
+      description: description
     })
   }
 

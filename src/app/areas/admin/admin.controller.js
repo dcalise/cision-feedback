@@ -21,8 +21,10 @@ class AdminCtrl {
 
   }
 
-  addLabel(name) {
-    console.log(name);
+  addLabel(label) {
+    this._LabelService.addLabel(label.name, label.description).then(
+      (label) => console.log(label)
+    );
   }
 
 }
