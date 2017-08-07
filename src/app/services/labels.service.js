@@ -18,23 +18,23 @@ export default class LabelService {
   addProduct(name, description, locations) {
     return this._products.$add({
       displayName: name,
-      description: description,
-      locations: locations
+      description: description || null,
+      locations: locations || null
     })
   }
 
   addLocation(name, description, labels) {
     return this._locations.$add({
       displayName: name,
-      description: description,
-      labels: labels
+      description: description || null,
+      labels: labels || null
     })
   }
 
   addLabel(name, description) {
     return this._labels.$add({
       displayName: name,
-      description: description
+      description: description || null
     })
   }
 

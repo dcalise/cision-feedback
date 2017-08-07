@@ -27,6 +27,12 @@ class AdminCtrl {
     );
   }
 
+  addLocation(location) {
+    this._LabelService.addLocation(location.name, location.description, location.labels).then(
+      (location) => console.log(location)
+    );
+  }
+
 }
 
 export default AdminCtrl;
