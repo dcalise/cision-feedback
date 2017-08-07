@@ -33,6 +33,12 @@ class AdminCtrl {
     );
   }
 
+  addProduct(product) {
+    this._LabelService.addProduct(product.name, product.description, product.locations).then(
+      (product) => console.log(product)
+    );
+  }
+
 }
 
 export default AdminCtrl;
