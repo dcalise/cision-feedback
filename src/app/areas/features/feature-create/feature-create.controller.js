@@ -33,7 +33,6 @@ class FeedbackCreateCtrl {
   getLocationLabels() {
     this._LabelService.getLocation(this.featureForm.location).$loaded().then(
       (location) => {
-        console.log(location);
         this.locationLabels = [];
         angular.forEach(location.labels, (labelId) => {
           this._LabelService.getLabel(labelId).$loaded().then(
