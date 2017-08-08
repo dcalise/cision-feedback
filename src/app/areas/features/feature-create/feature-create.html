@@ -25,7 +25,9 @@
             <select class="form-control" id="platform-product" required
               ng-change="$ctrl.getProductLocations()"
               ng-model="$ctrl.featureForm.product">
-              <option ng-repeat="product in $ctrl._LabelService._products" value="{{ product.$id }}">{{ product.displayName }}</option>
+              <option ng-repeat="product in $ctrl._LabelService._products" value="{{ product.$id }}">{{ product.displayName }}
+                <span> {{ (product.description) ? '(' + product.description + ')' : ''  }}</span>
+              </option>
             </select>
           </div>
           <div class="form-group ml-xl">
@@ -33,7 +35,9 @@
               ng-if="$ctrl.productLocations.length > 0"
               ng-change="$ctrl.getLocationLabels()"
               ng-model="$ctrl.featureForm.location">
-              <option ng-repeat="location in $ctrl.productLocations" value="{{ location.$id }}">{{ location.displayName }}</option>
+              <option ng-repeat="location in $ctrl.productLocations" value="{{ location.$id }}">{{ location.displayName }}
+                <span> {{ (location.description) ? '(' + location.description + ')' : ''  }}</span>
+              </option>
             </select>
           </div>
 
@@ -41,7 +45,9 @@
             <select class="form-control" multiple
               ng-if="$ctrl.locationLabels.length > 0"
               ng-model="$ctrl.featureForm.labels">
-              <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">{{ label.displayName }}</option>
+              <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">{{ label.displayName }}
+                <span> {{ (label.description) ? '(' + label.description + ')' : ''  }}</span>
+              </option>
             </select>
           </div>
 
