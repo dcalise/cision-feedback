@@ -20,8 +20,10 @@
         <div class="row mb-xs"
           ng-show="$ctrl._feature.labels">
           <div class="col-sm-12">
-            <span ng-repeat="label in $ctrl._feature.labels" class="label label-default mr-xs" >{{label}}</span>
-            </div>
+            <display-label ng-repeat="label in $ctrl._feature.labels"
+              data="label">
+            </display-label>
+          </div>
         </div>
         <div class="row"
           ng-show="$ctrl._feature.compGap || $ctrl._feature.legacyGap">
