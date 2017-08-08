@@ -23,26 +23,29 @@
             <label for="platform-product">Platform or Product</label>
             <p class="meta">Select the platform our product currently being used by the customer</p>
             <select class="form-control" id="platform-product" required
+              ng-change="$ctrl.getProductLocations()"
               ng-model="$ctrl.featureForm.product">
-              <option>C3</option>
-              <option>Web Distribution</option>
-              <option>Wire Distribution</option>
-              <option>Media Studio</option>
-              <option>Multimedia</option>
-              <option>Visibility Reports</option>
-              <option>MNR</option>
+              <option ng-repeat="product in $ctrl._LabelService._products" value="{{ product.$id }}">{{ product.displayName }}</option>
             </select>
           </div>
           <div class="form-group ml-xl">
-            <!-- c3 -->
             <select class="form-control"
-              ng-if="$ctrl.featureForm.product == 'C3'"
+              ng-if="$ctrl.productLocations.length > 0"
+              ng-change="$ctrl.getLocationLabels()"
               ng-model="$ctrl.featureForm.location">
-              <option>News</option>
-              <option>Contacts</option>
-              <option>Connect</option>
+              <option ng-repeat="location in $ctrl.productLocations" value="{{ location.$id }}">{{ location.displayName }}</option>
             </select>
           </div>
+
+          <div class="form-group ml-xl">
+            <select class="form-control" multiple
+              ng-if="$ctrl.locationLabels.length > 0"
+              ng-model="$ctrl.featureForm.labels">
+              <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">{{ label.displayName }}</option>
+            </select>
+          </div>
+
+
           <div class="form-group ml-xl">
 
             <select class="form-control" multiple size="14"

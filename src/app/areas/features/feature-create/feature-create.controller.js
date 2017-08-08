@@ -1,14 +1,49 @@
 class FeedbackCreateCtrl {
-  constructor(AccountService, FeatureService, $state, profile, currentAuth) {
+  constructor(AccountService, FeatureService, $state, profile, currentAuth, LabelService) {
     'ngInject';
 
     this._$state = $state;
 
     this._AccountService = AccountService;
     this._FeatureService = FeatureService;
+    this._LabelService = LabelService;
     this._currentAuth = currentAuth;
     this._profile = profile;
 
+    this.productLocations = []
+    this.locationLabels = []
+
+  }
+
+  getProductLocations() {
+    this._LabelService.getProduct(this.featureForm.product).$loaded().then(
+      (product) => {
+        this.productLocations = [];
+        angular.forEach(product.locations, (locationId) => {
+          this._LabelService.getLocation(locationId).$loaded().then(
+            (location) => {
+              this.productLocations.push(location)
+            }
+          )
+        });
+      }
+    )
+  }
+
+  getLocationLabels() {
+    this._LabelService.getLocation(this.featureForm.location).$loaded().then(
+      (location) => {
+        console.log(location);
+        this.locationLabels = [];
+        angular.forEach(location.labels, (labelId) => {
+          this._LabelService.getLabel(labelId).$loaded().then(
+            (label) => {
+              this.locationLabels.push(label)
+            }
+          )
+        });
+      }
+    )
   }
 
   addAccountAndFeature() {
