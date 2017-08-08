@@ -71,10 +71,10 @@
       ui-sref="app.feature-detail({id:feature.$id})">
         <td><span class="label label-success">{{feature.status}}</span></td>
         <td>
-          <display-label ng-repeat="label in feature.labels"
-              data="label"
-              line-break="true">
-          </display-label>
+          <span class="label label-default mr-xs"
+            ng-repeat="label in feature.labels">
+            <display-label data="label"></display-label>
+          </span><br/>
         </td>
         <td>{{feature.subject}}</td>
         <td class="nowrap">{{feature.accountsMeta[0].name}}</td>
