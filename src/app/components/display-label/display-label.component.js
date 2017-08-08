@@ -16,7 +16,6 @@ class DisplayLabelCtrl {
         )
         break;
       case 'location':
-        console.log('location');
         this._LabelService.getLocation(labelId).$loaded().then(
           (location) => {
             this.displayName = location.displayName
@@ -36,7 +35,6 @@ class DisplayLabelCtrl {
 let DisplayLabel = {
   bindings: {
     data: '=',
-    lineBreak: '=',
     labelType: '='
   },
   controller: DisplayLabelCtrl,
