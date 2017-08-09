@@ -18,6 +18,7 @@ import './config/app.templates';
 import './auth';
 import './layout';
 import './components';
+import './areas/admin';
 import './areas/root';
 import './areas/features/feature-detail';
 import './areas/features/feature-list';
@@ -32,6 +33,7 @@ const requires = [
   'firebase',
   'angular-md5',
   'templates',
+  'app.admin',
   'app.auth',
   'app.layout',
   'app.components',

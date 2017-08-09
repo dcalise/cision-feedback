@@ -12,6 +12,9 @@ servicesModule.service('CommentService', CommentService);
 import FeatureService from './features.service';
 servicesModule.service('FeatureService', FeatureService);
 
+import LabelService from './labels.service';
+servicesModule.service('LabelService', LabelService);
+
 import AuthService from './auth.service';
 servicesModule.service('AuthService', AuthService);
 

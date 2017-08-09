@@ -8,8 +8,17 @@
           <div class="col-sm-12">
             <span class="meta"
               ng-if="$ctrl._feature.product">
-              {{$ctrl._feature.product}}
-              <span ng-if="$ctrl._feature.location"> <i class="ion-arrow-right-b"?></i> {{$ctrl._feature.location}}</span>
+              <display-label
+                data="$ctrl._feature.product"
+                label-type="'product'">
+              </display-label>
+              <span ng-if="$ctrl._feature.location">
+                <i class="ml-xs mr-xs ion-arrow-right-b"?></i>
+                <display-label
+                data="$ctrl._feature.location"
+                label-type="'location'">
+              </display-label>
+              </span>
             </span>
             <h1>
               {{::$ctrl._feature.subject}}
@@ -20,8 +29,11 @@
         <div class="row mb-xs"
           ng-show="$ctrl._feature.labels">
           <div class="col-sm-12">
-            <span ng-repeat="label in $ctrl._feature.labels" class="label label-default mr-xs" >{{label}}</span>
-            </div>
+            <span class="label label-default mr-xs"
+              ng-repeat="label in $ctrl._feature.labels">
+              <display-label data="label"></display-label>
+            </span>
+          </div>
         </div>
         <div class="row"
           ng-show="$ctrl._feature.compGap || $ctrl._feature.legacyGap">
