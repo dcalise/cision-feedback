@@ -145,9 +145,7 @@
         <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
           <td>{{account.name}}<br><span class="meta small light">{{account.cid}}</span></td>
           <td>{{account.accountType}}</td>
-          <td>{{account.platform}}<br>
-            <span class="meta small light"
-              ng-if="account.priorPlatform">from {{account.priorPlatform}}</span></td>
+          <td><span ng-repeat="platform in account.platform">{{platform}}<br/></span></td>
           <td>{{account.tie}}</td>
           <td>{{account.country}}</td>
           <td align="right">{{account.value | currency}}</td>
