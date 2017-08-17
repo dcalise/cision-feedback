@@ -38,3 +38,5 @@ build/*
 dist/*
 src/js/config/app.templates.js
 src/app/config/app.templates.js
+
+bin/key/*
