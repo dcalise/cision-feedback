@@ -1,10 +1,12 @@
 import angular from 'angular';
+import 'angular-animate';
 import * as firebase from "firebase";
 import 'angularfire';
 import 'angular-md5';
 import 'angucomplete-alt';
 import 'angular-validation-match';
 import 'angular-toastr';
+import 'angular-ui-bootstrap';
 
 // Import our app config files
 import constants  from './config/app.constants';
@@ -30,6 +32,8 @@ import './services';
 // Create and bootstrap application
 const requires = [
   'ui.router',
+  'ngAnimate',
+  'ui.bootstrap',
   'firebase',
   'angular-md5',
   'templates',
