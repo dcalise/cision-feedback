@@ -10,7 +10,29 @@ class AddAccountCtrl {
       'Customer AT RISK because this feature is not available',
       'Prospect LOST because this feature is not available',
       'None of the above'
-    ]
+    ];
+
+    this.customerProductOptions = [
+      'Cision PR Edition',
+      'CisionPoint',
+      'Visible Intelligence',
+      'MediaVantage',
+      'HARO',
+      'ProfNet',
+      'OMC',
+      'CNW Access',
+      'MNR',
+      'Others (Please Specify in Notes)'
+    ];
+
+    this.prospectProductOptions = [
+      'Meltwater',
+      'TrendKite',
+      'NASDAQ',
+      'BusinessWire',
+      'Others (Please Specify in Notes)'
+    ];
+
     this.platformOptions = [
       'C3',
       'OMC',
@@ -19,8 +41,8 @@ class AddAccountCtrl {
       'MyGorkana',
       'MediaVantage',
       'PRWeb Subscription',
-      'Visible',
-    ]
+      'Visible'
+    ];
     this.priorPlatformOptions = [
       'CPRE',
       'CP',
@@ -29,8 +51,8 @@ class AddAccountCtrl {
       'MediaVantage',
       'OMC',
       'Upgraded from Agility',
-      'Net New',
-    ]
+      'Net New'
+    ];
 
     this.accountSelected = (selected) => {
       if (selected) {

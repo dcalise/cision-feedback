@@ -15,6 +15,7 @@ export default class AccountService {
       priorPlatform: account.priorPlatform || null,
       name: account.name,
       accountType: account.accountType,
+      salesForceUrl: account.salesForceUrl || null,
       cid: account.cid,
       country: account.country,
       value: account.value,

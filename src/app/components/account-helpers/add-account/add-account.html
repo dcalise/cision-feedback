@@ -45,24 +45,97 @@
 
   <!-- new account -->
   <div ng-if="$ctrl.newAccount">
-    <div class="form-group">
-      <label for="account-name" class="control-label">Account Name</label>
-      <input type="text" class="form-control" id="account-name"
-        ng-model="$ctrl.accountForm.name">
-    </div>
-    <div class="form-group">
-      <label for="cision-point-id" class="control-label">Account ID</label>
-      <input type="text" class="form-control" id="cision-point-id"
-        ng-model="$ctrl.accountForm.cid">
-      <div class="col-sm-10">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="account-name" class="control-label">Account Name</label>
+          <input type="text" class="form-control" id="account-name"
+            placeholder="Enter the customer's name in Salesforce"
+            ng-model="$ctrl.accountForm.name">
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="account-type" class="control-label">Platform or Product</label>
-      <select class="form-control" 
-        ng-model="$ctrl.accountForm.platform">
-        <option ng-repeat="option in $ctrl.platformOptions">{{option}}</option>
-      </select>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="cision-point-id" class="control-label">Account ID</label>
+          <input type="text" class="form-control" id="cision-point-id"
+            placeHolder="The customer's Salesforce ID"
+            ng-model="$ctrl.accountForm.cid">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="account-value" class="control-label">Account Value</label>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input type="text" class="form-control" id="account-value"
+              placeholder="Include USD or CSD currency"
+              ng-model="$ctrl.accountForm.value">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="account-link-salesforce" class="control-label">Account Link in Salesforce</label>
+          <input type="text" class="form-control" id="account-link-salesforce"
+            placeHolder="Add the link to cusomter account in SFDC"
+            ng-model="$ctrl.accountForm.salesForceUrl">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="account-type" class="control-label">Country</label>
+          <select class="form-control" 
+            ng-model="$ctrl.accountForm.country">
+            <option>USA</option>
+            <option>UK</option>
+            <option>Canada</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Nordics</option>
+            <option>LatAm</option>
+            <option>Asia</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="account-type" class="control-label">Account Status</label>
+          <p class="meta">Is this a customer or a prospect?</p>
+          <select class="form-control" 
+            ng-model="$ctrl.accountForm.accountType">
+            <option>Current customer</option>
+            <option>Lost customer</option>
+            <option>Prospect in-cycle</option>
+            <option>Prospect loss</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row"
+      ng-show="$ctrl.accountForm.accountType">
+      <div class="col-sm-11 col-sm-offset-1">
+        <div class="form-group">
+          <label for="account-type" class="control-label">Which product(s) were they using</label>
+          <select class="form-control" multiple
+            ng-model="$ctrl.accountForm.platform">
+            <option 
+              ng-show="$ctrl.accountForm.accountType === 'Current customer' || $ctrl.accountForm.accountType === 'Lost customer'"
+              ng-repeat="option in $ctrl.customerProductOptions">{{option}}</option>
+            <option 
+              ng-show="$ctrl.accountForm.accountType === 'Prospect in-cycle' || $ctrl.accountForm.accountType === 'Prospect loss'"
+              ng-repeat="option in $ctrl.prospectProductOptions">{{option}}</option>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="form-group ml-xl"
       ng-show="$ctrl.accountForm.platform == 'C3'">
@@ -71,39 +144,6 @@
         ng-model="$ctrl.accountForm.priorPlatform">
         <option ng-repeat="option in $ctrl.priorPlatformOptions">{{option}}</option>
       </select>
-    </div>
-    <div class="form-group">
-      <label for="account-type" class="control-label">Country</label>
-      <select class="form-control" 
-        ng-model="$ctrl.accountForm.country">
-        <option>USA</option>
-        <option>UK</option>
-        <option>Canada</option>
-        <option>Germany</option>
-        <option>France</option>
-        <option>Nordics</option>
-        <option>LatAm</option>
-        <option>Asia</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="account-type" class="control-label">Account Type</label>
-      <select class="form-control" 
-        ng-model="$ctrl.accountForm.accountType">
-        <option>Current customer</option>
-        <option>Lost customer</option>
-        <option>Prospect in-cycle</option>
-        <option>Prospect loss</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="account-value" class="control-label">Account Value</label>
-      <div class="input-group">
-        <div class="input-group-addon">$</div>
-        <input type="text" class="form-control" id="account-value"
-          ng-model="$ctrl.accountForm.value">
-      </div>
     </div>
     <div class="form-group">
       <label for="customer-notes" class="control-label">Additional notes about this customer:</label>
