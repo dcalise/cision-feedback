@@ -24,7 +24,8 @@
               <label for="cision-point-id" class="control-label">Account ID</label>
               <input type="text" class="form-control" id="cision-point-id"
                 placeHolder="The customer's Salesforce ID"
-                ng-model="$ctrl.accountForm.cid">
+                ng-model="$ctrl.accountForm.cid"
+                ng-change="$ctrl.errors = ''">
             </div>
           </div>
           <div class="col-sm-6">
@@ -106,8 +107,10 @@
               ng-model="$ctrl.accountForm.customerNotes"></textarea>
           </div>
 
+          <div class="alert alert-danger fade in" role="alert" ng-if="$ctrl.errors">{{ $ctrl.errors }}</div>
         </div>
       </fieldset>
+      
       
     </div>
     <div class="modal-footer">

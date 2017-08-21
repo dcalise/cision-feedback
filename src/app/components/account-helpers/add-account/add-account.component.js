@@ -58,11 +58,12 @@ class AddAccountCtrl {
       'Net New'
     ];
     
-    this.accountSelected = (select) => {
-      if (selected) {
-        this.getAccountMeta(selected.originalObject.$id)
+    this.accountSelected = (account) => {
+      if (account) {
+        let accountKey = account.originalObject ? account.originalObject.$id : account.key;
+        this.getAccountMeta(accountKey)
         let accountTieObject = {
-          accountKey: selected.originalObject.$id,
+          accountKey: accountKey,
           accountTie: null
         }
         return this.accountForm.selectedAccounts.push(accountTieObject)
@@ -111,8 +112,7 @@ class AddAccountCtrl {
     }
   }
 
-  showModal() {
-    console.log(this.items)
+  addAccountModal() {
     this._$uibModal.open({
       templateUrl: 'components/account-helpers/add-account/modal/add-account.modal.html',
       controllerAs: '$ctrl',
@@ -120,7 +120,7 @@ class AddAccountCtrl {
       resolve: {
         items: () => this.items
       }
-    }).result.then(newAccount => console.log(newAccount))
+    }).result.then(newAccount => this.accountSelected(newAccount))
   }
 }
 
