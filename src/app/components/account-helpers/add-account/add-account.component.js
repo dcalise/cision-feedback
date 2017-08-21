@@ -7,8 +7,7 @@ class AddAccountCtrl {
     this._$scope = $scope
     this._$uibModal = $uibModal;
 
-    this.items = ['item1', 'item2', 'item3']
-
+    
     this.accountTieOptions = [
       'Platform GAP. Customer will not upgrade to C3 without this feature',
       'Customer CHURNED because this feature was not available',
@@ -16,7 +15,7 @@ class AddAccountCtrl {
       'Prospect LOST because this feature is not available',
       'None of the above'
     ];
-
+    
     this.customerProductOptions = [
       'Cision PR Edition',
       'CisionPoint',
@@ -29,7 +28,7 @@ class AddAccountCtrl {
       'MNR',
       'Others (Please Specify in Notes)'
     ];
-
+    
     this.prospectProductOptions = [
       'Meltwater',
       'TrendKite',
@@ -37,7 +36,7 @@ class AddAccountCtrl {
       'BusinessWire',
       'Others (Please Specify in Notes)'
     ];
-
+    
     this.platformOptions = [
       'C3',
       'OMC',
@@ -58,7 +57,7 @@ class AddAccountCtrl {
       'Upgraded from Agility',
       'Net New'
     ];
-
+    
     this.accountSelected = (select) => {
       if (selected) {
         this.getAccountMeta(selected.originalObject.$id)
@@ -69,17 +68,17 @@ class AddAccountCtrl {
         return this.accountForm.selectedAccounts.push(accountTieObject)
       }
     }
-
+    
     this.existingAccountsMeta = []
-
+    
     this.getAccountMeta = (accountId) => {
-     return AccountService.getAccount(accountId).then(
-       (account) => {
-         this.existingAccountsMeta.push(account)
-       }
-     )
+      return AccountService.getAccount(accountId).then(
+        (account) => {
+          this.existingAccountsMeta.push(account)
+        }
+      )
     }
-
+    
     this.$onChanges = function() {
       var reset = {
         resetForm: function(){
@@ -88,14 +87,14 @@ class AddAccountCtrl {
       }
       this.resetForm({reset: reset});
     }
-
+    
   }
-
+  
   removeAccountFromAddList(i) {
     this.existingAccountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
-
+  
   resetAccountForm(added) {
     if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
       let sure;
@@ -113,12 +112,15 @@ class AddAccountCtrl {
   }
 
   showModal() {
+    console.log(this.items)
     this._$uibModal.open({
       templateUrl: 'components/account-helpers/add-account/modal/add-account.modal.html',
-      controllerAs: 'vm',
+      controllerAs: '$ctrl',
       controller: AddAccountModalController,
-      size: 'lg'
-    }).result.then(res => console.log(res))
+      resolve: {
+        items: () => this.items
+      }
+    }).result.then(newAccount => console.log(newAccount))
   }
 }
 
