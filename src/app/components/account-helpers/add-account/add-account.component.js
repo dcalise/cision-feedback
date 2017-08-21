@@ -1,8 +1,11 @@
 class AddAccountCtrl {
-  constructor(AccountService, $scope) {
+  constructor(AccountService, $scope, $uibModal) {
     'ngInject';
 
     this._$scope = $scope
+    this._$uibModal = $uibModal;
+
+    this.items = ['item1', 'item2', 'item3']
 
     this.accountTieOptions = [
       'Platform GAP. Customer will not upgrade to C3 without this feature',
@@ -54,7 +57,7 @@ class AddAccountCtrl {
       'Net New'
     ];
 
-    this.accountSelected = (selected) => {
+    this.accountSelected = (select) => {
       if (selected) {
         this.getAccountMeta(selected.originalObject.$id)
         let accountTieObject = {
@@ -106,7 +109,72 @@ class AddAccountCtrl {
       this._$scope.$parent.showAccountForm = false
     }
   }
-  
+
+  open(size, parentSelector) {
+    let parentElem = parentSelector ? 
+    angular.element($document[0].querySelector('.modal-test ' + parentSelector)) : undefined;
+    let modalInstance = this._$uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      controllerAs: '$ctrl',
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+        items: function () {
+          return ['item1', 'item2', 'item3'];
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      this.select = selectItem;
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+
+  }
+  openComponentModal() {
+    var modalInstance = this._$uibModal.open({
+      animation: true,
+      component: 'modalComponent',
+      resolve: {
+        items: function () {
+          return this.items;
+        }
+      }
+    });
+    modalInstance.result.then(function (selectedItem) {
+      this.select = selectedItem;
+    }, function () {
+      $log.info('modal-component dismissed at: ' + new Date());
+    });
+  };
+  openMultipleModals() {
+    this._$uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title-bottom',
+      ariaDescribedBy: 'modal-body-bottom',
+      templateUrl: 'stackedModal.html',
+      size: 'sm',
+      controller: function($scope) {
+        $scope.name = 'bottom';  
+      }
+    });
+
+    this._$uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title-top',
+      ariaDescribedBy: 'modal-body-top',
+      templateUrl: 'stackedModal.html',
+      size: 'sm',
+      controller: function($scope) {
+        $scope.name = 'top';  
+      }
+    });
+  };
 }
 
 let AddAccount = {
