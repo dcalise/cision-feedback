@@ -1,0 +1,8 @@
+.admin-label-list {
+  li > i {
+    display: none;
+  }
+  li:hover > i {
+    display: inline;
+  }
+}
