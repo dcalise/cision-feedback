@@ -5,6 +5,27 @@ export default class AddAccountModalController {
     'ngInject';
     this._$uibModalInstance = $uibModalInstance;
     this._AccountService = AccountService;
+
+    this.customerProductOptions = [
+      'Cision PR Edition',
+      'CisionPoint',
+      'Visible Intelligence',
+      'MediaVantage',
+      'HARO',
+      'ProfNet',
+      'OMC',
+      'CNW Access',
+      'MNR',
+      'Others (Please Specify in Notes)'
+    ];
+    
+    this.prospectProductOptions = [
+      'Meltwater',
+      'TrendKite',
+      'NASDAQ',
+      'BusinessWire',
+      'Others (Please Specify in Notes)'
+    ];
     
   }
 

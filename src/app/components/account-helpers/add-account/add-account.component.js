@@ -16,48 +16,6 @@ class AddAccountCtrl {
       'None of the above'
     ];
     
-    this.customerProductOptions = [
-      'Cision PR Edition',
-      'CisionPoint',
-      'Visible Intelligence',
-      'MediaVantage',
-      'HARO',
-      'ProfNet',
-      'OMC',
-      'CNW Access',
-      'MNR',
-      'Others (Please Specify in Notes)'
-    ];
-    
-    this.prospectProductOptions = [
-      'Meltwater',
-      'TrendKite',
-      'NASDAQ',
-      'BusinessWire',
-      'Others (Please Specify in Notes)'
-    ];
-    
-    this.platformOptions = [
-      'C3',
-      'OMC',
-      'CPRE',
-      'CP',
-      'MyGorkana',
-      'MediaVantage',
-      'PRWeb Subscription',
-      'Visible'
-    ];
-    this.priorPlatformOptions = [
-      'CPRE',
-      'CP',
-      'PRWeb Subscription',
-      'MyGorkana',
-      'MediaVantage',
-      'OMC',
-      'Upgraded from Agility',
-      'Net New'
-    ];
-    
     this.accountSelected = (account) => {
       if (account) {
         let accountKey = account.originalObject ? account.originalObject.$id : account.key;

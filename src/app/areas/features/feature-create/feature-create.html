@@ -38,7 +38,8 @@
           <div class="form-group ml-xl">
             <select class="form-control" multiple
               ng-if="$ctrl.locationLabels.length > 0"
-              ng-model="$ctrl.featureForm.labels">
+              ng-model="$ctrl.featureForm.labels"
+              size="10">
               <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">
                 {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
               </option>

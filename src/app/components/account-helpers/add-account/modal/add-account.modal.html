@@ -57,14 +57,7 @@
                 <select class="form-control" 
                   ng-model="$ctrl.accountForm.country">
                   <option>USA</option>
-                  <option>UK</option>
                   <option>Canada</option>
-                  <option>Germany</option>
-                  <option>France</option>
-                  <option>Nordics</option>
-                  <option>LatAm</option>
-                  <option>Asia</option>
-                  <option>Other</option>
                 </select>
               </div>
             </div>
@@ -89,7 +82,7 @@
             <div class="col-sm-11 col-sm-offset-1">
               <div class="form-group">
                 <label for="account-type" class="control-label">Which product(s) were they using</label>
-                <select class="form-control" multiple
+                <select class="form-control" multiple size="5"
                   ng-model="$ctrl.accountForm.platform">
                   <option 
                     ng-show="$ctrl.accountForm.accountType === 'Current customer' || $ctrl.accountForm.accountType === 'Lost customer'"
