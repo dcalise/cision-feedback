@@ -12,7 +12,6 @@ export default class AddAccountModalController {
     let duplicate = this._AccountService.accounts.some(function(account){
       return account.cid === accountForm.cid
     })
-
     if (duplicate) {
       this.errors = 'An account with this ID already exists.'
     } else {
