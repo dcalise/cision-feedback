@@ -19,23 +19,15 @@
             <textarea type="textarea" class="form-control" id="description" required rows="5"
               ng-model="$ctrl.featureForm.description"></textarea>
           </div>
+
           <div class="form-group">
-            <label for="platform-product">Platform or Product</label>
-            <p class="meta">Select the platform our product currently being used by the customer</p>
-            <select class="form-control" id="platform-product" required
-              ng-change="$ctrl.getProductLocations()"
-              ng-model="$ctrl.featureForm.product">
-              <option ng-repeat="product in $ctrl._LabelService._products" value="{{ product.$id }}">
-                {{ product.displayName }} {{ product.description ? '(' + product.description + ')' : '' }}
-              </option>
-            </select>
-          </div>
-          <div class="form-group ml-xl">
             <select class="form-control"
-              ng-if="$ctrl.productLocations.length > 0"
               ng-change="$ctrl.getLocationLabels()"
               ng-model="$ctrl.featureForm.location">
-              <option ng-repeat="location in $ctrl.productLocations" value="{{ location.$id }}">
+              <option
+                ng-repeat="location in $ctrl._LabelService._locations"
+                ng-if="!location.deleted"
+                value="{{ location.$id }}">
                 {{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}
               </option>
             </select>
