@@ -15,14 +15,6 @@ export default class LabelService {
 
   }
 
-  addProduct(name, description, locations) {
-    return this._products.$add({
-      displayName: name,
-      description: description || null,
-      locations: locations || null
-    })
-  }
-
   addLocation(name, description, labels) {
     return this._locations.$add({
       displayName: name,
@@ -49,10 +41,6 @@ export default class LabelService {
         location.$save();
       }
     )
-  }
-
-  getProduct(id) {
-    return this._$firebaseObject(this._productsRef.child(id))
   }
 
   getLocation(id) {
