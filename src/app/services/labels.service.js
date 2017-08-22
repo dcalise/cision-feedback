@@ -38,6 +38,19 @@ export default class LabelService {
     })
   }
 
+  addLabelToLocation(object) {
+    return this.getLocation(object.location).$loaded().then(
+      (location) => {
+        angular.forEach(object.labels, (label) => {
+          if (location.labels.indexOf(label) === -1) {
+            location.labels.push(label)
+          }
+        })
+        location.$save();
+      }
+    )
+  }
+
   getProduct(id) {
     return this._$firebaseObject(this._productsRef.child(id))
   }

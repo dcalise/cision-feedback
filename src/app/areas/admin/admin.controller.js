@@ -86,6 +86,16 @@ class AdminCtrl {
       }
     );
   }
+  
+
+  addLabelToLocation(object) {
+    this._LabelService.addLabelToLocation(object).then(
+      () => {
+        this.getLocationAndLabelList()
+        this.labelToLocationForm = {}
+      }
+    )
+  }
 
   removeLocation(locationId) {
     this._LabelService.getLocation(locationId).$loaded().then(
