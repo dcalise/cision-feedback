@@ -21,6 +21,8 @@
           </div>
 
           <div class="form-group">
+            <label for="location" class="control-label">Select C3 user workflow</label>
+            <p class="meta">Which company or companies are requesting this feature?</p>
             <select class="form-control"
               ng-change="$ctrl.getLocationLabels()"
               ng-model="$ctrl.featureForm.location">
@@ -43,29 +45,6 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <label>Is this feature something available in another platform?</label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" value="Competitive gap"
-                ng-model="$ctrl.featureForm.compGap">
-              Competitive gap
-            </label>
-            </div>
-            <div class="checkbox">
-            <label>
-              <input type="checkbox" value="Legacy system gap"
-                ng-model="$ctrl.featureForm.legacyGap">
-              Legacy system gap
-            </label>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <h3>Customer Details</h3>
-              <hr/>
-            </div>
-          </div>
         </fieldset>
         
         <add-account
