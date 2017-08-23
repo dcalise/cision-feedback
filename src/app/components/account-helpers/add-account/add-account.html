@@ -14,7 +14,12 @@
             <select class="form-control context-of-request" required
               ng-model="$ctrl.accountForm.selectedAccounts[$index].accountTie">
               <option value="" disabled selected>Why does {{ account.name }} want this?</option>
-              <option ng-repeat="option in $ctrl.accountTieOptions">{{option}}</option>
+              <option
+                ng-show="account.accountType === 'Current customer' || account.accountType === 'Lost customer'"
+                ng-repeat="option in $ctrl.accountTieOptionsCurrent">{{option}}</option>
+              <option
+                ng-show="account.accountType === 'Prospect in-cycle' || account.accountType === 'Prospect loss'"
+                ng-repeat="option in $ctrl.accountTieOptionsProspect">{{option}}</option>
             </select>
           </div>
         </li>

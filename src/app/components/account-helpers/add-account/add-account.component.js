@@ -8,10 +8,16 @@ class AddAccountCtrl {
     this._$uibModal = $uibModal;
 
     
-    this.accountTieOptions = [
-      'Platform GAP. Customer will not upgrade to C3 without this feature',
-      'Customer CHURNED because this feature was not available',
+    this.accountTieOptionsCurrent = [
+      'Legacy GAP. Customer will not upgrade to C3 without this feature',
+      'Competitive GAP. Customer will not upgrade to C3 without this feature',
       'Customer AT RISK because this feature is not available',
+      'Customer CHURNED because this feature was not available',
+      'None of the above'
+    ];
+
+    this.accountTieOptionsProspect = [
+      'Competitive GAP. Customer will not sign up to C3 without this feature',
       'Prospect LOST because this feature is not available',
       'None of the above'
     ];
