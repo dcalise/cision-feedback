@@ -24,18 +24,10 @@
           </form>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <hr />
-          <ul class="list-unstyled">
-            <li ng-repeat="label in $ctrl._LabelService._labels">{{ label.displayName }} <span ng-if="label.description">({{ label.description }})</span></li>
-          </ul>
-        </div>
-      </div>
     </div>
 
     <div class="col-sm-4">
-      <h4>Locations</h4>
+      <h4>Create New Location</h4>
       <div class="row">
         <div class="col-sm-12">
           <form class="location-form" ng-submit="$ctrl.addLocation($ctrl.locationForm)">
@@ -50,10 +42,13 @@
                 <input type="text" class="form-control" id="location-description" 
                   ng-model="$ctrl.locationForm.description">
               </div>
-              <select class="form-control" multiple size="10"
-                ng-model="$ctrl.locationForm.labels">
-                <option ng-repeat="label in $ctrl._LabelService._labels" value="{{ label.$id }}">{{ label.displayName }}</option>
-              </select>
+              <div class="form-group">
+                <label for="location" class="control-label">Labels</label>
+                <select class="form-control" multiple size="10"
+                  ng-model="$ctrl.locationForm.labels">
+                  <option ng-repeat="label in $ctrl._LabelService._labels | orderBy: 'displayName'" value="{{ label.$id }}">{{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}</option>
+                </select>
+              </div>
             </fieldset>
             <button type="submit" class="btn btn-info pull-right">Add Location</button>
           </form>
@@ -61,47 +56,51 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <hr />
-          <ul class="list-unstyled">
-            <li ng-repeat="location in $ctrl._LabelService._locations">{{ location.displayName }} <span ng-if="location.description">({{ location.description }})</span></li>
-          </ul>
+          <h4>Add Label To Existing Location</h4>
+          <form class="label-to-location-form"
+            ng-submit="$ctrl.addLabelToLocation($ctrl.labelToLocationForm)">
+            <fieldset>
+              <div class="form-group">
+                <label for="labels" class="control-label">Labels to Add</label>
+                <select class="form-control" multiple size="10"
+                  ng-model="$ctrl.labelToLocationForm.labels">
+                  <option ng-repeat="label in $ctrl._LabelService._labels | orderBy: 'displayName'" value="{{ label.$id }}">{{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="location" class="control-label">Location</label>
+                <select class="form-control"
+                ng-model="$ctrl.labelToLocationForm.location">
+                <option
+                ng-repeat="location in $ctrl._LabelService._locations"
+                ng-if="!location.deleted"
+                value="{{ location.$id }}">{{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}</option>
+              </select>
+              </div>
+            </fieldset>
+            <button type="submit" class="btn btn-info pull-right">Add Labels to Location</button>
+          </form>
         </div>
       </div>
     </div>
 
     <div class="col-sm-4">
-      <h4>Products</h4>
-      <div class="row">
-        <div class="col-sm-12">
-          <form class="product-form" ng-submit="$ctrl.addProduct($ctrl.productForm)">
-            <fieldset>
-              <div class="form-group">
-                <label for="product-name" class="control-label">Name</label>
-                <input type="text" class="form-control" id="product-name" required
-                  ng-model="$ctrl.productForm.name">
-              </div>
-              <div class="form-group">
-                <label for="product-description" class="control-label">Description</label>
-                <input type="text" class="form-control" id="product-description" 
-                  ng-model="$ctrl.productForm.description">
-              </div>
-              <select class="form-control" multiple size="10"
-                ng-model="$ctrl.productForm.locations">
-                <option ng-repeat="location in $ctrl._LabelService._locations" value="{{ location.$id }}">{{ location.displayName }}</option>
-              </select>
-            </fieldset>
-            <button type="submit" class="btn btn-info pull-right">Add Product</button>
-          </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <hr />
-          <ul class="list-unstyled">
-            <li ng-repeat="product in $ctrl._LabelService._products">{{ product.displayName }} <span ng-if="product.description">({{ product.description }})</span></li>
-          </ul>
-        </div>
-      </div>
+        <ul class="list-unstyled admin-label-list">
+          <li 
+            ng-repeat="location in $ctrl.locationAndLabelList"
+            ng-if="!location.deleted">
+              {{ location.displayName }}
+              <span ng-if="location.description"> ({{ location.description }})</span>
+            <i ng-click="$ctrl.removeLocation(location.$id)" class="ion-close-circled"></i>
+            <ul class="list-unstyled ml-md">
+              <li ng-repeat="label in location.labels">
+                {{ label.displayName }}
+                <span ng-if="label.description"> ({{ label.description }})</span>
+                <i ng-click="$ctrl.removeLabelFromLocation(location.$id, $index)" class="ion-close-circled"></i>
+              </li>
+            </ul>
+          </li>
+        </ul>
     </div>
   </div>
 </section>

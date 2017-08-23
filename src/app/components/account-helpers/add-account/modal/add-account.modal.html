@@ -1,0 +1,116 @@
+<div class="modal-demo">
+  <div class="modal-header">
+    <h3 class="modal-title">Add New Account</h3>
+  </div>
+  <form>
+  <div class="modal-body">
+
+      <fieldset class="account-form">
+      
+        <!-- new account -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="account-name" class="control-label">Account Name</label>
+              <input type="text" class="form-control" id="account-name"
+                placeholder="Enter the customer's name in Salesforce"
+                ng-model="$ctrl.accountForm.name"
+                required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="cision-point-id" class="control-label">Account ID</label>
+              <input type="text" class="form-control" id="cision-point-id"
+                placeHolder="The customer's Salesforce ID"
+                ng-model="$ctrl.accountForm.cid"
+                ng-change="$ctrl.errors = ''">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="account-value" class="control-label">Account Value</label>
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input type="text" class="form-control" id="account-value"
+                  placeholder="Include USD or CSD currency"
+                  ng-model="$ctrl.accountForm.value">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="account-link-salesforce" class="control-label">Account Link in Salesforce</label>
+              <input type="text" class="form-control" id="account-link-salesforce"
+                placeHolder="Add the link to cusomter account in SFDC"
+                ng-model="$ctrl.accountForm.salesForceUrl">
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="account-type" class="control-label">Country</label>
+                <select class="form-control" 
+                  ng-model="$ctrl.accountForm.country">
+                  <option>USA</option>
+                  <option>Canada</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="account-type" class="control-label">Account Status</label>
+                <p class="meta">Is this a customer or a prospect?</p>
+                <select class="form-control" required
+                  ng-model="$ctrl.accountForm.accountType">
+                  <option>Current customer</option>
+                  <option>Lost customer</option>
+                  <option>Prospect in-cycle</option>
+                  <option>Prospect loss</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row"
+            ng-show="$ctrl.accountForm.accountType">
+            <div class="col-sm-11 col-sm-offset-1">
+              <div class="form-group">
+                <label for="account-type" class="control-label">Which product(s) were they using</label>
+                <select class="form-control" multiple size="5"
+                  ng-model="$ctrl.accountForm.platform">
+                  <option 
+                    ng-show="$ctrl.accountForm.accountType === 'Current customer' || $ctrl.accountForm.accountType === 'Lost customer'"
+                    ng-repeat="option in $ctrl.customerProductOptions">{{option}}</option>
+                  <option 
+                    ng-show="$ctrl.accountForm.accountType === 'Prospect in-cycle' || $ctrl.accountForm.accountType === 'Prospect loss'"
+                    ng-repeat="option in $ctrl.prospectProductOptions">{{option}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="customer-notes" class="control-label">Additional notes about this customer:</label>
+            <textarea type="textarea" class="form-control" id="customer-notes" rows="5"
+              ng-model="$ctrl.accountForm.customerNotes"></textarea>
+          </div>
+
+          <div class="alert alert-danger fade in" role="alert" ng-if="$ctrl.errors">{{ $ctrl.errors }}</div>
+        </div>
+      </fieldset>
+      
+      
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-default" type="button" ng-click="$ctrl._$uibModalInstance.close()">Cancel</button>
+      <button class="btn btn-primary" type="button" ng-click="$ctrl.addNewAccount($ctrl.accountForm)">Add Account</button>
+    </div>
+  </form>
+</div>

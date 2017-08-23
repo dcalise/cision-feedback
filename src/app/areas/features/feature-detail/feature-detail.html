@@ -7,18 +7,11 @@
         <div class="row">
           <div class="col-sm-12">
             <span class="meta"
-              ng-if="$ctrl._feature.product">
+              ng-if="$ctrl._feature.location">
               <display-label
-                data="$ctrl._feature.product"
-                label-type="'product'">
-              </display-label>
-              <span ng-if="$ctrl._feature.location">
-                <i class="ml-xs mr-xs ion-arrow-right-b"?></i>
-                <display-label
                 data="$ctrl._feature.location"
                 label-type="'location'">
               </display-label>
-              </span>
             </span>
             <h1>
               {{::$ctrl._feature.subject}}
@@ -136,7 +129,6 @@
       <thead>
         <th>Account Name</th>
         <th>Type</th>
-        <th>Platform</th>
         <th>Relationship to Request</th>
         <th>Country</th>
         <th class="text-right">Account Value</th>
@@ -145,9 +137,6 @@
         <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
           <td>{{account.name}}<br><span class="meta small light">{{account.cid}}</span></td>
           <td>{{account.accountType}}</td>
-          <td>{{account.platform}}<br>
-            <span class="meta small light"
-              ng-if="account.priorPlatform">from {{account.priorPlatform}}</span></td>
           <td>{{account.tie}}</td>
           <td>{{account.country}}</td>
           <td align="right">{{account.value | currency}}</td>

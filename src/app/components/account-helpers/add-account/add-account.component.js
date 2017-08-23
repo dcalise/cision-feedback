@@ -1,58 +1,49 @@
+import AddAccountModalController from './modal/add-account.modal.controller.js';
+
 class AddAccountCtrl {
-  constructor(AccountService, $scope) {
+  constructor(AccountService, $scope, $uibModal) {
     'ngInject';
 
     this._$scope = $scope
+    this._$uibModal = $uibModal;
 
-    this.accountTieOptions = [
-      'Platform GAP. Customer will not upgrade to C3 without this feature',
-      'Customer CHURNED because this feature was not available',
+    
+    this.accountTieOptionsCurrent = [
+      'Legacy GAP. Customer will not upgrade to C3 without this feature',
+      'Competitive GAP. Customer will not upgrade to C3 without this feature',
       'Customer AT RISK because this feature is not available',
+      'Customer CHURNED because this feature was not available',
+      'None of the above'
+    ];
+
+    this.accountTieOptionsProspect = [
+      'Competitive GAP. Customer will not sign up to C3 without this feature',
       'Prospect LOST because this feature is not available',
       'None of the above'
-    ]
-    this.platformOptions = [
-      'C3',
-      'OMC',
-      'CPRE',
-      'CP',
-      'MyGorkana',
-      'MediaVantage',
-      'PRWeb Subscription',
-      'Visible',
-    ]
-    this.priorPlatformOptions = [
-      'CPRE',
-      'CP',
-      'PRWeb Subscription',
-      'MyGorkana',
-      'MediaVantage',
-      'OMC',
-      'Upgraded from Agility',
-      'Net New',
-    ]
-
-    this.accountSelected = (selected) => {
-      if (selected) {
-        this.getAccountMeta(selected.originalObject.$id)
+    ];
+    
+    this.accountSelected = (account) => {
+      if (account) {
+        let accountKey = account.originalObject ? account.originalObject.$id : account.key;
+        this.getAccountMeta(accountKey)
         let accountTieObject = {
-          accountKey: selected.originalObject.$id,
+          accountKey: accountKey,
           accountTie: null
         }
         return this.accountForm.selectedAccounts.push(accountTieObject)
       }
     }
-
+    
     this.existingAccountsMeta = []
-
+    
     this.getAccountMeta = (accountId) => {
-     return AccountService.getAccount(accountId).then(
-       (account) => {
-         this.existingAccountsMeta.push(account)
-       }
-     )
+      return AccountService.getAccount(accountId).then(
+        (account) => {
+          this.existingAccountsMeta.push(account)
+        }
+      )
     }
-
+    
     this.$onChanges = function() {
       var reset = {
         resetForm: function(){
@@ -61,14 +52,14 @@ class AddAccountCtrl {
       }
       this.resetForm({reset: reset});
     }
-
+    
   }
-
+  
   removeAccountFromAddList(i) {
     this.existingAccountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
-
+  
   resetAccountForm(added) {
     if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
       let sure;
@@ -84,7 +75,17 @@ class AddAccountCtrl {
       this._$scope.$parent.showAccountForm = false
     }
   }
-  
+
+  addAccountModal() {
+    this._$uibModal.open({
+      templateUrl: 'components/account-helpers/add-account/modal/add-account.modal.html',
+      controllerAs: '$ctrl',
+      controller: AddAccountModalController,
+      resolve: {
+        items: () => this.items
+      }
+    }).result.then(newAccount => this.accountSelected(newAccount))
+  }
 }
 
 let AddAccount = {

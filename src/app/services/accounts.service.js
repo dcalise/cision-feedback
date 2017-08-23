@@ -12,12 +12,12 @@ export default class AccountService {
     account.value = account.value.replace(/\D/g,'')
     return this.accounts.$add({
       platform: account.platform || null,
-      priorPlatform: account.priorPlatform || null,
       name: account.name,
       accountType: account.accountType,
-      cid: account.cid,
-      country: account.country,
-      value: account.value,
+      salesForceUrl: account.salesForceUrl || null,
+      cid: account.cid || null,
+      country: account.country || null,
+      value: account.value || null,
       customerNotes: account.customerNotes || null,
       dateCreated: Date.now(),
       lastUpdated: null,

@@ -15,14 +15,6 @@ export default class LabelService {
 
   }
 
-  addProduct(name, description, locations) {
-    return this._products.$add({
-      displayName: name,
-      description: description || null,
-      locations: locations || null
-    })
-  }
-
   addLocation(name, description, labels) {
     return this._locations.$add({
       displayName: name,
@@ -38,8 +30,17 @@ export default class LabelService {
     })
   }
 
-  getProduct(id) {
-    return this._$firebaseObject(this._productsRef.child(id))
+  addLabelToLocation(object) {
+    return this.getLocation(object.location).$loaded().then(
+      (location) => {
+        angular.forEach(object.labels, (label) => {
+          if (location.labels.indexOf(label) === -1) {
+            location.labels.push(label)
+          }
+        })
+        location.$save();
+      }
+    )
   }
 
   getLocation(id) {

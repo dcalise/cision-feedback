@@ -19,23 +19,17 @@
             <textarea type="textarea" class="form-control" id="description" required rows="5"
               ng-model="$ctrl.featureForm.description"></textarea>
           </div>
+
           <div class="form-group">
-            <label for="platform-product">Platform or Product</label>
-            <p class="meta">Select the platform our product currently being used by the customer</p>
-            <select class="form-control" id="platform-product" required
-              ng-change="$ctrl.getProductLocations()"
-              ng-model="$ctrl.featureForm.product">
-              <option ng-repeat="product in $ctrl._LabelService._products" value="{{ product.$id }}">
-                {{ product.displayName }} {{ product.description ? '(' + product.description + ')' : '' }}
-              </option>
-            </select>
-          </div>
-          <div class="form-group ml-xl">
+            <label for="location" class="control-label">Select C3 user workflow</label>
+            <p class="meta">Which company or companies are requesting this feature?</p>
             <select class="form-control"
-              ng-if="$ctrl.productLocations.length > 0"
               ng-change="$ctrl.getLocationLabels()"
               ng-model="$ctrl.featureForm.location">
-              <option ng-repeat="location in $ctrl.productLocations" value="{{ location.$id }}">
+              <option
+                ng-repeat="location in $ctrl._LabelService._locations"
+                ng-if="!location.deleted"
+                value="{{ location.$id }}">
                 {{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}
               </option>
             </select>
@@ -44,36 +38,14 @@
           <div class="form-group ml-xl">
             <select class="form-control" multiple
               ng-if="$ctrl.locationLabels.length > 0"
-              ng-model="$ctrl.featureForm.labels">
+              ng-model="$ctrl.featureForm.labels"
+              size="10">
               <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">
                 {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
               </option>
             </select>
           </div>
 
-          <div class="form-group">
-            <label>Is this feature something available in another platform?</label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" value="Competitive gap"
-                ng-model="$ctrl.featureForm.compGap">
-              Competitive gap
-            </label>
-            </div>
-            <div class="checkbox">
-            <label>
-              <input type="checkbox" value="Legacy system gap"
-                ng-model="$ctrl.featureForm.legacyGap">
-              Legacy system gap
-            </label>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <h3>Customer Details</h3>
-              <hr/>
-            </div>
-          </div>
         </fieldset>
         
         <add-account
