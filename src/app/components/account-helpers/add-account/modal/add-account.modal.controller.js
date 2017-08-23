@@ -1,5 +1,3 @@
-// const TAB_INDUSTRY = 'industry', TAB_DEMOGRAPHICS = 'demographics';
-
 export default class AddAccountModalController {
   constructor(AccountService, $uibModalInstance) {
     'ngInject';
