@@ -1,8 +1,12 @@
 <app-header></app-header>
 
 <section class="container">
-  <h1 class="page-title">Submit New Feature Request
-    <small>All requests are being suggested for C3 development roadmap. Feedback may be generated from use of current C3 product, legacy products or a competitor product.</small></h1>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <h1 class="page-title">Submit New Feature Request</h1>
+      <p>All requests are being suggested for C3 development roadmap. Feedback may be generated from use of current C3 product, legacy products or a competitor product.</p>
+    </div>
+  </div>
 </section>
 
 <section class="container">
@@ -23,7 +27,7 @@
 
           <div class="form-group">
             <label for="location" class="control-label">Select C3 user workflow</label>
-            <p class="meta">Which company or companies are requesting this feature?</p>
+            <p class="meta">Which area is this feature in reference to?</p>
             <select class="form-control"
               ng-change="$ctrl.getLocationLabels()"
               ng-model="$ctrl.featureForm.location">

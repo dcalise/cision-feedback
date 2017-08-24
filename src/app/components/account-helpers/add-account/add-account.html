@@ -41,13 +41,20 @@
     </div>
   </div>
 
-  Can't find your customer? <a class="modal-anchor" ng-click="$ctrl.addAccountModal()">Click here.</a>
-  <button type="submit" class="btn btn-success pull-right"
-    ng-if="$ctrl.createFeature">Submit Feature Request</button>
+  <p>
+    Can't find your customer or prospect? <a class="modal-anchor" ng-click="$ctrl.addAccountModal()">Add a new company to the database.</a>
+  </p>
+
   <button type="submit" class="btn btn-info pull-right"
-    ng-if="!$ctrl.createFeature">Add Account</button>
+  ng-if="!$ctrl.createFeature">Add Account</button>
   <button type="button" class="btn btn-default mr-sm pull-right"
-    ng-if="!$ctrl.createFeature"
-    ng-click="$ctrl.resetAccountForm()">Cancel</button>
+  ng-if="!$ctrl.createFeature"
+  ng-click="$ctrl.resetAccountForm()">Cancel</button>
+
+  <div class="text-right"
+    ng-if="$ctrl.createFeature">
+    <hr/>
+    <button type="submit" class="btn btn-success">Submit Feature Request</button>
+  </div>
   
 </fieldset>
