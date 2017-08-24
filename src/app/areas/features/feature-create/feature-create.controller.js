@@ -79,6 +79,7 @@ class FeedbackCreateCtrl {
     }
   }
 
+  // can this be removed?
   addFeature() {
     this.featureForm.isSubmitting = true;
 

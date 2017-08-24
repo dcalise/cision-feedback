@@ -13,7 +13,7 @@
           <div class="form-group">
             <select class="form-control context-of-request" required
               ng-model="$ctrl.accountForm.selectedAccounts[$index].accountTie">
-              <option value="" disabled selected>Why does {{ account.name }} want this?</option>
+              <option value="" disabled selected>Why is {{ account.name }} requesting this feature?</option>
               <option
                 ng-show="account.accountType === 'Current customer' || account.accountType === 'Lost customer'"
                 ng-repeat="option in $ctrl.accountTieOptionsCurrent">{{option}}</option>
