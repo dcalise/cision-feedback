@@ -17,7 +17,7 @@ class AddAccountCtrl {
     ];
 
     this.accountTieOptionsProspect = [
-      'Competitive GAP. Customer will not sign up to C3 without this feature',
+      'Competitive GAP. Prospect will not sign up to C3 without this feature',
       'Prospect LOST because this feature is not available',
       'None of the above'
     ];
