@@ -1,0 +1,60 @@
+<fieldset class="account-form">
+  
+  
+  <div class="form-group">
+    <label for="lookup" class="control-label">Customer(s) requesting this feature</label>
+    <p class="meta">Which company or companies are requesting this feature?</p>
+    <div class="well well-sm"
+      ng-if="$ctrl.existingAccountsMeta.length > 0">
+      <ul class="list-unstyled mb-no">
+        <li ng-repeat="account in $ctrl.existingAccountsMeta track by $index">
+          <strong>{{ account.name }}</strong> <span class="meta">&mdash; {{ account.cid }}</span>
+          <i ng-click="$ctrl.removeAccountFromAddList($index)" class="ion-close-circled"></i>
+          <div class="form-group">
+            <select class="form-control context-of-request" required
+              ng-model="$ctrl.accountForm.selectedAccounts[$index].accountTie">
+              <option value="" disabled selected>Why is {{ account.name }} requesting this feature?</option>
+              <option
+                ng-show="account.accountType === 'Current customer' || account.accountType === 'Lost customer'"
+                ng-repeat="option in $ctrl.accountTieOptionsCurrent">{{option}}</option>
+              <option
+                ng-show="account.accountType === 'Prospect in-cycle' || account.accountType === 'Prospect loss'"
+                ng-repeat="option in $ctrl.accountTieOptionsProspect">{{option}}</option>
+            </select>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <input type="hidden" ng-init="$ctrl.accountForm.selectedAccounts = []">
+    <div angucomplete-alt id="ex2"
+      placeholder="Start typing a customer name or ID to select an existing customer from the database"
+      pause="300"
+      clear-selected="true"
+      selected-object="$ctrl.accountSelected"
+      local-data="$ctrl.searchData"
+      local-search="$ctrl.searchFunction"
+      title-field="name"
+      description-field="cid"
+      minlength="1"
+      input-class="form-control form-control-small"
+      match-class="highlight">
+    </div>
+  </div>
+
+  <p>
+    Can't find your customer or prospect? <a class="modal-anchor" ng-click="$ctrl.addAccountModal()">Add a new company to the database.</a>
+  </p>
+
+  <button type="submit" class="btn btn-info pull-right"
+  ng-if="!$ctrl.createFeature">Add Account</button>
+  <button type="button" class="btn btn-default mr-sm pull-right"
+  ng-if="!$ctrl.createFeature"
+  ng-click="$ctrl.resetAccountForm()">Cancel</button>
+
+  <div class="text-right"
+    ng-if="$ctrl.createFeature">
+    <hr/>
+    <button type="submit" class="btn btn-success">Submit Feature Request</button>
+  </div>
+  
+</fieldset>

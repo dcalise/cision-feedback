@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "cision-feedback"
+    "default": "cision-feedback",
+    "dev": "cision-feedback-dev"
   }
 }

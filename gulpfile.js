@@ -12,8 +12,8 @@ var merge         = require('merge-stream');
 var sass          = require('gulp-sass');
 
 // Where our files are located
-var jsFiles   = "src/js/**/*.js";
-var viewFiles = "src/js/**/*.html";
+var jsFiles   = "src/app/**/*.js";
+var viewFiles = "src/app/**/*.html";
 var sassFiles = "src/sass/**/*.scss";
 
 var interceptErrors = function(error) {
@@ -31,7 +31,7 @@ var interceptErrors = function(error) {
 
 
 gulp.task('browserify', ['views'], function() {
-  return browserify('./src/js/app.js')
+  return browserify('./src/app/app.js')
       .transform(babelify, {presets: ["es2015"]})
       .transform(ngAnnotate)
       .bundle()
@@ -55,7 +55,7 @@ gulp.task('views', function() {
       }))
       .on('error', interceptErrors)
       .pipe(rename("app.templates.js"))
-      .pipe(gulp.dest('./src/js/config/'));
+      .pipe(gulp.dest('./src/app/config/'));
 });
 
 gulp.task('sass', function () {
