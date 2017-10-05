@@ -36,10 +36,12 @@ export default class AccountService {
   accountSearch(str, accounts) {
     var matches = [];
     accounts.forEach(function(account) {
-      if (account.name.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0 || account.cid.toLowerCase().indexOf(str.toString().toLowerCase()) >= 0) {
-        matches.push(account);
+      let name = account.name ? account.name.toLowerCase() : ''
+      let id = account.cid ? account.cid.toLowerCase() : ''
+      if (name.indexOf(str.toString().toLowerCase()) >= 0 || id.indexOf(str.toString().toLowerCase()) >= 0) {
+        matches.push(account)
       }
     });
-    return matches;
-  };
+    return matches
+  }
 }
