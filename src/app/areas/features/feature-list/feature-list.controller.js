@@ -25,8 +25,8 @@ class FeatureListCtrl {
       }
     )
 
-    this.sortType = 'subject';
-    this.sortReverse = false;  // set the default sort order
+    this.sortType = 'date';
+    this.sortReverse = true;  // set the default sort order
     this.searchFeatures = ''; 
   }
   
