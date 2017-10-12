@@ -1,67 +1,71 @@
-<app-header></app-header>
+<navbar>
+  <app-header></app-header>
+</navbar>
 
-<section class="container">
-  <div class="row">
-    <div class="col-md-6 col-sm-12">
-      <h1 class="page-title">Submit New Feature Request</h1>
-      <p>All requests are being suggested for C3 development roadmap. Feedback may be generated from use of current C3 product, legacy products or a competitor product.</p>
+<main>
+  <section class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <h1 class="page-title">Submit New Feature Request</h1>
+        <p>All requests are being suggested for C3 development roadmap. Feedback may be generated from use of current C3 product, legacy products or a competitor product.</p>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="container">
-  <div class="row">
-    <div class="col-md-6 col-sm-12">
-      <form class="feature-form" ng-submit="$ctrl.addAccountAndFeature()">
-        <fieldset ng-disabled="$ctrl.featureForm.isSubmitting">
-          <div class="form-group">
-            <label for="subject" class="control-label">Feature Summary</label>
-            <input type="text" class="form-control" id="subject" required
-              ng-model="$ctrl.featureForm.subject">
-          </div>
-          <div class="form-group">
-            <label for="description" class="control-label">Description of Feature</label>
-            <textarea type="textarea" class="form-control" id="description" required rows="5"
-              ng-model="$ctrl.featureForm.description"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="location" class="control-label">Select C3 user workflow</label>
-            <p class="meta">Which area is this feature in reference to?</p>
-            <select class="form-control"
-              ng-change="$ctrl.getLocationLabels()"
-              ng-model="$ctrl.featureForm.location">
-              <option
-                ng-repeat="location in $ctrl._LabelService._locations"
-                ng-if="!location.deleted"
-                value="{{ location.$id }}">
-                {{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group ml-xl">
-            <select class="form-control" multiple
-              ng-if="$ctrl.locationLabels.length > 0"
-              ng-model="$ctrl.featureForm.labels"
-              size="10">
-              <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">
-                {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
-              </option>
-            </select>
-          </div>
-
-        </fieldset>
-        
-        <add-account
-          create-feature="true"
-          new-account="$ctrl.newAccount"
-          search-data="$ctrl._AccountService.all"
-          feature-form="$ctrl.featureForm"
-          account-form="$ctrl.accountForm"
-          search-function="$ctrl._AccountService.accountSearch">
-        </add-account>
-      </form>
+  </section>
+  
+  <section class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <form class="feature-form" ng-submit="$ctrl.addAccountAndFeature()">
+          <fieldset ng-disabled="$ctrl.featureForm.isSubmitting">
+            <div class="form-group">
+              <label for="subject" class="control-label">Feature Summary</label>
+              <input type="text" class="form-control" id="subject" required
+                ng-model="$ctrl.featureForm.subject">
+            </div>
+            <div class="form-group">
+              <label for="description" class="control-label">Description of Feature</label>
+              <textarea type="textarea" class="form-control" id="description" required rows="5"
+                ng-model="$ctrl.featureForm.description"></textarea>
+            </div>
+  
+            <div class="form-group">
+              <label for="location" class="control-label">Select C3 user workflow</label>
+              <p class="meta">Which area is this feature in reference to?</p>
+              <select class="form-control"
+                ng-change="$ctrl.getLocationLabels()"
+                ng-model="$ctrl.featureForm.location">
+                <option
+                  ng-repeat="location in $ctrl._LabelService._locations"
+                  ng-if="!location.deleted"
+                  value="{{ location.$id }}">
+                  {{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}
+                </option>
+              </select>
+            </div>
+  
+            <div class="form-group ml-xl">
+              <select class="form-control" multiple
+                ng-if="$ctrl.locationLabels.length > 0"
+                ng-model="$ctrl.featureForm.labels"
+                size="10">
+                <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">
+                  {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
+                </option>
+              </select>
+            </div>
+  
+          </fieldset>
+          
+          <add-account
+            create-feature="true"
+            new-account="$ctrl.newAccount"
+            search-data="$ctrl._AccountService.all"
+            feature-form="$ctrl.featureForm"
+            account-form="$ctrl.accountForm"
+            search-function="$ctrl._AccountService.accountSearch">
+          </add-account>
+        </form>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
