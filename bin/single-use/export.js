@@ -1,6 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 const admin = require('firebase-admin')
+const json2csv = require('json2csv');
+const fields = ['subject','description','date','status','location','requester'];
 
 const serviceAccount = require("../key/key.json");
 
@@ -44,17 +46,47 @@ async function start () {
     const locations = locationsResult.val()
 
     // get location
-    arrayForExport.forEach((feature)=> {
+    arrayForExport.forEach((feature, i)=> {
       // console.log(feature.location)
       if (feature.location && feature.location.indexOf('-' === 0)) {
         if (locations[feature.location]) {
-          feature.location = locations[feature.location].displayName
+          arrayForExport[i].location = locations[feature.location].displayName
         }
         
       }
     });
 
-    console.log(arrayForExport)
+    const usersResult = await db.ref('users').once('value')
+    const users = usersResult.val()
+
+    // get user email
+    arrayForExport.forEach((feature, i)=> {
+      // console.log(feature.location)
+      if (feature.requester) {
+        if (users[feature.requester]) {
+          arrayForExport[i].requester = users[feature.requester].email
+        }
+        
+      }
+    });
+
+    // write to file
+    try {
+      const result = json2csv({ data: arrayForExport, fields: fields })
+      fs.writeFile(
+        
+        'bin/exports/export.csv',
+        result,
+        (err) => {
+          if (err) {
+              console.error(err)
+          }
+        }
+      )
+    } catch (err) {
+      console.error(err);
+    }
+
 
     console.log('done!')
     // process.exit(1)
