@@ -24,11 +24,15 @@ async function start () {
     const features = featuresResult.val()
 
     Object.keys(features).forEach(async (key) => {
+
       const feature = features[key]
+      const dateFormatted = `${new Date(feature.dateCreated).getMonth()}/${new Date(feature.dateCreated).getDate()}/${new Date(feature.dateCreated).getFullYear()}`
+
       try {
         let featureObject = {
           subject: feature.subject,
           description: feature.description,
+          date: dateFormatted,
           status: feature.status,
           location: feature.location,
           requester: feature.requesterUID
