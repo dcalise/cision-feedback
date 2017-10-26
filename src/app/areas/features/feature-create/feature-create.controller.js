@@ -79,23 +79,6 @@ class FeedbackCreateCtrl {
     }
   }
 
-  // can this be removed?
-  addFeature() {
-    this.featureForm.isSubmitting = true;
-
-    this._FeatureService.add(this.featureForm, this._currentAuth, this._profile).then(
-      () => {
-        this.featureForm.isSubmitting = false;
-        console.log('added!');
-      },
-      () => {
-        this.featureForm.isSubmitting = false;
-        console.log('errors');
-        console.log(err);
-      }
-    )
-  }
-
 }
 
 
