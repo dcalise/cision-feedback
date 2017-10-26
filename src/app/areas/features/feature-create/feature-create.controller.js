@@ -68,8 +68,7 @@ class FeedbackCreateCtrl {
             accountKey: account.key,
             accountTie: this.featureForm.accountTie
           }
-          // TODO: can we delete profile argument?
-          this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
+          this._FeatureService.add(this.featureForm, this._currentAuth, accountTieObject).then(
             () => {
               this._$state.go('app.feature-list');
             },
@@ -82,7 +81,7 @@ class FeedbackCreateCtrl {
         (error) => { console.log(error) }
       )
     } else {
-      this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, this.accountForm.selectedAccounts).then(
+      this._FeatureService.add(this.featureForm, this._currentAuth, this.accountForm.selectedAccounts).then(
         () => {
           this._$state.go('app.feature-list');
         },
