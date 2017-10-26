@@ -12,6 +12,22 @@ class FeedbackCreateCtrl {
 
     this.productLocations = []
     this.locationLabels = []
+  
+    // Toggle selection for a label
+    this.toggleSelection = function toggleSelection(label) {
+      var idx = this.featureForm.labels.indexOf(label)
+      console.log('this is firing')
+  
+      // Is currently selected
+      if (idx > -1) {
+        this.featureForm.labels.splice(idx, 1)
+      }
+  
+      // Is newly selected
+      else {
+        this.featureForm.labels.push(label)
+      }
+    }
 
   }
 

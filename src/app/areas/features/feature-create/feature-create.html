@@ -45,18 +45,15 @@
   
             <div class="form-group ml-xl"
               ng-if="$ctrl.locationLabels.length > 0">
-              <!-- <select class="form-control" multiple
-                ng-if="$ctrl.locationLabels.length > 0"
-                ng-model="$ctrl.featureForm.labels"
-                size="10">
-                <option ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">
-                  {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
-                </option>
-              </select> -->
               <div class="checkbox"
-                ng-repeat="label in $ctrl.locationLabels" value="{{ label.$id }}">
+                ng-init="$ctrl.featureForm.labels = []"
+                ng-model="$ctrl.featureForm.labels"
+                ng-repeat="label in $ctrl.locationLabels">
                 <label>
-                  <input type="checkbox"> {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
+                  <input type="checkbox"
+                    value="{{ label.$id }}"
+                    ng-checked="$ctrl.featureForm.labels.indexOf(label.$id) > -1"
+                    ng-click="$ctrl.toggleSelection(label.$id)"> {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
                 </label>
               </div>
               <div class="checkbox">
