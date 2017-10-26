@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-header">
-    <a class="navbar-brand">
+    <a class="navbar-brand" ui-sref="app.home">
       <img src="/img/cisionreversed_logo.svg" height="26" alt="Cision Logo">
     </a>
   </div>
@@ -9,13 +9,17 @@
     <ul class="nav navbar-nav navbar-left">
       <li>
         <a ui-sref="app.feature-list" 
-        ui-sref-active="active">Requests</a>
+          ui-sref-active="active">Requests</a>
       </li>
+      <li>
+          <a ui-sref="app.feature-create" 
+            ui-sref-active="active">Submit Feature</a>
+        </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
         <a ui-sref-active="active"
-        ui-sref="app.profile">Profile</a>
+          ui-sref="app.profile">Profile</a>
       </li>
     </ul>
   </div>
