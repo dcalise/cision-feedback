@@ -60,36 +60,28 @@ class FeedbackCreateCtrl {
     )
   }
 
+  addFeature() {
+    this._FeatureService.add(this.featureForm, this._currentAuth, this.accountForm.selectedAccounts).then(
+      () => {
+        this._$state.go('app.feature-list');
+      },
+      (err) => {
+        this.featureForm.isSubmitting = false;
+        console.log(err);
+      }
+    )
+  }
+
   addAccountAndFeature() {
-    if (this.newAccount === true) {
-      this._AccountService.add(this.accountForm).then(
-        (account) => {
-          let accountTieObject = {
-            accountKey: account.key,
-            accountTie: this.featureForm.accountTie
-          }
-          this._FeatureService.add(this.featureForm, this._currentAuth, accountTieObject).then(
-            () => {
-              this._$state.go('app.feature-list');
-            },
-            () => {
-              this.featureForm.isSubmitting = false;
-              console.log('errors');
-            }
-          )
-        },
-        (error) => { console.log(error) }
-      )
-    } else {
-      this._FeatureService.add(this.featureForm, this._currentAuth, this.accountForm.selectedAccounts).then(
-        () => {
-          this._$state.go('app.feature-list');
-        },
-        (err) => {
-          this.featureForm.isSubmitting = false;
-          console.log(err);
+    if (this.labelOther) {
+      this._LabelService.addLabel(this.featureForm.labelOther).then(
+        (newLabel) => {
+          this.featureForm.labels.push(newLabel.key)
+          this.addFeature()
         }
       )
+    } else {
+      this.addFeature()
     }
   }
 
