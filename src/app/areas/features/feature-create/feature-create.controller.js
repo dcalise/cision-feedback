@@ -16,7 +16,6 @@ class FeedbackCreateCtrl {
     // Toggle selection for a label
     this.toggleSelection = function toggleSelection(label) {
       var idx = this.featureForm.labels.indexOf(label)
-      console.log('this is firing')
   
       // Is currently selected
       if (idx > -1) {
