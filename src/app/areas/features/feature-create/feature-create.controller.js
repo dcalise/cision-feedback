@@ -60,7 +60,7 @@ class FeedbackCreateCtrl {
     )
   }
 
-  addFeature() {
+  submitFeature() {
     this._FeatureService.add(this.featureForm, this._currentAuth, this.accountForm.selectedAccounts).then(
       () => {
         this._$state.go('app.feature-list');
@@ -72,16 +72,16 @@ class FeedbackCreateCtrl {
     )
   }
 
-  addAccountAndFeature() {
+  addFeature() {
     if (this.labelOther) {
       this._LabelService.addLabel(this.featureForm.labelOther).then(
         (newLabel) => {
           this.featureForm.labels.push(newLabel.key)
-          this.addFeature()
+          this.submitFeature()
         }
       )
     } else {
-      this.addFeature()
+      this.submitFeature()
     }
   }
 
