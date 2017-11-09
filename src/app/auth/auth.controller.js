@@ -4,8 +4,9 @@ class AuthCtrl {
 
     this._$state = $state;
     this._AuthService = AuthService;
+    console.log(this._AuthService);
    
-    this.error = {};
+    this.error = null;
   }
 
   submitLogin() {
@@ -16,6 +17,7 @@ class AuthCtrl {
         this._$state.go('app.home')
       },
       (err) => {
+        console.log(err);
         this.isSubmitting = false;
         this.error = err;
       }
@@ -38,7 +40,26 @@ class AuthCtrl {
     } else {
       this.error.message = "Sorry, you can't register with that email address. Please contact the administrator for for information."
     }
+  }
 
+  resetPassword() {
+    console.log(this._AuthService)
+    this._AuthService.$resetPassword({
+      email: this.formData.email
+    }).then(
+      () => {
+        this.error = null
+        this.info = `A password reset email has been sent to ${this.formData.email}.`
+      },
+      (err) => console.log(err)
+    )
+    // $scope.authObj.$resetPassword({
+    //   email: "my@email.com"
+    // }).then(function() {
+    //   console.log("Password reset email sent successfully!");
+    // }).catch(function(error) {
+    //   console.error("Error: ", error);
+    // });
   }
 }
 
