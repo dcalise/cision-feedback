@@ -64,6 +64,11 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./build/css'));
 });
 
+gulp.task('images', function() {
+  return gulp.src(['./src/img/**/*', './src/img/**/**/*'])
+    .pipe(gulp.dest('./build/img'))
+});
+
 // This task is used for building production ready
 // minified JS/CSS files into the dist/ folder
 gulp.task('build', ['html', 'browserify'], function() {
@@ -77,7 +82,7 @@ gulp.task('build', ['html', 'browserify'], function() {
   return merge(html,js);
 });
 
-gulp.task('default', ['html', 'browserify','sass'], function() {
+gulp.task('default', ['html', 'browserify','sass','images'], function() {
 
   browserSync.init(['./build/**/**.**'], {
     server: "./build",

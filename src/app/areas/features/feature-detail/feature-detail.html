@@ -1,172 +1,176 @@
-<app-header></app-header>
+<navbar>
+  <app-header></app-header>
+</navbar>
 
-<section class="container feature-detail">
-  <div class="row">
-    <div class="col-sm-8 feature-header">
-      <div class="section">
+<main>
+  <section class="container feature-detail">
+    <div class="row">
+      <div class="col-sm-8 feature-header">
+        <div class="section">
+          <div class="row">
+            <div class="col-sm-12">
+              <span class="meta"
+                ng-if="$ctrl._feature.location">
+                <display-label
+                  data="$ctrl._feature.location"
+                  label-type="'location'">
+                </display-label>
+              </span>
+              <h1>
+                {{::$ctrl._feature.subject}}
+                <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
+              </h1>
+            </div>
+          </div>
+          <div class="row mb-xs"
+            ng-show="$ctrl._feature.labels">
+            <div class="col-sm-12">
+              <span class="label label-default mr-xs"
+                ng-repeat="label in $ctrl._feature.labels">
+                <display-label data="label"></display-label>
+              </span>
+            </div>
+          </div>
+          <div class="row"
+            ng-show="$ctrl._feature.compGap || $ctrl._feature.legacyGap">
+            <div class="col-sm-12">
+              <span class="label label-danger mr-xs"
+                ng-show="$ctrl._feature.compGap">Competitive Gap</span>
+              <span class="label label-danger mr-xs"
+                ng-show="$ctrl._feature.legacyGap">Legacy Gap</span>
+            </div>
+          </div>
+        </div>
+        <div class="row section">
+          <div class="col-sm-12">
+            <div class="section-header"
+              ng-class="{'closed':!$ctrl.showOgRequest}"
+              ng-click="$ctrl.showOgRequest = !$ctrl.showOgRequest">
+              <h4>Original Request</h4>
+            </div>
+            <div class="col-sm-12"
+              ng-show="$ctrl.showOgRequest">
+              <p>{{$ctrl._feature.description}}</p>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-sm-12">
-            <span class="meta"
-              ng-if="$ctrl._feature.location">
-              <display-label
-                data="$ctrl._feature.location"
-                label-type="'location'">
-              </display-label>
-            </span>
-            <h1>
-              {{::$ctrl._feature.subject}}
-              <small class="value">{{$ctrl._featureDetail.totalValue | currency }}</small>
-            </h1>
-          </div>
-        </div>
-        <div class="row mb-xs"
-          ng-show="$ctrl._feature.labels">
-          <div class="col-sm-12">
-            <span class="label label-default mr-xs"
-              ng-repeat="label in $ctrl._feature.labels">
-              <display-label data="label"></display-label>
-            </span>
-          </div>
-        </div>
-        <div class="row"
-          ng-show="$ctrl._feature.compGap || $ctrl._feature.legacyGap">
-          <div class="col-sm-12">
-            <span class="label label-danger mr-xs"
-              ng-show="$ctrl._feature.compGap">Competitive Gap</span>
-            <span class="label label-danger mr-xs"
-              ng-show="$ctrl._feature.legacyGap">Legacy Gap</span>
-          </div>
-        </div>
-      </div>
-      <div class="row section">
-        <div class="col-sm-12">
-          <div class="section-header"
-            ng-class="{'closed':!$ctrl.showOgRequest}"
-            ng-click="$ctrl.showOgRequest = !$ctrl.showOgRequest">
-            <h4>Original Request</h4>
-          </div>
-          <div class="col-sm-12"
-            ng-show="$ctrl.showOgRequest">
-            <p>{{$ctrl._feature.description}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
 
-          <div class="section-header"
-            ng-class="{'closed':!$ctrl.showComments}"
-            ng-click="$ctrl.showComments = !$ctrl.showComments">
-            <h4>Comments</h4>
-          </div>
+            <div class="section-header"
+              ng-class="{'closed':!$ctrl.showComments}"
+              ng-click="$ctrl.showComments = !$ctrl.showComments">
+              <h4>Comments</h4>
+            </div>
 
-          <div class="col-sm-12"
-            ng-show="$ctrl.showComments">
+            <div class="col-sm-12"
+              ng-show="$ctrl.showComments">
 
-            <comment ng-repeat="cmt in $ctrl._comments"
-              data="cmt"
-              delete-cb="$ctrl.deleteComment(cmt.$id, $index)">
-            </comment>
-            
-            <form class="message-form"
-              ng-show="$ctrl.showComment"
-              ng-submit="$ctrl.addComment()">
+              <comment ng-repeat="cmt in $ctrl._comments"
+                data="cmt"
+                delete-cb="$ctrl.deleteComment(cmt.$id, $index)">
+              </comment>
+              
+              <form class="message-form"
+                ng-show="$ctrl.showComment"
+                ng-submit="$ctrl.addComment()">
 
-              <div class="form-group">
-                <textarea class="form-control" rows="3"
-                  ng-model="$ctrl.comment.message">
-                </textarea>
-              </div>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3"
+                    ng-model="$ctrl.comment.message">
+                  </textarea>
+                </div>
+                <button class="btn btn-default"
+                  ng-click="$ctrl.resetComment()" type="button">Cancel</button>
+                <button class="btn btn-info" type="submit">Add Comment</button>
+
+              </form>
               <button class="btn btn-default"
-                ng-click="$ctrl.resetComment()" type="button">Cancel</button>
-              <button class="btn btn-info" type="submit">Add Comment</button>
+                ng-hide="$ctrl.showComment"
+                ng-click="$ctrl.showComment = true">Comment
+              </button>
+            </div>
+            
 
-            </form>
-            <button class="btn btn-default"
-              ng-hide="$ctrl.showComment"
-              ng-click="$ctrl.showComment = true">Comment
-            </button>
           </div>
-          
-
         </div>
       </div>
+      <div class="col-sm-4 feature-sidebar">
+        <ul class="list-unstyled mt-xl">
+          <li><strong>Status:</strong>  <status 
+            data="$ctrl._feature.status"
+            update-status="$ctrl.updateStatus(status)"></status>
+          </li>
+          <li>
+            <strong>Requested by:</strong><br>
+            {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>
+            <em ng-show="$ctrl._featureDetail.requester.department">{{::$ctrl._featureDetail.requester.department}}</em><br>
+            <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
+          </li>
+          <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
+        </ul>
+      </div>
     </div>
-    <div class="col-sm-4 feature-sidebar">
-      <ul class="list-unstyled mt-xl">
-        <li><strong>Status:</strong>  <status 
-          data="$ctrl._feature.status"
-          update-status="$ctrl.updateStatus(status)"></status>
-        </li>
-        <li>
-          <strong>Requested by:</strong><br>
-          {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>
-          <em ng-show="$ctrl._featureDetail.requester.department">{{::$ctrl._featureDetail.requester.department}}</em><br>
-          <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
-        </li>
-        <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
-      </ul>
+  </section>
+
+
+  <section class="container">
+
+    
+  </section>
+
+  <section class="container">
+    <!--todo: make this modular-->
+    <div class="section-header"
+      ng-class="{'closed':!$ctrl.showCustomerSummary}"
+      ng-click="$ctrl.showCustomerSummary = !$ctrl.showCustomerSummary">
+      <h4>Customer Summary</h4>
     </div>
-  </div>
-</section>
-
-
-<section class="container">
-
-  
-</section>
-
-<section class="container">
-  <!--todo: make this modular-->
-  <div class="section-header"
-    ng-class="{'closed':!$ctrl.showCustomerSummary}"
-    ng-click="$ctrl.showCustomerSummary = !$ctrl.showCustomerSummary">
-    <h4>Customer Summary</h4>
-  </div>
-  <div class="col-sm-12"
-    ng-show="$ctrl.showCustomerSummary">
-    <table class="table table-striped">
-      <thead>
-        <th>Account Name</th>
-        <th>Type</th>
-        <th>Relationship to Request</th>
-        <th>Country</th>
-        <th class="text-right">Account Value</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
-          <td>{{account.name}}<br><span class="meta small light">{{account.cid}}</span></td>
-          <td>{{account.accountType}}</td>
-          <td>{{account.tie}}</td>
-          <td>{{account.country}}</td>
-          <td align="right">{{account.value | currency}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-  <div class="col-sm-8"
-    ng-show="$ctrl._$scope.showAccountForm">
-    <form class="account-form" 
-      ng-submit="$ctrl.addAccount()">
-      
-      <add-account
-        create-feature="false"
-        new-account="$ctrl.newAccount"
-        reset-form="setResetForm(reset)"
-        existing-accounts-meta="$ctrl.existingAccountsMeta"
-        search-data="$ctrl._AccountService.all"
-        feature-form="$ctrl.featureForm"
-        account-form="$ctrl.accountForm"
-        search-function="$ctrl._AccountService.accountSearch">
-      </add-account>
-      
-    </form>
-  </div>
-  <div class="col-sm-8">
-    <button type="button" class="btn btn-default"
-      ng-hide="$ctrl._$scope.showAccountForm"
-      ng-click="$ctrl._$scope.showAccountForm = true">Add Customer to Request
-    </button>
-  </div>
-</section>
+    <div class="col-sm-12"
+      ng-show="$ctrl.showCustomerSummary">
+      <table class="table table-striped">
+        <thead>
+          <th>Account Name</th>
+          <th>Type</th>
+          <th>Relationship to Request</th>
+          <th>Country</th>
+          <th class="text-right">Account Value</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
+            <td>{{account.name}}<br><span class="meta small light">{{account.cid}}</span></td>
+            <td>{{account.accountType}}</td>
+            <td>{{account.tie}}</td>
+            <td>{{account.country}}</td>
+            <td align="right">{{account.value | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-sm-8"
+      ng-show="$ctrl._$scope.showAccountForm">
+      <form class="account-form" 
+        ng-submit="$ctrl.addAccount()">
+        
+        <add-account
+          create-feature="false"
+          new-account="$ctrl.newAccount"
+          reset-form="setResetForm(reset)"
+          existing-accounts-meta="$ctrl.existingAccountsMeta"
+          search-data="$ctrl._AccountService.all"
+          feature-form="$ctrl.featureForm"
+          account-form="$ctrl.accountForm"
+          search-function="$ctrl._AccountService.accountSearch">
+        </add-account>
+        
+      </form>
+    </div>
+    <div class="col-sm-8">
+      <button type="button" class="btn btn-default"
+        ng-hide="$ctrl._$scope.showAccountForm"
+        ng-click="$ctrl._$scope.showAccountForm = true">Add Customer to Request
+      </button>
+    </div>
+  </section>
+</main>

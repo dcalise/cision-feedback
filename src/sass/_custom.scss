@@ -1,14 +1,17 @@
 @import 'custom/variables';
+@import 'c3/variables';
 @import 'custom/angucomplete';
 @import 'custom/admin';
 @import 'custom/body';
 @import 'custom/buttons';
 @import 'custom/forms';
 @import 'custom/helpers';
-@import 'custom/navbars';
+// @import 'custom/navbars';
 @import 'custom/feature-detail';
 @import 'custom/scaffolding';
 @import 'custom/tables';
 @import 'custom/toastr';
 @import 'custom/type';
 @import 'custom/footer';
+@import 'c3/navbar';
+@import 'c3/layout';

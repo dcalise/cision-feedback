@@ -12,6 +12,21 @@ class FeedbackCreateCtrl {
 
     this.productLocations = []
     this.locationLabels = []
+  
+    // Toggle selection for a label
+    this.toggleSelection = function toggleSelection(label) {
+      var idx = this.featureForm.labels.indexOf(label)
+  
+      // Is currently selected
+      if (idx > -1) {
+        this.featureForm.labels.splice(idx, 1)
+      }
+  
+      // Is newly selected
+      else {
+        this.featureForm.labels.push(label)
+      }
+    }
 
   }
 
@@ -45,55 +60,29 @@ class FeedbackCreateCtrl {
     )
   }
 
-  addAccountAndFeature() {
-    if (this.newAccount === true) {
-      this._AccountService.add(this.accountForm).then(
-        (account) => {
-          let accountTieObject = {
-            accountKey: account.key,
-            accountTie: this.featureForm.accountTie
-          }
-          // TODO: can we delete profile argument?
-          this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, accountTieObject).then(
-            () => {
-              this._$state.go('app.feature-list');
-            },
-            () => {
-              this.featureForm.isSubmitting = false;
-              console.log('errors');
-            }
-          )
-        },
-        (error) => { console.log(error) }
-      )
-    } else {
-      this._FeatureService.add(this.featureForm, this._currentAuth, this._profile, this.accountForm.selectedAccounts).then(
-        () => {
-          this._$state.go('app.feature-list');
-        },
-        (err) => {
-          this.featureForm.isSubmitting = false;
-          console.log(err);
-        }
-      )
-    }
-  }
-
-  // can this be removed?
-  addFeature() {
-    this.featureForm.isSubmitting = true;
-
-    this._FeatureService.add(this.featureForm, this._currentAuth, this._profile).then(
+  submitFeature() {
+    this._FeatureService.add(this.featureForm, this._currentAuth, this.accountForm.selectedAccounts).then(
       () => {
-        this.featureForm.isSubmitting = false;
-        console.log('added!');
+        this._$state.go('app.feature-list');
       },
-      () => {
+      (err) => {
         this.featureForm.isSubmitting = false;
-        console.log('errors');
         console.log(err);
       }
     )
+  }
+
+  addFeature() {
+    if (this.labelOther) {
+      this._LabelService.addLabel(this.featureForm.labelOther).then(
+        (newLabel) => {
+          this.featureForm.labels.push(newLabel.key)
+          this.submitFeature()
+        }
+      )
+    } else {
+      this.submitFeature()
+    }
   }
 
 }

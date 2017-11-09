@@ -1,41 +1,45 @@
-<app-header-login></app-header-login>
+<navbar>
+  <app-header-login></app-header-login>
+</navbar>
 
-<section class="container">
-  <h1 class="page-title">Login</h1>
-</section>
+<main>
+  <section class="container">
+    <h1 class="page-title">Login</h1>
+  </section>
 
-<section class="container">
+  <section class="container">
 
-  <div class="row">
-    <div class="col-md-4 col-sm-6">
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
 
-      <div class="form-errors"
-        ng-show="$ctrl.error">
-        <p>{{ $ctrl.error.message }}</p>
+        <div class="form-errors"
+          ng-show="$ctrl.error">
+          <p>{{ $ctrl.error.message }}</p>
+        </div>
+
+        <form ng-submit="$ctrl.submitLogin()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Email" ng-model="$ctrl.formData.email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Password" ng-model="$ctrl.formData.password" required>
+          </div>
+          <div class="media">
+            <div class="media-body media-middle">
+              <span>
+                Don't have an acccount? <a ui-sref="app.register">Register here.</a>
+              </span>
+            </div>
+            <div class="media-right media-middle">
+              <input type="submit" class="btn btn-success pull-right" value="Login">
+            </div>
+          </div>
+        </form>
+
       </div>
-
-      <form ng-submit="$ctrl.submitLogin()">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" placeholder="Email" ng-model="$ctrl.formData.email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" class="form-control" placeholder="Password" ng-model="$ctrl.formData.password" required>
-        </div>
-        <div class="media">
-          <div class="media-body media-middle">
-            <span>
-              Don't have an acccount? <a ui-sref="app.register">Register here.</a>
-            </span>
-          </div>
-          <div class="media-right media-middle">
-            <input type="submit" class="btn btn-success pull-right" value="Login">
-          </div>
-        </div>
-      </form>
-
     </div>
-  </div>
 
-</section>
+  </section>
+</main>
