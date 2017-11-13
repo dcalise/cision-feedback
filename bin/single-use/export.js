@@ -18,7 +18,7 @@ async function start () {
     
     console.info('start!')
     
-    const featureFlat = []
+    const featuresFlat = []
     
     const featuresResult = await db.ref('features').once('value')
     const features = featuresResult.val()
@@ -49,7 +49,7 @@ async function start () {
           accountNotes: null,
           accountRelationshipToRequest: null
         };
-        await featureFlat.push(featureObject)
+        await featuresFlat.push(featureObject)
         // await db.ref(`features/${key}/product`).set(idxProducts[feature.product])
       } catch(e) {
         console.info(e);
@@ -62,11 +62,10 @@ async function start () {
     const locations = locationsResult.val()
 
     // get location
-    featureFlat.forEach((feature, i) => {
-      // console.log(feature.location)
+    featuresFlat.forEach((feature, i) => {
       if (feature.location && feature.location.indexOf('-' === 0)) {
         if (locations[feature.location]) {
-          featureFlat[i].location = locations[feature.location].displayName
+          featuresFlat[i].location = locations[feature.location].displayName
         }
         
       }
@@ -76,7 +75,7 @@ async function start () {
     const labelsResult = await db.ref('labels').once('value')
     const labels = labelsResult.val()
 
-    featureFlat.forEach((feature, i) => {
+    featuresFlat.forEach((feature, i) => {
       if (feature.labels) {
         let featureLabelsArray = [];
 
@@ -86,7 +85,7 @@ async function start () {
           }
         })
 
-        featureFlat[i].labels = featureLabelsArray.join(', ')
+        featuresFlat[i].labels = featureLabelsArray.join(', ')
 
       }
     });
@@ -96,10 +95,10 @@ async function start () {
     const users = usersResult.val()
 
     // get user email
-    featureFlat.forEach((feature, i) => {
+    featuresFlat.forEach((feature, i) => {
       if (feature.requester) {
         if (users[feature.requester]) {
-          featureFlat[i].requester = users[feature.requester].email
+          featuresFlat[i].requester = users[feature.requester].email
         }
         
       }
@@ -109,9 +108,9 @@ async function start () {
     const accountsResult = await db.ref('accounts').once('value')
     const accounts = accountsResult.val()
 
-    let featureFlatForExport = []
-
-    featureFlat.forEach((feature, i) => {
+    let featuresFlatForExport = []
+    
+    featuresFlat.forEach((feature, i) => {
       if (feature.accounts) {
         
         // build account array
@@ -131,10 +130,10 @@ async function start () {
             totalAccountValue = totalAccountValue + parseInt(accounts[account].value)
           }
           
-          featureFlat[i].totalValue = totalAccountValue
+          featuresFlat[i].totalValue = totalAccountValue
           
           // add rows for each account
-          let accountInfo = Object.assign({}, featureFlat[i])
+          let accountInfo = Object.assign({}, featuresFlat[i])
 
           accountInfo.accountName = accounts[account].name
           accountInfo.accountId = accounts[account].cid
@@ -150,7 +149,7 @@ async function start () {
           accountInfo.accountNotes = accounts[account].customerNotes
           accountInfo.accountRelationshipToRequest = feature.accounts[accountIndex].accountTie
 
-          featureFlatForExport.push(accountInfo)
+          featuresFlatForExport.push(accountInfo)
         })
 
       }
@@ -159,7 +158,7 @@ async function start () {
 
     // write to file
     try {
-      const result = json2csv({ data: featureFlatForExport, fields: fields })
+      const result = json2csv({ data: featuresFlatForExport, fields: fields })
       fs.writeFile(
         
         './../../bin/exports/export.csv',
