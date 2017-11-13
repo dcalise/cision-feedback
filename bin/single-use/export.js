@@ -2,26 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const admin = require('firebase-admin')
 const json2csv = require('json2csv');
-const fields = ['status','labels','subject','description','location','date','requester'];
-
-// Status
-// Feature Summary
-// Description of Feature
-// C3 User Workflow
-// Label
-// Original Requester
-// Date
-// Total Value
-
-
-// Account Name
-// Account ID
-// Account Value
-// Account Link in SFDC
-// Country
-// Account Status
-// Which Product They Were Using (this is subset of selection choice in Account Status)
-// Additional Notes
+const fields = ['status','labels','subject','description','location','date','requester','totalValue','accountName','accountId','accountValue','accountSalesForceUrl','accountCountry','accountStatus','accountPrevProducts','accountNotes'];
 
 const serviceAccount = require("../key/key.json");
 
@@ -34,19 +15,19 @@ const db = admin.database()
 
 async function start () {
   try {
-
+    
     console.log('start!')
-
+    
     const arrayForExport = []
-
+    
     const featuresResult = await db.ref('features').once('value')
     const features = featuresResult.val()
-
+    
     Object.keys(features).forEach(async (key) => {
-
+      
       const feature = features[key]
       const dateFormatted = `${new Date(feature.dateCreated).getMonth()}/${new Date(feature.dateCreated).getDate()}/${new Date(feature.dateCreated).getFullYear()}`
-
+      
       try {
         let featureObject = {
           subject: feature.subject,
@@ -54,9 +35,18 @@ async function start () {
           date: dateFormatted,
           status: feature.status,
           location: feature.location,
-          labels: null,
+          labels: feature.labels,
           requester: feature.requesterUID,
-          
+          accounts: feature.accounts,
+          totalValue: null,
+          accountName: null,
+          accountId: null,
+          accountValue: null,
+          accountSalesForceUrl: null,
+          accountCountry: null,
+          accountStatus: null,
+          accountPrevProducts: null,
+          accountNotes: null
         };
         await arrayForExport.push(featureObject)
         // await db.ref(`features/${key}/product`).set(idxProducts[feature.product])
@@ -105,8 +95,7 @@ async function start () {
     const users = usersResult.val()
 
     // get user email
-    arrayForExport.forEach((feature, i)=> {
-      // console.log(feature.location)
+    arrayForExport.forEach((feature, i) => {
       if (feature.requester) {
         if (users[feature.requester]) {
           arrayForExport[i].requester = users[feature.requester].email
@@ -119,14 +108,56 @@ async function start () {
     const accountsResult = await db.ref('accounts').once('value')
     const accounts = accountsResult.val()
 
+    let resultArray = []
+
     arrayForExport.forEach((feature, i) => {
+      if (feature.accounts) {
+        
+        // build account array
+        let accountArray = []
+        feature.accounts.forEach((account) => {
+          accountArray.push(account.accountKey)
+        })
+        
+        let totalAccountValue = 0;
+        let multiAccountFeatureRows = []
 
+        accountArray.forEach((account) => {
+          
+
+          // get total value
+          if (accounts[account]) {
+            totalAccountValue = totalAccountValue + parseInt(accounts[account].value)
+          }
+          
+          arrayForExport[i].totalValue = totalAccountValue
+          
+          // add rows for each account
+          let accountInfo = Object.assign({}, arrayForExport[i])
+
+          accountInfo.accountName = accounts[account].name
+          accountInfo.accountId = accounts[account].cid
+          accountInfo.accountValue = accounts[account].value
+          accountInfo.accountSalesForceUrl = accounts[account].salesForceUrl
+          accountInfo.accountCountry = accounts[account].country
+          accountInfo.accountStatus = accounts[account].accountType
+          if (Array.isArray(accounts[account].platform)) {
+            accountInfo.accountPrevProducts = accounts[account].platform.join(', ')
+          } else {
+            accountInfo.accountPrevProducts = accounts[account].platform || null
+          }
+          accountInfo.accountNotes = accounts[account].customerNotes
+
+          resultArray.push(accountInfo)
+        })
+
+      }
+      
     });
-
 
     // write to file
     try {
-      const result = json2csv({ data: arrayForExport, fields: fields })
+      const result = json2csv({ data: resultArray, fields: fields })
       fs.writeFile(
         
         './../../bin/exports/export.csv',
