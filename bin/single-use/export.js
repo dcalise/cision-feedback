@@ -16,7 +16,7 @@ const db = admin.database()
 async function start () {
   try {
     
-    console.log('start!')
+    console.info('start!')
     
     const featureFlat = []
     
@@ -52,8 +52,8 @@ async function start () {
         await featureFlat.push(featureObject)
         // await db.ref(`features/${key}/product`).set(idxProducts[feature.product])
       } catch(e) {
-        console.log(e);
-        console.log('error, exiting')
+        console.info(e);
+        console.info('error, exiting')
         process.exit(1)
       }
     })
@@ -175,11 +175,11 @@ async function start () {
     }
 
 
-    console.log('done!')
+    console.info('done!')
     // process.exit(1)
   } catch (e) {
     console.error(e)
-    console.log('error, exiting')
+    console.info('error, exiting')
     process.exit(1)
   }
 }
