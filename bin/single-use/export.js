@@ -58,102 +58,95 @@ async function start () {
       }
     })
 
+    // get location
     const locationsResult = await db.ref('locations').once('value')
     const locations = locationsResult.val()
 
-    // get location
+    // get labels
+    const labelsResult = await db.ref('labels').once('value')
+    const labels = labelsResult.val()
+    
+    // get users
+    const usersResult = await db.ref('users').once('value')
+    const users = usersResult.val()
+    
+    // get accounts
+    const accountsResult = await db.ref('accounts').once('value')
+    const accounts = accountsResult.val()
+
+    let featuresFlatForExport = []
+
     featuresFlat.forEach((feature, i) => {
+
+      // set location meta
       if (feature.location && feature.location.indexOf('-' === 0)) {
         if (locations[feature.location]) {
           featuresFlat[i].location = locations[feature.location].displayName
         }
-        
       }
-    });
 
-    // labels
-    const labelsResult = await db.ref('labels').once('value')
-    const labels = labelsResult.val()
-
-    featuresFlat.forEach((feature, i) => {
+      // set label meta
       if (feature.labels) {
         let featureLabelsArray = [];
-
+  
         feature.labels.forEach((label) => {
           if (labels[label]) {
             featureLabelsArray.push(labels[label].displayName)
           }
         })
-
+  
         featuresFlat[i].labels = featureLabelsArray.join(', ')
-
       }
-    });
 
-    // requester info
-    const usersResult = await db.ref('users').once('value')
-    const users = usersResult.val()
-
-    // get user email
-    featuresFlat.forEach((feature, i) => {
+      // set user email
       if (feature.requester) {
         if (users[feature.requester]) {
-          featuresFlat[i].requester = users[feature.requester].email
+          // console.log(users[feature.requester].email);
+          featuresFlat[i].requester = users[feature.requester].email;
         }
-        
-      }
-    });
-
-    // accounts
-    const accountsResult = await db.ref('accounts').once('value')
-    const accounts = accountsResult.val()
-
-    let featuresFlatForExport = []
-    
-    featuresFlat.forEach((feature, i) => {
-      if (feature.accounts) {
-        
-        // build account array
-        let accountArray = []
-        feature.accounts.forEach((account) => {
-          accountArray.push(account.accountKey)
-        })
-        
-        let totalAccountValue = 0;
-        let multiAccountFeatureRows = []
-
-        accountArray.forEach((account, accountIndex) => {
-          
-
-          // get total value
-          if (accounts[account]) {
-            totalAccountValue = totalAccountValue + parseInt(accounts[account].value)
-          }
-          
-          featuresFlat[i].totalValue = totalAccountValue
-          
-          // add rows for each account
-          let accountInfo = Object.assign({}, featuresFlat[i])
-
-          accountInfo.accountName = accounts[account].name
-          accountInfo.accountId = accounts[account].cid
-          accountInfo.accountValue = accounts[account].value
-          accountInfo.accountSalesForceUrl = accounts[account].salesForceUrl
-          accountInfo.accountCountry = accounts[account].country
-          accountInfo.accountStatus = accounts[account].accountType
-          if (Array.isArray(accounts[account].platform)) {
-            accountInfo.accountPrevProducts = accounts[account].platform.join(', ')
-          } else {
-            accountInfo.accountPrevProducts = accounts[account].platform || null
-          }
-          accountInfo.accountNotes = accounts[account].customerNotes
-          accountInfo.accountRelationshipToRequest = feature.accounts[accountIndex].accountTie
-
-          featuresFlatForExport.push(accountInfo)
-        })
-
       }
       
+      if (feature.accounts) {
+        // build account array
+        let accountArray = [];
+        feature.accounts.forEach(account => {
+          accountArray.push(account.accountKey);
+        });
+        
+        let totalAccountValue = 0;
+        let multiAccountFeatureRows = [];
+        
+        accountArray.forEach((account, accountIndex) => {
+          // get total value
+          if (accounts[account]) {
+            totalAccountValue = totalAccountValue + parseInt(accounts[account].value);
+          }
+          console.log(featuresFlat[i].requester);
+
+          featuresFlat[i].totalValue = totalAccountValue;
+          // add rows for each account
+          let accountInfo = Object.assign({}, featuresFlat[i]);
+
+          accountInfo.accountName = accounts[account].name;
+          accountInfo.accountId = accounts[account].cid;
+          accountInfo.accountValue = accounts[account].value;
+          accountInfo.accountSalesForceUrl = accounts[account].salesForceUrl;
+          accountInfo.accountCountry = accounts[account].country;
+          accountInfo.accountStatus = accounts[account].accountType;
+          if (Array.isArray(accounts[account].platform)) {
+            accountInfo.accountPrevProducts = accounts[account].platform.join(", ");
+          } else {
+            accountInfo.accountPrevProducts = accounts[account].platform || null;
+          }
+          accountInfo.accountNotes = accounts[account].customerNotes;
+          accountInfo.accountRelationshipToRequest = feature.accounts[accountIndex].accountTie;
+
+          featuresFlatForExport.push(accountInfo);
+        });
+      } else {
+        featuresFlatForExport.push(featuresFlat[i]);
+      }
+
     });
 
     // write to file
