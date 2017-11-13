@@ -18,7 +18,7 @@ async function start () {
     
     console.log('start!')
     
-    const arrayForExport = []
+    const featureFlat = []
     
     const featuresResult = await db.ref('features').once('value')
     const features = featuresResult.val()
@@ -48,7 +48,7 @@ async function start () {
           accountPrevProducts: null,
           accountNotes: null
         };
-        await arrayForExport.push(featureObject)
+        await featureFlat.push(featureObject)
         // await db.ref(`features/${key}/product`).set(idxProducts[feature.product])
       } catch(e) {
         console.log(e);
@@ -61,11 +61,11 @@ async function start () {
     const locations = locationsResult.val()
 
     // get location
-    arrayForExport.forEach((feature, i) => {
+    featureFlat.forEach((feature, i) => {
       // console.log(feature.location)
       if (feature.location && feature.location.indexOf('-' === 0)) {
         if (locations[feature.location]) {
-          arrayForExport[i].location = locations[feature.location].displayName
+          featureFlat[i].location = locations[feature.location].displayName
         }
         
       }
@@ -75,7 +75,7 @@ async function start () {
     const labelsResult = await db.ref('labels').once('value')
     const labels = labelsResult.val()
 
-    arrayForExport.forEach((feature, i) => {
+    featureFlat.forEach((feature, i) => {
       if (feature.labels) {
         let featureLabelsArray = [];
 
@@ -85,7 +85,7 @@ async function start () {
           }
         })
 
-        arrayForExport[i].labels = featureLabelsArray.join(', ')
+        featureFlat[i].labels = featureLabelsArray.join(', ')
 
       }
     });
@@ -95,10 +95,10 @@ async function start () {
     const users = usersResult.val()
 
     // get user email
-    arrayForExport.forEach((feature, i) => {
+    featureFlat.forEach((feature, i) => {
       if (feature.requester) {
         if (users[feature.requester]) {
-          arrayForExport[i].requester = users[feature.requester].email
+          featureFlat[i].requester = users[feature.requester].email
         }
         
       }
@@ -108,9 +108,9 @@ async function start () {
     const accountsResult = await db.ref('accounts').once('value')
     const accounts = accountsResult.val()
 
-    let resultArray = []
+    let featureFlatForExport = []
 
-    arrayForExport.forEach((feature, i) => {
+    featureFlat.forEach((feature, i) => {
       if (feature.accounts) {
         
         // build account array
@@ -130,10 +130,10 @@ async function start () {
             totalAccountValue = totalAccountValue + parseInt(accounts[account].value)
           }
           
-          arrayForExport[i].totalValue = totalAccountValue
+          featureFlat[i].totalValue = totalAccountValue
           
           // add rows for each account
-          let accountInfo = Object.assign({}, arrayForExport[i])
+          let accountInfo = Object.assign({}, featureFlat[i])
 
           accountInfo.accountName = accounts[account].name
           accountInfo.accountId = accounts[account].cid
@@ -148,7 +148,7 @@ async function start () {
           }
           accountInfo.accountNotes = accounts[account].customerNotes
 
-          resultArray.push(accountInfo)
+          featureFlatForExport.push(accountInfo)
         })
 
       }
@@ -157,7 +157,7 @@ async function start () {
 
     // write to file
     try {
-      const result = json2csv({ data: resultArray, fields: fields })
+      const result = json2csv({ data: featureFlatForExport, fields: fields })
       fs.writeFile(
         
         './../../bin/exports/export.csv',
