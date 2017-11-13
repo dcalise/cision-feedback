@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const admin = require('firebase-admin')
 const json2csv = require('json2csv');
-const fields = ['status','labels','subject','description','location','date','requester','totalValue','accountName','accountId','accountValue','accountSalesForceUrl','accountCountry','accountStatus','accountPrevProducts','accountNotes'];
+const fields = ['status','labels','subject','description','location','date','requester','totalValue','accountName','accountId','accountValue','accountSalesForceUrl','accountCountry','accountStatus','accountPrevProducts','accountNotes','accountRelationshipToRequest'];
 
 const serviceAccount = require("../key/key.json");
 
@@ -46,7 +46,8 @@ async function start () {
           accountCountry: null,
           accountStatus: null,
           accountPrevProducts: null,
-          accountNotes: null
+          accountNotes: null,
+          accountRelationshipToRequest: null
         };
         await featureFlat.push(featureObject)
         // await db.ref(`features/${key}/product`).set(idxProducts[feature.product])
@@ -122,7 +123,7 @@ async function start () {
         let totalAccountValue = 0;
         let multiAccountFeatureRows = []
 
-        accountArray.forEach((account) => {
+        accountArray.forEach((account, accountIndex) => {
           
 
           // get total value
@@ -147,6 +148,7 @@ async function start () {
             accountInfo.accountPrevProducts = accounts[account].platform || null
           }
           accountInfo.accountNotes = accounts[account].customerNotes
+          accountInfo.accountRelationshipToRequest = feature.accounts[accountIndex].accountTie
 
           featureFlatForExport.push(accountInfo)
         })
