@@ -21,59 +21,26 @@
       </div>
     </form>
     
+    <column-toggle columns="$ctrl.columns"></column-toggle>
+    
   </section>
 
   <section class="container">
     <table class="table table-striped table-hover">
       <thead>
-        <th class="sortable">
+        <th ng-repeat="column in $ctrl.columns" ng-if="column.display" class="sortable {{ column.thAlign }}" ng-click="$ctrl.sortType = 'status'; $ctrl.sortReverse = !$ctrl.sortReverse">
           <span ng-click="$ctrl.sortType = 'status'; $ctrl.sortReverse = !$ctrl.sortReverse">
-            Status
+            {{column.displayName}}
             <span ng-show="$ctrl.sortType == 'status' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
             <span ng-show="$ctrl.sortType == 'status' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
-          </span>
-        </th>
-        <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'labels'; $ctrl.sortReverse = !$ctrl.sortReverse">
-            Labels
-            <span ng-show="$ctrl.sortType == 'labels' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-            <span ng-show="$ctrl.sortType == 'labels' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
-          </span>
-        </th>
-        <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'subject'; $ctrl.sortReverse = !$ctrl.sortReverse">
-            Summary
-            <span ng-show="$ctrl.sortType == 'subject' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-            <span ng-show="$ctrl.sortType == 'subject' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
-          </span>
-        </th>
-        <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'accountsMeta[0].name'; $ctrl.sortReverse = !$ctrl.sortReverse">
-            Original Requester
-            <span ng-show="$ctrl.sortType == 'accountsMeta[0].name' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-            <span ng-show="$ctrl.sortType == 'accountsMeta[0].name' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
-          </span>
-        </th>
-        <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'dateCreated'; $ctrl.sortReverse = !$ctrl.sortReverse">
-            Date
-            <span ng-show="$ctrl.sortType == 'dateCreated' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-            <span ng-show="$ctrl.sortType == 'dateCreated' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
-          </span>
-        </th>
-        <th class="sortable text-right">
-          <span ng-click="$ctrl.sortType = 'totalValue'; $ctrl.sortReverse = !$ctrl.sortReverse">
-            Total Value
-            <span ng-show="$ctrl.sortType == 'totalValue' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
-            <span ng-show="$ctrl.sortType == 'totalValue' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
           </span>
         </th>
       </thead>
       <tbody>
         <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:searchFeatures"
         ui-sref="app.feature-detail({id:feature.$id})">
-          <td><span class="label label-success">{{feature.status}}</span></td>
-          <td>
+          <td ng-if="$ctrl.columns.status.display"><span class="label label-success">{{feature.status}}</span></td>
+          <td ng-if="$ctrl.columns.labels.display">
             <span ng-repeat="label in feature.labels">
               <span class="label label-default mr-xs">
                 <display-label data="label"></display-label>
@@ -81,10 +48,10 @@
               <br/>
             </span>
           </td>
-          <td>{{feature.subject}}</td>
-          <td class="nowrap">{{feature.accountsMeta[0].name}}</td>
-          <td class="nowrap">{{feature.dateCreated | date }}</td>
-          <td align="right">{{feature.totalValue | currency}}</td>
+          <td ng-if="$ctrl.columns.summary.display">{{feature.subject}}</td>
+          <td ng-if="$ctrl.columns.originalRequester.display" class="nowrap">{{feature.accountsMeta[0].name}}</td>
+          <td ng-if="$ctrl.columns.date.display" class="nowrap">{{feature.dateCreated | date }}</td>
+          <td ng-if="$ctrl.columns.totalValue.display" align="right">{{feature.totalValue | currency}}</td>
         </tr>
       </tbody>
     </table>

@@ -27,7 +27,34 @@ class FeatureListCtrl {
 
     this.sortType = 'date';
     this.sortReverse = true;  // set the default sort order
-    this.searchFeatures = ''; 
+    this.searchFeatures = '';
+
+    this.columns = {
+      status: {
+        display: true,
+        displayName: "Status"
+      },
+      labels: {
+        display: true,
+        displayName: "Labels"
+      },
+      summary: {
+        display: true,
+        displayName: "Summary"
+      },
+      originalRequester: {
+        display: true,
+        displayName: "Original Requester"
+      },
+      date: {
+        display: true,
+        displayName: "Date"
+      },
+      totalValue: {
+        display: true,
+        displayName: "Total Value"
+      }
+    }
   }
   
 }
