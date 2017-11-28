@@ -21,7 +21,7 @@ export default class FeatureService {
   }
 
   // Add Feature
-  add(feature, currentAuth, profile, accountKey) {
+  add(feature, currentAuth, accountKey) {
     if (!Array.isArray(accountKey)) {
       accountKey = [accountKey]
     }
