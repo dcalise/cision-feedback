@@ -1,40 +1,39 @@
 class AuthCtrl {
   constructor(AuthService, $state) {
-    'ngInject';
+    'ngInject'
 
-    this._$state = $state;
-    this._AuthService = AuthService;
-    console.log(this._AuthService);
+    this._$state = $state
+    this._AuthService = AuthService
    
-    this.error = null;
+    this.error = null
   }
 
   submitLogin() {
-    this.isSubmitting = true;
+    this.isSubmitting = true
     this._AuthService.$signInWithEmailAndPassword(this.formData.email, this.formData.password).then(
       (res) => {
-        this.isSubmitting = false;
+        this.isSubmitting = false
         this._$state.go('app.home')
       },
       (err) => {
-        console.log(err);
-        this.isSubmitting = false;
-        this.error = err;
+        console.log(err)
+        this.isSubmitting = false
+        this.error = err
       }
     )
   }
   submitRegister() {
     let domain = this.formData.email.split('@')[1];
     if (domain === 'prnewswire.com' || domain === 'cision.com' || domain === 'prnewswire.co.uk' || domain === 'multivu.com' || domain === 'gorkana.com' || domain === 'newswire.ca') {
-      this.isSubmitting = true;
+      this.isSubmitting = true
       this._AuthService.$createUserWithEmailAndPassword(this.formData.email, this.formData.password).then(
         (res) => {
-          this.isSubmitting = false;
+          this.isSubmitting = false
           this._$state.go('app.profile')
         },
         (err) => {
-          this.isSubmitting = false;
-          this.error = err;
+          this.isSubmitting = false
+          this.error = err
         }
       )
     } else {
@@ -43,25 +42,20 @@ class AuthCtrl {
   }
 
   resetPassword() {
-    console.log(this._AuthService)
-    this._AuthService.$resetPassword({
-      email: this.formData.email
-    }).then(
+    this._AuthService.$sendPasswordResetEmail(this.formData.email).then(
       () => {
+        let email = this.formData.email
+        this.formData.email = ''
         this.error = null
-        this.info = `A password reset email has been sent to ${this.formData.email}.`
+        this.info = `A password reset email has been sent to ${ email }.`
       },
-      (err) => console.log(err)
+      (err) => {
+        this.error = err
+        this.info = null
+      }
     )
-    // $scope.authObj.$resetPassword({
-    //   email: "my@email.com"
-    // }).then(function() {
-    //   console.log("Password reset email sent successfully!");
-    // }).catch(function(error) {
-    //   console.error("Error: ", error);
-    // });
   }
 }
 
 
-export default AuthCtrl;
+export default AuthCtrl
