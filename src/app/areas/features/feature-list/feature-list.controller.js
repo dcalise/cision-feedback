@@ -25,6 +25,8 @@ class FeatureListCtrl {
       }
     )
 
+    this.tableWidth = 'container'
+
     this.sortType = 'date';
     this.sortReverse = true;  // set the default sort order
     this.searchFeatures = '';

@@ -12,7 +12,7 @@
       ui-sref="app.feature-create">
       Submit Feature
     </a>
-    <form class="form-inline">
+    <form class="form-inline form-search">
       <div class="form-group search">
         <label class="sr-only" for="search">Search features</label>
         <input type="text" class="form-control" id="search" placeholder="Search features..." 
@@ -22,10 +22,24 @@
     </form>
     
     <column-toggle columns="$ctrl.columns"></column-toggle>
+
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default btn-icon"
+        ng-click="$ctrl.tableWidth = 'container-fluid'"
+        ng-class="{'active' : $ctrl.tableWidth == 'container-fluid'}">
+        <i class="ion-arrow-expand"></i>
+      </button>
+      <button type="button" class="btn btn-default btn-icon"
+        ng-click="$ctrl.tableWidth = 'container'"
+        ng-class="{'active' : $ctrl.tableWidth == 'container'}">
+        <i class="ion-arrow-shrink"></i>
+      </button>
+    </div>
+    
     
   </section>
 
-  <section class="container">
+  <section ng-class="$ctrl.tableWidth">
     <table class="table table-striped table-hover">
       <thead>
         <th ng-repeat="column in $ctrl.columns" ng-if="column.display" class="sortable {{ column.thAlign }}" ng-click="$ctrl.sortType = 'status'; $ctrl.sortReverse = !$ctrl.sortReverse">
