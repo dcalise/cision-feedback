@@ -1,8 +1,9 @@
 class FeatureListCtrl {
-  constructor(FeatureService, AccountService, $http, $q) {
+  constructor($http, $q, $localStorage, FeatureService, AccountService) {
     'ngInject';
 
     this._FeatureService = FeatureService;
+    this.$localStorage = $localStorage;
 
     this.features = this._FeatureService.all
 
@@ -20,16 +21,32 @@ class FeatureListCtrl {
               }
             )
           })
-          
+
         })
       }
     )
 
-    this.sortType = 'date';
     this.sortReverse = true;  // set the default sort order
-    this.searchFeatures = ''; 
+    this.searchFeatures = '';
   }
-  
+
+  $onInit() {
+    this.sortType = this.getColumnSort() || 'date';
+  }
+
+  sortColumn(col) {
+    this.sortType = col;
+    this.setColumnSort(this.sortType);
+  }
+
+  setColumnSort(col) {
+    this.$localStorage.sortTypeSaved =  col;
+  }
+
+  getColumnSort() {
+    return this.$localStorage.sortTypeSaved;
+  }
+
 }
 
 
