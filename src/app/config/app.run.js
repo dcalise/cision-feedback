@@ -22,6 +22,17 @@ function AppRun(AppConstants, $rootScope, $state) {
     $rootScope.pageTitle += AppConstants.appName;
   };
 
+  // opening ui-sref in new window
+  $rootScope.navigate = ($event, to, params) => {
+    console.log($event)
+    if ($event.metaKey) {
+      let url = $state.href(to, params, {absolute: true})
+      window.open(url, '_blank');
+    } else {
+      $state.go(to, params);
+    }
+  }
+
 }
 
 export default AppRun;
