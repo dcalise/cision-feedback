@@ -15,54 +15,54 @@
     <form class="form-inline">
       <div class="form-group search">
         <label class="sr-only" for="search">Search features</label>
-        <input type="text" class="form-control" id="search" placeholder="Search features..." 
+        <input type="text" class="form-control" id="search" placeholder="Search features..."
           ng-model="searchFeatures">
           <i class="ion-ios-search-strong"></i>
       </div>
     </form>
-    
+
   </section>
 
   <section class="container">
     <table class="table table-striped table-hover">
       <thead>
         <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'status'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          <span ng-click="$ctrl.sortColumn('status'); $ctrl.sortReverse = !$ctrl.sortReverse">
             Status
             <span ng-show="$ctrl.sortType == 'status' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
             <span ng-show="$ctrl.sortType == 'status' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
           </span>
         </th>
         <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'labels'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          <span ng-click="$ctrl.sortColumn('labels'); $ctrl.sortReverse = !$ctrl.sortReverse">
             Labels
             <span ng-show="$ctrl.sortType == 'labels' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
             <span ng-show="$ctrl.sortType == 'labels' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
           </span>
         </th>
         <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'subject'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          <span ng-click="$ctrl.sortColumn('subject'); $ctrl.sortReverse = !$ctrl.sortReverse">
             Summary
             <span ng-show="$ctrl.sortType == 'subject' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
             <span ng-show="$ctrl.sortType == 'subject' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
           </span>
         </th>
         <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'accountsMeta[0].name'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          <span ng-click="$ctrl.sortColumn('accountsMeta[0].name'); $ctrl.sortReverse = !$ctrl.sortReverse">
             Original Requester
             <span ng-show="$ctrl.sortType == 'accountsMeta[0].name' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
             <span ng-show="$ctrl.sortType == 'accountsMeta[0].name' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
           </span>
         </th>
         <th class="sortable">
-          <span ng-click="$ctrl.sortType = 'dateCreated'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          <span ng-click="$ctrl.sortColumn('dateCreated'); $ctrl.sortReverse = !$ctrl.sortReverse">
             Date
             <span ng-show="$ctrl.sortType == 'dateCreated' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
             <span ng-show="$ctrl.sortType == 'dateCreated' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
           </span>
         </th>
         <th class="sortable text-right">
-          <span ng-click="$ctrl.sortType = 'totalValue'; $ctrl.sortReverse = !$ctrl.sortReverse">
+          <span ng-click="$ctrl.sortColumn('totalValue'); $ctrl.sortReverse = !$ctrl.sortReverse">
             Total Value
             <span ng-show="$ctrl.sortType == 'totalValue' && !$ctrl.sortReverse" class="ion-arrow-down-b"></span>
             <span ng-show="$ctrl.sortType == 'totalValue' && $ctrl.sortReverse" class="ion-arrow-up-b"></span>
