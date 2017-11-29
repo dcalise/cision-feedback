@@ -71,7 +71,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:searchFeatures"
-         ng-click="navigate($event, 'app.feature-detail', {id:feature.$id})">
+        ui-sref="app.feature-detail({id:feature.$id})">
           <td><span class="label label-success">{{feature.status}}</span></td>
           <td>
             <span ng-repeat="label in feature.labels">
