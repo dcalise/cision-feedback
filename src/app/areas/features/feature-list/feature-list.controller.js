@@ -22,8 +22,6 @@ class FeatureListCtrl {
             });
         });
 
-        this.tableWidth = 'container';
-
         this.columns = {
             status: {
                 id: 'status',
@@ -61,39 +59,40 @@ class FeatureListCtrl {
 
     $onInit() {
         // set default
-        if (typeof this.getColumnPrefs() === 'undefined') {
-            this.sortPrefs = {
-              type: 'dateCreated',
-              reverse: true
-            }
-        // grab from local storage
+        if (typeof this.getTablePrefs() === 'undefined') {
+            this.tablePrefs = {
+                type: 'dateCreated',
+                reverse: true
+            };
+            // grab from local storage
         } else {
-          this.sortPrefs = {
-              type: this.getColumnPrefs().type,
-              reverse: this.getColumnPrefs().reverse
-          };
+            this.tablePrefs = {
+                type: this.getTablePrefs().type,
+                reverse: this.getTablePrefs().reverse
+            };
         }
         this.searchFeatures = '';
-        console.log(this.sortPrefs)
+
+        // this.tableWidth = this.getTablePrefs().width || 'container';
     }
 
     sortColumnType(col, reverse) {
-        this.sortPrefs.reverse = false;
-        if (this.sortPrefs.type == col) {
-            this.sortPrefs.reverse = !reverse;
+        this.tablePrefs.reverse = false;
+        if (this.tablePrefs.type == col) {
+            this.tablePrefs.reverse = !reverse;
         } else {
-            this.sortPrefs.reverse = false;
-            this.sortPrefs.type = col;
+            this.tablePrefs.reverse = false;
+            this.tablePrefs.type = col;
         }
-        this.setColumnPrefs(this.sortPrefs);
+        this.setTablePrefs(this.tablePrefs);
     }
 
-    setColumnPrefs(prefs) {
-        this.$localStorage.sortTypeSaved = prefs;
+    setTablePrefs(prefs) {
+        this.$localStorage.tablePrefsSaved = prefs;
     }
 
-    getColumnPrefs() {
-        return this.$localStorage.sortTypeSaved;
+    getTablePrefs() {
+        return this.$localStorage.tablePrefsSaved;
     }
 }
 

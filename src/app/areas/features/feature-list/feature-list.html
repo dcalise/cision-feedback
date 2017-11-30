@@ -42,15 +42,15 @@
     <table class="table table-striped table-hover">
       <thead>
         <th ng-repeat="column in $ctrl.columns" ng-if="column.display" class="sortable {{ column.thAlign }}">
-          <span ng-click="$ctrl.sortColumnType(column.id, $ctrl.sortPrefs.reverse)">
+          <span ng-click="$ctrl.sortColumnType(column.id, $ctrl.tablePrefs.reverse)">
             {{column.displayName}}
-            <span ng-show="$ctrl.sortPrefs.type == column.id && !$ctrl.sortPrefs.reverse" class="ion-arrow-down-b"></span>
-            <span ng-show="$ctrl.sortPrefs.type == column.id && $ctrl.sortPrefs.reverse" class="ion-arrow-up-b"></span>
+            <span ng-show="$ctrl.tablePrefs.type == column.id && !$ctrl.tablePrefs.reverse" class="ion-arrow-down-b"></span>
+            <span ng-show="$ctrl.tablePrefs.type == column.id && $ctrl.tablePrefs.reverse" class="ion-arrow-up-b"></span>
           </span>
         </th>
       </thead>
       <tbody>
-        <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortPrefs.type:$ctrl.sortPrefs.reverse | filter:searchFeatures"
+        <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.tablePrefs.type:$ctrl.tablePrefs.reverse | filter:searchFeatures"
         ui-sref="app.feature-detail({id:feature.$id})">
           <td ng-if="$ctrl.columns.status.display"><span class="label label-success">{{feature.status}}</span></td>
           <td ng-if="$ctrl.columns.labels.display">
