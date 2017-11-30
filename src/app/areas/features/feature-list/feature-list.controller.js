@@ -62,21 +62,22 @@ class FeatureListCtrl {
         if (typeof this.getTablePrefs() === 'undefined') {
             this.tablePrefs = {
                 type: 'dateCreated',
-                reverse: true
+                reverse: true,
+                width: 'container'
             };
             // grab from local storage
         } else {
             this.tablePrefs = {
                 type: this.getTablePrefs().type,
-                reverse: this.getTablePrefs().reverse
+                reverse: this.getTablePrefs().reverse,
+                width: this.getTablePrefs().width
             };
         }
         this.searchFeatures = '';
 
-        // this.tableWidth = this.getTablePrefs().width || 'container';
     }
 
-    sortColumnType(col, reverse) {
+    changeColumnSort(col, reverse) {
         this.tablePrefs.reverse = false;
         if (this.tablePrefs.type == col) {
             this.tablePrefs.reverse = !reverse;
@@ -87,9 +88,15 @@ class FeatureListCtrl {
         this.setTablePrefs(this.tablePrefs);
     }
 
+    changeTableWidth(width) {
+        this.tablePrefs.width = width;
+        this.setTablePrefs(this.tablePrefs);
+    }
+
     setTablePrefs(prefs) {
         this.$localStorage.tablePrefsSaved = prefs;
     }
+
 
     getTablePrefs() {
         return this.$localStorage.tablePrefsSaved;
