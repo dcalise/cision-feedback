@@ -8,7 +8,8 @@
       <div class="checkbox">
         <label>
           <input type="checkbox"
-            ng-model="column.display">{{ column.displayName }}
+            ng-model="column.display"
+            ng-click="$ctrl.changeColumnVisibility()">{{ column.displayName }}
         </label>
       </div>
     </li>

@@ -7,7 +7,8 @@ class ColumnToggleCtrl {
 
 let ColumnToggle = {
   bindings: {
-    columns: '='
+    columns: '=',
+    changeColumnVisibility: '&'
   },
   controller: ColumnToggleCtrl,
   templateUrl: "components/list-helpers/column-toggle.html"
