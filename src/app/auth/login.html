@@ -12,11 +12,16 @@
     <div class="row">
       <div class="col-md-4 col-sm-6">
 
-        <div class="form-errors"
+        <div class="alert alert-danger" role="alert"
           ng-show="$ctrl.error">
-          <p>{{ $ctrl.error.message }}</p>
+          {{ $ctrl.error.message }} <a href="javascript:void(0)" ng-if="$ctrl.error.code === 'auth/wrong-password'" ui-sref="app.forgot-password">Forgot password?</a>
         </div>
 
+        <div class="alert alert-info" role="alert"
+          ng-show="$ctrl.info">
+          {{ $ctrl.info }}
+        </div>
+        
         <form ng-submit="$ctrl.submitLogin()">
           <div class="form-group">
             <label for="email">Email</label>
