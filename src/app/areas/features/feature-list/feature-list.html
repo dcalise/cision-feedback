@@ -52,8 +52,9 @@
         </th>
       </thead>
       <tbody>
-        <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.tablePrefs.type:$ctrl.tablePrefs.reverse | filter:searchFeatures"
-        ui-sref="app.feature-detail({id:feature.$id})">
+        <!-- <tr ng-repeat="feature in $ctrl.paginatedFeatures | orderBy:$ctrl.tablePrefs.type:$ctrl.tablePrefs.reverse | filter:searchFeatures"
+          ui-sref="app.feature-detail({id:feature.$id})"> -->
+        <tr ng-repeat="feature in $ctrl.paginatedFeatures" ui-sref="app.feature-detail({id:feature.$id})">
           <td ng-if="$ctrl.tablePrefs.columns.status.display"><span class="label label-success">{{feature.status}}</span></td>
           <td ng-if="$ctrl.tablePrefs.columns.labels.display">
             <span ng-repeat="label in feature.labels">
@@ -70,5 +71,22 @@
         </tr>
       </tbody>
     </table>
+    <ul ng-if="$ctrl.pager.pages.length" class="pagination">
+      <li ng-class="{disabled:$ctrl.pager.currentPage === 1}">
+        <a ng-click="$ctrl.setPage(1)">First</a>
+      </li>
+      <li ng-class="{disabled:$ctrl.pager.currentPage === 1}">
+        <a ng-click="$ctrl.setPage($ctrl.pager.currentPage - 1)">Previous</a>
+      </li>
+      <li ng-repeat="page in $ctrl.pager.pages" ng-class="{active:$ctrl.pager.currentPage === page}">
+        <a ng-click="$ctrl.setPage(page)">{{page}}</a>
+      </li>
+      <li ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">
+        <a ng-click="$ctrl.setPage($ctrl.pager.currentPage + 1)">Next</a>
+      </li>
+      <li ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">
+        <a ng-click="$ctrl.setPage($ctrl.pager.totalPages)">Last</a>
+      </li>
+    </ul>
   </section>
 </main>

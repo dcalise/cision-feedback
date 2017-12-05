@@ -1,9 +1,19 @@
 class FeatureListCtrl {
-    constructor($http, $q, $localStorage, FeatureService, AccountService) {
+    constructor(
+        $http,
+        $filter,
+        $q,
+        $localStorage,
+        AccountService,
+        FeatureService,
+        PagerService
+    ) {
         'ngInject';
 
         this._FeatureService = FeatureService;
-        this.$localStorage = $localStorage;
+        this._PagerService = PagerService;
+        this._$filter = $filter;
+        this._$localStorage = $localStorage;
 
         this.features = this._FeatureService.all;
 
@@ -20,18 +30,25 @@ class FeatureListCtrl {
                     );
                 });
             });
+            this.setPage(1)
         });
+
+        this.pager = {};
+        this.paginatedFeatures = {};
+
     }
-
+    
     $onInit() {
-        this.searchFeatures = '';
 
+        this.searchFeatures = '';
+        
         // set default
         if (typeof this.getTablePrefs() === 'undefined') {
             this.tablePrefs = {
                 type: 'dateCreated',
                 reverse: true,
                 width: 'container',
+                currentPage: 1,
                 columns: {
                     status: {
                         id: 'status',
@@ -77,6 +94,21 @@ class FeatureListCtrl {
         }
     }
 
+    setPage(page) {
+        if (page < 1 || page > this.pager.totalPages) {
+            return;
+        }
+
+        // get pager object from service
+        this.pager = this._PagerService.getPager(this.features.length, page);
+
+        // get current page of items
+        this.paginatedFeatures = this.features.slice(
+            this.pager.startIndex,
+            this.pager.endIndex + 1
+        );
+    }
+
     changeColumnSort(col, reverse) {
         this.tablePrefs.reverse = false;
         if (this.tablePrefs.type == col) {
@@ -85,6 +117,8 @@ class FeatureListCtrl {
             this.tablePrefs.reverse = false;
             this.tablePrefs.type = col;
         }
+        this.features = this._$filter('orderBy')(this.features, this.tablePrefs.type, this.tablePrefs.reverse);
+        this.setPage(1)
         this.setTablePrefs(this.tablePrefs);
     }
 
@@ -98,11 +132,11 @@ class FeatureListCtrl {
     }
 
     setTablePrefs(prefs) {
-        this.$localStorage.tablePrefsSaved = prefs;
+        this._$localStorage.tablePrefsSaved = prefs;
     }
 
     getTablePrefs() {
-        return this.$localStorage.tablePrefsSaved;
+        return this._$localStorage.tablePrefsSaved;
     }
 }
 
