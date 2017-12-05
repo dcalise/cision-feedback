@@ -18,8 +18,10 @@ servicesModule.service('LabelService', LabelService);
 import AuthService from './auth.service';
 servicesModule.service('AuthService', AuthService);
 
+import PagerService from './pager.service';
+servicesModule.service('PagerService', PagerService);
+
 import UserService from './user.service';
 servicesModule.service('UserService', UserService);
-
 
 export default servicesModule;
