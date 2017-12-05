@@ -70,8 +70,7 @@
         </th>
       </thead>
       <tbody>
-        <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:searchFeatures"
-        ui-sref="app.feature-detail({id:feature.$id})">
+        <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:searchFeatures">
           <td><span class="label label-success">{{feature.status}}</span></td>
           <td>
             <span ng-repeat="label in feature.labels">
@@ -81,7 +80,7 @@
               <br/>
             </span>
           </td>
-          <td>{{feature.subject}}</td>
+          <td><a ui-sref="app.feature-detail({id:feature.$id})">{{feature.subject}}</a></td>
           <td class="nowrap">{{feature.accountsMeta[0].name}}</td>
           <td class="nowrap">{{feature.dateCreated | date }}</td>
           <td align="right">{{feature.totalValue | currency}}</td>
