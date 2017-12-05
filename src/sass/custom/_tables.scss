@@ -1,6 +1,5 @@
 .table-hover {
   > tbody > tr:hover {
-    cursor: pointer;
     background-color: $table-bg-hover;
   }
 }
