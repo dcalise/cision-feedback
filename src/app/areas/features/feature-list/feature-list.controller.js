@@ -23,7 +23,6 @@ class FeatureListCtrl {
 
   $onInit() {
     this.searchFeatures = "";
-
     // set default
     if (typeof this.getTablePrefs() === "undefined") {
       this.resetTablePrefs();
@@ -104,6 +103,7 @@ class FeatureListCtrl {
         }
       }
     };
+    this.searchFeatures = "";
     this.setTablePrefs(this.tablePrefs);
   }
 }
