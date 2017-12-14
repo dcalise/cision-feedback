@@ -1,0 +1,125 @@
+/** Colors **/
+/*
+
+    NOTE:
+        Only define variables in here.
+
+        Any classes should go in _colorclasses.scss
+        If they are added here they will be added as nested CSS in any file that imports
+        this file to get access to the color variables.
+
+*/
+
+//** Charcoal
+$charcoal100: #101112;
+$charcoal90: #28292A;
+$charcoal80: #404142;
+$charcoal70: #585859;
+$charcoal60: #707171;
+$charcoal50: #888889;
+
+//** Onahau
+$onahau100: #C1D2D9;
+$onahau75: #D1DFE5;
+$onahau60: #DBE6EB;
+$onahau45: #E4ECF0;
+$onahau30: #EDF3F5;
+$onahau20: #F6F9FA;
+//$onahau20: #F3F6F8;
+//$onahau15: #F6F9FA;
+
+//** Cision Orange
+$cisionOrange100: #F15D22;
+$cisionOrange90: #F36D38;
+$cisionOrange80: #F47E4F;
+$cisionOrange70: #F68E64;
+$cisionOrange60: #F79E7B;
+$cisionOrange50: #F8AE91;
+
+//** Cision Blue
+$cisionBlue: #0C6389;
+
+$darkCisionBlue: #032532;
+$demiCisionBlue: #074F6C;
+$lightCisionBlue: #0E94C7;
+$brightCisionBlue: #0DA7E3;
+
+//** Cision Navy
+$cisionNavy: #053A4F;
+$cisionNavy35: #A8BAC2;
+
+//** Purple
+$purple100: #563689;
+$purple65: #917CB2;
+$purple35: #C4B9D6;
+
+//** Magenta
+$magenta100: #7C0847;
+$magenta65: #B06B91;
+$magenta35: #D1A9BF;
+
+//** Marine Green
+$marineGreen100: #158282;
+$marineGreen65: #67AEAE;
+$marineGreen35: #ADD3D3;
+
+//** Zambezi
+$zambezi100: #634D5E;
+$zambezi65: #998B96;
+$zambezi35: #C9C1C7;
+
+//** Green
+$cisionGreen: #00837E;
+$green100: #547730;
+$green65: #90A678;
+$green35: #C3D0B7;
+
+//** Red
+$brightRed: #D21D06;
+$red100: #A11514;
+$red65: #C36561;
+$red35: #DFADAA;
+
+//** Kelly Green
+$kellyGreen100: #4CBB17;
+
+//** Lime
+$lime: #94D93F;
+
+//** Chartreuse
+$yellowGreen : #C6DA65;
+
+//** Pure white
+$white: #FFF;
+
+//** Digital Colors
+$digitalAqua: #4CBC8C;
+$digitalMagenta: #AB4F7E;
+$digitalOrange: #FAA837;
+
+//** Other Brand Colors
+$prwebRed: #A3130C;
+$prweb-color: $cisionGreen;
+
+$prnewswireBlue: #47536B;
+
+$social-activity-color: $digitalAqua;
+$email-activity-color: $cisionOrange100;
+$sendmailing-activity-color: $cisionBlue;
+$phone-activity-color: $digitalAqua;
+$calendar-activity-color: $prwebRed;
+$inquiry-activity-color: $digitalMagenta;
+$other-activity-color: $cisionBlue;
+$default-activity-color: $onahau100;
+$default-coverage-color: $purple65;
+$default-news-color: $digitalOrange;
+
+//** Social Brand Colors
+$twitterBlue : #55ACEE;
+$linkedinBlue: #0077B5;
+$facebookBlue: #3B5998;
+$pinterestRed : #BD081C;
+$googlePlusRed: #DD4B39;
+$youtubeRed: #B00;
+$instagramPink: #D83575;
+$instagramLikedColor: #ED4956;

@@ -1,58 +1,60 @@
-<app-header-login></app-header-login>
+<navbar>
+  <app-header-login></app-header-login>
+</navbar>
 
-<section class="container">
-  <h1 class="page-title">Register</h1>
-</section>
+<main>
+  <section class="container">
+    <h1 class="page-title">Register</h1>
+  </section>
 
-<section class="container">
-  
-  <div class="row">
-    <div class="col-md-4 col-sm-6">
+  <section class="container">
+    
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
 
-      <div class="form-errors"
-        ng-show="$ctrl.error">
-        <p>{{ $ctrl.error.message }}</p>
-      </div>
-      <div class="form-errors"
-        data-ng-show="register.confirmPassword.$error.match">
-        Passwords do not match!
-      </div>
-      
-
-      <form name="register" ng-submit="!register.confirmPassword.$error.match && $ctrl.submitRegister()">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" required
-            ng-model="$ctrl.formData.email">
+        <div class="form-errors"
+          ng-show="$ctrl.error">
+          <p>{{ $ctrl.error.message }}</p>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password"
-            class="form-control {{ (register.confirmPassword.$error.match) ? 'ng-invalid' : ''; }}"
-            ng-model="$ctrl.formData.password">
+        <div class="form-errors"
+          data-ng-show="register.confirmPassword.$error.match">
+          Passwords do not match!
         </div>
-        <div class="form-group">
-          <label for="password-confirm">Confirm Password</label>
-          <input ng-model="$ctrl.formData.passwordConfirm" type="password"
-            class="form-control"
-            data-match="$ctrl.formData.password"
-            name="confirmPassword" />
-        </div>
-        <div class="media">
-          <div class="media-body media-middle">
-            <span>
-              Already have an acccount? <a ui-sref="app.login">Login here.</a>
-            </span>
+        
+
+        <form name="register" ng-submit="!register.confirmPassword.$error.match && $ctrl.submitRegister()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" required
+              ng-model="$ctrl.formData.email">
           </div>
-          <div class="media-right media-middle">
-            <input type="submit" class="btn btn-success pull-right" value="Register">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password"
+              class="form-control {{ (register.confirmPassword.$error.match) ? 'ng-invalid' : ''; }}"
+              ng-model="$ctrl.formData.password">
           </div>
-        </div>
-      </form>
+          <div class="form-group">
+            <label for="password-confirm">Confirm Password</label>
+            <input ng-model="$ctrl.formData.passwordConfirm" type="password"
+              class="form-control"
+              data-match="$ctrl.formData.password"
+              name="confirmPassword" />
+          </div>
+          <div class="media">
+            <div class="media-body media-middle">
+              <span>
+                Already have an acccount? <a ui-sref="app.login">Log in here.</a>
+              </span>
+            </div>
+            <div class="media-right media-middle">
+              <input type="submit" class="btn btn-success pull-right" value="Register">
+            </div>
+          </div>
+        </form>
 
+      </div>
     </div>
-  </div>
-  
- 
 
-</section>
+  </section>
+</main>

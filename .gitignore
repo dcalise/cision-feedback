@@ -39,4 +39,5 @@ dist/*
 src/js/config/app.templates.js
 src/app/config/app.templates.js
 backups/*
+bin/exports/*
 bin/key/*
