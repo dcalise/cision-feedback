@@ -71,7 +71,16 @@
         </tr>
       </tbody>
     </table>
-    <ul ng-if="$ctrl.pager.pages.length" class="pagination">
+
+    <div
+      paging
+      page="$ctrl.currentPage"
+      page-size="$ctrl.pageLimit"
+      total="$ctrl.features.length"
+      paging-action="$ctrl.changePage(page, pageSize, total)"
+      pg-href="/#!/features#{page}">
+    </div>
+    <!-- <ul ng-if="$ctrl.pager.pages.length" class="pagination">
       <li ng-class="{disabled:$ctrl.pager.currentPage === 1}">
         <a ng-click="$ctrl.setPage(1)">First</a>
       </li>
@@ -87,6 +96,6 @@
       <li ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">
         <a ng-click="$ctrl.setPage($ctrl.pager.totalPages)">Last</a>
       </li>
-    </ul>
+    </ul> -->
   </section>
 </main>

@@ -2,21 +2,23 @@ class FeatureListCtrl {
     constructor(
         $http,
         $filter,
+        $location,
         $q,
         $localStorage,
         AccountService,
-        FeatureService,
-        PagerService
+        FeatureService
     ) {
         'ngInject';
 
         this._FeatureService = FeatureService;
-        this._PagerService = PagerService;
+        // this._PagerService = PagerService;
         this._$filter = $filter;
+        this._$location = $location;
         this._$localStorage = $localStorage;
 
-        this.features = this._FeatureService.all;
+        this.features = this._FeatureService._featuresActive;
 
+        this.paginatedFeatues = [];
         this.features.$loaded().then(features => {
             angular.forEach(features, function(feature) {
                 feature.accountsMeta = [];
@@ -29,19 +31,30 @@ class FeatureListCtrl {
                         }
                     );
                 });
+                // console.log(this);
             });
-            this.setPage(1)
+
+            this.pageLimit = 10;
+            this.currentPage = 1;
+            this.pageStart = 0;
+            if ($location.hash() && $location.hash() != 1) {
+                this.pageStart = $location.hash() - 1 + this.pageLimit;
+                this.currentPage = $location.hash();
+            }
+            this.paginatedFeatures = $filter('limitTo')(
+                this.features,
+                this.pageLimit,
+                this.pageStart
+            );
         });
 
-        this.pager = {};
-        this.paginatedFeatures = {};
-
+        // this.pager = {};
+        // this.paginatedFeatures = {};
     }
-    
-    $onInit() {
 
+    $onInit() {
         this.searchFeatures = '';
-        
+
         // set default
         if (typeof this.getTablePrefs() === 'undefined') {
             this.tablePrefs = {
@@ -89,23 +102,33 @@ class FeatureListCtrl {
                 type: this.getTablePrefs().type,
                 reverse: this.getTablePrefs().reverse,
                 width: this.getTablePrefs().width,
-                columns: this.getTablePrefs().columns
+                columns: this.getTablePrefs().columns,
+                currentPage: this.getTablePrefs().currentPage
             };
         }
     }
 
-    setPage(page) {
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
+    // setPage(page) {
+    //     if (page < 1 || page > this.pager.totalPages) {
+    //         return;
+    //     }
 
-        // get pager object from service
-        this.pager = this._PagerService.getPager(this.features.length, page);
+    //     // get pager object from service
+    //     this.pager = this._PagerService.getPager(this.features.length, page);
 
-        // get current page of items
-        this.paginatedFeatures = this.features.slice(
-            this.pager.startIndex,
-            this.pager.endIndex + 1
+    //     // get current page of items
+    //     this.paginatedFeatures = this.features.slice(
+    //         this.pager.startIndex,
+    //         this.pager.endIndex + 1
+    //     );
+
+    //     this.tablePrefs.currentPage = page;
+    // }
+    changePage(page, pageSize, total) {
+        this.paginatedFeatures = this._$filter('limitTo')(
+            this.features,
+            this.pageLimit,
+            page -1 + this.pageLimit
         );
     }
 
@@ -117,8 +140,12 @@ class FeatureListCtrl {
             this.tablePrefs.reverse = false;
             this.tablePrefs.type = col;
         }
-        this.features = this._$filter('orderBy')(this.features, this.tablePrefs.type, this.tablePrefs.reverse);
-        this.setPage(1)
+        this.features = this._$filter('orderBy')(
+            this.features,
+            this.tablePrefs.type,
+            this.tablePrefs.reverse
+        );
+        // this.setPage(1)
         this.setTablePrefs(this.tablePrefs);
     }
 
