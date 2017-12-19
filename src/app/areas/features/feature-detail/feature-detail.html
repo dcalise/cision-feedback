@@ -5,7 +5,7 @@
 <main>
   <section class="container feature-detail">
     <div class="row">
-      <div class="col-sm-8 feature-header">
+      <div class="col-sm-9 feature-header">
         <div class="section">
           <div class="row">
             <div class="col-sm-12">
@@ -95,28 +95,34 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4 feature-sidebar">
-        <ul class="list-unstyled mt-xl">
-          <li><strong>Status:</strong>  <status 
-            data="$ctrl._feature.status"
-            update-status="$ctrl.updateStatus(status)"></status>
-          </li>
-          <li>
-            <strong>Requested by:</strong><br>
-            {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>
-            <em ng-show="$ctrl._featureDetail.requester.department">{{::$ctrl._featureDetail.requester.department}}</em><br>
-            <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
-          </li>
-          <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
-        </ul>
+      <div class="col-sm-3 feature-sidebar">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="list-unstyled mt-xl">
+              <li><strong>Status:</strong>  <status 
+                data="$ctrl._feature.status"
+                update-status="$ctrl.updateStatus(status)"></status>
+              </li>
+              <li>
+                <strong>Requested by:</strong><br>
+                {{::$ctrl._featureDetail.requester.firstName}} {{::$ctrl._featureDetail.requester.lastName}}<br>
+                <em ng-show="$ctrl._featureDetail.requester.department">{{::$ctrl._featureDetail.requester.department}}</em><br>
+                <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
+              </li>
+              <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row" ng-show="$ctrl._feature.status == 'Closed' && $ctrl.userIsAdmin">
+          <div class="col-sm-12">
+            <hr />
+            <button type="button" class="btn btn-default btn-block">Archive Feature Request</button>
+            <button type="button" class="btn btn-danger btn-block">Delete Feature Request</button>
+          </div>
+        </div>
+        
       </div>
     </div>
-  </section>
-
-
-  <section class="container">
-
-    
   </section>
 
   <section class="container">
