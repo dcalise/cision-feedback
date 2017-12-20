@@ -52,8 +52,7 @@
         </th>
       </thead>
       <tbody>
-        <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.tablePrefs.type:$ctrl.tablePrefs.reverse | filter:searchFeatures"
-        ui-sref="app.feature-detail({id:feature.$id})">
+        <tr ng-repeat="feature in $ctrl.features | orderBy:$ctrl.tablePrefs.type:$ctrl.tablePrefs.reverse | filter:searchFeatures">
           <td ng-if="$ctrl.tablePrefs.columns.status.display"><span class="label label-success">{{feature.status}}</span></td>
           <td ng-if="$ctrl.tablePrefs.columns.labels.display">
             <span ng-repeat="label in feature.labels">
@@ -63,7 +62,7 @@
               <br/>
             </span>
           </td>
-          <td ng-if="$ctrl.tablePrefs.columns.summary.display">{{feature.subject}}</td>
+          <td ng-if="$ctrl.tablePrefs.columns.summary.display"><a ui-sref="app.feature-detail({id:feature.$id})">{{feature.subject}}</a></td>
           <td ng-if="$ctrl.tablePrefs.columns.originalRequester.display" class="nowrap">{{feature.accountsMeta[0].name}}</td>
           <td ng-if="$ctrl.tablePrefs.columns.date.display" class="nowrap">{{feature.dateCreated | date }}</td>
           <td ng-if="$ctrl.tablePrefs.columns.totalValue.display" align="right">{{feature.totalValue | currency}}</td>
