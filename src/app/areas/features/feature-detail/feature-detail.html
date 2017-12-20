@@ -116,8 +116,10 @@
         <div class="row" ng-show="$ctrl._feature.status == 'Closed' && $ctrl.userIsAdmin">
           <div class="col-sm-12">
             <hr />
-            <button type="button" class="btn btn-default btn-block">Archive Feature Request</button>
-            <button type="button" class="btn btn-danger btn-block">Delete Feature Request</button>
+            <button type="button" class="btn btn-default btn-block"
+              ng-click="$ctrl.archiveThisFeature()">Archive Feature Request</button>
+            <button type="button" class="btn btn-danger btn-block"
+               ng-click="$ctrl.deleteThisFeature()">Delete Feature Request</button>
           </div>
         </div>
         
