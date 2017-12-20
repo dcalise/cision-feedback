@@ -7,7 +7,7 @@ export default class FeatureService {
     this._featuresRef = firebase.database().ref('features');
     this._features = $firebaseArray(this._featuresRef);
 
-    this._activeFeatures = $firebaseArray(this._featuresRef.orderByChild('archive').equalTo(null));
+    this._activeFeatures = $firebaseArray(this._featuresRef.orderByChild('activeState').equalTo(2));
 
     this.all = this._features;
   }
@@ -36,6 +36,7 @@ export default class FeatureService {
       location: feature.location || null,
       labels: feature.labels || null,
       dateCreated: Date.now(),
+      activeState: 2,
       events: {
         lastUpdated: null,
         viewedBy: null,

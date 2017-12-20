@@ -62,7 +62,7 @@ class FeatureDetailCtrl {
     );
 
     if (archiveAnswer) {
-      this._feature.archive = 1;
+      this._feature.activeState = 1;
       this._feature.$save().then(() => {
         this._$state.go("app.feature-list");
         this._toastr.success(`"${this._feature.subject}" archived.`);
@@ -75,8 +75,7 @@ class FeatureDetailCtrl {
     let deleteAnswer = prompt("Please type DELETE to confirm this action.");
 
     if (deleteAnswer.toLowerCase() == "delete") {
-      this._feature.archive = 1;
-      this._feature.delete = 1;
+      this._feature.activeState = 0;
       this._feature.$save().then(() => {
         this._$state.go("app.feature-list");
         this._toastr.success(`"${this._feature.subject}" deleted.`);
