@@ -5,7 +5,7 @@ class FeatureListCtrl {
         this._FeatureService = FeatureService;
         this.$localStorage = $localStorage;
 
-        this.features = this._FeatureService.all;
+        this.features = this._FeatureService._activeFeatures;
 
         this.features.$loaded().then(features => {
             angular.forEach(features, function(feature) {

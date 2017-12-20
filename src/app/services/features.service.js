@@ -7,6 +7,8 @@ export default class FeatureService {
     this._featuresRef = firebase.database().ref('features');
     this._features = $firebaseArray(this._featuresRef);
 
+    this._activeFeatures = $firebaseArray(this._featuresRef.orderByChild('archive').equalTo(null));
+
     this.all = this._features;
   }
 
