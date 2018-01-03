@@ -10,10 +10,6 @@ class FeatureDetailCtrl {
     this._feature = feature
     this._currentAuth = currentAuth
     this._comments = comments
-    
-    if (profile.roles && profile.roles.admin === true) {
-      this.userIsAdmin = true
-    }
 
     this._AccountService = AccountService
     this._CommentService = CommentService

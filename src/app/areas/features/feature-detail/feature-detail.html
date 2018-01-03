@@ -98,6 +98,7 @@
       <div class="col-sm-4 feature-sidebar">
         <ul class="list-unstyled mt-xl">
           <li><strong>Status:</strong>  <status 
+            admin="$ctrl._UserService.admin"
             data="$ctrl._feature.status"
             update-status="$ctrl.updateStatus(status)"></status>
           </li>
@@ -171,6 +172,9 @@
         ng-hide="$ctrl._$scope.showAccountForm"
         ng-click="$ctrl._$scope.showAccountForm = true">Add Customer to Request
       </button>
+      <button type="button" class="btn btn-danger"
+        ng-show="$ctrl._UserService.admin"
+        ng-click="$ctrl.showAccountDeleteColumn = !ctrl.showAccountDeleteColumn">Remove Accounts</button>
     </div>
   </section>
 </main>
