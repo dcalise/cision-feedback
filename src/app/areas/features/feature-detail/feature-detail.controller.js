@@ -10,7 +10,8 @@ class FeatureDetailCtrl {
         $stateParams,
         $state,
         UserService,
-        $scope
+        $scope,
+        toastr
     ) {
         'ngInject';
 
@@ -23,10 +24,15 @@ class FeatureDetailCtrl {
         this._currentAuth = currentAuth;
         this._comments = comments;
 
+        if (profile.roles && profile.roles.admin === true) {
+            this.userIsAdmin = true;
+        }
+
         this._AccountService = AccountService;
         this._CommentService = CommentService;
         this._FeatureService = FeatureService;
         this._UserService = UserService;
+        this._toastr = toastr;
 
         this._featureDetail = {};
 
@@ -50,6 +56,35 @@ class FeatureDetailCtrl {
         $scope.setResetForm = function(reset) {
             $scope.reset = reset;
         };
+    }
+
+    archiveThisFeature() {
+        let archiveAnswer = confirm(
+            'Are you sure you want to archive this feature request?'
+        );
+
+        if (archiveAnswer) {
+            this._feature.activeState = 1;
+            this._feature.$save().then(() => {
+                this._$state.go('app.feature-list');
+                this._toastr.success(`"${this._feature.subject}" archived.`);
+            }),
+            err => console.log(err);
+        }
+    }
+
+    deleteThisFeature() {
+        let deleteAnswer = prompt('Please type DELETE to confirm this action.');
+
+        if (deleteAnswer.toLowerCase() == 'delete') {
+            this._feature.activeState = 0;
+            this._feature.$save().then(() => {
+                this._$state.go('app.feature-list');
+                this._toastr.success(`"${this._feature.subject}" deleted.`);
+            });
+        } else {
+            alert("You didn't type DELETE correctly. Please try again");
+        }
     }
 
     listAccounts() {
