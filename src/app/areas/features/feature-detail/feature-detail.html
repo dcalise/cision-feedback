@@ -140,7 +140,7 @@
             <td>{{account.country}}</td>
             <td align="right">{{account.value | currency}}</td>
             <td ng-show="$ctrl.showAccountDeleteColumn" align="center">
-              <i class="ion-close" ng-click="$ctrl.removeAccountFromFeature(account.$id)"></i>
+              <i class="ion-close btn-remove" ng-click="$ctrl.removeAccountFromFeature(account.$id)"></i>
             </td>
           </tr>
         </tbody>
@@ -165,17 +165,17 @@
         
       </form>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8" ng-hide="$ctrl._$scope.showAccountForm">
       <button type="button" class="btn btn-default"
-        ng-hide="$ctrl._$scope.showAccountForm || $ctrl.showAccountDeleteColumn"
+        ng-hide="$ctrl.showAccountDeleteColumn"
         ng-click="$ctrl._$scope.showAccountForm = true">Add Customer to Request
       </button>
-      <button type="button" class="btn btn-danger"
+      <button type="button" class="btn btn-danger ml-sm"
         ng-show="$ctrl._UserService.admin && !$ctrl.showAccountDeleteColumn"
         ng-click="$ctrl.showAccountDeleteColumn = true">Remove Accounts
       </button>
-      <button type="button" class="btn btn-default"
-        ng-show="$ctrl._UserService.admin && $ctrl.showAccountDeleteColumn"           
+      <button type="button" class="btn btn-success"
+        ng-show="$ctrl._UserService.admin && $ctrl.showAccountDeleteColumn"
         ng-click="$ctrl.showAccountDeleteColumn = false">Done
       </button>
     </div>

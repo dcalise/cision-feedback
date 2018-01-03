@@ -50,8 +50,6 @@ class FeatureDetailCtrl {
         $scope.setResetForm = function(reset) {
             $scope.reset = reset;
         };
-
-        console.log(this._feature);
     }
 
     listAccounts() {
