@@ -12,3 +12,10 @@ a.modal-anchor {
   font-size: 18px;
   padding: 3px 12px;
 }
+
+i.btn-remove {
+  cursor: pointer;
+  &:hover {
+    color: $brand-danger;
+  }
+}

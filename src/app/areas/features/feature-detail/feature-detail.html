@@ -100,6 +100,7 @@
           <div class="col-sm-12">
             <ul class="list-unstyled mt-xl">
               <li><strong>Status:</strong>  <status 
+                admin="$ctrl._UserService.admin"
                 data="$ctrl._feature.status"
                 update-status="$ctrl.updateStatus(status)"></status>
               </li>
@@ -143,6 +144,7 @@
           <th>Relationship to Request</th>
           <th>Country</th>
           <th class="text-right">Account Value</th>
+          <th ng-show="$ctrl.showAccountDeleteColumn"></th>
         </thead>
         <tbody>
           <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
@@ -151,6 +153,9 @@
             <td>{{account.tie}}</td>
             <td>{{account.country}}</td>
             <td align="right">{{account.value | currency}}</td>
+            <td ng-show="$ctrl.showAccountDeleteColumn" align="center">
+              <i class="ion-close btn-remove" ng-click="$ctrl.removeAccountFromFeature(account.$id)"></i>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -174,10 +179,18 @@
         
       </form>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8" ng-hide="$ctrl._$scope.showAccountForm">
       <button type="button" class="btn btn-default"
-        ng-hide="$ctrl._$scope.showAccountForm"
+        ng-hide="$ctrl.showAccountDeleteColumn"
         ng-click="$ctrl._$scope.showAccountForm = true">Add Customer to Request
+      </button>
+      <button type="button" class="btn btn-danger ml-sm"
+        ng-show="$ctrl._UserService.admin && !$ctrl.showAccountDeleteColumn"
+        ng-click="$ctrl.showAccountDeleteColumn = true">Remove Accounts
+      </button>
+      <button type="button" class="btn btn-success"
+        ng-show="$ctrl._UserService.admin && $ctrl.showAccountDeleteColumn"
+        ng-click="$ctrl.showAccountDeleteColumn = false">Done
       </button>
     </div>
   </section>

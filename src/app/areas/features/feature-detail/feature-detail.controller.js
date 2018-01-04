@@ -198,6 +198,20 @@ class FeatureDetailCtrl {
             );
         }
     }
+
+    removeAccountFromFeature(accountId) {
+        let removeConfirmation = confirm(
+            'Are you sure you want to remove this account from this request?'
+        );
+
+        if (removeConfirmation) {
+            this._FeatureService
+                .removeAccountFromFeature(accountId, this._feature.$id)
+                .then(() => {
+                    this.listAccounts();
+                });
+        }
+    }
 }
 
 export default FeatureDetailCtrl;

@@ -21,6 +21,28 @@ export default class FeatureService {
         });
     }
 
+    removeAccountFromFeature(accountId, uid) {
+        return this.getFeature(uid)
+            .$loaded()
+            .then(feature => {
+                let i;
+                feature.accounts.forEach((account, index) => {
+                  if (account.accountKey === accountId) {
+                    i = index;
+                  }
+                });
+                if (i > -1) {
+                  feature.accounts.splice(i, 1);
+                  feature.$save().then(
+                    (feature) => {
+                      return feature;
+                    },
+                    (err) => console.log(err)
+                  )
+                }
+            });
+    }
+
     // Add Feature
     add(feature, currentAuth, accountKey) {
         if (!Array.isArray(accountKey)) {
