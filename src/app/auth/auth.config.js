@@ -60,6 +60,25 @@ function AuthConfig($stateProvider, $httpProvider) {
       }
     })
 
+    .state('app.verify', {
+      url: '/verify',
+      controller: 'AuthCtrl as $ctrl',
+      templateUrl: 'auth/verify.html',
+      title: 'Please verify your account',
+      // resolve: {
+      //   requireNoAuth: function($state, AuthService) {
+      //     return AuthService.$requireSignIn().then(
+      //       auth => {
+      //         $state.go('app.profile')
+      //       },
+      //       err => {
+      //         return
+      //       }
+      //     );
+      //   }
+      // }
+    })
+
 }
 
 export default AuthConfig

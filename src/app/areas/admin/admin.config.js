@@ -9,9 +9,7 @@ function AdminConfig($stateProvider) {
     templateUrl: 'areas/admin/admin.html',
     title: 'Admin',
     resolve: {
-      currentAuth: function(AuthService) {
-        return AuthService.$requireSignIn()
-      },
+      currentAuth: function(AuthService, $state) {                 return AuthService.$requireSignIn().then(auth => {                     if (!auth.emailVerified) {                         $state.go('app.verify');                     }                 });             },
       profile: function(UserService, AuthService) {
         return AuthService.$requireSignIn().then(
           (auth) => {

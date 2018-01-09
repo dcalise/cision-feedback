@@ -9,9 +9,13 @@ function FeatureDetailConfig($stateProvider) {
     templateUrl: 'areas/features/feature-detail/feature-detail.html',
     title: 'Feature Detail',
     resolve: {
-      currentAuth: function(AuthService) {
-        return AuthService.$requireSignIn()
-      },
+      currentAuth: function(AuthService, $state) {
+                return AuthService.$requireSignIn().then(auth => {
+                    if (!auth.emailVerified) {
+                        $state.go('app.verify');
+                    }
+                });
+            },
       profile: function(UserService, AuthService) {
         return AuthService.$requireSignIn().then(
           (auth) => {
