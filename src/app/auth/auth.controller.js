@@ -1,24 +1,12 @@
 class AuthCtrl {
-    constructor(AuthService, $state) {
+    constructor(AuthService, UserService, $state) {
         'ngInject';
 
         this._$state = $state;
         this._AuthService = AuthService;
+        this._UserService = UserService;
 
         this.error = null;
-    }
-
-    sendFirebaseEmailVerification() {
-        let user = firebase.auth().currentUser;
-        user.sendEmailVerification()
-            .then(success => {
-                console.log('please verify your email');
-            })
-            .catch(err => {
-                this.error = err;
-            });
-
-        console.log('sendddd');
     }
 
     submitLogin() {
@@ -32,7 +20,6 @@ class AuthCtrl {
                 res => {
                     this.isSubmitting = false;
                     this._$state.go('app.home');
-                    this.sendFirebaseEmailVerification();
                 },
                 err => {
                     console.log(err);
@@ -60,6 +47,7 @@ class AuthCtrl {
                 .then(
                     res => {
                         this.isSubmitting = false;
+                        this._UserService.sendFirebaseEmailVerification();
                         this._$state.go('app.profile');
                     },
                     err => {

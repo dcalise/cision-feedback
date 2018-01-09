@@ -12,13 +12,25 @@
 
 
       <div class="row">
+        
+        <div class="col-md-6" ng-show="!$ctrl._currentAuth.emailVerified">
+          <div class="alert alert-danger" role="alert">
+            <h4>Your email address hasn't been verified.</h4>
+            <p>You will be unable to use the application until you verify. Please check your inbox for a verification email.</p>
+            <button type="button" class="btn btn-danger mt-sm"
+              ng-click="$ctrl._UserService.sendFirebaseEmailVerification()">Resend Verification Email</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
 
         <div class="col-md-4 col-sm-6">
 
           <div class="form-group">
             <label for="email" class="control-label">Email</label>
             <input required type="text" class="form-control" readonly
-              ng-model="::$ctrl._auth.email">
+              ng-model="::$ctrl._currentAuth.email">
           </div>
           
           <div class="form-group">

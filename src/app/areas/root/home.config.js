@@ -9,7 +9,7 @@ function HomeConfig($stateProvider) {
     templateUrl: 'areas/root/home.html',
     title: 'Home',
     resolve: {
-      currentAuth: function(AuthService, $state) {                 return AuthService.$requireSignIn().then(auth => {                     if (!auth.emailVerified) {                         $state.go('app.verify');                     }                 });             },
+      currentAuth: function(AuthService, $state) {                 return AuthService.$requireSignIn().then(auth => {                     if (!auth.emailVerified) {                         $state.go('app.profile');                     }                 });             },
       profile: function(UserService, AuthService) {
         return AuthService.$requireSignIn().then(
           (auth) => {

@@ -59,22 +59,6 @@ function AuthConfig($stateProvider, $httpProvider) {
                 }
             }
         })
-
-        .state('app.verify', {
-            url: '/verify',
-            controller: 'AuthCtrl as $ctrl',
-            templateUrl: 'auth/verify.html',
-            title: 'Please verify your account',
-            resolve: {
-                currentAuth: function(AuthService, $state) {
-                    return AuthService.$requireSignIn().then(auth => {
-                        if (auth.emailVerified) {
-                            $state.go('app.home');
-                        }
-                    });
-                }
-            }
-        });
 }
 
 export default AuthConfig;
