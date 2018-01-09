@@ -10,8 +10,7 @@ class AuthCtrl {
 
     sendFirebaseEmailVerification() {
         let user = firebase.auth().currentUser;
-        user
-            .sendEmailVerification()
+        user.sendEmailVerification()
             .then(success => {
                 console.log('please verify your email');
             })
