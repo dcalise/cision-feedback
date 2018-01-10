@@ -19,7 +19,7 @@ class FeatureDetailCtrl {
 
         this._$state = $state;
         this._$scope = $scope;
-
+        
         this._feature = feature;
         this._currentAuth = currentAuth;
         this._comments = comments;
@@ -147,6 +147,10 @@ class FeatureDetailCtrl {
     }
 
     updateStatus() {
+        return this._feature.$save();
+    }
+
+    updateLocation() {
         return this._feature.$save();
     }
 

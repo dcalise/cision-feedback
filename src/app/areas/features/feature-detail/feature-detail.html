@@ -11,10 +11,11 @@
             <div class="col-sm-12">
               <span class="meta"
                 ng-if="$ctrl._feature.location">
-                <display-label
+                <location
+                  admin="$ctrl._UserService.admin"
                   data="$ctrl._feature.location"
-                  label-type="'location'">
-                </display-label>
+                  update-location="$ctrl.updateLocation(location)">
+                </location>
               </span>
               <h1>
                 {{::$ctrl._feature.subject}}
