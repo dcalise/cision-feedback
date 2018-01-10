@@ -40,11 +40,13 @@ async function start() {
     const featuresResult = await db.ref("features").once("value");
     const features = featuresResult.val();
 
-    Object.keys(features).forEach(async key => {
+    let counter = 0;
+
+    Object.keys(features).forEach(async (key, index) => {
       const feature = features[key];
       const dateFormatted = `${new Date(
         feature.dateCreated
-      ).getMonth()}/${new Date(feature.dateCreated).getDate()}/${new Date(
+      ).getMonth() + 1}/${new Date(feature.dateCreated).getDate()}/${new Date(
         feature.dateCreated
       ).getFullYear()}`;
 

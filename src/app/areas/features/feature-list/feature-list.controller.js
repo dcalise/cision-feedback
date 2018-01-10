@@ -5,7 +5,7 @@ class FeatureListCtrl {
         this._FeatureService = FeatureService;
         this.$localStorage = $localStorage;
 
-        this.features = this._FeatureService.all;
+        this.features = this._FeatureService._activeFeatures;
 
         this.features.$loaded().then(features => {
             angular.forEach(features, function(feature) {
@@ -25,48 +25,9 @@ class FeatureListCtrl {
 
     $onInit() {
         this.searchFeatures = '';
-
         // set default
         if (typeof this.getTablePrefs() === 'undefined') {
-            this.tablePrefs = {
-                type: 'dateCreated',
-                reverse: true,
-                width: 'container',
-                columns: {
-                    status: {
-                        id: 'status',
-                        display: true,
-                        displayName: 'Status'
-                    },
-                    labels: {
-                        id: 'labels',
-                        display: true,
-                        displayName: 'Labels'
-                    },
-                    summary: {
-                        id: 'subject',
-                        display: true,
-                        displayName: 'Summary'
-                    },
-                    originalRequester: {
-                        id: 'accountsMeta[0].name',
-                        display: true,
-                        displayName: 'Original Requester'
-                    },
-                    date: {
-                        id: 'dateCreated',
-                        display: true,
-                        displayName: 'Date'
-                    },
-                    totalValue: {
-                        id: 'totalValue',
-                        display: true,
-                        displayName: 'Total Value',
-                        thAlign: 'text-right'
-                    }
-                }
-            };
-            // grab from local storage
+            this.resetTablePrefs();
         } else {
             this.tablePrefs = {
                 type: this.getTablePrefs().type,
@@ -103,6 +64,49 @@ class FeatureListCtrl {
 
     getTablePrefs() {
         return this.$localStorage.tablePrefsSaved;
+    }
+
+    resetTablePrefs() {
+        this.tablePrefs = {
+            type: 'dateCreated',
+            reverse: true,
+            width: 'container',
+            columns: {
+                status: {
+                    id: 'status',
+                    display: true,
+                    displayName: 'Status'
+                },
+                labels: {
+                    id: 'labels',
+                    display: true,
+                    displayName: 'Labels'
+                },
+                summary: {
+                    id: 'subject',
+                    display: true,
+                    displayName: 'Summary'
+                },
+                originalRequester: {
+                    id: 'accountsMeta[0].name',
+                    display: true,
+                    displayName: 'Original Requester'
+                },
+                date: {
+                    id: 'dateCreated',
+                    display: true,
+                    displayName: 'Date'
+                },
+                totalValue: {
+                    id: 'totalValue',
+                    display: true,
+                    displayName: 'Total Value',
+                    thAlign: 'text-right'
+                }
+            }
+        };
+        this.searchFeatures = '';
+        this.setTablePrefs(this.tablePrefs);
     }
 }
 

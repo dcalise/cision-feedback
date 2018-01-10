@@ -1,19 +1,6 @@
 class StatusCtrl {
   constructor(AuthService, UserService) {
     'ngInject';
-    
-    this.admin = false;
-    AuthService.$requireSignIn().then(
-      (auth) => {
-        UserService.getProfile(auth.uid).$loaded().then(
-          (profile) => {
-            if (profile.roles && profile.roles.admin === true) {
-              this.admin = true;
-            }
-          }
-        )
-      }
-    )
 
     let initStatus;
     this.changeStatus = function(data) {
@@ -35,6 +22,7 @@ class StatusCtrl {
 
 let Status = {
   bindings: {
+    admin: '<',
     data: '=',
     updateStatus: '&'
   },
