@@ -1,44 +1,32 @@
 class DisplayLabelCtrl {
-  constructor(LabelService) {
-    'ngInject';
+    constructor(LabelService) {
+        'ngInject';
 
-    this._LabelService = LabelService;
-    this.displayName;
-  }
-
-  getDisplayName(labelId, labelType) {
-    switch (labelType) {
-      case 'product':
-        this._LabelService.getProduct(labelId).$loaded().then(
-          (product) => {
-            this.displayName = product.displayName
-          }
-        )
-        break;
-      case 'location':
-        this._LabelService.getLocation(labelId).$loaded().then(
-          (location) => {
-            this.displayName = location.displayName
-          }
-        )
-        break;
-      default:
-        this._LabelService.getLabel(labelId).$loaded().then(
-          (label) => {
-            this.displayName = label.displayName
-          }
-        )
+        this._LabelService = LabelService;
+        this.displayName;
     }
-  }
+
+    $onInit() {
+        this._LabelService
+            .getDisplayName(this.data, this.isLocation)
+            .then(locationDisplayName => {
+                this.displayName = locationDisplayName;
+            });
+        // console.log('on init: %s', this._LabelService.getDisplayName(this.data, this.labelType));
+        this.displayName = this._LabelService.getDisplayName(
+            this.data,
+            this.isLocation
+        );
+    }
 }
 
 let DisplayLabel = {
-  bindings: {
-    data: '=',
-    labelType: '='
-  },
-  controller: DisplayLabelCtrl,
-  templateUrl: 'components/display-label/display-label.html'
+    bindings: {
+        data: '=',
+        isLocation: '<?'
+    },
+    controller: DisplayLabelCtrl,
+    templateUrl: 'components/display-label/display-label.html'
 };
 
 export default DisplayLabel;
