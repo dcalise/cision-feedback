@@ -5,7 +5,7 @@ class LocationControl {
         this._LabelService = LabelService;
 
         let initLocation;
-        this.changeLocation = function(data) {
+        this.changeLocation = data => {
             if (this.editing) {
                 if (data.location === 'cancel') {
                     this.data = initLocation;
@@ -25,10 +25,12 @@ let Location = {
     bindings: {
         admin: '<',
         data: '=',
-        updateLocation: '&'
+        updateLocation: '&',
+        expiredLabel: '<'
     },
     controller: LocationControl,
-    templateUrl: 'areas/features/feature-detail/components/location/location.html'
+    templateUrl:
+        'areas/features/feature-detail/components/location/location.html'
 };
 
 export default Location;

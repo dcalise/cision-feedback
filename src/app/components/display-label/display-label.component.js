@@ -7,23 +7,29 @@ class DisplayLabelCtrl {
     }
 
     $onInit() {
+        this.fetchDisplayName(this.data, this.isLocation);
+    }
+
+    fetchDisplayName(data, isLocation) {
         this._LabelService
-            .getDisplayName(this.data, this.isLocation)
+            .getDisplayName(data, isLocation)
             .then(locationDisplayName => {
                 this.displayName = locationDisplayName;
             });
-        // console.log('on init: %s', this._LabelService.getDisplayName(this.data, this.labelType));
-        this.displayName = this._LabelService.getDisplayName(
-            this.data,
-            this.isLocation
-        );
+    }
+
+    $onChanges(changes) {
+        if (changes.expiredLabel.currentValue) {
+          this.fetchDisplayName(this.data, this.isLocation);
+        }
     }
 }
 
 let DisplayLabel = {
     bindings: {
         data: '=',
-        isLocation: '<?'
+        isLocation: '<?',
+        expiredLabel: '<'
     },
     controller: DisplayLabelCtrl,
     templateUrl: 'components/display-label/display-label.html'
