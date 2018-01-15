@@ -1,10 +1,9 @@
 export default class AuthService {
-  constructor($firebaseAuth) {
-    'ngInject';
+    constructor($firebaseAuth) {
+        'ngInject';
 
-    const auth = $firebaseAuth();
-    
-    return auth;
-  }
-  
+        const auth = $firebaseAuth();
+
+        return auth;
+    }
 }
