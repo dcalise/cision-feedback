@@ -43,6 +43,8 @@ class FeatureDetailCtrl {
         this.showComments = true;
         this.showCustomerSummary = true;
 
+        this.expiredLabel = false;
+
         this.listAccounts();
 
         this.getCommentMeta();
@@ -57,6 +59,7 @@ class FeatureDetailCtrl {
             $scope.reset = reset;
         };
     }
+    
 
     archiveThisFeature() {
         let archiveAnswer = confirm(
@@ -151,7 +154,15 @@ class FeatureDetailCtrl {
     }
 
     updateLocation() {
-        return this._feature.$save();
+        return this._feature.$save().then(
+            (res) => {
+                this.expiredLabel = true;
+            }
+        );
+    }
+
+    resetLabelExpiration() {
+        this.expiredLabel = false;
     }
 
     addAccount() {

@@ -21,6 +21,7 @@ class DisplayLabelCtrl {
     $onChanges(changes) {
         if (changes.expiredLabel.currentValue) {
           this.fetchDisplayName(this.data, this.isLocation);
+          this.resetLabelExpiration();
         }
     }
 }
@@ -29,7 +30,8 @@ let DisplayLabel = {
     bindings: {
         data: '=',
         isLocation: '<?',
-        expiredLabel: '<'
+        expiredLabel: '<',
+        resetLabelExpiration: '&'
     },
     controller: DisplayLabelCtrl,
     templateUrl: 'components/display-label/display-label.html'

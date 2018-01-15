@@ -26,7 +26,8 @@ let Location = {
         admin: '<',
         data: '=',
         updateLocation: '&',
-        expiredLabel: '<'
+        expiredLabel: '<',
+        resetLabelExpiration: '&'
     },
     controller: LocationControl,
     templateUrl:
