@@ -1,21 +1,20 @@
 class StatusCtrl {
     constructor(AuthService, UserService) {
         'ngInject';
+    }
 
-        let initStatus;
-        this.changeStatus = function(data) {
-            if (this.editing) {
-                if (data.status === 'cancel') {
-                    this.data = initStatus;
-                } else {
-                    this.updateStatus(status);
-                }
-                this.editing = false;
+    changeStatus(data) {
+        if (this.editing) {
+            if (data.status === 'cancel') {
+                this.data = this.initStatus;
             } else {
-                initStatus = this.data;
-                this.editing = true;
+                this.updateStatus(status);
             }
-        };
+            this.editing = false;
+        } else {
+            this.initStatus = this.data;
+            this.editing = true;
+        }
     }
 }
 

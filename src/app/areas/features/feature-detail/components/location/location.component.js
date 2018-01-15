@@ -3,23 +3,18 @@ class LocationControl {
         'ngInject';
 
         this._LabelService = LabelService;
-        this._data = this.data;
-    }
-
-    $onInit() {
-        let initLocation;
     }
 
     changeLocation(data) {
         if (this.editing) {
             if (data.location === 'cancel') {
-                this.data = this.initLocation;
+                this.data = this.initLocation
             } else {
                 this.updateLocation(location);
             }
             this.editing = false;
         } else {
-            this.initLocation = data;
+            this.initLocation = this.data;
             this.editing = true;
         }
     }
