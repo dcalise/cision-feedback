@@ -8,7 +8,6 @@ import 'angular-validation-match';
 import 'angular-toastr';
 import 'angular-ui-bootstrap';
 import 'ngstorage';
-import 'q';
 
 
 // Import our app config files
