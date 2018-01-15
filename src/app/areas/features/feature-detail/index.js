@@ -14,6 +14,9 @@ featureDetailModule.controller('FeatureDetailCtrl', FeatureDetailCtrl);
 import Comment from './components/comment/comment.component';
 featureDetailModule.component('comment', Comment);
 
+import Location from './components/location/location.component';
+featureDetailModule.component('location', Location);
+
 import Status from './components/status/status.component';
 featureDetailModule.component('status', Status);
 
