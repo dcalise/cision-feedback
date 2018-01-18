@@ -13,6 +13,7 @@ function AdminConfig($stateProvider) {
                     if (!auth.emailVerified) {
                         $state.go('app.profile');
                     }
+                    return auth;
                 });
             },
             profile: function(UserService, AuthService) {
