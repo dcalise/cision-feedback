@@ -4,26 +4,30 @@ class FeatureListCtrl {
 
         this._FeatureService = FeatureService;
         this.$localStorage = $localStorage;
+        this._AccountService = AccountService;
 
+    }
+
+    $onInit() {
         this.features = this._FeatureService._activeFeatures;
 
         this.features.$loaded().then(features => {
-            angular.forEach(features, function(feature) {
+            angular.forEach(features, (feature) => {
                 feature.accountsMeta = [];
                 feature.totalValue = 0;
-                angular.forEach(feature.accounts, function(account) {
-                    AccountService.getAccount(account.accountKey).then(
-                        account => {
-                            feature.accountsMeta.push(account);
-                            feature.totalValue += parseInt(account.value);
+                feature.averageValue = 0;
+                angular.forEach(feature.accounts, (account) => {
+                    this._AccountService.getAccount(account.accountKey).then(
+                        curAccount => {
+                            feature.accountsMeta.push(curAccount);
+                            feature.totalValue += parseInt(curAccount.value);
+                            feature.averageValue = feature.totalValue / parseInt(feature.accounts.length);
                         }
                     );
                 });
             });
         });
-    }
 
-    $onInit() {
         this.searchFeatures = '';
         // set default
         if (typeof this.getTablePrefs() === 'undefined') {
@@ -40,7 +44,7 @@ class FeatureListCtrl {
 
     changeColumnSort(col, reverse) {
         this.tablePrefs.reverse = false;
-        if (this.tablePrefs.type == col) {
+        if (this.tablePrefs.type === col) {
             this.tablePrefs.reverse = !reverse;
         } else {
             this.tablePrefs.reverse = false;
@@ -101,6 +105,12 @@ class FeatureListCtrl {
                     id: 'totalValue',
                     display: true,
                     displayName: 'Total Value',
+                    thAlign: 'text-right'
+                },
+                averageValue: {
+                    id: 'averageValue',
+                    display: true,
+                    displayName: 'Average Value',
                     thAlign: 'text-right'
                 }
             }
