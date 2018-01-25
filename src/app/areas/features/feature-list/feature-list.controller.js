@@ -109,7 +109,7 @@ class FeatureListCtrl {
                 },
                 averageValue: {
                     id: 'averageValue',
-                    display: true,
+                    display: false,
                     displayName: 'Average Value',
                     thAlign: 'text-right'
                 }
