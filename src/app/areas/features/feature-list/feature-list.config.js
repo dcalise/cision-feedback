@@ -13,6 +13,7 @@ function FeatureListConfig($stateProvider) {
                     if (!auth.emailVerified) {
                         $state.go('app.profile');
                     }
+                    return auth;
                 });
             },
             profile: function(UserService, AuthService) {
