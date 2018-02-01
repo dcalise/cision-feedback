@@ -1,0 +1,16 @@
+<h5>Status</h5>
+<div class="checkbox"
+  ng-repeat="status in $ctrl.statusList">
+  <label>
+    <input
+      type="checkbox"
+      value="{{status}}"
+      name="$ctrl.filterParams.status[]"
+      ng-checked="$ctrl.filterParams.status.indexOf(status) > -1"
+      ng-click="$ctrl.toggleSelection(status)"
+    > {{status}}
+  </label>
+</div>
+<h5>Labels</h5>
+<h5>Date Range</h5>
+<h5>Value Range</h5>

@@ -118,6 +118,10 @@ class FeatureListCtrl {
         this.searchFeatures = '';
         this.setTablePrefs(this.tablePrefs);
     }
+
+    updateFilters(filterParams) {
+        this.filterParams = filterParams;
+    }
 }
 
 export default FeatureListCtrl;
