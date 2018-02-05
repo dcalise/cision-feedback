@@ -2,7 +2,7 @@ import angular from 'angular';
 
 let filtersModule = angular.module('app.filters', []);
 
-import StatusFilter from './status.filter';
-filtersModule.filter('statusFilter', StatusFilter);
+import FeaturesFilter from './features.filter';
+filtersModule.filter('featuresFilter', FeaturesFilter);
 
 export default filtersModule;

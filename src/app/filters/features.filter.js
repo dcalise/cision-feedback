@@ -1,4 +1,4 @@
-export default function statusFilter() {
+export default function featuresFilter() {
     'ngInject';
 
     return (features, filterParams) => {

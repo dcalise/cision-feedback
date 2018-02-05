@@ -136,7 +136,7 @@ class FeatureListCtrl {
     }
 
     filterFeatures() {
-        this.filteredFeatures = this._$filter('statusFilter')(
+        this.filteredFeatures = this._$filter('featuresFilter')(
             this.features,
             this.filterParams
         );
