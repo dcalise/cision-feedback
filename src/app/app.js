@@ -9,7 +9,6 @@ import 'angular-toastr';
 import 'angular-ui-bootstrap';
 import 'ngstorage';
 
-
 // Import our app config files
 import constants from './config/app.constants';
 import appConfig from './config/app.config';
@@ -28,6 +27,7 @@ import './areas/features/feature-detail';
 import './areas/features/feature-list';
 import './areas/features/feature-create';
 import './areas/profile';
+import './filters';
 import './services';
 
 // Create and bootstrap application
@@ -47,6 +47,7 @@ const requires = [
     'app.feature-list',
     'app.feature-create',
     'app.profile',
+    'app.filters',
     'app.services',
     'angucomplete-alt',
     'validation.match',
