@@ -1,8 +1,8 @@
 <h5>Status 
   <span class="badge">{{ $ctrl.filterParams.status.length }}</span> 
-  <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': statusCollapse, 'ion-ios-arrow-up': !statusCollapse,}" ng-click="statusCollapse = !statusCollapse"></i>
+  <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !statusCollapse, 'ion-ios-arrow-up': statusCollapse,}" ng-click="statusCollapse = !statusCollapse"></i>
 </h5>
-<div uib-collapse="statusCollapse">
+<div uib-collapse="!statusCollapse">
   <button class="btn btn-default btn-xs"
     ng-click="$ctrl.uncheckAllStatuses()"
     ng-disabled="$ctrl.filterParams.status.length === 0">Uncheck All</button>
@@ -25,12 +25,12 @@
 
 <h5>Labels 
   <span class="badge">{{ $ctrl.filterParams.labels.length }}</span> 
-  <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': labelCollapse, 'ion-ios-arrow-up': !labelCollapse,}" 
+  <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !labelCollapse, 'ion-ios-arrow-up': labelCollapse,}" 
     ng-click="labelCollapse = !labelCollapse"></i>
 
 </h5>
 
-<div uib-collapse="labelCollapse">
+<div uib-collapse="!labelCollapse">
   <button class="btn btn-default btn-xs"
     ng-click="$ctrl.uncheckAllLabels()"
     ng-disabled="$ctrl.filterParams.labels.length === 0">Uncheck All</button>
@@ -48,6 +48,28 @@
         "name="$ctrl.filterParams.labels[]"
         ng-checked="$ctrl.filterParams.labels.indexOf(label) > -1"
         ng-click="$ctrl.toggleLabel(label.$id)"> {{label.displayName}}
+    </label>
+  </div>
+</div>
+
+<h5>Misc
+  <!-- <span class="badge">{{ $ctrl.filterParams..length }}</span> -->
+  <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': miscCollapse, 'ion-ios-arrow-up': !miscCollapse,}" ng-click="miscCollapse = !miscCollapse"></i>
+</h5>
+<div uib-collapse="miscCollapse">
+  <!-- <button class="btn btn-default btn-xs"
+    ng-click="$ctrl.uncheckAllStatuses()"
+    ng-disabled="$ctrl.filterParams.status.length === 0">Uncheck All</button>
+  <button class="btn btn-default btn-xs"
+    ng-click="$ctrl.checkAllStatuses()"
+    ng-disabled="$ctrl.filterParams.status.length === $ctrl.statusList.length">Check All</button> -->
+  <div class="checkbox">
+    <label>
+      <input
+        type="checkbox"
+        ng-checked="$ctrl.filterParams.viewArchived === true;"
+        ng-click="$ctrl.toggleViewArchived()"
+      > View Archived
     </label>
   </div>
 </div>

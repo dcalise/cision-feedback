@@ -3,15 +3,18 @@ export default function featuresFilter() {
 
     return (features, filterParams) => {
         let output = [];
-        
+
         angular.forEach(features, feature => {
             let statusMatch = false;
             let labelMatch = false;
+            let activeStatusMatch = false;
 
+            // check status
             if (filterParams.status.indexOf(feature.status) > -1) {
                 statusMatch = true;
             }
 
+            // check label
             for (let label of filterParams.labels) {
                 if (label === 'undefined') {
                     if (!feature.labels) {
@@ -25,7 +28,16 @@ export default function featuresFilter() {
                 }
             }
 
-            if (statusMatch && labelMatch) {
+            // check archive
+            if (filterParams.viewArchived === true) {
+                if (feature.activeState > 0) {
+                    activeStatusMatch = true;
+                }
+            } else if (feature.activeState > 1) {
+                activeStatusMatch = true;
+            }
+
+            if (statusMatch && labelMatch && activeStatusMatch) {
                 output.push(feature);
             }
         });
