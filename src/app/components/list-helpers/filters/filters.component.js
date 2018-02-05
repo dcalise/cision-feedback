@@ -18,9 +18,9 @@ class FiltersCtrl {
                 this.filterParams.labels.push(label);
             });
             this.filterParams.labels.push('undefined');
+            this.updateFilters({ filterParams: this.filterParams });
         });
 
-        this.updateFilters({ filterParams: this.filterParams });
     }
 
     toggleStatus(status) {
