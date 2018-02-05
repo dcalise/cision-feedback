@@ -36,7 +36,7 @@ class FeatureListCtrl {
                 });
             });
             
-            this.filterFeatures();
+            // this.filterFeatures();
         });
 
         this.searchFeatures = '';
@@ -138,7 +138,7 @@ class FeatureListCtrl {
     filterFeatures() {
         this.filteredFeatures = this._$filter('statusFilter')(
             this.features,
-            this.filterParams.status
+            this.filterParams
         );
     }
 }

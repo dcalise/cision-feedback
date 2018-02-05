@@ -7,10 +7,23 @@
       value="{{status}}"
       name="$ctrl.filterParams.status[]"
       ng-checked="$ctrl.filterParams.status.indexOf(status) > -1"
-      ng-click="$ctrl.toggleSelection(status)"
+      ng-click="$ctrl.toggleStatus(status)"
     > {{status}}
   </label>
 </div>
 <h5>Labels</h5>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" value="undefined" name="$ctrl.filterParams.labels[]" ng-checked="$ctrl.filterParams.labels.indexOf('undefined') > -1" ng-click="$ctrl.toggleLabel('undefined')"> No Label
+  </label>
+</div>
+<div class="checkbox" ng-repeat="label in $ctrl.labelList">
+  <label>
+    <input type="checkbox" value="{{label}} 
+      "name="$ctrl.filterParams.labels[]"
+      ng-checked="$ctrl.filterParams.labels.indexOf(label) > -1"
+      ng-click="$ctrl.toggleLabel(label.$id)"> {{label.displayName}}
+  </label>
+</div>
 <h5>Date Range</h5>
 <h5>Value Range</h5>
