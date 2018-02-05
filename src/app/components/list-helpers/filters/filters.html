@@ -12,6 +12,12 @@
   </label>
 </div>
 <h5>Labels</h5>
+<button class="btn btn-default btn-xs"
+  ng-click="$ctrl.uncheckAllLabels()"
+  ng-disabled="$ctrl.filterParams.labels.length === 0">Uncheck All</button>
+<button class="btn btn-default btn-xs"
+  ng-click="$ctrl.checkAllLabels()"
+  ng-disabled="$ctrl.filterParams.labels.length === $ctrl._LabelService._labels.length + 1">Check All</button>
 <div class="checkbox">
   <label>
     <input type="checkbox" value="undefined" name="$ctrl.filterParams.labels[]" ng-checked="$ctrl.filterParams.labels.indexOf('undefined') > -1" ng-click="$ctrl.toggleLabel('undefined')"> No Label

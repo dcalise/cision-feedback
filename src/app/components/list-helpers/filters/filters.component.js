@@ -8,19 +8,18 @@ class FiltersCtrl {
     $onInit() {
         this.filterParams = {};
 
-        this.statusList = ['Received', 'Under Review', 'Moved to Backlog', 'Released', 'Closed'];
+        this.statusList = [
+            'Received',
+            'Under Review',
+            'Moved to Backlog',
+            'Released',
+            'Closed'
+        ];
         this.filterParams.status = this.statusList.slice(0);
 
         this.labelList = this._LabelService._labels;
-        this.filterParams.labels = [];
-        this._LabelService._labels.$loaded(labels => {
-            angular.forEach(labels, label => {
-                this.filterParams.labels.push(label);
-            });
-            this.filterParams.labels.push('undefined');
-            this.updateFilters({ filterParams: this.filterParams });
-        });
-
+        this.uncheckAllLabels();
+        this.checkAllLabels();
     }
 
     toggleStatus(status) {
@@ -41,7 +40,7 @@ class FiltersCtrl {
         for (let [idx, labelObj] of this.filterParams.labels.entries()) {
             if (labelId === 'undefined') {
                 if (labelObj === 'undefined') {
-                    match = idx
+                    match = idx;
                     break;
                 }
             }
@@ -53,16 +52,29 @@ class FiltersCtrl {
 
         if (match !== null) {
             this.filterParams.labels.splice(match, 1);
+        } else if (labelId === 'undefined') {
+            this.filterParams.labels.push('undefined');
         } else {
-            if (labelId === 'undefined') {
-              this.filterParams.labels.push('undefined')
-            } else {
-                this.filterParams.labels.push(
-                    this._LabelService._labels.$getRecord(labelId)
-                );
-            }
+            this.filterParams.labels.push(
+                this._LabelService._labels.$getRecord(labelId)
+            );
         }
 
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    checkAllLabels() {
+        this._LabelService._labels.$loaded(labels => {
+            angular.forEach(labels, label => {
+                this.filterParams.labels.push(label);
+            });
+            this.filterParams.labels.push('undefined');
+            this.updateFilters({ filterParams: this.filterParams });
+        });
+    }
+
+    uncheckAllLabels() {
+        this.filterParams.labels = [];
         this.updateFilters({ filterParams: this.filterParams });
     }
 }
