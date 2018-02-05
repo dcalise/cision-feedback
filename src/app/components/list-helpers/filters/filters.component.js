@@ -15,7 +15,7 @@ class FiltersCtrl {
             'Released',
             'Closed'
         ];
-        this.filterParams.status = this.statusList.slice(0);
+        this.checkAllStatuses();
 
         this.labelList = this._LabelService._labels;
         this.uncheckAllLabels();
@@ -60,6 +60,16 @@ class FiltersCtrl {
             );
         }
 
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    checkAllStatuses() {
+        this.filterParams.status = this.statusList.slice(0);
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    uncheckAllStatuses() {
+        this.filterParams.status = [];
         this.updateFilters({ filterParams: this.filterParams });
     }
 

@@ -1,4 +1,10 @@
 <h5>Status</h5>
+<button class="btn btn-default btn-xs"
+  ng-click="$ctrl.uncheckAllStatuses()"
+  ng-disabled="$ctrl.filterParams.status.length === 0">Uncheck All</button>
+<button class="btn btn-default btn-xs"
+  ng-click="$ctrl.checkAllStatuses()"
+  ng-disabled="$ctrl.filterParams.status.length === $ctrl.statusList.length">Check All</button>
 <div class="checkbox"
   ng-repeat="status in $ctrl.statusList">
   <label>
@@ -31,5 +37,3 @@
       ng-click="$ctrl.toggleLabel(label.$id)"> {{label.displayName}}
   </label>
 </div>
-<h5>Date Range</h5>
-<h5>Value Range</h5>
