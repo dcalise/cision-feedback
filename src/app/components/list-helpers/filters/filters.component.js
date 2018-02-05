@@ -15,7 +15,7 @@ class FiltersCtrl {
             'Released',
             'Closed'
         ];
-        this.checkAllStatuses();
+        this.filterParams.status = this.statusList.slice(0);
 
         this.labelList = this._LabelService._labels;
         this.uncheckAllLabels();
