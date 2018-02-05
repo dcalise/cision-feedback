@@ -8,7 +8,7 @@ class FiltersCtrl {
     $onInit() {
         this.filterParams = {};
 
-        this.statusList = ['Received', 'Viewed', 'Closed'];
+        this.statusList = ['Received', 'Under Review', 'Moved to Backlog', 'Released', 'Closed'];
         this.filterParams.status = this.statusList.slice(0);
 
         this.labelList = this._LabelService._labels;
