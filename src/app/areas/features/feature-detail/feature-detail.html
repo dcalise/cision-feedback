@@ -73,7 +73,7 @@
                 data="cmt"
                 delete-cb="$ctrl.deleteComment(cmt.$id, $index)">
               </comment>
-              
+
               <form class="message-form"
                 ng-show="$ctrl.showComment"
                 ng-submit="$ctrl.addComment()">
@@ -93,7 +93,7 @@
                 ng-click="$ctrl.showComment = true">Comment
               </button>
             </div>
-            
+
 
           </div>
         </div>
@@ -102,7 +102,7 @@
         <div class="row">
           <div class="col-sm-12">
             <ul class="list-unstyled mt-xl">
-              <li><strong>Status:</strong>  <status 
+              <li><strong>Status:</strong>  <status
                 admin="$ctrl._UserService.admin"
                 data="$ctrl._feature.status"
                 update-status="$ctrl.updateStatus(status)"></status>
@@ -126,7 +126,7 @@
                ng-click="$ctrl.deleteThisFeature()">Delete Feature Request</button>
           </div>
         </div>
-        
+
       </div>
     </div>
   </section>
@@ -151,7 +151,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
-            <td>{{account.name}}<br><span class="meta small light">{{account.cid}}</span></td>
+            <td>{{account.name}}<br><span class="meta small">{{account.cid}}</span></td>
             <td>{{account.accountType}}</td>
             <td>{{account.tie}}</td>
             <td>{{account.country}}</td>
@@ -163,12 +163,12 @@
         </tbody>
       </table>
     </div>
-    
+
     <div class="col-sm-8"
       ng-show="$ctrl._$scope.showAccountForm">
-      <form class="account-form" 
+      <form class="account-form"
         ng-submit="$ctrl.addAccount()">
-        
+
         <add-account
           create-feature="false"
           new-account="$ctrl.newAccount"
@@ -179,7 +179,7 @@
           account-form="$ctrl.accountForm"
           search-function="$ctrl._AccountService.accountSearch">
         </add-account>
-        
+
       </form>
     </div>
     <div class="col-sm-8" ng-hide="$ctrl._$scope.showAccountForm">
