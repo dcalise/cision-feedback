@@ -52,6 +52,31 @@
   </div>
 </div>
 
+<h5>Locations
+  <span class="badge">{{ $ctrl.filterParams.locations.length }}</span>
+  <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !locationCollapse, 'ion-ios-arrow-up': locationCollapse,}" ng-click="locationCollapse = !locationCollapse"></i>
+
+</h5>
+
+<div uib-collapse="!locationCollapse">
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAllLocations()" ng-disabled="$ctrl.filterParams.locations.length === 0">Uncheck All</button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAllLocations()" ng-disabled="$ctrl.filterParams.locations.length === $ctrl._LabelService._locations.length + 1">Check All</button>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" value="undefined" name="$ctrl.filterParams.locations[]" ng-checked="$ctrl.filterParams.locations.indexOf('undefined') > -1"
+        ng-click="$ctrl.toggleLocation('undefined')"> No Label
+    </label>
+  </div>
+  <div class="checkbox" ng-repeat="location in $ctrl.locationList">
+    <label>
+      <input type="checkbox" value="{{location}}"
+        name="$ctrl.filterParams.locations[]"
+        ng-checked="$ctrl.filterParams.locations.indexOf(location) > -1"
+        ng-click="$ctrl.toggleLocation(location.$id)"> {{location.displayName}}
+    </label>
+  </div>
+</div>
+
 <h5>Misc
   <!-- <span class="badge">{{ $ctrl.filterParams..length }}</span> -->
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': miscCollapse, 'ion-ios-arrow-up': !miscCollapse,}" ng-click="miscCollapse = !miscCollapse"></i>

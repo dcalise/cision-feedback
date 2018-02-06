@@ -7,6 +7,7 @@ export default function featuresFilter() {
         angular.forEach(features, feature => {
             let statusMatch = false;
             let labelMatch = false;
+            let locationMatch = false;
             let activeStatusMatch = false;
 
             // check status
@@ -28,6 +29,23 @@ export default function featuresFilter() {
                 }
             }
 
+            // check location
+            for (let location of filterParams.locations) {
+                if (location === 'undefined') {
+                    if (!feature.location) {
+                        locationMatch = true;
+                        break;
+                    }
+                }
+                if (
+                    feature.location &&
+                    feature.location.indexOf(location.$id) > -1
+                ) {
+                    locationMatch = true;
+                    break;
+                }
+            }
+
             // check archive
             if (filterParams.viewArchived === true) {
                 if (feature.activeState > 0) {
@@ -37,7 +55,12 @@ export default function featuresFilter() {
                 activeStatusMatch = true;
             }
 
-            if (statusMatch && labelMatch && activeStatusMatch) {
+            if (
+                statusMatch &&
+                labelMatch &&
+                locationMatch &&
+                activeStatusMatch
+            ) {
                 output.push(feature);
             }
         });
