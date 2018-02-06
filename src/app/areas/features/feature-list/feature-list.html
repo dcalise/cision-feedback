@@ -70,13 +70,19 @@
             <tr ng-repeat="feature in $ctrl.filteredFeatures | orderBy:$ctrl.tablePrefs.type:$ctrl.tablePrefs.reverse | filter:$ctrl.searchFeatures" ng-class="{archived: feature.activeState === 1}">
               <td ng-if="$ctrl.tablePrefs.columns.status.display">
                 <span class="label"
-                  ng-class="{
-                    'label-success': feature.status === 'Released',
-                    'label-info': feature.status === 'Moved to Backlog',
-                    'label-default': feature.status === 'Received',
-                    'label-warning': feature.status === 'Under Review',
-                    'label-danger': feature.status === 'Closed'
-                  }">{{feature.status}}</span>
+                ng-class="{
+                  'label-success': feature.status === 'Released',
+                  'label-info': feature.status === 'Moved to Backlog',
+                  'label-default': feature.status === 'Received',
+                  'label-warning': feature.status === 'Under Review',
+                  'label-danger': feature.status === 'Closed'
+                }">{{feature.status}}</span>
+              </td>
+              <td ng-if="$ctrl.tablePrefs.columns.location.display">
+                <display-label
+                  ng-if="feature.location"
+                  data="feature.location"
+                  is-location="true"></display-label>
               </td>
               <td ng-if="$ctrl.tablePrefs.columns.labels.display">
                 <span ng-repeat="label in feature.labels">
