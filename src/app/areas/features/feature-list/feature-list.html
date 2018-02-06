@@ -79,7 +79,10 @@
                 }">{{feature.status}}</span>
               </td>
               <td ng-if="$ctrl.tablePrefs.columns.location.display">
-                {{feature.location}}
+                <display-label
+                  ng-if="feature.location"
+                  data="feature.location"
+                  is-location="true"></display-label>
               </td>
               <td ng-if="$ctrl.tablePrefs.columns.labels.display">
                 <span ng-repeat="label in feature.labels">

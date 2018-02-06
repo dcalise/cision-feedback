@@ -95,7 +95,7 @@ class FeatureListCtrl {
                 location: {
                     id: 'location',
                     display: true,
-                    displayName: 'Location'
+                    displayName: 'C3 Workflow'
                 },
                 labels: {
                     id: 'labels',
