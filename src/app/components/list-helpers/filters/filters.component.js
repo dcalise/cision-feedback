@@ -6,7 +6,12 @@ class FiltersCtrl {
     }
 
     $onInit() {
-        this.filterParams = {};
+        this.filterParams = {
+            status: [],
+            labels: [],
+            locations: [],
+            viewArchived: false
+        };
 
         this.statusList = [
             'Received',
@@ -18,10 +23,20 @@ class FiltersCtrl {
         this.filterParams.status = this.statusList.slice(0);
 
         this.labelList = this._LabelService._labels;
-        this.uncheckAllLabels();
         this.checkAllLabels();
 
-        this.filterParams.viewArchived = false;
+        this.locationList = [];
+        this._LabelService._locations.$loaded(locations => {
+            let activeLocations = [];
+            locations.filter(location => {
+                if (!location.deleted) {
+                    activeLocations.push(location);
+                }
+            });
+            return (this.locationList = activeLocations);
+        });
+
+        this.checkAllLocations();
     }
 
     toggleStatus(status) {
@@ -65,6 +80,35 @@ class FiltersCtrl {
         this.updateFilters({ filterParams: this.filterParams });
     }
 
+    toggleLocation(locationId) {
+        let match = null;
+
+        for (let [idx, locationObj] of this.filterParams.locations.entries()) {
+            if (locationId === 'undefined') {
+                if (locationObj === 'undefined') {
+                    match = idx;
+                    break;
+                }
+            }
+            if (locationObj.$id === locationId) {
+                match = idx;
+                break;
+            }
+        }
+
+        if (match !== null) {
+            this.filterParams.locations.splice(match, 1);
+        } else if (locationId === 'undefined') {
+            this.filterParams.locations.push('undefined');
+        } else {
+            this.filterParams.locations.push(
+                this._LabelService._locations.$getRecord(locationId)
+            );
+        }
+
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
     toggleViewArchived() {
         this.filterParams.viewArchived = !this.filterParams.viewArchived;
         this.updateFilters({ filterParams: this.filterParams });
@@ -92,6 +136,27 @@ class FiltersCtrl {
 
     uncheckAllLabels() {
         this.filterParams.labels = [];
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    checkAllLocations() {
+        this._LabelService._locations.$loaded(locations => {
+            let activeLocations = [];
+            locations.filter(location => {
+                if (!location.deleted) {
+                    activeLocations.push(location);
+                }
+            });
+            angular.forEach(activeLocations, location => {
+                this.filterParams.locations.push(location);
+            });
+            this.filterParams.locations.push('undefined');
+            this.updateFilters({ filterParams: this.filterParams });
+        });
+    }
+
+    uncheckAllLocations() {
+        this.filterParams.locations = [];
         this.updateFilters({ filterParams: this.filterParams });
     }
 }
