@@ -92,6 +92,11 @@ class FeatureListCtrl {
                     display: true,
                     displayName: 'Status'
                 },
+                location: {
+                    id: 'location',
+                    display: true,
+                    displayName: 'Location'
+                },
                 labels: {
                     id: 'labels',
                     display: true,
