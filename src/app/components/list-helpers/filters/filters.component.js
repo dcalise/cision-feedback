@@ -25,7 +25,17 @@ class FiltersCtrl {
         this.labelList = this._LabelService._labels;
         this.checkAllLabels();
 
-        this.locationList = this._LabelService._locations;
+        this.locationList = [];
+        this._LabelService._locations.$loaded(locations => {
+            let activeLocations = [];
+            locations.filter(location => {
+                if (!location.deleted) {
+                    activeLocations.push(location);
+                }
+            });
+            return (this.locationList = activeLocations);
+        });
+
         this.checkAllLocations();
     }
 
@@ -131,7 +141,13 @@ class FiltersCtrl {
 
     checkAllLocations() {
         this._LabelService._locations.$loaded(locations => {
-            angular.forEach(locations, location => {
+            let activeLocations = [];
+            locations.filter(location => {
+                if (!location.deleted) {
+                    activeLocations.push(location);
+                }
+            });
+            angular.forEach(activeLocations, location => {
                 this.filterParams.locations.push(location);
             });
             this.filterParams.locations.push('undefined');
