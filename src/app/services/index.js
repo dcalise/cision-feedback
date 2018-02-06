@@ -21,5 +21,4 @@ servicesModule.service('AuthService', AuthService);
 import UserService from './user.service';
 servicesModule.service('UserService', UserService);
 
-
 export default servicesModule;

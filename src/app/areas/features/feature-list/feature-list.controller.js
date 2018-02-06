@@ -1,31 +1,42 @@
 class FeatureListCtrl {
-    constructor($http, $q, $localStorage, FeatureService, AccountService) {
+    constructor(
+        $http,
+        $q,
+        $localStorage,
+        FeatureService,
+        AccountService,
+        $filter
+    ) {
         'ngInject';
 
         this._FeatureService = FeatureService;
         this.$localStorage = $localStorage;
         this._AccountService = AccountService;
-
+        this._$filter = $filter;
     }
 
     $onInit() {
         this.features = this._FeatureService._activeFeatures;
 
         this.features.$loaded().then(features => {
-            angular.forEach(features, (feature) => {
+            angular.forEach(features, feature => {
                 feature.accountsMeta = [];
                 feature.totalValue = 0;
                 feature.averageValue = 0;
-                angular.forEach(feature.accounts, (account) => {
-                    this._AccountService.getAccount(account.accountKey).then(
-                        curAccount => {
+                angular.forEach(feature.accounts, account => {
+                    this._AccountService
+                        .getAccount(account.accountKey)
+                        .then(curAccount => {
                             feature.accountsMeta.push(curAccount);
                             feature.totalValue += parseInt(curAccount.value);
-                            feature.averageValue = feature.totalValue / parseInt(feature.accounts.length);
-                        }
-                    );
+                            feature.averageValue =
+                                feature.totalValue /
+                                parseInt(feature.accounts.length);
+                        });
                 });
             });
+            
+            // this.filterFeatures();
         });
 
         this.searchFeatures = '';
@@ -117,6 +128,18 @@ class FeatureListCtrl {
         };
         this.searchFeatures = '';
         this.setTablePrefs(this.tablePrefs);
+    }
+
+    updateFilters(filterParams) {
+        this.filterParams = filterParams;
+        this.filterFeatures();
+    }
+
+    filterFeatures() {
+        this.filteredFeatures = this._$filter('featuresFilter')(
+            this.features,
+            this.filterParams
+        );
     }
 }
 
