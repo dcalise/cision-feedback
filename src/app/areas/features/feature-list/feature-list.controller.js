@@ -16,7 +16,7 @@ class FeatureListCtrl {
     }
 
     $onInit() {
-        this.features = this._FeatureService._activeFeatures;
+        this.features = this._FeatureService._features;
 
         this.features.$loaded().then(features => {
             angular.forEach(features, feature => {

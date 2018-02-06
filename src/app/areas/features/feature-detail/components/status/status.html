@@ -1,6 +1,13 @@
 <span
   ng-hide="$ctrl.editing">
-  <span class="label label-success">
+  <span class="label"
+    ng-class="{
+      'label-success': $ctrl.data === 'Released',
+      'label-info': $ctrl.data === 'Moved to Backlog',
+      'label-default': $ctrl.data === 'Received',
+      'label-warning': $ctrl.data === 'Under Review',
+      'label-danger': $ctrl.data === 'Closed'
+    }">
     {{$ctrl.data}}
   </span>
   <i class="ion-edit ml-xs" ng-show="$ctrl.admin" ng-click="$ctrl.changeStatus()"></i>

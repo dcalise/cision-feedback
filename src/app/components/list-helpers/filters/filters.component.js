@@ -15,11 +15,13 @@ class FiltersCtrl {
             'Released',
             'Closed'
         ];
-        this.checkAllStatuses();
+        this.filterParams.status = this.statusList.slice(0);
 
         this.labelList = this._LabelService._labels;
         this.uncheckAllLabels();
         this.checkAllLabels();
+
+        this.filterParams.viewArchived = false;
     }
 
     toggleStatus(status) {
@@ -60,6 +62,11 @@ class FiltersCtrl {
             );
         }
 
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    toggleViewArchived() {
+        this.filterParams.viewArchived = !this.filterParams.viewArchived;
         this.updateFilters({ filterParams: this.filterParams });
     }
 
