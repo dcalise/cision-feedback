@@ -8,3 +8,7 @@ table th.sortable span:hover {
   cursor: pointer;
   color: $brand-primary;
 }
+
+.table > tbody > tr.archived {
+  background-color: $table-bg-warning;
+}
