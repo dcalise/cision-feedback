@@ -1,0 +1,17 @@
+<span ng-hide="$ctrl.editing">
+  <display-label 
+    ng-hide="$ctrl.editing"
+    data="$ctrl.data"
+    is-location="true"
+    expired-label="$ctrl.expiredLabel"
+    reset-label-expiration="$ctrl.resetLabelExpiration()">
+  </display-label>
+  <i class="ion-edit ml-xs" ng-show="$ctrl.admin" ng-click="$ctrl.changeLocation()"></i>
+</span>
+<form class="form-inline inline-edit" ng-show="$ctrl.editing">
+  <select class="form-control" ng-model="$ctrl.data">
+    <option ng-repeat="location in $ctrl._LabelService._locations" ng-if="!location.deleted" value="{{ location.$id }}">{{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}</option>
+  </select>
+  <i class="ion-close ml-xs" ng-click="$ctrl.changeLocation({location:'cancel'})"></i>
+  <i class="ion-checkmark ml-xs" ng-click="$ctrl.changeLocation({location:$ctrl.data})"></i>
+</form>

@@ -1,44 +1,40 @@
 class DisplayLabelCtrl {
-  constructor(LabelService) {
-    'ngInject';
+    constructor(LabelService) {
+        'ngInject';
 
-    this._LabelService = LabelService;
-    this.displayName;
-  }
-
-  getDisplayName(labelId, labelType) {
-    switch (labelType) {
-      case 'product':
-        this._LabelService.getProduct(labelId).$loaded().then(
-          (product) => {
-            this.displayName = product.displayName
-          }
-        )
-        break;
-      case 'location':
-        this._LabelService.getLocation(labelId).$loaded().then(
-          (location) => {
-            this.displayName = location.displayName
-          }
-        )
-        break;
-      default:
-        this._LabelService.getLabel(labelId).$loaded().then(
-          (label) => {
-            this.displayName = label.displayName
-          }
-        )
+        this._LabelService = LabelService;
+        this.displayName;
     }
-  }
+
+    $onInit() {
+        this.fetchDisplayName(this.data, this.isLocation);
+    }
+
+    fetchDisplayName(data, isLocation) {
+        this._LabelService
+            .getDisplayName(data, isLocation)
+            .then(locationDisplayName => {
+                this.displayName = locationDisplayName;
+            });
+    }
+
+    $onChanges(changes) {
+        if (changes.expiredLabel.currentValue) {
+          this.fetchDisplayName(this.data, this.isLocation);
+          this.resetLabelExpiration();
+        }
+    }
 }
 
 let DisplayLabel = {
-  bindings: {
-    data: '=',
-    labelType: '='
-  },
-  controller: DisplayLabelCtrl,
-  templateUrl: 'components/display-label/display-label.html'
+    bindings: {
+        data: '=',
+        isLocation: '<?',
+        expiredLabel: '<',
+        resetLabelExpiration: '&'
+    },
+    controller: DisplayLabelCtrl,
+    templateUrl: 'components/display-label/display-label.html'
 };
 
 export default DisplayLabel;

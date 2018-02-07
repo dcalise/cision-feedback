@@ -1,27 +1,28 @@
 function HomeConfig($stateProvider) {
-  'ngInject';
+    'ngInject';
 
-  $stateProvider
-  .state('app.home', {
-    url: '/',
-    controller: 'HomeCtrl',
-    controllerAs: '$ctrl',
-    templateUrl: 'areas/root/home.html',
-    title: 'Home',
-    resolve: {
-      currentAuth: function(AuthService) {
-        return AuthService.$requireSignIn()
-      },
-      profile: function(UserService, AuthService) {
-        return AuthService.$requireSignIn().then(
-          (auth) => {
-            return UserService.getProfile(auth.uid).$loaded()
-          }
-        )
-      }
-    }
-  });
-
-};
+    $stateProvider.state('app.home', {
+        url: '/',
+        controller: 'HomeCtrl',
+        controllerAs: '$ctrl',
+        templateUrl: 'areas/root/home.html',
+        title: 'Home',
+        resolve: {
+            currentAuth: function(AuthService, $state) {
+                return AuthService.$requireSignIn().then(auth => {
+                    if (!auth.emailVerified) {
+                        $state.go('app.profile');
+                    }
+                    return auth;
+                });
+            },
+            profile: function(UserService, AuthService) {
+                return AuthService.$requireSignIn().then(auth => {
+                    return UserService.getProfile(auth.uid).$loaded();
+                });
+            }
+        }
+    });
+}
 
 export default HomeConfig;
