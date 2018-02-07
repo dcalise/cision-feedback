@@ -38,7 +38,7 @@
         ng-click="$ctrl.toggleLocation('undefined')"> No Workflow
     </label>
   </div>
-  <div class="checkbox" ng-repeat="location in $ctrl.locationList">
+  <div class="checkbox" ng-repeat="location in $ctrl.locationList | orderBy : 'displayName'">
     <label>
       <input type="checkbox" value="{{location}}"
         name="$ctrl.filterParams.locations[]"
@@ -67,7 +67,7 @@
       <input type="checkbox" value="undefined" name="$ctrl.filterParams.labels[]" ng-checked="$ctrl.filterParams.labels.indexOf('undefined') > -1" ng-click="$ctrl.toggleLabel('undefined')"> No Label
     </label>
   </div>
-  <div class="checkbox" ng-repeat="label in $ctrl.labelList">
+  <div class="checkbox" ng-repeat="label in $ctrl.labelList | orderBy : 'displayName'">
     <label>
       <input type="checkbox" value="{{label}} 
         "name="$ctrl.filterParams.labels[]"
