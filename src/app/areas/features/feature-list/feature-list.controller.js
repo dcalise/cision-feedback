@@ -136,6 +136,7 @@ class FeatureListCtrl {
     }
 
     updateFilters(filterParams) {
+        console.log('running');
         this.filterParams = filterParams;
         this.filterFeatures();
     }

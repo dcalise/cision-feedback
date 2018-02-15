@@ -1,8 +1,9 @@
 class FiltersCtrl {
-    constructor(LabelService) {
+    constructor(LabelService, $scope) {
         'ngInject';
 
         this._LabelService = LabelService;
+        this._$scope = $scope;
     }
 
     $onInit() {
@@ -12,6 +13,8 @@ class FiltersCtrl {
             locations: [],
             viewArchived: false
         };
+
+        this.inProgress = false;
 
         this.statusList = [
             'Received',
@@ -37,6 +40,9 @@ class FiltersCtrl {
         });
 
         this.checkAllLocations();
+        this._$scope.$watch(this.filterParams, (newValue) =>{
+            console.log(newValue);
+        }, true)
     }
 
     toggleStatus(status) {
@@ -125,11 +131,14 @@ class FiltersCtrl {
     }
 
     checkAllLabels() {
+        this.inProgress = true;
         this._LabelService._labels.$loaded(labels => {
             angular.forEach(labels, label => {
                 this.filterParams.labels.push(label);
             });
             this.filterParams.labels.push('undefined');
+            this.inProgress = false;
+            console.log('locations done');
             this.updateFilters({ filterParams: this.filterParams });
         });
     }
@@ -140,6 +149,7 @@ class FiltersCtrl {
     }
 
     checkAllLocations() {
+        this.inProgress = true;
         this._LabelService._locations.$loaded(locations => {
             let activeLocations = [];
             locations.filter(location => {
@@ -151,6 +161,8 @@ class FiltersCtrl {
                 this.filterParams.locations.push(location);
             });
             this.filterParams.locations.push('undefined');
+            this.inProgress = false;
+            console.log('locations done');
             this.updateFilters({ filterParams: this.filterParams });
         });
     }
