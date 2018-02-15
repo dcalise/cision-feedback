@@ -128,6 +128,7 @@ class FiltersCtrl {
     }
 
     checkAllLabels() {
+        this.filterParams.labels = [];
         this._LabelService._labels.$loaded(labels => {
             angular.forEach(labels, label => {
                 this.filterParams.labels.push(label);
@@ -143,6 +144,7 @@ class FiltersCtrl {
     }
 
     checkAllLocations() {
+        this.filterParams.locations = [];
         this._LabelService._locations.$loaded(locations => {
             let activeLocations = [];
             locations.filter(location => {
