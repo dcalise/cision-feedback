@@ -18,6 +18,8 @@ class FeatureListCtrl {
     $onInit() {
         this.features = this._FeatureService._features;
 
+        this.expiredFilters = false;
+
         this.features.$loaded().then(features => {
             angular.forEach(features, feature => {
                 feature.accountsMeta = [];
@@ -35,8 +37,8 @@ class FeatureListCtrl {
                         });
                 });
             });
-            
-            // this.filterFeatures();
+
+            this.getCachedFilterParams();
         });
 
         this.searchFeatures = '';
@@ -75,6 +77,19 @@ class FeatureListCtrl {
 
     setTablePrefs(prefs) {
         this.$localStorage.tablePrefsSaved = prefs;
+    }
+
+    setCachedFilterParams(params) {
+        this.$localStorage.cachedFilterParams = params;
+    }
+
+    getCachedFilterParams() {
+        if (this.$localStorage.cachedFilterParams) {
+            this.filterParams = this.$localStorage.cachedFilterParams;
+            this.updateFilters(this.filterParams);
+        } else {
+            console.log('dont exist');
+        }
     }
 
     getTablePrefs() {
@@ -132,10 +147,21 @@ class FeatureListCtrl {
             }
         };
         this.searchFeatures = '';
+
+        this.resetFilters();
         this.setTablePrefs(this.tablePrefs);
     }
 
+    resetFilters() {
+        this.expiredFilters = true;
+    }
+
+    resetFilterExpiration() {
+        this.expiredFilters = false;
+    }
+
     updateFilters(filterParams) {
+        this.setCachedFilterParams(filterParams);
         this.filterParams = filterParams;
         this.filterFeatures();
     }

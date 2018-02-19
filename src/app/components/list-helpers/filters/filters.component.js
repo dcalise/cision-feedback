@@ -7,14 +7,7 @@ class FiltersCtrl {
     }
 
     $onInit() {
-        this.filterParams = {
-            status: [],
-            labels: [],
-            locations: [],
-            viewArchived: false
-        };
-
-        this.inProgress = false;
+        this.loading = true;
 
         this.statusList = [
             'Received',
@@ -23,10 +16,8 @@ class FiltersCtrl {
             'Released',
             'Closed'
         ];
-        this.filterParams.status = this.statusList.slice(0);
 
         this.labelList = this._LabelService._labels;
-        this.checkAllLabels();
 
         this.locationList = [];
         this._LabelService._locations.$loaded(locations => {
@@ -38,8 +29,6 @@ class FiltersCtrl {
             });
             return (this.locationList = activeLocations);
         });
-
-        this.checkAllLocations();
     }
 
     toggleStatus(status) {
@@ -131,6 +120,7 @@ class FiltersCtrl {
         this.filterParams.labels = [];
         this._LabelService._labels.$loaded(labels => {
             angular.forEach(labels, label => {
+                console.log(label);
                 this.filterParams.labels.push(label);
             });
             this.filterParams.labels.push('undefined');
@@ -164,10 +154,43 @@ class FiltersCtrl {
         this.filterParams.locations = [];
         this.updateFilters({ filterParams: this.filterParams });
     }
+
+    setFiltersToCachedParams() {
+        this.filterParams = this.cachedFilterParams;
+    }
+
+    resetFiltersToDefault() {
+        this.filterParams = {
+            status: [],
+            labels: [],
+            locations: [],
+            viewArchived: false
+        };
+
+        this.filterParams.status = this.statusList.slice(0);
+        this.checkAllLabels();
+
+        this.checkAllLocations();
+        this.resetFilterExpiration();
+    }
+
+    $onChanges(changes) {
+        if (changes.cachedFilterParams && !changes.cachedFilterParams.previousValue) {
+            this.setFiltersToCachedParams();
+        }
+
+        if (changes.expiredFilters && changes.expiredFilters.currentValue) {
+            this.resetFiltersToDefault();
+        }
+    }
 }
 
 let Filters = {
     bindings: {
+        resetFilters: '&',
+        expiredFilters: '<',
+        resetFilterExpiration: '&',
+        cachedFilterParams: '<',
         updateFilters: '&'
     },
     controller: FiltersCtrl,
