@@ -19,7 +19,12 @@ class FiltersCtrl {
 
         this.labelList = this._LabelService._labels;
 
-        this.locationList = [];
+        this.filterParams = {
+            status: [],
+            locations: [],
+            labels: [],
+            viewArchived: false
+        };
         this._LabelService._locations.$loaded(locations => {
             let activeLocations = [];
             locations.filter(location => {
@@ -27,7 +32,16 @@ class FiltersCtrl {
                     activeLocations.push(location);
                 }
             });
-            return (this.locationList = activeLocations);
+            let filterLocations = activeLocations.map(location => {
+                location.checked = true;
+                return location;
+            });
+            this.filterParams.locations = filterLocations;
+            this.filterParams.locations.push({
+                $id: 'undefined',
+                checked: true
+            });
+            this.updateFilters({ filterParams: this.filterParams });
         });
     }
 
@@ -73,29 +87,17 @@ class FiltersCtrl {
     }
 
     toggleLocation(locationId) {
-        let match = null;
+        let matchIdx = null;
 
-        for (let [idx, locationObj] of this.filterParams.locations.entries()) {
-            if (locationId === 'undefined') {
-                if (locationObj === 'undefined') {
-                    match = idx;
+        for (let [idx, location] of this.filterParams.locations.entries()) {
+            if (location.$id === locationId) {
+                matchIdx = idx;
                     break;
                 }
             }
-            if (locationObj.$id === locationId) {
-                match = idx;
-                break;
-            }
-        }
-
-        if (match !== null) {
-            this.filterParams.locations.splice(match, 1);
-        } else if (locationId === 'undefined') {
-            this.filterParams.locations.push('undefined');
-        } else {
-            this.filterParams.locations.push(
-                this._LabelService._locations.$getRecord(locationId)
-            );
+        if (matchIdx !== null) {
+            this.filterParams.locations[matchIdx].checked = !this.filterParams
+                .locations[matchIdx].checked;
         }
 
         this.updateFilters({ filterParams: this.filterParams });
@@ -129,25 +131,19 @@ class FiltersCtrl {
     }
 
     uncheckAllLabels() {
-        this.filterParams.labels = [];
+        angular.forEach(
+            this.filterParams.locations,
+            location => (location.checked = false)
+        );
         this.updateFilters({ filterParams: this.filterParams });
     }
 
     checkAllLocations() {
-        this.filterParams.locations = [];
-        this._LabelService._locations.$loaded(locations => {
-            let activeLocations = [];
-            locations.filter(location => {
-                if (!location.deleted) {
-                    activeLocations.push(location);
-                }
-            });
-            angular.forEach(activeLocations, location => {
-                this.filterParams.locations.push(location);
-            });
-            this.filterParams.locations.push('undefined');
-            this.updateFilters({ filterParams: this.filterParams });
-        });
+        angular.forEach(
+            this.filterParams.locations,
+            location => (location.checked = true)
+        );
+        this.updateFilters({ filterParams: this.filterParams });
     }
 
     uncheckAllLocations() {

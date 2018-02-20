@@ -31,16 +31,13 @@ export default function featuresFilter() {
 
             // check location
             for (let location of filterParams.locations) {
-                if (location === 'undefined') {
+                if (location.$id === 'undefined' && location.checked) {
                     if (!feature.location) {
                         locationMatch = true;
                         break;
                     }
                 }
-                if (
-                    feature.location &&
-                    feature.location.indexOf(location.$id) > -1
-                ) {
+                if (feature.location === location.$id && location.checked) {
                     locationMatch = true;
                     break;
                 }
