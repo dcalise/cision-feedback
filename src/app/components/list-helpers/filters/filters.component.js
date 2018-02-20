@@ -8,6 +8,57 @@ class FiltersCtrl {
 
     $onInit() {
         this.loading = true;
+    }
+
+    toggleFilterItem(id, filterType) {
+        let matchIdx = null;
+
+        for (let [idx, item] of this.filterParams[filterType].entries()) {
+            if (filterType === 'status') {
+                if (item.displayName === id) {
+                    matchIdx = idx;
+                    break;
+                }
+            } else if (item.$id === id) {
+                matchIdx = idx;
+                break;
+            }
+        }
+
+        if (matchIdx !== null) {
+            this.filterParams[filterType][matchIdx].checked = !this
+                .filterParams[filterType][matchIdx].checked;
+        }
+
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    toggleViewArchived() {
+        this.filterParams.viewArchived = !this.filterParams.viewArchived;
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    checkAll(filterType) {
+        angular.forEach(
+            this.filterParams[filterType],
+            filter => (filter.checked = true)
+        );
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    uncheckAll(filterType) {
+        angular.forEach(
+            this.filterParams[filterType],
+            filter => (filter.checked = false)
+        );
+        this.updateFilters({ filterParams: this.filterParams });
+    }
+
+    setFiltersToCachedParams() {
+        this.filterParams = this.cachedFilterParams;
+    }
+
+    resetFiltersToDefault() {
 
         this.filterParams = {
             status: [],
@@ -74,70 +125,7 @@ class FiltersCtrl {
             });
             this.updateFilters({ filterParams: this.filterParams });
         });
-    }
 
-    toggleFilterItem(id, filterType) {
-        let matchIdx = null;
-
-        for (let [idx, item] of this.filterParams[filterType].entries()) {
-            if (filterType === 'status') {
-                if (item.displayName === id) {
-                    matchIdx = idx;
-                    break;
-                }
-            } else {
-                if (item.$id === id) {
-                    matchIdx = idx;
-                    break;
-                }
-            }
-        }
-
-        if (matchIdx !== null) {
-            this.filterParams[filterType][matchIdx].checked = !this
-                .filterParams[filterType][matchIdx].checked;
-        }
-
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    toggleViewArchived() {
-        this.filterParams.viewArchived = !this.filterParams.viewArchived;
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    checkAll(filterType) {
-        angular.forEach(
-            this.filterParams[filterType],
-            filter => (filter.checked = true)
-        );
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    uncheckAll(filterType) {
-        angular.forEach(
-            this.filterParams[filterType],
-            filter => (filter.checked = false)
-        );
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    setFiltersToCachedParams() {
-        this.filterParams = this.cachedFilterParams;
-    }
-
-    resetFiltersToDefault() {
-        this.filterParams = {
-            status: [],
-            labels: [],
-            locations: [],
-            viewArchived: false
-        };
-
-        this.filterParams.status = this.statusList.slice(0);
-        this.checkAllLabels();
-
-        this.checkAllLocations();
         this.resetFilterExpiration();
     }
 
@@ -157,7 +145,6 @@ class FiltersCtrl {
 
 let Filters = {
     bindings: {
-        resetFilters: '&',
         expiredFilters: '<',
         resetFilterExpiration: '&',
         cachedFilterParams: '<',

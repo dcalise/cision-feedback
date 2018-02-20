@@ -13,7 +13,7 @@ export default function featuresFilter() {
             // check status
             for (let status of filterParams.status) {
                 if (status.displayName === feature.status && status.checked) {
-                statusMatch = true;
+                    statusMatch = true;
                     break;
                 }
             }
@@ -29,10 +29,10 @@ export default function featuresFilter() {
                 if (feature.labels) {
                     for (let featureLabel of feature.labels) {
                         if (featureLabel === label.$id && label.checked) {
-                    labelMatch = true;
-                    break;
-                }
-            }
+                            labelMatch = true;
+                            break;
+                        }
+                    }
                 }
                 if (labelMatch) {
                     break;

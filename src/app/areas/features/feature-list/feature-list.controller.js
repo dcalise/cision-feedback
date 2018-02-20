@@ -81,6 +81,7 @@ class FeatureListCtrl {
 
     setCachedFilterParams(params) {
         this.$localStorage.cachedFilterParams = params;
+        this.filterFeatures();
     }
 
     getCachedFilterParams() {
@@ -88,7 +89,7 @@ class FeatureListCtrl {
             this.filterParams = this.$localStorage.cachedFilterParams;
             this.updateFilters(this.filterParams);
         } else {
-            console.log('dont exist');
+            this.resetFilters();
         }
     }
 
@@ -161,9 +162,8 @@ class FeatureListCtrl {
     }
 
     updateFilters(filterParams) {
-        this.setCachedFilterParams(filterParams);
         this.filterParams = filterParams;
-        this.filterFeatures();
+        this.setCachedFilterParams(this.filterParams);
     }
 
     filterFeatures() {
