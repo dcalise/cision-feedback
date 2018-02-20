@@ -16,7 +16,7 @@
         type="checkbox"
         value="{{status.displayName}}"
         ng-checked="status.checked"
-        ng-click="$ctrl.toggleStatus(status.displayName)"
+        ng-click="$ctrl.toggleFilterItem(status.displayName, 'status')"
       > {{status.displayName}}
     </label>
   </div>
@@ -42,7 +42,7 @@
     <label>
       <input type="checkbox" value="{{location.$id}}"
         ng-checked="location.checked"
-        ng-click="$ctrl.toggleLocation(location.$id)"> {{location.displayName}}
+        ng-click="$ctrl.toggleFilterItem(location.$id, 'locations')"> {{location.displayName}}
     </label>
   </div>
 </div>
@@ -69,7 +69,7 @@
   </div>
   <div class="checkbox" ng-repeat="label in $ctrl.filterParams.labels track by label.$id | orderBy : 'displayName'">
     <label>
-      <input type="checkbox" value="{{label.$id}}" ng-checked="label.checked" ng-click="$ctrl.toggleLabel(label.$id)"> {{label.displayName}}
+      <input type="checkbox" value="{{label.$id}}" ng-checked="label.checked" ng-click="$ctrl.toggleFilterItem(label.$id, 'labels')"> {{label.displayName}}
     </label>
   </div>
 </div>

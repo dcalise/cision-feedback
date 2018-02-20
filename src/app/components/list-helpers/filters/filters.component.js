@@ -74,53 +74,26 @@ class FiltersCtrl {
         });
     }
 
-    toggleStatus(statusName) {
+    toggleFilterItem(id, filterType) {
         let matchIdx = null;
 
-        for (let [idx, status] of this.filterParams.status.entries()) {
-            if (status.displayName === statusName) {
-                matchIdx = idx;
-                break;
-            }
-        }
-
-        if (matchIdx !== null) {
-            this.filterParams.status[matchIdx].checked = !this.filterParams
-                .status[matchIdx].checked;
-        }
-
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    toggleLabel(labelId) {
-        let matchIdx = null;
-
-        for (let [idx, label] of this.filterParams.labels.entries()) {
-            if (label.$id === labelId) {
-                matchIdx = idx;
-                break;
-            }
-        }
-        if (matchIdx !== null) {
-            this.filterParams.labels[matchIdx].checked = !this.filterParams
-                .labels[matchIdx].checked;
-        }
-
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    toggleLocation(locationId) {
-        let matchIdx = null;
-
-        for (let [idx, location] of this.filterParams.locations.entries()) {
-            if (location.$id === locationId) {
-                matchIdx = idx;
+        for (let [idx, item] of this.filterParams[filterType].entries()) {
+            if (filterType === 'status') {
+                if (item.displayName === id) {
+                    matchIdx = idx;
+                    break;
+                }
+            } else {
+                if (item.$id === id) {
+                    matchIdx = idx;
                     break;
                 }
             }
+        }
+
         if (matchIdx !== null) {
-            this.filterParams.locations[matchIdx].checked = !this.filterParams
-                .locations[matchIdx].checked;
+            this.filterParams[filterType][matchIdx].checked = !this
+                .filterParams[filterType][matchIdx].checked;
         }
 
         this.updateFilters({ filterParams: this.filterParams });
@@ -167,7 +140,10 @@ class FiltersCtrl {
     }
 
     $onChanges(changes) {
-        if (changes.cachedFilterParams && !changes.cachedFilterParams.previousValue) {
+        if (
+            changes.cachedFilterParams &&
+            !changes.cachedFilterParams.previousValue
+        ) {
             this.setFiltersToCachedParams();
         }
 
