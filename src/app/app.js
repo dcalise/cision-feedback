@@ -8,6 +8,7 @@ import 'angular-validation-match';
 import 'angular-toastr';
 import 'angular-ui-bootstrap';
 import 'ngstorage';
+import 'angular-moment';
 
 // Import our app config files
 import constants from './config/app.constants';
@@ -52,7 +53,8 @@ const requires = [
     'angucomplete-alt',
     'validation.match',
     'toastr',
-    'ngStorage'
+    'ngStorage',
+    'angularMoment'
 ];
 
 // Mount on window for testing
