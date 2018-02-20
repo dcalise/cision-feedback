@@ -67,11 +67,9 @@
         ng-checked="$ctrl.filterParams.labels.indexOf('undefined') > -1" ng-click="$ctrl.toggleLabel('undefined')"> No Label
     </label>
   </div>
-  <div class="checkbox" ng-repeat="label in $ctrl.labelList | orderBy : 'displayName'">
+  <div class="checkbox" ng-repeat="label in $ctrl.filterParams.labels track by label.$id | orderBy : 'displayName'">
     <label>
-      <input type="checkbox" value="{{label}}"
-        ng-checked="$ctrl.filterParams.labels.indexOf(label) > -1"
-        ng-click="$ctrl.toggleLabel(label.$id)"> {{label.displayName}}
+      <input type="checkbox" value="{{label.$id}}" ng-checked="label.checked" ng-click="$ctrl.toggleLabel(label.$id)"> {{label.displayName}}
     </label>
   </div>
 </div>

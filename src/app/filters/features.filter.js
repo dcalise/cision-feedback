@@ -17,14 +17,21 @@ export default function featuresFilter() {
 
             // check label
             for (let label of filterParams.labels) {
-                if (label === 'undefined') {
-                    if (!feature.labels) {
+                if (label.$id === 'undefined' && label.checked) {
+                    if (!feature.label) {
                         labelMatch = true;
                         break;
                     }
                 }
-                if (feature.labels && feature.labels.indexOf(label.$id) > -1) {
+                if (feature.labels) {
+                    for (let featureLabel of feature.labels) {
+                        if (featureLabel === label.$id && label.checked) {
                     labelMatch = true;
+                    break;
+                }
+            }
+                }
+                if (labelMatch) {
                     break;
                 }
             }
