@@ -131,50 +131,18 @@ class FiltersCtrl {
         this.updateFilters({ filterParams: this.filterParams });
     }
 
-    checkAllStatuses() {
+    checkAll(filterType) {
         angular.forEach(
-            this.filterParams.status,
-            status => (status.checked = true)
+            this.filterParams[filterType],
+            filter => (filter.checked = true)
         );
         this.updateFilters({ filterParams: this.filterParams });
     }
 
-    uncheckAllStatuses() {
+    uncheckAll(filterType) {
         angular.forEach(
-            this.filterParams.status,
-            status => (status.checked = false)
-        );
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    checkAllLabels() {
-        angular.forEach(
-            this.filterParams.labels,
-            label => (label.checked = true)
-        );
-            this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    uncheckAllLabels() {
-        angular.forEach(
-            this.filterParams.labels,
-            label => (label.checked = false)
-        );
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    checkAllLocations() {
-        angular.forEach(
-            this.filterParams.locations,
-            location => (location.checked = true)
-        );
-        this.updateFilters({ filterParams: this.filterParams });
-    }
-
-    uncheckAllLocations() {
-        angular.forEach(
-            this.filterParams.locations,
-            location => (location.checked = false)
+            this.filterParams[filterType],
+            filter => (filter.checked = false)
         );
         this.updateFilters({ filterParams: this.filterParams });
     }

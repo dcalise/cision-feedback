@@ -4,10 +4,10 @@
 </h5>
 <div uib-collapse="!statusCollapse">
   <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.uncheckAllStatuses()"
+    ng-click="$ctrl.uncheckAll('status')"
     ng-disabled="$ctrl.filterParams.status.length === 0">Uncheck All</button>
   <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.checkAllStatuses()"
+    ng-click="$ctrl.checkAll('status')"
     ng-disabled="$ctrl.filterParams.status.length === $ctrl.statusList.length">Check All</button>
   <div class="checkbox"
     ng-repeat="status in $ctrl.filterParams.status">
@@ -29,8 +29,8 @@
 </h5>
 
 <div uib-collapse="!locationCollapse">
-  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAllLocations()" ng-disabled="$ctrl.filterParams.locations.length === 0">Uncheck All</button>
-  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAllLocations()" ng-disabled="$ctrl.filterParams.locations.length === $ctrl.locationList.length + 1">Check All</button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('locations')" ng-disabled="$ctrl.filterParams.locations.length === 0">Uncheck All</button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('locations')" ng-disabled="$ctrl.filterParams.locations.length === $ctrl.locationList.length + 1">Check All</button>
   <div class="checkbox mb-lg">
     <label>
       <input type="checkbox" value="undefined"
@@ -56,10 +56,10 @@
 
 <div uib-collapse="!labelCollapse">
   <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.uncheckAllLabels()"
+    ng-click="$ctrl.uncheckAll('labels')"
     ng-disabled="$ctrl.filterParams.labels.length === 0">Uncheck All</button>
   <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.checkAllLabels()"
+    ng-click="$ctrl.checkAll('labels')"
     ng-disabled="$ctrl.filterParams.labels.length === $ctrl._LabelService._labels.length + 1">Check All</button>
   <div class="checkbox mb-lg">
     <label>
