@@ -3,12 +3,12 @@
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !statusCollapse, 'ion-ios-arrow-up': statusCollapse}" ng-click="statusCollapse = !statusCollapse"></i>
 </h5>
 <div uib-collapse="!statusCollapse">
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.uncheckAll('status')"
-    ng-disabled="$ctrl.filterParams.status.length === 0">Uncheck All</button>
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.checkAll('status')"
-    ng-disabled="$ctrl.filterParams.status.length === $ctrl.statusList.length">Check All</button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('status')">
+    Uncheck All
+  </button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('status')">
+    Check All
+  </button>
   <div class="checkbox"
     ng-repeat="status in $ctrl.filterParams.status">
     <label>
@@ -29,16 +29,13 @@
 </h5>
 
 <div uib-collapse="!locationCollapse">
-  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('locations')" ng-disabled="$ctrl.filterParams.locations.length === 0">Uncheck All</button>
-  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('locations')" ng-disabled="$ctrl.filterParams.locations.length === $ctrl.locationList.length + 1">Check All</button>
-  <div class="checkbox mb-lg">
-    <label>
-      <input type="checkbox" value="undefined"
-        ng-checked="$ctrl.filterParams.locations.indexOf('undefined') > -1"
-        ng-click="$ctrl.toggleLocation('undefined')"> No Workflow
-    </label>
-  </div>
-  <div class="checkbox" ng-repeat="location in $ctrl.filterParams.locations track by location.$id | orderBy : 'displayName'">
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('locations')">
+    Uncheck All
+  </button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('locations')">
+    Check All
+  </button>
+  <div class="checkbox" ng-repeat="location in $ctrl.filterParams.locations track by location.$id | orderBy : 'displayName'" ng-class="{'mb-lg':$first}">
     <label>
       <input type="checkbox" value="{{location.$id}}"
         ng-checked="location.checked"
@@ -55,19 +52,13 @@
 </h5>
 
 <div uib-collapse="!labelCollapse">
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.uncheckAll('labels')"
-    ng-disabled="$ctrl.filterParams.labels.length === 0">Uncheck All</button>
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.checkAll('labels')"
-    ng-disabled="$ctrl.filterParams.labels.length === $ctrl._LabelService._labels.length + 1">Check All</button>
-  <div class="checkbox mb-lg">
-    <label>
-      <input type="checkbox" value="undefined"
-        ng-checked="$ctrl.filterParams.labels.indexOf('undefined') > -1" ng-click="$ctrl.toggleLabel('undefined')"> No Label
-    </label>
-  </div>
-  <div class="checkbox" ng-repeat="label in $ctrl.filterParams.labels track by label.$id | orderBy : 'displayName'">
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('labels')">
+    Uncheck All
+  </button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('labels')">
+    Check All
+  </button>
+  <div class="checkbox" ng-repeat="label in $ctrl.filterParams.labels track by label.$id | orderBy : 'displayName'" ng-class="{'mb-lg':$first}">
     <label>
       <input type="checkbox" value="{{label.$id}}" ng-checked="label.checked" ng-click="$ctrl.toggleFilterItem(label.$id, 'labels')"> {{label.displayName}}
     </label>

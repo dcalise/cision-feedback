@@ -52,8 +52,9 @@ class FiltersCtrl {
                 return location;
             });
             this.filterParams.locations = filterLocations;
-            this.filterParams.locations.push({
+            this.filterParams.locations.unshift({
                 $id: 'undefined',
+                displayName: 'No Workflow',
                 checked: true
             });
             this.updateFilters({ filterParams: this.filterParams });
@@ -66,8 +67,9 @@ class FiltersCtrl {
                 return label;
             });
             this.filterParams.labels = filterLabels;
-            this.filterParams.labels.push({
+            this.filterParams.labels.unshift({
                 $id: 'undefined',
+                displayName: 'No Label',
                 checked: true
             });
             this.updateFilters({ filterParams: this.filterParams });
