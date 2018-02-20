@@ -1,5 +1,5 @@
 <h5>Status 
-  <span class="badge">{{ $ctrl.filterParams.status.length }}</span> 
+  <!-- <span class="badge">{{ $ctrl.filterParams.status.length }}</span>  -->
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !statusCollapse, 'ion-ios-arrow-up': statusCollapse}" ng-click="statusCollapse = !statusCollapse"></i>
 </h5>
 <div uib-collapse="!statusCollapse">
@@ -23,7 +23,7 @@
 </div>
 
 <h5>Workflow
-  <span class="badge">{{ $ctrl.filterParams.locations.length }}</span>
+  <!-- <span class="badge">{{ $ctrl.filterParams.locations.length }}</span> -->
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !locationCollapse, 'ion-ios-arrow-up': locationCollapse}" ng-click="locationCollapse = !locationCollapse"></i>
 
 </h5>
@@ -45,7 +45,7 @@
 </div>
 
 <h5>Labels 
-  <span class="badge">{{ $ctrl.filterParams.labels.length }}</span> 
+  <!-- <span class="badge">{{ $ctrl.filterParams.labels.length }}</span>  -->
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !labelCollapse, 'ion-ios-arrow-up': labelCollapse}" 
     ng-click="labelCollapse = !labelCollapse"></i>
 
