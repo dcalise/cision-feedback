@@ -10,14 +10,14 @@
     ng-click="$ctrl.checkAllStatuses()"
     ng-disabled="$ctrl.filterParams.status.length === $ctrl.statusList.length">Check All</button>
   <div class="checkbox"
-    ng-repeat="status in $ctrl.statusList">
+    ng-repeat="status in $ctrl.filterParams.status">
     <label>
       <input
         type="checkbox"
-        value="{{status}}"
-        ng-checked="$ctrl.filterParams.status.indexOf(status) > -1"
-        ng-click="$ctrl.toggleStatus(status)"
-      > {{status}}
+        value="{{status.displayName}}"
+        ng-checked="status.checked"
+        ng-click="$ctrl.toggleStatus(status.displayName)"
+      > {{status.displayName}}
     </label>
   </div>
 </div>

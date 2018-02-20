@@ -9,22 +9,35 @@ class FiltersCtrl {
     $onInit() {
         this.loading = true;
 
-        this.statusList = [
-            'Received',
-            'Under Review',
-            'Moved to Backlog',
-            'Released',
-            'Closed'
-        ];
-
-        this.labelList = this._LabelService._labels;
-
         this.filterParams = {
             status: [],
             locations: [],
             labels: [],
             viewArchived: false
         };
+
+        this.filterParams.status = [
+            {
+                displayName: 'Received',
+                checked: true
+            },
+            {
+                displayName: 'Under Review',
+                checked: true
+            },
+            {
+                displayName: 'Moved to Backlog',
+                checked: true
+            },
+            {
+                displayName: 'Released',
+                checked: true
+            },
+            {
+                displayName: 'Closed',
+                checked: true
+            }
+        ];
 
         // build locations
         this._LabelService._locations.$loaded(locations => {
@@ -61,13 +74,19 @@ class FiltersCtrl {
         });
     }
 
-    toggleStatus(status) {
-        let idx = this.filterParams.status.indexOf(status);
+    toggleStatus(statusName) {
+        let matchIdx = null;
 
-        if (idx > -1) {
-            this.filterParams.status.splice(idx, 1);
-        } else {
-            this.filterParams.status.push(status);
+        for (let [idx, status] of this.filterParams.status.entries()) {
+            if (status.displayName === statusName) {
+                matchIdx = idx;
+                break;
+            }
+        }
+
+        if (matchIdx !== null) {
+            this.filterParams.status[matchIdx].checked = !this.filterParams
+                .status[matchIdx].checked;
         }
 
         this.updateFilters({ filterParams: this.filterParams });
@@ -113,12 +132,18 @@ class FiltersCtrl {
     }
 
     checkAllStatuses() {
-        this.filterParams.status = this.statusList.slice(0);
+        angular.forEach(
+            this.filterParams.status,
+            status => (status.checked = true)
+        );
         this.updateFilters({ filterParams: this.filterParams });
     }
 
     uncheckAllStatuses() {
-        this.filterParams.status = [];
+        angular.forEach(
+            this.filterParams.status,
+            status => (status.checked = false)
+        );
         this.updateFilters({ filterParams: this.filterParams });
     }
 

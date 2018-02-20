@@ -11,8 +11,11 @@ export default function featuresFilter() {
             let activeStatusMatch = false;
 
             // check status
-            if (filterParams.status.indexOf(feature.status) > -1) {
+            for (let status of filterParams.status) {
+                if (status.displayName === feature.status && status.checked) {
                 statusMatch = true;
+                    break;
+                }
             }
 
             // check label
