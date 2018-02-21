@@ -2,6 +2,7 @@ class LabelControl {
     constructor(AuthService, UserService, LabelService) {
         'ngInject';
         this._LabelService = LabelService;
+
         let initLabels;
         this.changeLabels = labelArray => {
             if (this.editing) {
@@ -11,7 +12,11 @@ class LabelControl {
                 } else {
                     if (this.labelsToAdd.length > 0) {
                         if (this.data) {
-                            this.data = this.data.concat(this.labelsToAdd);
+                            angular.forEach(this.labelsToAdd, labelToAdd => {
+                                if (this.data.indexOf(labelToAdd) < 0) {
+                                    this.data.push(labelToAdd);
+                                }
+                            })
                         } else {
                             this.data = this.labelsToAdd;
                         }
@@ -20,6 +25,7 @@ class LabelControl {
                     this.updateLabels();
                 }
                 this.editing = false;
+                this.showAddLabel = false;
             } else {
                 if (this.data) {
                     initLabels = Array.from(this.data);

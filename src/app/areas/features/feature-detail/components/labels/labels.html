@@ -1,42 +1,61 @@
 <span>
+
   <span class="label label-default mr-xs"
     ng-repeat="label in $ctrl.data">
     <display-label data="label"></display-label>
     <span
-      class="badge"
       ng-show="$ctrl.editing"
       ng-click="$ctrl.removeLabel(label)">
       <i class="ion-close ml-xs"></i>
     </span>
   </span>
+
   <span class="label label-info mr-xs"
     ng-repeat="label in $ctrl.labelsToAdd">
     <display-label data="label"></display-label>
     <span
-      class="badge"
       ng-show="$ctrl.editing"
       ng-click="$ctrl.removeLabel(label)">
       <i class="ion-close ml-xs"></i>
     </span>
   </span>
-  <span class="meta light" ng-hide="$ctrl.data || $ctrl.editing">No labels</span>
-  <i class="ion-edit meta ml-xs" ng-show="$ctrl.admin && !$ctrl.editing" ng-click="$ctrl.changeLabels()"></i>
+
+  <span class="meta light mr-xs" ng-hide="$ctrl.data || $ctrl.editing">No labels</span>
+
+  <i
+    class="ion-edit meta admin-control"
+    ng-show="$ctrl.admin && !$ctrl.editing"
+    ng-click="$ctrl.changeLabels()"></i>
 </span>
+
 <form class="form-inline inline-edit" ng-show="$ctrl.editing">
   <input type="hidden" ng-init="$ctrl.labelsToAdd = []">
-    <div angucomplete-alt
-      placeholder="Enter label"
-      pause="300"
-      clear-selected="true"
-      selected-object="$ctrl.labelSelected"
-      local-data="$ctrl.searchData"
-      local-search="$ctrl.searchFunction"
-      title-field="displayName"
-      minlength="1"
-      input-class="form-control form-control-small"
-      match-class="highlight">
-    </div>
-  <i class="ion-plus ml-xs mr-sm" ng-click="$ctrl.showAddLabel = true"></i>
-  <i class="ion-close ml-xs" ng-click="$ctrl.changeLabels({labels:false})"></i>
-  <i class="ion-checkmark ml-xs" ng-click="$ctrl.changeLabels({labels:$ctrl.data})"></i>
+  <span angucomplete-alt
+    ng-show="$ctrl.showAddLabel || !$ctrl.data"
+    class="inline"
+    placeholder="Enter label"
+    pause="300"
+    clear-selected="true"
+    selected-object="$ctrl.labelSelected"
+    local-data="$ctrl.searchData"
+    local-search="$ctrl.searchFunction"
+    title-field="displayName"
+    minlength="1"
+    input-class="form-control form-control-small"
+    match-class="highlight">
+  </span>
+
+  <i
+    class="ion-plus ml-xs mr-sm admin-control"
+    ng-hide="$ctrl.showAddLabel || !$ctrl.data"
+    ng-click="$ctrl.showAddLabel = true">
+  </i>
+  <i
+    class="ion-close ml-xs admin-control text-danger"
+    ng-click="$ctrl.changeLabels({labels:false})">
+  </i>
+  <i
+    class="ion-checkmark ml-xs admin-control text-success"
+    ng-click="$ctrl.changeLabels({labels:$ctrl.data})">
+  </i>
 </form>

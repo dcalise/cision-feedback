@@ -7,7 +7,7 @@ class LocationControl {
         let initLocation;
         this.changeLocation = data => {
             if (this.editing) {
-                if (data.location === 'cancel') {
+                if (!data.location) {
                     this.data = initLocation;
                 } else {
                     this.updateLocation(location);
