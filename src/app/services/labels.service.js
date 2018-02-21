@@ -70,4 +70,17 @@ export default class LabelService {
             return defer.promise;
         }
     }
+
+    labelSearch(str, labels) {
+        let matches = [];
+        angular.forEach(labels, label => {
+            if (typeof label.displayName === 'string') {
+                let name = label.displayName ? label.displayName.toLowerCase() : '';
+                if (name.indexOf(str.toString().toLowerCase()) >= 0) {
+                    matches.push(label);
+                }
+            }
+        });
+        return matches
+    }
 }

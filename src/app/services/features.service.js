@@ -1,7 +1,7 @@
 export default class FeatureService {
     constructor($firebaseArray, $firebaseObject) {
         'ngInject';
-        
+
         this._$firebaseObject = $firebaseObject;
 
         this._featuresRef = firebase.database().ref('features');
@@ -23,18 +23,18 @@ export default class FeatureService {
             .then(feature => {
                 let i;
                 feature.accounts.forEach((account, index) => {
-                  if (account.accountKey === accountId) {
-                    i = index;
-                  }
+                    if (account.accountKey === accountId) {
+                        i = index;
+                    }
                 });
                 if (i > -1) {
-                  feature.accounts.splice(i, 1);
-                  feature.$save().then(
-                    (feature) => {
-                      return feature;
-                    },
-                    (err) => console.log(err)
-                  )
+                    feature.accounts.splice(i, 1);
+                    feature.$save().then(
+                        feature => {
+                            return feature;
+                        },
+                        err => console.log(err)
+                    );
                 }
             });
     }
@@ -43,6 +43,9 @@ export default class FeatureService {
     add(feature, currentAuth, accountKey) {
         if (!Array.isArray(accountKey)) {
             accountKey = [accountKey];
+        }
+        if (!Array.isArray(feature.labels)) {
+            feature.labels = [feature.labels];
         }
         return this._features.$add({
             accounts: accountKey,

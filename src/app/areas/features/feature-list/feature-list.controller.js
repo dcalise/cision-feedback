@@ -5,7 +5,8 @@ class FeatureListCtrl {
         $localStorage,
         FeatureService,
         AccountService,
-        $filter
+        $filter,
+        moment
     ) {
         'ngInject';
 
@@ -13,10 +14,15 @@ class FeatureListCtrl {
         this.$localStorage = $localStorage;
         this._AccountService = AccountService;
         this._$filter = $filter;
+        this._moment = moment;
     }
 
     $onInit() {
+        this.$localStorage.timestamp = this._moment();
+
         this.features = this._FeatureService._features;
+
+        this.expiredFilters = false;
 
         this.features.$loaded().then(features => {
             angular.forEach(features, feature => {
@@ -35,8 +41,8 @@ class FeatureListCtrl {
                         });
                 });
             });
-            
-            // this.filterFeatures();
+
+            this.getCachedFilterParams();
         });
 
         this.searchFeatures = '';
@@ -52,7 +58,14 @@ class FeatureListCtrl {
             };
         }
     }
-
+    
+    getCacheTimestamp() {
+        return this._moment(this.$localStorage.timestamp).diff(
+            this._moment(),
+            'hours'
+        );
+    }
+    
     changeColumnSort(col, reverse) {
         this.tablePrefs.reverse = false;
         if (this.tablePrefs.type === col) {
@@ -77,7 +90,28 @@ class FeatureListCtrl {
         this.$localStorage.tablePrefsSaved = prefs;
     }
 
+    setCachedFilterParams(params) {
+        this.$localStorage.cachedFilterParams = params;
+        this.filterFeatures();
+    }
+
+
+    getCachedFilterParams() {
+        if (this.getCacheTimestamp() < -11) {
+            delete this.$localStorage.cachedFilterParams;
+        }
+        if (this.$localStorage.cachedFilterParams) {
+            this.filterParams = this.$localStorage.cachedFilterParams;
+            this.updateFilters(this.filterParams);
+        } else {
+            this.resetFilters();
+        }
+    }
+
     getTablePrefs() {
+        if (this.getCacheTimestamp() < -11) {
+            delete this.$localStorage.tablePrefsSaved;
+        }
         return this.$localStorage.tablePrefsSaved;
     }
 
@@ -132,12 +166,22 @@ class FeatureListCtrl {
             }
         };
         this.searchFeatures = '';
+
+        this.resetFilters();
         this.setTablePrefs(this.tablePrefs);
+    }
+
+    resetFilters() {
+        this.expiredFilters = true;
+    }
+
+    resetFilterExpiration() {
+        this.expiredFilters = false;
     }
 
     updateFilters(filterParams) {
         this.filterParams = filterParams;
-        this.filterFeatures();
+        this.setCachedFilterParams(this.filterParams);
     }
 
     filterFeatures() {

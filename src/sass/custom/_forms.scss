@@ -44,3 +44,15 @@
 .form-search {
   display: inline-block;
 }
+
+.inline .angucomplete-holder {
+  display: inline-block;
+  input {
+    margin-top: -2px;
+    font-size: 12px;
+  }
+}
+
+.admin-control {
+  cursor: pointer;
+}

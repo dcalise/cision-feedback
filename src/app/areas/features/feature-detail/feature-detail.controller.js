@@ -6,6 +6,7 @@ class FeatureDetailCtrl {
         profile,
         CommentService,
         FeatureService,
+        LabelService,
         AccountService,
         $stateParams,
         $state,
@@ -19,7 +20,7 @@ class FeatureDetailCtrl {
 
         this._$state = $state;
         this._$scope = $scope;
-        
+
         this._feature = feature;
         this._currentAuth = currentAuth;
         this._comments = comments;
@@ -31,6 +32,7 @@ class FeatureDetailCtrl {
         this._AccountService = AccountService;
         this._CommentService = CommentService;
         this._FeatureService = FeatureService;
+        this._LabelService = LabelService;
         this._UserService = UserService;
         this._toastr = toastr;
 
@@ -59,7 +61,6 @@ class FeatureDetailCtrl {
             $scope.reset = reset;
         };
     }
-    
 
     archiveThisFeature() {
         let archiveAnswer = confirm(
@@ -154,11 +155,15 @@ class FeatureDetailCtrl {
     }
 
     updateLocation() {
-        return this._feature.$save().then(
-            (res) => {
-                this.expiredLabel = true;
-            }
-        );
+        return this._feature.$save().then(res => {
+            this.expiredLabel = true;
+        });
+    }
+
+    updateLabels() {
+        return this._feature.$save().then(res => {
+            this.expiredLabel = true;
+        });
     }
 
     resetLabelExpiration() {

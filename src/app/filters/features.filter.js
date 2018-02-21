@@ -11,36 +11,43 @@ export default function featuresFilter() {
             let activeStatusMatch = false;
 
             // check status
-            if (filterParams.status.indexOf(feature.status) > -1) {
-                statusMatch = true;
+            for (let status of filterParams.status) {
+                if (status.displayName === feature.status && status.checked) {
+                    statusMatch = true;
+                    break;
+                }
             }
 
             // check label
             for (let label of filterParams.labels) {
-                if (label === 'undefined') {
-                    if (!feature.labels) {
+                if (label.$id === 'undefined' && label.checked) {
+                    if (!feature.label) {
                         labelMatch = true;
                         break;
                     }
                 }
-                if (feature.labels && feature.labels.indexOf(label.$id) > -1) {
-                    labelMatch = true;
+                if (feature.labels) {
+                    for (let featureLabel of feature.labels) {
+                        if (featureLabel === label.$id && label.checked) {
+                            labelMatch = true;
+                            break;
+                        }
+                    }
+                }
+                if (labelMatch) {
                     break;
                 }
             }
 
             // check location
             for (let location of filterParams.locations) {
-                if (location === 'undefined') {
+                if (location.$id === 'undefined' && location.checked) {
                     if (!feature.location) {
                         locationMatch = true;
                         break;
                     }
                 }
-                if (
-                    feature.location &&
-                    feature.location.indexOf(location.$id) > -1
-                ) {
+                if (feature.location === location.$id && location.checked) {
                     locationMatch = true;
                     break;
                 }

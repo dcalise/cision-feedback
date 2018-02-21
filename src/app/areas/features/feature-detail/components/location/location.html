@@ -12,6 +12,6 @@
   <select class="form-control" ng-model="$ctrl.data">
     <option ng-repeat="location in $ctrl._LabelService._locations" ng-if="!location.deleted" value="{{ location.$id }}">{{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}</option>
   </select>
-  <i class="ion-close ml-xs" ng-click="$ctrl.changeLocation({location:'cancel'})"></i>
-  <i class="ion-checkmark ml-xs" ng-click="$ctrl.changeLocation({location:$ctrl.data})"></i>
+  <i class="ion-close ml-xs text-danger" ng-click="$ctrl.changeLocation({location:false})"></i>
+  <i class="ion-checkmark ml-xs text-success" ng-click="$ctrl.changeLocation({location:$ctrl.data})"></i>
 </form>
