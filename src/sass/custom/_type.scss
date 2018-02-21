@@ -62,9 +62,9 @@ h1.page-title {
 }
 
 .meta {
-  color: $gray-light;
+  color: $gray;
   &.light {
-    color: lighten($gray-light, 20%);
+    color: $gray-lighter;
   }
 }
 

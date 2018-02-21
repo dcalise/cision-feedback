@@ -12,7 +12,9 @@ class LabelControl {
                 }
                 this.editing = false;
             } else {
-                initLabels = Array.from(this.data);
+                if (this.data) {
+                    initLabels = Array.from(this.data);
+                }
                 this.editing = true;
             }
         };
