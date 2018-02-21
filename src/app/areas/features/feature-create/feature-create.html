@@ -45,23 +45,25 @@
   
             <div class="form-group ml-xl"
               ng-if="$ctrl.locationLabels.length > 0">
-              <div class="checkbox"
+              <div class="radio"
                 ng-init="$ctrl.featureForm.labels = []"
-                ng-model="$ctrl.featureForm.labels"
                 ng-repeat="label in $ctrl.locationLabels">
                 <label>
-                  <input type="checkbox"
+                  <input type="radio"
                     value="{{ label.$id }}"
-                    ng-checked="$ctrl.featureForm.labels.indexOf(label.$id) > -1"
-                    ng-click="$ctrl.toggleSelection(label.$id)"> {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
+                    name="label-radio"
+                    ng-model="$ctrl.featureForm.labels"> {{ label.displayName }} {{ label.description ? '(' + label.description + ')' : '' }}
                 </label>
               </div>
-              <div class="checkbox">
+              <div class="radio">
                 <label>
-                  <input type="checkbox" ng-model="$ctrl.labelOther"> Other
+                  <input type="radio"
+                    name="label-radio"
+                    value="other"
+                    ng-model="$ctrl.featureForm.labels"> Other
                 </label>
               </div>
-              <div class="form-group" ng-if="$ctrl.labelOther">
+              <div class="form-group" ng-if="$ctrl.featureForm.labels === 'other'">
                 <label for="other" class="control-label">Please specify:</label>
                 <input type="text" class="form-control" id="other" required
                   ng-model="$ctrl.featureForm.labelOther">
