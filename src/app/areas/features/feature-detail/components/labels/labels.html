@@ -1,0 +1,20 @@
+<span>
+  <span class="label label-default mr-xs"
+    ng-repeat="label in $ctrl.data">
+    <display-label data="label"></display-label>
+    <span
+      class="badge"
+      ng-show="$ctrl.editing"
+      ng-click="$ctrl.removeLabel(label)">
+      <i class="ion-close ml-xs"></i>
+    </span>
+  </span>
+  <i class="ion-edit ml-xs" ng-show="$ctrl.admin && !$ctrl.editing" ng-click="$ctrl.changeLabels()"></i>
+</span>
+<form class="form-inline inline-edit" ng-show="$ctrl.editing">
+  <!-- <select class="form-control" ng-model="$ctrl.data">
+    <option ng-repeat="label in $ctrl._LabelService._labelss" ng-if="!label.deleted" value="{{ label.$id }}">{{ location.displayName }} {{ location.description ? '(' + location.description + ')' : '' }}</option>
+  </select> -->
+  <i class="ion-close ml-xs" ng-click="$ctrl.changeLabels({labels:false})"></i>
+  <i class="ion-checkmark ml-xs" ng-click="$ctrl.changeLabels({labels:$ctrl.data})"></i>
+</form>

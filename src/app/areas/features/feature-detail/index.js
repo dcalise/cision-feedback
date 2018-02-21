@@ -17,6 +17,9 @@ featureDetailModule.component('comment', Comment);
 import Location from './components/location/location.component';
 featureDetailModule.component('location', Location);
 
+import Labels from './components/labels/labels.component';
+featureDetailModule.component('labels', Labels);
+
 import Status from './components/status/status.component';
 featureDetailModule.component('status', Status);
 

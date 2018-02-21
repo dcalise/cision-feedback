@@ -19,7 +19,7 @@ class FeatureDetailCtrl {
 
         this._$state = $state;
         this._$scope = $scope;
-        
+
         this._feature = feature;
         this._currentAuth = currentAuth;
         this._comments = comments;
@@ -59,7 +59,6 @@ class FeatureDetailCtrl {
             $scope.reset = reset;
         };
     }
-    
 
     archiveThisFeature() {
         let archiveAnswer = confirm(
@@ -154,11 +153,15 @@ class FeatureDetailCtrl {
     }
 
     updateLocation() {
-        return this._feature.$save().then(
-            (res) => {
-                this.expiredLabel = true;
-            }
-        );
+        return this._feature.$save().then(res => {
+            this.expiredLabel = true;
+        });
+    }
+
+    updateLabels() {
+        return this._feature.$save().then(res => {
+            this.expiredLabel = true;
+        });
     }
 
     resetLabelExpiration() {
