@@ -7,7 +7,16 @@ class LabelControl {
             if (this.editing) {
                 if (labelArray.labels === false) {
                     this.data = initLabels;
+                    this.labelsToAdd = [];
                 } else {
+                    if (this.labelsToAdd.length > 0) {
+                        if (this.data) {
+                            this.data = this.data.concat(this.labelsToAdd);
+                        } else {
+                            this.data = this.labelsToAdd;
+                        }
+                    }
+                    this.labelsToAdd = [];
                     this.updateLabels();
                 }
                 this.editing = false;
@@ -25,8 +34,8 @@ class LabelControl {
 
         this.labelSelected = label => {
             let labelKey = label.originalObject
-                    ? label.originalObject.$id
-                    : label.key;
+                ? label.originalObject.$id
+                : label.key;
             return this.labelsToAdd.push(labelKey);
         };
     }

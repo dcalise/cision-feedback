@@ -19,7 +19,7 @@
       <i class="ion-close ml-xs"></i>
     </span>
   </span>
-  <span class="meta light">No labels</span>
+  <span class="meta light" ng-hide="$ctrl.data || $ctrl.editing">No labels</span>
   <i class="ion-edit meta ml-xs" ng-show="$ctrl.admin && !$ctrl.editing" ng-click="$ctrl.changeLabels()"></i>
 </span>
 <form class="form-inline inline-edit" ng-show="$ctrl.editing">
