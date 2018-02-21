@@ -1,78 +1,66 @@
 <h5>Status 
-  <span class="badge">{{ $ctrl.filterParams.status.length }}</span> 
+  <!-- <span class="badge">{{ $ctrl.filterParams.status.length }}</span>  -->
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !statusCollapse, 'ion-ios-arrow-up': statusCollapse}" ng-click="statusCollapse = !statusCollapse"></i>
 </h5>
 <div uib-collapse="!statusCollapse">
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.uncheckAllStatuses()"
-    ng-disabled="$ctrl.filterParams.status.length === 0">Uncheck All</button>
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.checkAllStatuses()"
-    ng-disabled="$ctrl.filterParams.status.length === $ctrl.statusList.length">Check All</button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('status')">
+    Uncheck All
+  </button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('status')">
+    Check All
+  </button>
   <div class="checkbox"
-    ng-repeat="status in $ctrl.statusList">
+    ng-repeat="status in $ctrl.filterParams.status">
     <label>
       <input
         type="checkbox"
-        value="{{status}}"
-        name="$ctrl.filterParams.status[]"
-        ng-checked="$ctrl.filterParams.status.indexOf(status) > -1"
-        ng-click="$ctrl.toggleStatus(status)"
-      > {{status}}
+        value="{{status.displayName}}"
+        ng-checked="status.checked"
+        ng-click="$ctrl.toggleFilterItem(status.displayName, 'status')"
+      > {{status.displayName}}
     </label>
   </div>
 </div>
 
 <h5>Workflow
-  <span class="badge">{{ $ctrl.filterParams.locations.length }}</span>
+  <!-- <span class="badge">{{ $ctrl.filterParams.locations.length }}</span> -->
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !locationCollapse, 'ion-ios-arrow-up': locationCollapse}" ng-click="locationCollapse = !locationCollapse"></i>
 
 </h5>
 
 <div uib-collapse="!locationCollapse">
-  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAllLocations()" ng-disabled="$ctrl.filterParams.locations.length === 0">Uncheck All</button>
-  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAllLocations()" ng-disabled="$ctrl.filterParams.locations.length === $ctrl.locationList.length + 1">Check All</button>
-  <div class="checkbox mb-lg">
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('locations')">
+    Uncheck All
+  </button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('locations')">
+    Check All
+  </button>
+  <div class="checkbox" ng-repeat="location in $ctrl.filterParams.locations track by location.$id | orderBy : 'displayName'" ng-class="{'mb-lg':$first}">
     <label>
-      <input type="checkbox" value="undefined" name="$ctrl.filterParams.locations[]" ng-checked="$ctrl.filterParams.locations.indexOf('undefined') > -1"
-        ng-click="$ctrl.toggleLocation('undefined')"> No Workflow
-    </label>
-  </div>
-  <div class="checkbox" ng-repeat="location in $ctrl.locationList | orderBy : 'displayName'">
-    <label>
-      <input type="checkbox" value="{{location}}"
-        name="$ctrl.filterParams.locations[]"
-        ng-checked="$ctrl.filterParams.locations.indexOf(location) > -1"
-        ng-click="$ctrl.toggleLocation(location.$id)"> {{location.displayName}}
+      <input type="checkbox" value="{{location.$id}}"
+        ng-checked="location.checked"
+        ng-click="$ctrl.toggleFilterItem(location.$id, 'locations')"> {{location.displayName}}
     </label>
   </div>
 </div>
 
 <h5>Labels 
-  <span class="badge">{{ $ctrl.filterParams.labels.length }}</span> 
+  <!-- <span class="badge">{{ $ctrl.filterParams.labels.length }}</span>  -->
   <i class="filter-collapse" ng-class="{'ion-ios-arrow-down': !labelCollapse, 'ion-ios-arrow-up': labelCollapse}" 
     ng-click="labelCollapse = !labelCollapse"></i>
 
 </h5>
 
 <div uib-collapse="!labelCollapse">
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.uncheckAllLabels()"
-    ng-disabled="$ctrl.filterParams.labels.length === 0">Uncheck All</button>
-  <button class="btn btn-default btn-xs"
-    ng-click="$ctrl.checkAllLabels()"
-    ng-disabled="$ctrl.filterParams.labels.length === $ctrl._LabelService._labels.length + 1">Check All</button>
-  <div class="checkbox mb-lg">
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.uncheckAll('labels')">
+    Uncheck All
+  </button>
+  <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('labels')">
+    Check All
+  </button>
+  <div class="checkbox" ng-repeat="label in $ctrl.filterParams.labels track by label.$id | orderBy : 'displayName'" ng-class="{'mb-lg':$first}">
     <label>
-      <input type="checkbox" value="undefined" name="$ctrl.filterParams.labels[]" ng-checked="$ctrl.filterParams.labels.indexOf('undefined') > -1" ng-click="$ctrl.toggleLabel('undefined')"> No Label
-    </label>
-  </div>
-  <div class="checkbox" ng-repeat="label in $ctrl.labelList | orderBy : 'displayName'">
-    <label>
-      <input type="checkbox" value="{{label}} 
-        "name="$ctrl.filterParams.labels[]"
-        ng-checked="$ctrl.filterParams.labels.indexOf(label) > -1"
-        ng-click="$ctrl.toggleLabel(label.$id)"> {{label.displayName}}
+      <input type="checkbox" value="{{label.$id}}" ng-checked="label.checked" ng-click="$ctrl.toggleFilterItem(label.$id, 'labels')"> {{label.displayName}}
     </label>
   </div>
 </div>
