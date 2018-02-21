@@ -7,8 +7,6 @@ class ProfileCtrl {
         this._profile = profile;
         this._UserService = UserService;
         this._toastr = toastr;
-
-        console.log(currentAuth)
     }
 
     updateProfile() {
