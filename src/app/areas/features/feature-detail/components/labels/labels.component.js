@@ -22,6 +22,13 @@ class LabelControl {
         this.removeLabel = labelId => {
             this.data.splice(this.data.indexOf(labelId), 1);
         };
+
+        this.labelSelected = label => {
+            let labelKey = label.originalObject
+                    ? label.originalObject.$id
+                    : label.key;
+            return this.labelsToAdd.push(labelKey);
+        };
     }
 }
 let Labels = {
@@ -30,7 +37,9 @@ let Labels = {
         data: '=',
         updateLabels: ' & ',
         expiredLabel: '< ',
-        resetLabelExpiration: '& '
+        resetLabelExpiration: '&',
+        searchData: '<',
+        searchFunction: '<'
     },
     controller: LabelControl,
     templateUrl: 'areas/features/feature-detail/components/labels/labels.html'

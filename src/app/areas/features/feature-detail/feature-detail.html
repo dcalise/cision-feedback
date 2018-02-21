@@ -32,7 +32,9 @@
                  data="$ctrl._feature.labels"
                  update-labels="$ctrl.updateLabels(labels)"
                  expired-label="$ctrl.expiredLabel"
-                 reset-label-expiration="$ctrl.resetLabelExpiration()">
+                 reset-label-expiration="$ctrl.resetLabelExpiration()"
+                 search-data="$ctrl._LabelService._labels"
+                 search-function="$ctrl._LabelService.labelSearch">
               </labels>
               <!-- <span class="label label-default mr-xs"
                 ng-repeat="label in $ctrl._feature.labels">

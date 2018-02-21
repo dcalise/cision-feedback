@@ -6,6 +6,7 @@ class FeatureDetailCtrl {
         profile,
         CommentService,
         FeatureService,
+        LabelService,
         AccountService,
         $stateParams,
         $state,
@@ -31,6 +32,7 @@ class FeatureDetailCtrl {
         this._AccountService = AccountService;
         this._CommentService = CommentService;
         this._FeatureService = FeatureService;
+        this._LabelService = LabelService;
         this._UserService = UserService;
         this._toastr = toastr;
 
