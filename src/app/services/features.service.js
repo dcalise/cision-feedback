@@ -53,16 +53,14 @@ export default class FeatureService {
             feature.labels = [feature.labels];
         }
         if (accounts.length > 0) {
-            return this._AccountService
-                .getAccountWithPromise(accounts[0].accountKey)
-                .$loaded()
-                .then(account => {
+            return this.getOriginalRequesterName(accounts[0].accountKey)
+                .then(accountName => {
                     return this._features.$add({
                         accounts: accounts,
                         description: feature.description || null,
                         subject: feature.subject,
                         requesterUID: currentAuth.uid,
-                        originalRequester: account.name,
+                        originalRequester: accountName,
                         status: 'Received',
                         location: feature.location || null,
                         labels: feature.labels || null,
@@ -97,6 +95,17 @@ export default class FeatureService {
     }
     getFeature(slug) {
         return this._$firebaseObject(this._featuresRef.child(slug));
+    }
+
+    getOriginalRequesterName(id) {
+        let defer = this._$q.defer();
+        this._AccountService
+            .getAccountWithPromise(id)
+            .$loaded()
+            .then(account => {
+                defer.resolve(account.name);
+            });
+        return defer.promise;
     }
 
     updateTotalAndAverageValue(uid) {

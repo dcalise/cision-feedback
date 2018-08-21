@@ -27,7 +27,7 @@ class FeatureListCtrl {
         this.features.$loaded().then(features => {
             angular.forEach(features, feature => {
                 if (!feature.totalValue || !feature.averageValue) {
-                    feature.totalValue = this._FeatureService.updateTotalAndAverageValue(
+                    this._FeatureService.updateTotalAndAverageValue(
                         feature.$id
                     );
                 }
@@ -175,7 +175,6 @@ class FeatureListCtrl {
     }
 
     filterFeatures() {
-        console.log('filtering');
         this.filteredFeatures = this._$filter('featuresFilter')(
             this.features,
             this.filterParams
