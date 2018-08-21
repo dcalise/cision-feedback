@@ -45,29 +45,55 @@ export default class FeatureService {
     }
 
     // Add Feature
-    add(feature, currentAuth, accountKey) {
-        if (!Array.isArray(accountKey)) {
-            accountKey = [accountKey];
+    add(feature, currentAuth, accounts) {
+        if (!Array.isArray(accounts)) {
+            accounts = [accounts];
         }
         if (!Array.isArray(feature.labels)) {
             feature.labels = [feature.labels];
         }
-        return this._features.$add({
-            accounts: accountKey,
-            description: feature.description || null,
-            subject: feature.subject,
-            requesterUID: currentAuth.uid,
-            status: 'Received',
-            location: feature.location || null,
-            labels: feature.labels || null,
-            dateCreated: Date.now(),
-            activeState: 2,
-            events: {
-                lastUpdated: null,
-                viewedBy: null,
-                editedBy: null
-            }
-        });
+        if (accounts.length > 0) {
+            return this._AccountService
+                .getAccountWithPromise(accounts[0].accountKey)
+                .$loaded()
+                .then(account => {
+                    return this._features.$add({
+                        accounts: accounts,
+                        description: feature.description || null,
+                        subject: feature.subject,
+                        requesterUID: currentAuth.uid,
+                        originalRequester: account.name,
+                        status: 'Received',
+                        location: feature.location || null,
+                        labels: feature.labels || null,
+                        dateCreated: Date.now(),
+                        activeState: 2,
+                        events: {
+                            lastUpdated: null,
+                            viewedBy: null,
+                            editedBy: null
+                        }
+                    });
+                });
+        } else {
+            return this._features.$add({
+                accounts: accounts,
+                description: feature.description || null,
+                subject: feature.subject,
+                requesterUID: currentAuth.uid,
+                originalRequester: null,
+                status: 'Received',
+                location: feature.location || null,
+                labels: feature.labels || null,
+                dateCreated: Date.now(),
+                activeState: 2,
+                events: {
+                    lastUpdated: null,
+                    viewedBy: null,
+                    editedBy: null
+                }
+            });
+        }
     }
     getFeature(slug) {
         return this._$firebaseObject(this._featuresRef.child(slug));

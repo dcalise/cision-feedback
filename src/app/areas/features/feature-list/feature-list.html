@@ -97,7 +97,7 @@
                 </span>
               </td>
               <td ng-if="$ctrl.tablePrefs.columns.summary.display"><a ui-sref="app.feature-detail({id:feature.$id})">{{feature.subject}}</a></td>
-              <td ng-if="$ctrl.tablePrefs.columns.originalRequester.display" class="nowrap">{{feature.accountsMeta[0].name}}</td>
+              <td ng-if="$ctrl.tablePrefs.columns.originalRequester.display" class="nowrap">{{feature.originalRequester}}</td>
               <td ng-if="$ctrl.tablePrefs.columns.date.display" class="nowrap">{{feature.dateCreated | date }}</td>
               <td ng-if="$ctrl.tablePrefs.columns.totalValue.display" align="right">{{feature.totalValue | currency}}</td>
               <td ng-if="$ctrl.tablePrefs.columns.averageValue.display" align="right">{{feature.averageValue | currency}}</td>
