@@ -17,6 +17,7 @@ export default class FeatureService {
     addAccountToFeature(account, uid) {
         return this.getFeature(uid).then(feature => {
             feature.accounts.push(account);
+            this.updateTotalAndAverageValue(uid);
             return feature;
         });
     }
@@ -74,40 +75,33 @@ export default class FeatureService {
 
     updateTotalAndAverageValue(uid) {
         return this.getFeature(uid)
-            .$loaded().then(
-                feature => {
-                    let totalValue = 0;
-                    // let defer = $q.defer();
-                    if (feature.accounts) {
-                        let promises = [];
-                        let accountsWithValue = 0;
-                        feature.accounts.forEach((account) => {
-                            promises.push(this._AccountService.getAccount(account.accountKey))
-                        })
-                        this._$q.all(promises).then(accounts => {
-                            accounts.forEach(account => {
-                                if (account.value) {
-                                    accountsWithValue++;
-                                    totalValue += parseInt(account.value);
-                                }
-                            });
-                            feature.totalValue = totalValue
-                            feature.averageValue = totalValue / accountsWithValue;
-                            feature.$save();
-                        })
-                    }
-                    // angular.forEach(feature.accounts, account => {
-                    //     this._AccountService
-                    //         .getAccount(account.accountKey)
-                    //         .then(curAccount => {
-                    //             feature.totalValue += parseInt(curAccount.value);
-                    //         });
-                    // });
-                    // feature.$save().then(
-                    //     res => console.log(res.key), err => console.log(err)
-                    // )
-                    // return feature.totalValue;
+            .$loaded()
+            .then(feature => {
+                let totalValue = 0;
+                if (feature.accounts) {
+                    let promises = [];
+                    let accountsWithValue = 0;
+                    feature.accounts.forEach(account => {
+                        promises.push(
+                            this._AccountService.getAccount(account.accountKey)
+                        );
+                    });
+                    this._$q.all(promises).then(accounts => {
+                        accounts.forEach(account => {
+                            if (account.value) {
+                                accountsWithValue++;
+                                totalValue += parseInt(account.value);
+                            }
+                        });
+                        feature.totalValue = totalValue;
+                        feature.averageValue = totalValue / accountsWithValue;
+                        feature.$save();
+                    });
+                } else if (feature.totalValue || feature.averageValue) {
+                    feature.totalValue = 0;
+                    feature.averageValue = 0;
+                    feature.$save();
                 }
-            )
-    }   
+            });
+    }
 }

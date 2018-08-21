@@ -208,6 +208,9 @@ class FeatureDetailCtrl {
             }
             return this._feature.$save().then(
                 () => {
+                    this._FeatureService.updateTotalAndAverageValue(
+                        this._feature.$id
+                    );
                     this.listAccounts();
                     this.accountForm = {
                         selectedAccounts: []
@@ -228,6 +231,9 @@ class FeatureDetailCtrl {
             this._FeatureService
                 .removeAccountFromFeature(accountId, this._feature.$id)
                 .then(() => {
+                    this._FeatureService.updateTotalAndAverageValue(
+                        this._feature.$id
+                    );
                     this.listAccounts();
                 });
         }
