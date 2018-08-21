@@ -1,11 +1,15 @@
 export default class FeatureService {
-    constructor($firebaseArray, $firebaseObject) {
+    constructor($firebaseArray, $firebaseObject, AccountService, $q) {
         'ngInject';
 
         this._$firebaseObject = $firebaseObject;
 
         this._featuresRef = firebase.database().ref('features');
         this._features = $firebaseArray(this._featuresRef);
+
+        this._AccountService = AccountService;
+
+        this._$q = $q;
 
         this.all = this._features;
     }
@@ -67,4 +71,43 @@ export default class FeatureService {
     getFeature(slug) {
         return this._$firebaseObject(this._featuresRef.child(slug));
     }
+
+    updateTotalAndAverageValue(uid) {
+        return this.getFeature(uid)
+            .$loaded().then(
+                feature => {
+                    let totalValue = 0;
+                    // let defer = $q.defer();
+                    if (feature.accounts) {
+                        let promises = [];
+                        let accountsWithValue = 0;
+                        feature.accounts.forEach((account) => {
+                            promises.push(this._AccountService.getAccount(account.accountKey))
+                        })
+                        this._$q.all(promises).then(accounts => {
+                            accounts.forEach(account => {
+                                if (account.value) {
+                                    accountsWithValue++;
+                                    totalValue += parseInt(account.value);
+                                }
+                            });
+                            feature.totalValue = totalValue
+                            feature.averageValue = totalValue / accountsWithValue;
+                            feature.$save();
+                        })
+                    }
+                    // angular.forEach(feature.accounts, account => {
+                    //     this._AccountService
+                    //         .getAccount(account.accountKey)
+                    //         .then(curAccount => {
+                    //             feature.totalValue += parseInt(curAccount.value);
+                    //         });
+                    // });
+                    // feature.$save().then(
+                    //     res => console.log(res.key), err => console.log(err)
+                    // )
+                    // return feature.totalValue;
+                }
+            )
+    }   
 }
