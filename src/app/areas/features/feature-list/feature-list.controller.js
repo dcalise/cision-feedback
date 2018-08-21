@@ -25,11 +25,14 @@ class FeatureListCtrl {
         this.expiredFilters = false;
 
         this.features.$loaded().then(features => {
-            angular.forEach(features, feature => {
+            features.forEach(feature => {
                 if (!feature.totalValue || !feature.averageValue) {
                     this._FeatureService.updateTotalAndAverageValue(
                         feature.$id
                     );
+                }
+                if (!feature.originalRequester && feature.accounts) {
+                    this._FeatureService.updateOriginalRequesterName(feature.$id);
                 }
             });
 
