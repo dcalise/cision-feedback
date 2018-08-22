@@ -21,7 +21,7 @@ export default function featuresFilter() {
             // check label
             for (let label of filterParams.labels) {
                 if (label.$id === 'undefined' && label.checked) {
-                    if (!feature.label) {
+                    if (!feature.labels) {
                         labelMatch = true;
                         break;
                     }
