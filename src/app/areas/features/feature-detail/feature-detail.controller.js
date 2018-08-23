@@ -95,7 +95,6 @@ class FeatureDetailCtrl {
         this._featureDetail.accountsMeta = [];
         if (this._feature.accounts) {
             this._feature.accounts.forEach(accountObject => {
-                console.log('foreach');
                 this._AccountService
                     .getAccount(accountObject.accountKey)
                     .then(account => {
