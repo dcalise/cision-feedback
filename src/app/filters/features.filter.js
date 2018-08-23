@@ -4,7 +4,7 @@ export default function featuresFilter() {
     return (features, filterParams) => {
         let output = [];
 
-        angular.forEach(features, feature => {
+        features.forEach(feature => {
             let statusMatch = false;
             let labelMatch = false;
             let locationMatch = false;

@@ -34,7 +34,7 @@ export default class LabelService {
         return this.getLocation(object.location)
             .$loaded()
             .then(location => {
-                angular.forEach(object.labels, label => {
+                object.labels.forEach(label => {
                     if (location.labels.indexOf(label) === -1) {
                         location.labels.push(label);
                     }
@@ -75,12 +75,14 @@ export default class LabelService {
         let matches = [];
         angular.forEach(labels, label => {
             if (typeof label.displayName === 'string') {
-                let name = label.displayName ? label.displayName.toLowerCase() : '';
+                let name = label.displayName
+                    ? label.displayName.toLowerCase()
+                    : '';
                 if (name.indexOf(str.toString().toLowerCase()) >= 0) {
                     matches.push(label);
                 }
             }
         });
-        return matches
+        return matches;
     }
 }

@@ -39,18 +39,12 @@ class FiltersCtrl {
     }
 
     checkAll(filterType) {
-        angular.forEach(
-            this.filterParams[filterType],
-            filter => (filter.checked = true)
-        );
+        this.filterParams[filterType].forEach(filter => (filter.checked = true));
         this.updateFilters({ filterParams: this.filterParams });
     }
 
     uncheckAll(filterType) {
-        angular.forEach(
-            this.filterParams[filterType],
-            filter => (filter.checked = false)
-        );
+        this.filterParams[filterType].forEach(filter => (filter.checked = false));
         this.updateFilters({ filterParams: this.filterParams });
     }
 
