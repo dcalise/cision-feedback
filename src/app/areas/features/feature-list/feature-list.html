@@ -28,8 +28,8 @@
     <column-toggle
       columns="$ctrl.tablePrefs.columns"
       change-column-visibility="$ctrl.changeColumnVisibility()"></column-toggle>
-    
-      
+
+
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default btn-icon"
         ng-click="$ctrl.changeTableWidth('container-fluid')"
@@ -42,10 +42,10 @@
         <i class="ion-arrow-shrink"></i>
       </button>
     </div>
-    
+
     <button type="button" class="btn btn btn-danger"
     ng-click="$ctrl.resetTablePrefs()">Reset</button>
-  
+
   </section>
 
   <section ng-class="$ctrl.tablePrefs.width">
@@ -97,7 +97,7 @@
                 </span>
               </td>
               <td ng-if="$ctrl.tablePrefs.columns.summary.display"><a ui-sref="app.feature-detail({id:feature.$id})">{{feature.subject}}</a></td>
-              <td ng-if="$ctrl.tablePrefs.columns.originalRequester.display" class="nowrap">{{feature.accountsMeta[0].name}}</td>
+              <td ng-if="$ctrl.tablePrefs.columns.originalRequester.display" class="nowrap">{{feature.originalRequester}}</td>
               <td ng-if="$ctrl.tablePrefs.columns.date.display" class="nowrap">{{feature.dateCreated | date }}</td>
               <td ng-if="$ctrl.tablePrefs.columns.totalValue.display" align="right">{{feature.totalValue | currency}}</td>
               <td ng-if="$ctrl.tablePrefs.columns.averageValue.display" align="right">{{feature.averageValue | currency}}</td>

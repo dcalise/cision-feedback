@@ -25,21 +25,15 @@ class FeatureListCtrl {
         this.expiredFilters = false;
 
         this.features.$loaded().then(features => {
-            angular.forEach(features, feature => {
-                feature.accountsMeta = [];
-                feature.totalValue = 0;
-                feature.averageValue = 0;
-                angular.forEach(feature.accounts, account => {
-                    this._AccountService
-                        .getAccount(account.accountKey)
-                        .then(curAccount => {
-                            feature.accountsMeta.push(curAccount);
-                            feature.totalValue += parseInt(curAccount.value);
-                            feature.averageValue =
-                                feature.totalValue /
-                                parseInt(feature.accounts.length);
-                        });
-                });
+            features.forEach(feature => {
+                if (!feature.totalValue || !feature.averageValue) {
+                    this._FeatureService.updateTotalAndAverageValue(
+                        feature.$id
+                    );
+                }
+                if (!feature.originalRequester && feature.accounts) {
+                    this._FeatureService.updateOriginalRequesterName(feature.$id);
+                }
             });
 
             this.getCachedFilterParams();
@@ -58,14 +52,14 @@ class FeatureListCtrl {
             };
         }
     }
-    
+
     getCacheTimestamp() {
         return this._moment(this.$localStorage.timestamp).diff(
             this._moment(),
             'hours'
         );
     }
-    
+
     changeColumnSort(col, reverse) {
         this.tablePrefs.reverse = false;
         if (this.tablePrefs.type === col) {
@@ -94,7 +88,6 @@ class FeatureListCtrl {
         this.$localStorage.cachedFilterParams = params;
         this.filterFeatures();
     }
-
 
     getCachedFilterParams() {
         if (this.getCacheTimestamp() < -11) {

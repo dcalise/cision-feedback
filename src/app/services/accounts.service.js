@@ -2,6 +2,8 @@ export default class AccountService {
   constructor($firebaseArray, $firebaseObject) {
     'ngInject';
 
+    this._$firebaseObject = $firebaseObject;
+
     this.accountsRef = firebase.database().ref('accounts');
     this.accounts = $firebaseArray(this.accountsRef);
 
@@ -31,6 +33,10 @@ export default class AccountService {
         return accounts.$getRecord(accountKey)
       }
     )
+  }
+
+  getAccountWithPromise(accountKey) {
+    return this._$firebaseObject(this.accountsRef.child(accountKey));
   }
 
   accountSearch(str, accounts) {

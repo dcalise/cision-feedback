@@ -58,7 +58,12 @@
   <button class="btn btn-default btn-xs" ng-click="$ctrl.checkAll('labels')">
     Check All
   </button>
-  <div class="checkbox" ng-repeat="label in $ctrl.filterParams.labels track by label.$id | orderBy : 'displayName'" ng-class="{'mb-lg':$first}">
+  <div class="checkbox mb-lg">
+    <label>
+      <input type="checkbox" value="undefined" ng-checked="$ctrl.filterParams.labels[0].checked" ng-click="$ctrl.toggleFilterItem('undefined', 'labels')"> No Label
+    </label>
+  </div>
+  <div class="checkbox" ng-repeat="label in $ctrl.filterParams.labels | isDefined | orderBy : 'displayName' track by label.$id">
     <label>
       <input type="checkbox" value="{{label.$id}}" ng-checked="label.checked" ng-click="$ctrl.toggleFilterItem(label.$id, 'labels')"> {{label.displayName}}
     </label>

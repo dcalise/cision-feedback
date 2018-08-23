@@ -12,11 +12,11 @@ class LabelControl {
                 } else {
                     if (this.labelsToAdd.length > 0) {
                         if (this.data) {
-                            angular.forEach(this.labelsToAdd, labelToAdd => {
+                            this.labelsToAdd.forEach(labelToAdd => {
                                 if (this.data.indexOf(labelToAdd) < 0) {
                                     this.data.push(labelToAdd);
                                 }
-                            })
+                            });
                         } else {
                             this.data = this.labelsToAdd;
                         }
