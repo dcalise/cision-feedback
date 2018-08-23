@@ -32,7 +32,7 @@ class AdminCtrl {
     this.locationAndLabelList = []
     this._LabelService._locations.$loaded().then(
       (locations) => {
-        angular.forEach(locations, (location) => {
+        locations.forEach((location) => {
           let locationLabelObject = {
             $id: location.$id,
             displayName: location.displayName,
@@ -40,29 +40,29 @@ class AdminCtrl {
             deleted: location.deleted,
             labels: []
           }
-          angular.forEach(location.labels, (labelId) => {
-            this._LabelService.getLabel(labelId).$loaded().then(
-              (label) => {
-                let labelObject = {
-                  $id: labelId,
-                  displayName: label.displayName,
-                  description: label.description
-
+          if (location.labels) {
+            location.labels.forEach((labelId) => {
+              this._LabelService.getLabel(labelId).$loaded().then(
+                (label) => {
+                  let labelObject = {
+                    $id: labelId,
+                    displayName: label.displayName,
+                    description: label.description
+                  }
+                  locationLabelObject.labels.push(labelObject)
                 }
-                locationLabelObject.labels.push(labelObject)
-              }
-            )
-          });
-          this.locationAndLabelList.push(locationLabelObject);
+              )
+            });
+            this.locationAndLabelList.push(locationLabelObject);
+          }
         })
       }
     )
   }
 
   getLocationLabels(location) {
-    
     this.locationLabels[location.$id] = [];
-    angular.forEach(location.labels, (labelId) => {
+    location.labels.forEach((labelId) => {
       this._LabelService.getLabel(labelId).$loaded().then(
         (label) => {
           this.locationLabels[location.$id].push(label)
