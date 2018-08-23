@@ -36,10 +36,6 @@
                  search-data="$ctrl._LabelService._labels"
                  search-function="$ctrl._LabelService.labelSearch">
               </labels>
-              <!-- <span class="label label-default mr-xs"
-                ng-repeat="label in $ctrl._feature.labels">
-                <display-label data="label"></display-label>
-              </span> -->
             </div>
           </div>
           <div class="row"
@@ -121,7 +117,7 @@
                 <em ng-show="$ctrl._featureDetail.requester.department">{{::$ctrl._featureDetail.requester.department}}</em><br>
                 <a href="mailto:{{::$ctrl._featureDetail.requester.email}}">{{::$ctrl._featureDetail.requester.email}}</a>
               </li>
-              <li><strong>Requested for:</strong> {{$ctrl._featureDetail.accountsMeta[0].name}}</li>
+              <li><strong>Requested for:</strong> {{$ctrl._feature.originalRequester}}</li>
             </ul>
           </div>
         </div>
