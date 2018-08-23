@@ -14,58 +14,10 @@ const db = admin.database()
 async function start() {
   try {
 
-    console.log('start!')
-
-    // // products
-    // const idxProducts = {}
-    // const productsResult = await db.ref('products').once('value')
-    // const products = productsResult.val()
-
-    // Object.keys(products).forEach((key) => {
-    //   const k = products[key]
-    //   if (!idxProducts[k.displayName]) idxProducts[k.displayName] = key
-    // })
+    console.log('start!');
 
     const featuresResult = await db.ref('features').once('value')
     const features = featuresResult.val()
-
-    // Object.keys(features).forEach(async (key) => {
-    //   const feature = features[key]
-    //   if (feature.product && idxProducts[feature.product]) {
-    //     try {
-    //       console.log('updating product of feature %s with %s', key, idxProducts[feature.product])
-    //       await db.ref(`features/${key}/product`).set(idxProducts[feature.product])
-    //     } catch (e) {
-    //       console.log(e);
-    //       console.log('error, exiting')
-    //       process.exit(1)
-    //     }
-    //   }
-    // })
-
-    // // locations
-    // const idxLocations = {}
-    // const locationsResult = await db.ref('locations').once('value')
-    // const locations = locationsResult.val()
-
-    // Object.keys(locations).forEach((key) => {
-    //   const k = locations[key]
-    //   if (!idxLocations[k.displayName]) idxLocations[k.displayName] = key
-    // })
-
-    // Object.keys(features).forEach(async (key) => {
-    //   const feature = features[key]
-    //   if (feature.location && idxLocations[feature.location]) {
-    //     try {
-    //       console.log('updating location of feature %s with %s', key, idxLocations[feature.location])
-    //       await db.ref(`features/${key}/location`).set(idxLocations[feature.location])
-    //     } catch (e) {
-    //       console.log(e);
-    //       console.log('error, exiting')
-    //       process.exit(1)
-    //     }
-    //   }
-    // })
 
     // labels
     const reducedLabels = {}
