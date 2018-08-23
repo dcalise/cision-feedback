@@ -39,12 +39,16 @@ class FiltersCtrl {
     }
 
     checkAll(filterType) {
-        this.filterParams[filterType].forEach(filter => (filter.checked = true));
+        this.filterParams[filterType].forEach(
+            filter => (filter.checked = true)
+        );
         this.updateFilters({ filterParams: this.filterParams });
     }
 
     uncheckAll(filterType) {
-        this.filterParams[filterType].forEach(filter => (filter.checked = false));
+        this.filterParams[filterType].forEach(
+            filter => (filter.checked = false)
+        );
         this.updateFilters({ filterParams: this.filterParams });
     }
 
@@ -53,7 +57,6 @@ class FiltersCtrl {
     }
 
     resetFiltersToDefault() {
-
         this.filterParams = {
             status: [],
             locations: [],
@@ -126,7 +129,7 @@ class FiltersCtrl {
     $onChanges(changes) {
         if (
             changes.cachedFilterParams &&
-            !changes.cachedFilterParams.previousValue
+            changes.cachedFilterParams.currentValue !== undefined
         ) {
             this.setFiltersToCachedParams();
         }
