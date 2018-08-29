@@ -4,7 +4,7 @@ export default function featuresFilter() {
     return (features, filterParams) => {
         let output = [];
 
-        angular.forEach(features, feature => {
+        features.forEach(feature => {
             let statusMatch = false;
             let labelMatch = false;
             let locationMatch = false;
@@ -21,7 +21,7 @@ export default function featuresFilter() {
             // check label
             for (let label of filterParams.labels) {
                 if (label.$id === 'undefined' && label.checked) {
-                    if (!feature.label) {
+                    if (!feature.labels) {
                         labelMatch = true;
                         break;
                     }

@@ -93,16 +93,16 @@ class FeatureDetailCtrl {
 
     listAccounts() {
         this._featureDetail.accountsMeta = [];
-        this._featureDetail.totalValue = 0;
-        angular.forEach(this._feature.accounts, accountObject => {
-            this._AccountService
-                .getAccount(accountObject.accountKey)
-                .then(account => {
-                    account.tie = accountObject.accountTie;
-                    this._featureDetail.accountsMeta.push(account);
-                    this._featureDetail.totalValue += parseInt(account.value);
-                });
-        });
+        if (this._feature.accounts) {
+            this._feature.accounts.forEach(accountObject => {
+                this._AccountService
+                    .getAccount(accountObject.accountKey)
+                    .then(account => {
+                        account.tie = accountObject.accountTie;
+                        this._featureDetail.accountsMeta.push(account);
+                    });
+            });
+        }
         this._featureDetail.requester = this._UserService.getProfile(
             this._feature.requesterUID
         );
@@ -208,6 +208,9 @@ class FeatureDetailCtrl {
             }
             return this._feature.$save().then(
                 () => {
+                    this._FeatureService.updateTotalAndAverageValue(
+                        this._feature.$id
+                    );
                     this.listAccounts();
                     this.accountForm = {
                         selectedAccounts: []
@@ -228,6 +231,9 @@ class FeatureDetailCtrl {
             this._FeatureService
                 .removeAccountFromFeature(accountId, this._feature.$id)
                 .then(() => {
+                    this._FeatureService.updateTotalAndAverageValue(
+                        this._feature.$id
+                    );
                     this.listAccounts();
                 });
         }

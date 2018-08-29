@@ -40,7 +40,7 @@ class FeedbackCreateCtrl {
             .$loaded()
             .then(product => {
                 this.productLocations = [];
-                angular.forEach(product.locations, locationId => {
+                product.locations.forEach(locationId => {
                     this._LabelService
                         .getLocation(locationId)
                         .$loaded()
@@ -57,7 +57,7 @@ class FeedbackCreateCtrl {
             .$loaded()
             .then(location => {
                 this.locationLabels = [];
-                angular.forEach(location.labels, labelId => {
+                location.labels.forEach(labelId => {
                     this._LabelService
                         .getLabel(labelId)
                         .$loaded()
