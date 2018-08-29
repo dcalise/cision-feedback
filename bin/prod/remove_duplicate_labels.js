@@ -1,10 +1,10 @@
 const admin = require('firebase-admin')
 
-const serviceAccount = require("../key/key.json");
+const serviceAccount = require("../key/key_prod.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://cision-feedback-dev.firebaseio.com"
+  databaseURL: "https://cision-feedback.firebaseio.com"
 });
 
 const db = admin.database()
