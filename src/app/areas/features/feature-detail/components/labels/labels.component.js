@@ -6,20 +6,21 @@ class LabelControl {
         let initLabels;
         this.changeLabels = labelArray => {
             if (this.editing) {
+                // cancel
                 if (labelArray.labels === false) {
                     this.data = initLabels;
                     this.labelsToAdd = [];
+                // save
                 } else {
                     if (this.labelsToAdd.length > 0) {
-                        if (this.data) {
-                            this.labelsToAdd.forEach(labelToAdd => {
-                                if (this.data.indexOf(labelToAdd) < 0) {
-                                    this.data.push(labelToAdd);
-                                }
-                            });
-                        } else {
-                            this.data = this.labelsToAdd;
+                        if (!this.data) {
+                            this.data = [];
                         }
+                        this.labelsToAdd.forEach(labelToAdd => {
+                            if (this.data.indexOf(labelToAdd) < 0) {
+                                this.data.push(labelToAdd);
+                            }
+                        });
                     }
                     this.labelsToAdd = [];
                     this.updateLabels();
@@ -29,6 +30,9 @@ class LabelControl {
             } else {
                 if (this.data) {
                     initLabels = Array.from(this.data);
+                } else {
+                    this.data = [];
+                    this.showAddLabel = true;
                 }
                 this.editing = true;
             }

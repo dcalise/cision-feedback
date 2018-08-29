@@ -20,18 +20,18 @@
     </span>
   </span>
 
-  <span class="meta light mr-xs" ng-hide="$ctrl.data || $ctrl.editing">No labels</span>
+  <span class="meta light mr-xs" ng-hide="$ctrl.data.length > 0 || $ctrl.editing">No labels</span>
 
   <i
     class="ion-edit meta admin-control"
     ng-show="$ctrl.admin && !$ctrl.editing"
-    ng-click="$ctrl.changeLabels()"></i>
+    ng-click="$ctrl.changeLabels({labels:false})"></i>
 </span>
 
 <form class="form-inline inline-edit" ng-show="$ctrl.editing">
   <input type="hidden" ng-init="$ctrl.labelsToAdd = []">
   <span angucomplete-alt
-    ng-show="$ctrl.showAddLabel || !$ctrl.data"
+    ng-show="$ctrl.showAddLabel"
     class="inline"
     placeholder="Enter label"
     pause="300"
