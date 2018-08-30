@@ -1,7 +1,9 @@
 class LabelControl {
-    constructor(AuthService, UserService, LabelService) {
+    constructor() {
         'ngInject';
-        this._LabelService = LabelService;
+    }
+
+    $onInit() {
 
         let initLabels;
         this.changeLabels = labelArray => {
