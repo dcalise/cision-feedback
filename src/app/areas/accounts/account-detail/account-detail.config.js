@@ -17,7 +17,12 @@ function AccountDetailConfig($stateProvider) {
         });
       },
       account: (AccountService, $stateParams) => {
-        return AccountService.getAccount($stateParams.id);
+        return AccountService.getAccountWithPromise($stateParams.id).$loaded();
+      },
+      profile: (UserService, AuthService) => {
+        return AuthService.$requireSignIn().then(auth => {
+          return UserService.getProfile(auth.uid).$loaded();
+        });
       }
     }
   });

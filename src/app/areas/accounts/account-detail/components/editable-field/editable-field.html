@@ -1,0 +1,25 @@
+<span
+  ng-hide="$ctrl.editing"
+>
+  {{$ctrl.data}}
+  <i
+    class="ion-edit meta ml-xs"
+    ng-show="$ctrl.admin"
+    ng-click="$ctrl.editing = true"
+  ></i>
+</span>
+<form
+  class="form-inline inline-edit"
+  ng-show="$ctrl.editing"
+>
+  <select
+    class="form-control"
+    ng-model="$ctrl.data"
+  >
+    <option>USA</option>
+    <option>Canada</option>
+    <option>Other</option>
+  </select>
+  <i class="ion-close ml-xs text-danger" ng-click="$ctrl.changeField(false)"></i>
+  <i class="ion-checkmark ml-xs text-success" ng-click="$ctrl.changeField(true)"></i>
+</form>
