@@ -1,0 +1,79 @@
+<navbar>
+  <app-header></app-header>
+</navbar>
+
+<main>
+  <section class="container account-detail">
+    <div class="row">
+      <div class="col-sm-9 account-header">
+        <div class="section">
+          <div class="row">
+            <div class="col-sm-12">
+              <span class="meta">
+                {{::$ctrl.account.country}}
+              </span>
+              <h1>
+                {{::$ctrl.account.name}}
+                <small class="value">{{$ctrl.account.value | currency }}</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 account-sidebar">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="list-unstyled mt-xl">
+              <li><strong>Platform:</strong> {{$ctrl.account.platform}}</li>
+              <li><strong>Account ID:</strong> {{$ctrl.account.cid}}</li>
+              <li class="mt-sm mb-sm">
+                <a
+                  ng-if="$ctrl.account.salesForceUrl"
+                  href="{{$ctrl.account.salesForceUrl}}"
+                  class="btn btn-default btn-xs"
+                >
+                View in Salesforce
+                </a>
+                <input
+                  ng-if="!$ctrl.account.salesForceUrl"
+                  class="form-control input-xs"
+                  placeholder="Add Salesforce Url"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <!--todo: make this modular-->
+    <div class="section-header" ng-class="{'closed':!$ctrl.showCustomerSummary}" ng-click="$ctrl.showCustomerSummary = !$ctrl.showCustomerSummary">
+      <h4>Feature Request Summary</h4>
+    </div>
+    <div class="col-sm-12" ng-show="$ctrl.showCustomerSummary">
+      <table class="table table-striped">
+        <thead>
+          <th>Summary</th>
+          <th>Relationship</th>
+          <th>Number of Accounts</th>
+          <th class="text-right">Request Value</th>
+          <th ng-show="$ctrl.showAccountDeleteColumn"></th>
+        </thead>
+        <tbody>
+          <!-- <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
+            <td>{{account.name}}<br><span class="meta small">{{account.cid}}</span></td>
+            <td>{{account.accountType}}</td>
+            <td>{{account.tie}}</td>
+            <td>{{account.country}}</td>
+            <td align="right">{{account.value | currency}}</td>
+            <td ng-show="$ctrl.showAccountDeleteColumn" align="center">
+              <i class="ion-close btn-remove" ng-click="$ctrl.removeAccountFromFeature(account.$id)"></i>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
