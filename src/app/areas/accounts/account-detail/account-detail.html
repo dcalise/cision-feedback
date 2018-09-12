@@ -24,7 +24,22 @@
         <div class="row">
           <div class="col-sm-12">
             <ul class="list-unstyled mt-xl">
-              <li><strong>Platform:</strong> {{$ctrl.account.platform}}</li>
+              <li class="mb-sm">
+                <span
+                  class="label"
+                  ng-class="{
+                  'label-success': $ctrl.account.accountType === 'Current customer',
+                  'label-default': $ctrl.account.accountType === 'Prospect in-cycle',
+                  'label-warning': $ctrl.account.accountType === 'Prospect loss',
+                  'label-danger': $ctrl.account.accountType === 'Lost customer'
+                }">{{$ctrl.account.accountType}}</span>
+              </li>
+              <li>
+                <strong>Platform:</strong>&nbsp;
+                <span ng-repeat="platform in $ctrl.account.platform">
+                  {{platform}}<span ng-if="!$last">, </span>
+                </span>
+              </li>
               <li><strong>Account ID:</strong> {{$ctrl.account.cid}}</li>
               <li class="mt-sm mb-sm">
                 <a
