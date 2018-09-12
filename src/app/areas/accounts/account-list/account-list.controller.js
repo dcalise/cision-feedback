@@ -9,7 +9,7 @@ class AccountListCtrl {
 
         this._AccountService = AccountService;
         this.$localStorage = $localStorage;
-        $this._FeatureService = FeatureService;
+        this._FeatureService = FeatureService;
         this._moment = moment;
     }
 

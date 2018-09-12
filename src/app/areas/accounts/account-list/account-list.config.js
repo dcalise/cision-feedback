@@ -9,10 +9,12 @@ function AccountListConfig($stateProvider) {
         title: 'Accounts',
         resolve: {
             currentAuth: (AuthService, $state) => {
-                if (!auth.emailVerified) {
-                    $state.go('app.profile');
-                }
-                return auth;
+                return AuthService.$requireSignIn().then(auth => {
+                    if (!auth.emailVerified) {
+                        $state.go('app.profile');
+                    }
+                    return auth;
+                });
             },
             profile: (UserService, AuthService) => {
                 return AuthService.$requireSignIn().then(auth => {

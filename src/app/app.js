@@ -24,6 +24,8 @@ import './layout';
 import './components';
 import './areas/admin';
 import './areas/root';
+import './areas/accounts/account-list';
+import './areas/accounts/account-detail';
 import './areas/features/feature-detail';
 import './areas/features/feature-list';
 import './areas/features/feature-create';
@@ -44,6 +46,8 @@ const requires = [
     'app.layout',
     'app.components',
     'app.home',
+    'app.account-list',
+    'app.account-detail',
     'app.feature-detail',
     'app.feature-list',
     'app.feature-create',
