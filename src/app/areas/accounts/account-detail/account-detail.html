@@ -13,12 +13,20 @@
                 <editable-field
                   admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.country"
-                  update-field="$ctrl.updateCountry()"
+                  update-field="$ctrl.updateAccount()"
+                  options="['USA','Canada','Other']"
                 ></editable-field>
               </span>
               <h1>
                 {{::$ctrl.account.name}}
-                <small class="value">{{$ctrl.account.value | currency }}</small>
+                <small class="value">
+                  <editable-field
+                    admin="$ctrl.userIsAdmin"
+                    data="$ctrl.account.value"
+                    update-field="$ctrl.updateAccount()"
+                    format="currency"
+                  ></editable-field>
+                </small>
               </h1>
             </div>
           </div>
@@ -44,7 +52,14 @@
                   {{platform}}<span ng-if="!$last">, </span>
                 </span>
               </li>
-              <li><strong>Account ID:</strong> {{$ctrl.account.cid}}</li>
+              <li>
+                <strong>Account ID:</strong>&nbsp;
+                <editable-field
+                  admin="$ctrl.userIsAdmin"
+                  data="$ctrl.account.cid"
+                  update-field="$ctrl.updateAccount()"
+                >
+              </li>
               <li class="mt-sm mb-sm">
                 <a
                   ng-if="$ctrl.account.salesForceUrl"

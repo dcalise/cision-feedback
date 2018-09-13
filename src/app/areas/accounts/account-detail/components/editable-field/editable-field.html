@@ -1,7 +1,8 @@
 <span
   ng-hide="$ctrl.editing"
 >
-  {{$ctrl.data}}
+  <span ng-if="$ctrl.filteredData">{{$ctrl.filteredData}}</span>
+  <span ng-if="!$ctrl.filteredData">{{$ctrl.data}}</span>
   <i
     class="ion-edit meta ml-xs"
     ng-show="$ctrl.admin"
@@ -14,12 +15,16 @@
 >
   <select
     class="form-control"
+    ng-if="$ctrl.options"
     ng-model="$ctrl.data"
   >
-    <option>USA</option>
-    <option>Canada</option>
-    <option>Other</option>
+    <option ng-repeat="option in $ctrl.options">{{option}}</option>
   </select>
+  <input
+    ng-if="!$ctrl.options"
+    class="form-control"
+    ng-model="$ctrl.data"
+  />
   <i class="ion-close ml-xs text-danger" ng-click="$ctrl.changeField(false)"></i>
   <i class="ion-checkmark ml-xs text-success" ng-click="$ctrl.changeField(true)"></i>
 </form>

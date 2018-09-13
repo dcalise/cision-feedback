@@ -1,5 +1,5 @@
 class AccountDetailCtrl {
-  constructor(account, profile, currentAuth) {
+  constructor(account, profile) {
     'ngInject';
 
     this.account = account;
@@ -13,7 +13,7 @@ class AccountDetailCtrl {
     }
   }
 
-  updateCountry() {
+  updateAccount() {
     return this.account.$save();
   }
 
