@@ -1,13 +1,27 @@
 <span
   ng-hide="$ctrl.editing"
 >
-  <span ng-if="$ctrl.filteredData">{{$ctrl.filteredData}}</span>
-  <span ng-if="!$ctrl.filteredData">{{$ctrl.data}}</span>
-  <i
-    class="ion-edit meta ml-xs"
-    ng-show="$ctrl.admin"
-    ng-click="$ctrl.editing = true"
-  ></i>
+
+  <span ng-if="$ctrl.type === 'button'">
+    <a href="{{$ctrl.data}}" class="btn btn-default btn-xs">
+      {{$ctrl.buttonText}}
+    </a>
+    <i
+      class="ion-edit meta ml-xs"
+      ng-show="$ctrl.admin"
+      ng-click="$ctrl.editing = true"
+    ></i>
+  </span>
+
+  <span ng-if="!$ctrl.type">
+    <span ng-if="$ctrl.filteredData">{{$ctrl.filteredData}}</span>
+    <span ng-if="!$ctrl.filteredData">{{$ctrl.data}}</span>
+    <i
+      class="ion-edit meta ml-xs"
+      ng-show="$ctrl.admin"
+      ng-click="$ctrl.editing = true"
+    ></i>
+  </span>
 </span>
 <form
   class="form-inline inline-edit"

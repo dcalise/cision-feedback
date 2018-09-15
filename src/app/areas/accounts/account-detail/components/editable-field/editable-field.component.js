@@ -21,11 +21,15 @@ class EditableFieldCtrl {
         if (!save) {
             this.data = this.initialFieldValue;
         } else {
-            this.updateField().then(
-              () => this.formatData()
-            );
+            this.updateField().then(() => this.formatData());
         }
         this.editing = false;
+    }
+
+    isUndefined(data) {
+        console.log(data);
+        console.log(typeof data === 'undefined');
+        return typeof data === 'undefined';
     }
 }
 
@@ -35,7 +39,9 @@ let EditableField = {
         data: '=',
         updateField: '&',
         options: '<',
-        format: '@'
+        format: '@',
+        type: '@',
+        buttonText: '@'
     },
     controller: EditableFieldCtrl,
     templateUrl:
