@@ -25,12 +25,6 @@ class EditableFieldCtrl {
         }
         this.editing = false;
     }
-
-    isUndefined(data) {
-        console.log(data);
-        console.log(typeof data === 'undefined');
-        return typeof data === 'undefined';
-    }
 }
 
 let EditableField = {

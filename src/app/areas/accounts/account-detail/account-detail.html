@@ -37,14 +37,13 @@
           <div class="col-sm-12">
             <ul class="list-unstyled mt-xl">
               <li class="mb-sm">
-                <span
-                  class="label"
-                  ng-class="{
-                  'label-success': $ctrl.account.accountType === 'Current customer',
-                  'label-default': $ctrl.account.accountType === 'Prospect in-cycle',
-                  'label-warning': $ctrl.account.accountType === 'Prospect loss',
-                  'label-danger': $ctrl.account.accountType === 'Lost customer'
-                }">{{$ctrl.account.accountType}}</span>
+                <editable-field
+                  admin="$ctrl.userIsAdmin"
+                  data="$ctrl.account.accountType"
+                  update-field="$ctrl.updateAccount()"
+                  type="label"
+                  options="['Current customer', 'Prospect in-cycle', 'Prospect loss', 'Lost customer']"
+                ></editable-field>
               </li>
               <li>
                 <strong>Platform:</strong>&nbsp;

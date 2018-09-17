@@ -13,7 +13,23 @@
     ></i>
   </span>
 
-  <span ng-if="!$ctrl.type">
+  <span ng-if="$ctrl.type === 'label'">
+    <span
+      class="label"
+      ng-class="{
+      'label-success': $ctrl.data === 'Current customer',
+      'label-default': $ctrl.data === 'Prospect in-cycle',
+      'label-warning': $ctrl.data === 'Prospect loss',
+      'label-danger': $ctrl.data === 'Lost customer'
+    }">{{$ctrl.data}}</span>
+    <i
+      class="ion-edit meta ml-xs"
+      ng-show="$ctrl.admin"
+      ng-click="$ctrl.editing = true"
+    ></i>
+  </span>
+
+  <span ng-if="$ctrl.type !== 'button' && $ctrl.type !== 'label'">
     <span ng-if="$ctrl.filteredData">{{$ctrl.filteredData}}</span>
     <span ng-if="!$ctrl.filteredData">{{$ctrl.data}}</span>
     <i
