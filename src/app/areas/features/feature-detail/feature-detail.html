@@ -155,7 +155,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
-            <td>{{account.name}}<br><span class="meta small">{{account.cid}}</span></td>
+            <td><a ui-sref="app.account-detail({id:account.$id})">{{account.name}}</a><br><span class="meta small">{{account.cid}}</span></td>
             <td>{{account.accountType}}</td>
             <td>{{account.tie}}</td>
             <td>{{account.country}}</td>

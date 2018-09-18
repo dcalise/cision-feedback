@@ -11,6 +11,8 @@ class AccountDetailCtrl {
     if (this.profile.roles && this.profile.roles.admin === true) {
       this.userIsAdmin = true;
     }
+
+    this.showFeatureSummary = true;
   }
 
   updateAccount() {

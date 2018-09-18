@@ -83,31 +83,15 @@
 
   <section class="container">
     <!--todo: make this modular-->
-    <div class="section-header" ng-class="{'closed':!$ctrl.showCustomerSummary}" ng-click="$ctrl.showCustomerSummary = !$ctrl.showCustomerSummary">
+    <div class="section-header" ng-class="{'closed':!$ctrl.showFeatureSummary}" ng-click="$ctrl.showFeatureSummary = !$ctrl.showFeatureSummary">
       <h4>Feature Request Summary</h4>
     </div>
-    <div class="col-sm-12" ng-show="$ctrl.showCustomerSummary">
-      <table class="table table-striped">
-        <thead>
-          <th>Summary</th>
-          <th>Relationship</th>
-          <th>Number of Accounts</th>
-          <th class="text-right">Request Value</th>
-          <th ng-show="$ctrl.showAccountDeleteColumn"></th>
-        </thead>
-        <tbody>
-          <!-- <tr ng-repeat="account in $ctrl._featureDetail.accountsMeta">
-            <td>{{account.name}}<br><span class="meta small">{{account.cid}}</span></td>
-            <td>{{account.accountType}}</td>
-            <td>{{account.tie}}</td>
-            <td>{{account.country}}</td>
-            <td align="right">{{account.value | currency}}</td>
-            <td ng-show="$ctrl.showAccountDeleteColumn" align="center">
-              <i class="ion-close btn-remove" ng-click="$ctrl.removeAccountFromFeature(account.$id)"></i>
-            </td>
-          </tr> -->
-        </tbody>
-      </table>
+    <div class="col-sm-12" ng-show="$ctrl.showFeatureSummary">
+      <feature-list
+        admin="$ctrl.userIsAdmin"
+        features="$ctrl.account.features"
+        account-id="$ctrl.account.$id"
+      ></feature-list>
     </div>
   </section>
 </main>

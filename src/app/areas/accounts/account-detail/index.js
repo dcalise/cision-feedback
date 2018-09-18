@@ -11,4 +11,7 @@ accountDetailModule.controller('AccountDetailCtrl', AccountDetailCtrl);
 import EditableField from  './components/editable-field/editable-field.component';
 accountDetailModule.component('editableField', EditableField);
 
+import FeatureList from './components/feature-list/feature-list.component';
+accountDetailModule.component('featureList', FeatureList);
+
 export default accountDetailModule;
