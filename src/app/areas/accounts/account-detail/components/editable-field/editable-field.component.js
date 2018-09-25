@@ -35,7 +35,8 @@ let EditableField = {
         options: '<',
         format: '@',
         type: '@',
-        buttonText: '@'
+        buttonText: '@',
+        emptyState: '@'
     },
     controller: EditableFieldCtrl,
     templateUrl:

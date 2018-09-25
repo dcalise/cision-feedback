@@ -32,11 +32,17 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
+              <div class="section-header"
+              ng-class="{'closed':!$ctrl.showCustomerNotes}"
+              ng-click="$ctrl.showCustomerNotes = !$ctrl.showCustomerNotes">
+              <h4>Notes</h4>
+            </div>
               <editable-field
                   admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.customerNotes"
                   update-field="$ctrl.updateAccount()"
                   type="textarea"
+                  empty-state="There are currently no notes for this account."
                 ></editable-field>
             </div>
           </div>
@@ -67,6 +73,7 @@
                   admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.cid"
                   update-field="$ctrl.updateAccount()"
+                  empty-state="N/A"
                 ></editable-field>
               </li>
               <li class="mt-sm mb-sm">
@@ -76,13 +83,8 @@
                   update-field="$ctrl.updateAccount()"
                   type="button"
                   button-text="View in Salesforce"
+                  empty-state="No Salesforce Link"
                 ></editable-field>
-
-                <input
-                  ng-if="!$ctrl.account.salesForceUrl"
-                  class="form-control input-xs"
-                  placeholder="Add Salesforce Url"
-                />
               </li>
             </ul>
           </div>

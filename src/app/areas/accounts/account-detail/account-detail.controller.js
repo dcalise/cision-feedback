@@ -13,6 +13,7 @@ class AccountDetailCtrl {
     }
 
     this.showFeatureSummary = true;
+    this.showCustomerNotes = true;
   }
 
   updateAccount() {
