@@ -41,6 +41,7 @@
 </span>
 <form
   class="form-inline inline-edit"
+  ng-class="{'inline-edit--textarea': $ctrl.type === 'textarea'}"
   ng-show="$ctrl.editing"
 >
   <select
@@ -50,8 +51,16 @@
   >
     <option ng-repeat="option in $ctrl.options">{{option}}</option>
   </select>
+
+  <textarea
+    class="form-control"
+    rows="3"
+    ng-if="$ctrl.type === 'textarea'"
+    ng-model="$ctrl.data"
+  ></textarea>
+
   <input
-    ng-if="!$ctrl.options"
+    ng-if="!$ctrl.options && $ctrl.type !== 'textarea'"
     class="form-control"
     ng-model="$ctrl.data"
   />

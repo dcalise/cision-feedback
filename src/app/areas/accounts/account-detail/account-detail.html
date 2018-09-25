@@ -30,6 +30,16 @@
               </h1>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <editable-field
+                  admin="$ctrl.userIsAdmin"
+                  data="$ctrl.account.customerNotes"
+                  update-field="$ctrl.updateAccount()"
+                  type="textarea"
+                ></editable-field>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-sm-3 account-sidebar">
@@ -78,20 +88,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <!--todo: make this modular-->
-    <div class="section-header" ng-class="{'closed':!$ctrl.showFeatureSummary}" ng-click="$ctrl.showFeatureSummary = !$ctrl.showFeatureSummary">
-      <h4>Feature Request Summary</h4>
-    </div>
-    <div class="col-sm-12" ng-show="$ctrl.showFeatureSummary">
-      <feature-list
-        admin="$ctrl.userIsAdmin"
-        features="$ctrl.account.features"
-        account-id="$ctrl.account.$id"
-      ></feature-list>
     </div>
   </section>
 </main>
