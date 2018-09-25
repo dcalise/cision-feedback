@@ -30,6 +30,16 @@
               </h1>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <editable-field
+                  admin="$ctrl.userIsAdmin"
+                  data="$ctrl.account.customerNotes"
+                  update-field="$ctrl.updateAccount()"
+                  type="textarea"
+                ></editable-field>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-sm-3 account-sidebar">
