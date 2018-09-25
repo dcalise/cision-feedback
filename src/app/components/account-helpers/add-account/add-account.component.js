@@ -7,7 +7,7 @@ class AddAccountCtrl {
     this._$scope = $scope
     this._$uibModal = $uibModal;
 
-    
+
     this.accountTieOptionsCurrent = [
       'Legacy GAP. Customer will not upgrade to C3 without this feature',
       'Competitive GAP. Customer will not upgrade to C3 without this feature',
@@ -21,7 +21,7 @@ class AddAccountCtrl {
       'Prospect LOST because this feature is not available',
       'None of the above'
     ];
-    
+
     this.accountSelected = (account) => {
       if (account) {
         let accountKey = account.originalObject ? account.originalObject.$id : account.key;
@@ -33,9 +33,9 @@ class AddAccountCtrl {
         return this.accountForm.selectedAccounts.push(accountTieObject)
       }
     }
-    
+
     this.existingAccountsMeta = []
-    
+
     this.getAccountMeta = (accountId) => {
       return AccountService.getAccount(accountId).then(
         (account) => {
@@ -43,7 +43,7 @@ class AddAccountCtrl {
         }
       )
     }
-    
+
     this.$onChanges = function() {
       var reset = {
         resetForm: function(){
@@ -52,14 +52,14 @@ class AddAccountCtrl {
       }
       this.resetForm({reset: reset});
     }
-    
+
   }
-  
+
   removeAccountFromAddList(i) {
     this.existingAccountsMeta.splice(i,1)
     this.accountForm.selectedAccounts.splice(i,1)
   }
-  
+
   resetAccountForm(added) {
     if (this.accountForm.name || this.accountForm.cid || this.accountForm.selectedAccounts.length > 0) {
       let sure;

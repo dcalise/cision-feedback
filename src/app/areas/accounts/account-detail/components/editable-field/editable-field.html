@@ -1,0 +1,69 @@
+<span
+  ng-hide="$ctrl.editing"
+>
+  <span ng-if="$ctrl.data">
+    <span ng-if="$ctrl.type === 'button'">
+      <a href="{{$ctrl.data}}" class="btn btn-default btn-xs">
+        {{$ctrl.buttonText}}
+      </a>
+    </span>
+
+    <span ng-if="$ctrl.type === 'label'">
+      <span
+        class="label"
+        ng-class="{
+        'label-success': $ctrl.data === 'Current customer',
+        'label-default': $ctrl.data === 'Prospect in-cycle',
+        'label-warning': $ctrl.data === 'Prospect loss',
+        'label-danger': $ctrl.data === 'Lost customer'
+      }">{{$ctrl.data}}</span>
+    </span>
+
+    <span ng-if="$ctrl.type !== 'button' && $ctrl.type !== 'label'">
+      <span ng-if="$ctrl.filteredData">{{$ctrl.filteredData}}</span>
+      <span ng-if="!$ctrl.filteredData">{{$ctrl.data}}</span>
+    </span>
+  </span>
+  <span
+    ng-if="!$ctrl.data"
+    class="meta"
+  >
+    <span class="meta">
+      {{$ctrl.emptyState}}
+    </span>
+  </span>
+  <i
+      class="ion-edit meta ml-xs"
+      ng-hide="$ctrl.restrictAccess"
+      ng-click="$ctrl.editing = true"
+    ></i>
+</span>
+
+<form
+  class="form-inline inline-edit"
+  ng-class="{'inline-edit--textarea': $ctrl.type === 'textarea'}"
+  ng-show="$ctrl.editing"
+>
+  <select
+    class="form-control"
+    ng-if="$ctrl.options"
+    ng-model="$ctrl.data"
+  >
+    <option ng-repeat="option in $ctrl.options">{{option}}</option>
+  </select>
+
+  <textarea
+    class="form-control"
+    rows="3"
+    ng-if="$ctrl.type === 'textarea'"
+    ng-model="$ctrl.data"
+  ></textarea>
+
+  <input
+    ng-if="!$ctrl.options && $ctrl.type !== 'textarea'"
+    class="form-control"
+    ng-model="$ctrl.data"
+  />
+  <i class="ion-close ml-xs text-danger" ng-click="$ctrl.changeField(false)"></i>
+  <i class="ion-checkmark ml-xs text-success" ng-click="$ctrl.changeField(true)"></i>
+</form>

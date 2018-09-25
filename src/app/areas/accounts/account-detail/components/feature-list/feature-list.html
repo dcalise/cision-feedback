@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+    <th>Summary</th>
+    <th>Relationship</th>
+    <th>Number of Accounts</th>
+    <th class="text-right">Request Value</th>
+    <th ng-show="$ctrl.showFeatureDeleteColumn"></th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="feature in $ctrl.featureDetails">
+      <td><a ui-sref="app.feature-detail({id:feature.$id})">{{feature.subject}}</a></td>
+      <td>{{feature.featureTie}}</td>
+      <td>{{feature.accounts.length}}</td>
+      <td class="text-right">{{feature.totalValue | currency}}</td>
+      <td ng-show="$ctrl.showFeatureDeleteColumn" align="center">
+        <i class="ion-close btn-remove" ng-click="$ctrl.removeFeatureFromAccount(feature.$id)"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
