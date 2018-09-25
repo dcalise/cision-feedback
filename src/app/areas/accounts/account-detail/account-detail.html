@@ -1,0 +1,91 @@
+<navbar>
+  <app-header></app-header>
+</navbar>
+
+<main>
+  <section class="container account-detail">
+    <div class="row">
+      <div class="col-sm-9 account-header">
+        <div class="section">
+          <div class="row">
+            <div class="col-sm-12">
+              <span class="meta">
+                <editable-field
+                  data="$ctrl.account.country"
+                  update-field="$ctrl.updateAccount()"
+                  options="['USA','Canada','Other']"
+                ></editable-field>
+              </span>
+              <h1>
+                {{::$ctrl.account.name}}
+                <small class="value">
+                  <editable-field
+                    data="$ctrl.account.value"
+                    update-field="$ctrl.updateAccount('value')"
+                    format="currency"
+                  ></editable-field>
+                </small>
+              </h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="section-header"
+                ng-class="{'closed':!$ctrl.showCustomerNotes}"
+                ng-click="$ctrl.showCustomerNotes = !$ctrl.showCustomerNotes">
+                <h4>Notes</h4>
+              </div>
+              <div ng-show="$ctrl.showCustomerNotes">
+                <editable-field
+                  data="$ctrl.account.customerNotes"
+                  update-field="$ctrl.updateAccount()"
+                  type="textarea"
+                  empty-state="There are currently no notes for this account."
+                ></editable-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 account-sidebar">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="list-unstyled mt-xl">
+              <li class="mb-sm">
+                <editable-field
+                  data="$ctrl.account.accountType"
+                  update-field="$ctrl.updateAccount()"
+                  type="label"
+                  options="['Current customer', 'Prospect in-cycle', 'Prospect loss', 'Lost customer']"
+                ></editable-field>
+              </li>
+              <li>
+                <strong>Platform:</strong>&nbsp;
+                <span ng-repeat="platform in $ctrl.account.platform">
+                  {{platform}}<span ng-if="!$last">, </span>
+                </span>
+              </li>
+              <li>
+                <strong>Account ID:</strong>&nbsp;
+                <editable-field
+                  data="$ctrl.account.cid"
+                  update-field="$ctrl.updateAccount()"
+                  empty-state="N/A"
+                ></editable-field>
+              </li>
+              <li class="mt-sm mb-sm">
+                <editable-field
+                  data="$ctrl.account.salesForceUrl"
+                  update-field="$ctrl.updateAccount()"
+                  type="button"
+                  button-text="View in Salesforce"
+                  empty-state="No Salesforce Link"
+                ></editable-field>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
