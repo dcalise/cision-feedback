@@ -1,44 +1,44 @@
 <span
   ng-hide="$ctrl.editing"
 >
+  <span ng-if="$ctrl.data">
+    <span ng-if="$ctrl.type === 'button'">
+      <a href="{{$ctrl.data}}" class="btn btn-default btn-xs">
+        {{$ctrl.buttonText}}
+      </a>
+    </span>
 
-  <span ng-if="$ctrl.type === 'button'">
-    <a href="{{$ctrl.data}}" class="btn btn-default btn-xs">
-      {{$ctrl.buttonText}}
-    </a>
-    <i
+    <span ng-if="$ctrl.type === 'label'">
+      <span
+        class="label"
+        ng-class="{
+        'label-success': $ctrl.data === 'Current customer',
+        'label-default': $ctrl.data === 'Prospect in-cycle',
+        'label-warning': $ctrl.data === 'Prospect loss',
+        'label-danger': $ctrl.data === 'Lost customer'
+      }">{{$ctrl.data}}</span>
+    </span>
+
+    <span ng-if="$ctrl.type !== 'button' && $ctrl.type !== 'label'">
+      <span ng-if="$ctrl.filteredData">{{$ctrl.filteredData}}</span>
+      <span ng-if="!$ctrl.filteredData">{{$ctrl.data}}</span>
+    </span>
+  </span>
+  <span
+    ng-if="!$ctrl.data"
+    class="meta"
+  >
+    <span class="meta">
+      {{$ctrl.emptyState}}
+    </span>
+  </span>
+  <i
       class="ion-edit meta ml-xs"
-      ng-show="$ctrl.admin"
+      ng-hide="$ctrl.restrictAccess"
       ng-click="$ctrl.editing = true"
     ></i>
-  </span>
-
-  <span ng-if="$ctrl.type === 'label'">
-    <span
-      class="label"
-      ng-class="{
-      'label-success': $ctrl.data === 'Current customer',
-      'label-default': $ctrl.data === 'Prospect in-cycle',
-      'label-warning': $ctrl.data === 'Prospect loss',
-      'label-danger': $ctrl.data === 'Lost customer'
-    }">{{$ctrl.data}}</span>
-    <i
-      class="ion-edit meta ml-xs"
-      ng-show="$ctrl.admin"
-      ng-click="$ctrl.editing = true"
-    ></i>
-  </span>
-
-  <span ng-if="$ctrl.type !== 'button' && $ctrl.type !== 'label'">
-    <span ng-if="$ctrl.filteredData">{{$ctrl.filteredData}}</span>
-    <span ng-if="!$ctrl.filteredData">{{$ctrl.data}}</span>
-    <i
-      class="ion-edit meta ml-xs"
-      ng-show="$ctrl.admin"
-      ng-click="$ctrl.editing = true"
-    ></i>
-  </span>
 </span>
+
 <form
   class="form-inline inline-edit"
   ng-class="{'inline-edit--textarea': $ctrl.type === 'textarea'}"

@@ -8,6 +8,10 @@ class EditableFieldCtrl {
     $onInit() {
         this.initialFieldValue = this.data;
 
+        if (this.adminRequired && !this.isUserAdmin) {
+            this.restrictAccess = true;
+        }
+
         this.formatData();
     }
 
@@ -29,13 +33,15 @@ class EditableFieldCtrl {
 
 let EditableField = {
     bindings: {
-        admin: '<',
+        adminRequired: '<',
+        isUserAdmin: '<',
         data: '=',
         updateField: '&',
         options: '<',
         format: '@',
         type: '@',
-        buttonText: '@'
+        buttonText: '@',
+        emptyState: '@'
     },
     controller: EditableFieldCtrl,
     templateUrl:
