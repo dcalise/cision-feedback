@@ -16,7 +16,10 @@ class AccountDetailCtrl {
     this.showCustomerNotes = true;
   }
 
-  updateAccount() {
+  updateAccount(type) {
+    if (type === 'value') {
+      this.account.value = this.account.value.replace(/[^0-9.]/g, '');
+    }
     return this.account.$save();
   }
 
