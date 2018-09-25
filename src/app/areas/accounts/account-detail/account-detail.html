@@ -11,7 +11,6 @@
             <div class="col-sm-12">
               <span class="meta">
                 <editable-field
-                  admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.country"
                   update-field="$ctrl.updateAccount()"
                   options="['USA','Canada','Other']"
@@ -21,7 +20,6 @@
                 {{::$ctrl.account.name}}
                 <small class="value">
                   <editable-field
-                    admin="$ctrl.userIsAdmin"
                     data="$ctrl.account.value"
                     update-field="$ctrl.updateAccount()"
                     format="currency"
@@ -38,7 +36,6 @@
               <h4>Notes</h4>
             </div>
               <editable-field
-                  admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.customerNotes"
                   update-field="$ctrl.updateAccount()"
                   type="textarea"
@@ -54,7 +51,6 @@
             <ul class="list-unstyled mt-xl">
               <li class="mb-sm">
                 <editable-field
-                  admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.accountType"
                   update-field="$ctrl.updateAccount()"
                   type="label"
@@ -70,7 +66,6 @@
               <li>
                 <strong>Account ID:</strong>&nbsp;
                 <editable-field
-                  admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.cid"
                   update-field="$ctrl.updateAccount()"
                   empty-state="N/A"
@@ -78,7 +73,6 @@
               </li>
               <li class="mt-sm mb-sm">
                 <editable-field
-                  admin="$ctrl.userIsAdmin"
                   data="$ctrl.account.salesForceUrl"
                   update-field="$ctrl.updateAccount()"
                   type="button"
