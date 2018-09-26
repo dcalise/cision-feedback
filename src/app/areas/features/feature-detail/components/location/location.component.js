@@ -1,5 +1,5 @@
 class LocationControl {
-    constructor(AuthService, UserService, LabelService) {
+    constructor(LabelService) {
         'ngInject';
 
         this._LabelService = LabelService;

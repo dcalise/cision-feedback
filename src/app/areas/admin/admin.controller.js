@@ -1,5 +1,5 @@
 class AdminCtrl {
-    constructor(currentAuth, profile, AuthService, UserService, LabelService) {
+    constructor(profile, AuthService, UserService, LabelService) {
         'ngInject';
 
         this._profile = profile;

@@ -7,10 +7,8 @@ let featureListModule = angular.module('app.feature-list', []);
 import FeatureListConfig from './feature-list.config';
 featureListModule.config(FeatureListConfig);
 
-
 // Controllers
 import FeatureListCtrl from './feature-list.controller';
 featureListModule.controller('FeatureListCtrl', FeatureListCtrl);
-
 
 export default featureListModule;

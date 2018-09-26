@@ -1,5 +1,5 @@
 class StatusCtrl {
-    constructor(AuthService, UserService) {
+    constructor() {
         'ngInject';
 
         let initStatus;

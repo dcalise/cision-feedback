@@ -11,5 +11,4 @@ profileModule.config(ProfileConfig);
 import ProfileCtrl from './profile.controller';
 profileModule.controller('ProfileCtrl', ProfileCtrl);
 
-
 export default profileModule;

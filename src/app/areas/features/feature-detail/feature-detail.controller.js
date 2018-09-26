@@ -118,7 +118,7 @@ class FeatureDetailCtrl {
                     author: this._currentAuth.uid
                 })
                 .then(
-                    comments => {
+                    () => {
                         this.getCommentMeta();
                         this.comment.message = '';
                         this.showComment = false;
@@ -128,7 +128,7 @@ class FeatureDetailCtrl {
         }
     }
 
-    deleteComment(commentId, index) {
+    deleteComment(index) {
         this._comments.$remove(index);
     }
 
@@ -155,13 +155,13 @@ class FeatureDetailCtrl {
     }
 
     updateLocation() {
-        return this._feature.$save().then(res => {
+        return this._feature.$save().then(() => {
             this.expiredLabel = true;
         });
     }
 
     updateLabels() {
-        return this._feature.$save().then(res => {
+        return this._feature.$save().then(() => {
             this.expiredLabel = true;
         });
     }

@@ -1,4 +1,4 @@
-function AuthConfig($stateProvider, $httpProvider) {
+function AuthConfig($stateProvider) {
     'ngInject';
 
     $stateProvider
@@ -11,10 +11,11 @@ function AuthConfig($stateProvider, $httpProvider) {
             resolve: {
                 requireNoAuth: function ($state, AuthService) {
                     return AuthService.$requireSignIn().then(
-                        auth => {
+                        () => {
                             $state.go('app.feature-list');
                         },
                         err => {
+                            console.log(err);
                             return;
                         }
                     );
