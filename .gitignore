@@ -41,3 +41,5 @@ src/app/config/app.templates.js
 backups/*
 bin/exports/*
 bin/key/*
+
+.firebase/

@@ -1,4 +1,4 @@
-function AuthConfig($stateProvider, $httpProvider) {
+function AuthConfig($stateProvider) {
     'ngInject';
 
     $stateProvider
@@ -9,12 +9,13 @@ function AuthConfig($stateProvider, $httpProvider) {
             templateUrl: 'auth/login.html',
             title: 'Sign in',
             resolve: {
-                requireNoAuth: function($state, AuthService) {
+                requireNoAuth: function ($state, AuthService) {
                     return AuthService.$requireSignIn().then(
-                        auth => {
+                        () => {
                             $state.go('app.feature-list');
                         },
                         err => {
+                            console.log(err);
                             return;
                         }
                     );
@@ -28,7 +29,7 @@ function AuthConfig($stateProvider, $httpProvider) {
             templateUrl: 'auth/register.html',
             title: 'Sign up',
             resolve: {
-                requireNoAuth: function($state, AuthService) {
+                requireNoAuth: function ($state, AuthService) {
                     return AuthService.$requireSignIn().then(
                         auth => {
                             $state.go('app.feature-list');
@@ -47,7 +48,7 @@ function AuthConfig($stateProvider, $httpProvider) {
             templateUrl: 'auth/forgot-password.html',
             title: 'Forgot Password',
             resolve: {
-                requireNoAuth: function($state, AuthService) {
+                requireNoAuth: function ($state, AuthService) {
                     return AuthService.$requireSignIn().then(
                         auth => {
                             $state.go('app.profile');

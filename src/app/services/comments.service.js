@@ -1,17 +1,17 @@
 export default class CommentService {
-  constructor($firebaseArray) {
-    'ngInject';
+    constructor($firebaseArray) {
+        'ngInject';
 
-    this._$firebaseArray = $firebaseArray;
+        this._$firebaseArray = $firebaseArray;
 
-    this._commentsRef = firebase.database().ref('comments');
-    this._comments = $firebaseArray(this._commentsRef);
+        this._commentsRef = firebase.database().ref('comments');
+        this._comments = $firebaseArray(this._commentsRef);
 
-    this.all = this._comments;
-  }
+        this.all = this._comments;
+    }
 
-  forFeature(featureKey) {
-    return this._$firebaseArray(this._commentsRef.child(featureKey))
-  }
-  
+    forFeature(featureKey) {
+        return this._$firebaseArray(this._commentsRef.child(featureKey))
+    }
+
 }

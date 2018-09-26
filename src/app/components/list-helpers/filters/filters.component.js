@@ -30,26 +30,34 @@ class FiltersCtrl {
                 .filterParams[filterType][matchIdx].checked;
         }
 
-        this.updateFilters({ filterParams: this.filterParams });
+        this.updateFilters({
+            filterParams: this.filterParams
+        });
     }
 
     toggleViewArchived() {
         this.filterParams.viewArchived = !this.filterParams.viewArchived;
-        this.updateFilters({ filterParams: this.filterParams });
+        this.updateFilters({
+            filterParams: this.filterParams
+        });
     }
 
     checkAll(filterType) {
         this.filterParams[filterType].forEach(
             filter => (filter.checked = true)
         );
-        this.updateFilters({ filterParams: this.filterParams });
+        this.updateFilters({
+            filterParams: this.filterParams
+        });
     }
 
     uncheckAll(filterType) {
         this.filterParams[filterType].forEach(
             filter => (filter.checked = false)
         );
-        this.updateFilters({ filterParams: this.filterParams });
+        this.updateFilters({
+            filterParams: this.filterParams
+        });
     }
 
     setFiltersToCachedParams() {
@@ -64,8 +72,7 @@ class FiltersCtrl {
             viewArchived: false
         };
 
-        this.filterParams.status = [
-            {
+        this.filterParams.status = [{
                 displayName: 'Received',
                 checked: true
             },
@@ -105,7 +112,9 @@ class FiltersCtrl {
                 displayName: 'No Workflow',
                 checked: true
             });
-            this.updateFilters({ filterParams: this.filterParams });
+            this.updateFilters({
+                filterParams: this.filterParams
+            });
         });
 
         // build labels
@@ -120,7 +129,9 @@ class FiltersCtrl {
                 displayName: 'No Label',
                 checked: true
             });
-            this.updateFilters({ filterParams: this.filterParams });
+            this.updateFilters({
+                filterParams: this.filterParams
+            });
         });
 
         this.resetFilterExpiration();

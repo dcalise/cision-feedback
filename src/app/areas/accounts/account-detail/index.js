@@ -8,7 +8,7 @@ accountDetailModule.config(AccountDetailConfig);
 import AccountDetailCtrl from './account-detail.controller';
 accountDetailModule.controller('AccountDetailCtrl', AccountDetailCtrl);
 
-import EditableField from  './components/editable-field/editable-field.component';
+import EditableField from './components/editable-field/editable-field.component';
 accountDetailModule.component('editableField', EditableField);
 
 import FeatureList from './components/feature-list/feature-list.component';

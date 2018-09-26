@@ -7,10 +7,8 @@ let accountListModule = angular.module('app.account-list', []);
 import AccountListConfig from './account-list.config';
 accountListModule.config(AccountListConfig);
 
-
 // Controllers
 import AccountListCtrl from './account-list.controller';
 accountListModule.controller('AccountListCtrl', AccountListCtrl);
-
 
 export default accountListModule;

@@ -12,7 +12,7 @@ class LabelControl {
                 if (labelArray.labels === false) {
                     this.data = initLabels;
                     this.labelsToAdd = [];
-                // save
+                    // save
                 } else {
                     if (this.labelsToAdd.length > 0) {
                         if (!this.data) {
@@ -45,9 +45,9 @@ class LabelControl {
         };
 
         this.labelSelected = label => {
-            let labelKey = label.originalObject
-                ? label.originalObject.$id
-                : label.key;
+            let labelKey = label.originalObject ?
+                label.originalObject.$id :
+                label.key;
             return this.labelsToAdd.push(labelKey);
         };
     }

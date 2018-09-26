@@ -1,7 +1,5 @@
 class FeatureListCtrl {
     constructor(
-        $http,
-        $q,
         $localStorage,
         FeatureService,
         AccountService,

@@ -144,7 +144,6 @@ export default class FeatureService {
         this.getFeature(id).$loaded().then(
             feature => {
                 if (feature.accounts.length > 0) {
-                    console.log(typeof feature.accounts);
                     this.getOriginalRequesterName(feature.accounts[0].accountKey).then(
                         accountName => {
                             feature.originalRequester = accountName;

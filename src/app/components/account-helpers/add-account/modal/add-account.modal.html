@@ -6,7 +6,7 @@
   <div class="modal-body">
 
       <fieldset class="account-form">
-      
+
         <!-- new account -->
         <div class="row">
           <div class="col-sm-12">
@@ -22,8 +22,8 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="cision-point-id" class="control-label">Account ID</label>
-              <input type="text" class="form-control" id="cision-point-id"
+              <label for="customer-id" class="control-label">Account ID</label>
+              <input type="text" class="form-control" id="customer-id"
                 placeHolder="The customer's Salesforce ID"
                 ng-model="$ctrl.accountForm.cid"
                 ng-change="$ctrl.errors = ''">
@@ -55,7 +55,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="account-type" class="control-label">Country</label>
-                <select class="form-control" 
+                <select class="form-control"
                   ng-model="$ctrl.accountForm.country">
                   <option>USA</option>
                   <option>Canada</option>
@@ -86,10 +86,10 @@
                 <label for="account-type" class="control-label">Which product(s) were they using</label>
                 <select class="form-control" multiple size="5"
                   ng-model="$ctrl.accountForm.platform">
-                  <option 
+                  <option
                     ng-show="$ctrl.accountForm.accountType === 'Current customer' || $ctrl.accountForm.accountType === 'Lost customer'"
                     ng-repeat="option in $ctrl.customerProductOptions">{{option}}</option>
-                  <option 
+                  <option
                     ng-show="$ctrl.accountForm.accountType === 'Prospect in-cycle' || $ctrl.accountForm.accountType === 'Prospect loss'"
                     ng-repeat="option in $ctrl.prospectProductOptions">{{option}}</option>
                 </select>
@@ -105,8 +105,8 @@
           <div class="alert alert-danger fade in" role="alert" ng-if="$ctrl.errors">{{ $ctrl.errors }}</div>
         </div>
       </fieldset>
-      
-      
+
+
     </div>
     <div class="modal-footer">
       <button class="btn btn-default" type="button" ng-click="$ctrl._$uibModalInstance.close()">Cancel</button>

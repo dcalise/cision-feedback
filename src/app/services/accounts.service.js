@@ -13,17 +13,17 @@ export default class AccountService {
     add(account) {
         account.value = account.value.replace(/[^0-9.]/g, '');
         return this.accounts.$add({
-          platform: account.platform || null,
-          name: account.name,
-          accountType: account.accountType,
-          salesForceUrl: account.salesForceUrl || null,
-          cid: account.cid || null,
-          country: account.country || null,
-          value: account.value || null,
-          customerNotes: account.customerNotes || null,
-          dateCreated: Date.now(),
-          lastUpdated: null,
-          editedBy: null
+            platform: account.platform || null,
+            name: account.name,
+            accountType: account.accountType,
+            salesForceUrl: account.salesForceUrl || null,
+            cid: account.cid || null,
+            country: account.country || null,
+            value: account.value || null,
+            customerNotes: account.customerNotes || null,
+            dateCreated: Date.now(),
+            lastUpdated: null,
+            editedBy: null
         })
     }
 
@@ -39,7 +39,7 @@ export default class AccountService {
 
     accountSearch(str, accounts) {
         var matches = [];
-        accounts.forEach(function(account) {
+        accounts.forEach(function (account) {
             let name = account.name ? account.name.toLowerCase() : '';
             let id = account.cid ? account.cid.toLowerCase() : '';
             if (

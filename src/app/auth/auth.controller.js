@@ -17,7 +17,7 @@ class AuthCtrl {
                 this.formData.password
             )
             .then(
-                res => {
+                () => {
                     this.isSubmitting = false;
                     this._$state.go('app.home');
                 },
@@ -45,7 +45,7 @@ class AuthCtrl {
                     this.formData.password
                 )
                 .then(
-                    res => {
+                    () => {
                         this.isSubmitting = false;
                         this._UserService.sendFirebaseEmailVerification();
                         this._$state.go('app.profile');

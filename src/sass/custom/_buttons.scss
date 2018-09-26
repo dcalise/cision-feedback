@@ -1,3 +1,11 @@
+.btn-primary {
+  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+
+.btn-success {
+    @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+  }
+
 .account-form {
   .btn-link {
     padding-left: 0;

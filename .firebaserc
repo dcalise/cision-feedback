@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "cision-feedback",
-    "dev": "cision-feedback-dev"
+    "default": "miso-79c0b"
   }
 }
