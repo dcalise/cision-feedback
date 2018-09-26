@@ -44,7 +44,7 @@ let EditableField = {
         emptyState: '@'
     },
     controller: EditableFieldCtrl,
-    templateUrl: 'areas/accounts/account-detail/components/editable-field/editable-field.html'
+    templateUrl: 'components/editable-field/editable-field.html'
 };
 
 export default EditableField;
