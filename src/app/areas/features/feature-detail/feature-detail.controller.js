@@ -52,12 +52,12 @@ class FeatureDetailCtrl {
         this.getCommentMeta();
 
         // reset account form
-        $scope.resetExistingAccountForm = function() {
+        $scope.resetExistingAccountForm = function () {
             if ($scope.reset) {
                 $scope.reset.resetForm();
             }
         };
-        $scope.setResetForm = function(reset) {
+        $scope.setResetForm = function (reset) {
             $scope.reset = reset;
         };
     }
@@ -70,10 +70,10 @@ class FeatureDetailCtrl {
         if (archiveAnswer) {
             this._feature.activeState = 1;
             this._feature.$save().then(() => {
-                this._$state.go('app.feature-list');
-                this._toastr.success(`"${this._feature.subject}" archived.`);
-            }),
-            err => console.log(err);
+                    this._$state.go('app.feature-list');
+                    this._toastr.success(`"${this._feature.subject}" archived.`);
+                }),
+                err => console.log(err);
         }
     }
 

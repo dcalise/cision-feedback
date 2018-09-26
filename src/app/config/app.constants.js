@@ -1,5 +1,5 @@
 const AppConstants = {
-  appName: 'Miso',
+    appName: 'Miso',
 };
 
 export default AppConstants;

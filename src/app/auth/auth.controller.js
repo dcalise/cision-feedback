@@ -17,7 +17,7 @@ class AuthCtrl {
                 this.formData.password
             )
             .then(
-                res => {
+                () => {
                     this.isSubmitting = false;
                     this._$state.go('app.home');
                 },

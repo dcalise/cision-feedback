@@ -1,26 +1,26 @@
 function AppRun(AppConstants, $rootScope, $state) {
-  'ngInject';
+    'ngInject';
 
-  // change page title based on state
-  $rootScope.$on('$stateChangeSuccess', (event, toState) => {
-    $rootScope.setPageTitle(toState.title);
-  });
+    // change page title based on state
+    $rootScope.$on('$stateChangeSuccess', (toState) => {
+        $rootScope.setPageTitle(toState.title);
+    });
 
-  $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-    if (error === "AUTH_REQUIRED") {
-      $state.go('app.login');
-    }
-  });
+    $rootScope.$on("$stateChangeError", (error) => {
+        if (error === "AUTH_REQUIRED") {
+            $state.go('app.login');
+        }
+    });
 
-  // Helper method for setting the page's title
-  $rootScope.setPageTitle = (title) => {
-    $rootScope.pageTitle = '';
-    if (title) {
-      $rootScope.pageTitle += title;
-      $rootScope.pageTitle += ' \u2014 ';
-    }
-    $rootScope.pageTitle += AppConstants.appName;
-  };
+    // Helper method for setting the page's title
+    $rootScope.setPageTitle = (title) => {
+        $rootScope.pageTitle = '';
+        if (title) {
+            $rootScope.pageTitle += title;
+            $rootScope.pageTitle += ' \u2014 ';
+        }
+        $rootScope.pageTitle += AppConstants.appName;
+    };
 
 }
 

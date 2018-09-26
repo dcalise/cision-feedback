@@ -8,7 +8,7 @@ function HomeConfig($stateProvider) {
         templateUrl: 'areas/root/home.html',
         title: 'Home',
         resolve: {
-            currentAuth: function(AuthService, $state) {
+            currentAuth: function (AuthService, $state) {
                 return AuthService.$requireSignIn().then(auth => {
                     if (!auth.emailVerified) {
                         $state.go('app.profile');
@@ -16,7 +16,7 @@ function HomeConfig($stateProvider) {
                     return auth;
                 });
             },
-            profile: function(UserService, AuthService) {
+            profile: function (UserService, AuthService) {
                 return AuthService.$requireSignIn().then(auth => {
                     return UserService.getProfile(auth.uid).$loaded();
                 });
