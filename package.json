@@ -1,7 +1,7 @@
 {
-  "name": "cision-feedback",
+  "name": "miso",
   "version": "1.0.0",
-  "description": "Cision Feedback Application",
+  "description": "Miso allows you to log feature requests per customer and weigh the financial value of each request.",
   "author": "dcalise",
   "dependencies": {
     "angucomplete-alt": "^3.0.0",
