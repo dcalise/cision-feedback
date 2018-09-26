@@ -49,6 +49,20 @@ const AppConstants = {
                 'Released',
                 'Closed'
             ]
+        },
+        profile: {
+            departments: [
+                'Global Insights',
+                'Client Development',
+                'Client services',
+                'Digital Content Support',
+                'Marketing',
+                'New Business',
+                'Product',
+                'Product Marketing',
+                'Research',
+                'Other'
+            ]
         }
     }
 };
