@@ -13,3 +13,6 @@ Make sure you have gulp installed globally (`npm install -g gulp`)
 
 ## Firebase console
 https://console.firebase.google.com/project/miso-79c0b/overview
+
+## Demo
+https://miso-79c0b.firebaseapp.com/#!/
