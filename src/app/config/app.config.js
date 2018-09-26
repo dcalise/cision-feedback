@@ -1,3 +1,5 @@
+const fbConfig = require('./keys/prod.json');
+
 function AppConfig(
     $stateProvider,
     $urlRouterProvider,
@@ -6,12 +8,12 @@ function AppConfig(
     'ngInject';
 
     var config = {
-        apiKey: "AIzaSyDzgjO1R7XC-aJbjUtZWcFWBOfRH3-0ST4",
-        authDomain: "miso-79c0b.firebaseapp.com",
-        databaseURL: "https://miso-79c0b.firebaseio.com",
-        projectId: "miso-79c0b",
-        storageBucket: "miso-79c0b.appspot.com",
-        messagingSenderId: "718267852756"
+        apiKey: fbConfig.apiKey,
+        authDomain: fbConfig.authDomain,
+        databaseURL: fbConfig.databaseURL,
+        projectId: fbConfig.projectId,
+        storageBucket: fbConfig.storageBucket,
+        messagingSenderId: fbConfig.messagingSenderId
     };
     firebase.initializeApp(config);
 

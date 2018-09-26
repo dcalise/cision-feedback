@@ -43,3 +43,4 @@ bin/exports/*
 bin/key/*
 
 .firebase/
+src/app/config/keys/*
