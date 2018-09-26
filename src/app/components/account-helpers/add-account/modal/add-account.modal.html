@@ -57,9 +57,7 @@
                 <label for="account-type" class="control-label">Country</label>
                 <select class="form-control"
                   ng-model="$ctrl.accountForm.country">
-                  <option>USA</option>
-                  <option>Canada</option>
-                  <option>Other</option>
+                  <option ng-repeat="country in $ctrl.countries">{{country}}</option>
                 </select>
               </div>
             </div>
@@ -71,10 +69,7 @@
                 <p class="meta">Is this a customer or a prospect?</p>
                 <select class="form-control" required
                   ng-model="$ctrl.accountForm.accountType">
-                  <option>Current customer</option>
-                  <option>Lost customer</option>
-                  <option>Prospect in-cycle</option>
-                  <option>Prospect loss</option>
+                  <option ng-repeat="type in $ctrl.accountTypes">{{type}}</option>
                 </select>
               </div>
             </div>

@@ -1,24 +1,14 @@
 export default class AddAccountModalController {
-    constructor(AccountService, $uibModalInstance) {
+    constructor(AppConstants, AccountService, $uibModalInstance) {
         'ngInject';
         this._$uibModalInstance = $uibModalInstance;
         this._AccountService = AccountService;
 
-        this.customerProductOptions = [
-            'ProdFake',
-            'NewFake',
-            'FakeProd',
-            'FPR',
-            'Other (Please Specify in Notes)'
-        ];
+        this.accountTypes = AppConstants.strings.account.accountTypes;
+        this.countries = AppConstants.strings.account.countries;
 
-        this.prospectProductOptions = [
-            'CompetitorProduct',
-            'ProdComp',
-            'NotOurProduct',
-            'Other (Please Specify in Notes)'
-        ];
-
+        this.customerProductOptions = AppConstants.strings.account.currentPlatforms;
+        this.prospectProductOptions = AppConstants.strings.account.prospectPlatforms;
     }
 
     addNewAccount(accountForm) {

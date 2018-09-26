@@ -1,6 +1,9 @@
 class AccountDetailCtrl {
-    constructor(account, profile) {
+    constructor(AppConstants, account, profile) {
         'ngInject';
+
+        this.accountTypes = AppConstants.strings.account.accountTypes;
+        this.countries = AppConstants.strings.account.countries;
 
         this.account = account;
         this.profile = profile;

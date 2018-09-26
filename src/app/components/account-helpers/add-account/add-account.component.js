@@ -1,26 +1,16 @@
 import AddAccountModalController from './modal/add-account.modal.controller.js';
 
 class AddAccountCtrl {
-    constructor(AccountService, $scope, $uibModal) {
+    constructor(AppConstants, AccountService, $scope, $uibModal) {
         'ngInject';
 
         this._$scope = $scope
         this._$uibModal = $uibModal;
 
 
-        this.accountTieOptionsCurrent = [
-            'Legacy GAP. Customer will not upgrade to C3 without this feature',
-            'Competitive GAP. Customer will not upgrade to C3 without this feature',
-            'Customer AT RISK because this feature is not available',
-            'Customer CHURNED because this feature was not available',
-            'None of the above'
-        ];
+        this.accountTieOptionsCurrent = AppConstants.strings.account.currentRelationships;
 
-        this.accountTieOptionsProspect = [
-            'Competitive GAP. Prospect will not sign up to C3 without this feature',
-            'Prospect LOST because this feature is not available',
-            'None of the above'
-        ];
+        this.accountTieOptionsProspect = AppConstants.strings.account.currentRelationships;
 
         this.accountSelected = (account) => {
             if (account) {
