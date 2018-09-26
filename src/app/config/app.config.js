@@ -1,7 +1,5 @@
 function AppConfig(
-    $httpProvider,
     $stateProvider,
-    $locationProvider,
     $urlRouterProvider,
     toastrConfig
 ) {
@@ -17,18 +15,13 @@ function AppConfig(
     };
     firebase.initializeApp(config);
 
-    // $httpProvider.interceptors.push(authInterceptor);
     $stateProvider.state('app', {
         abstract: true,
         templateUrl: 'layout/app-view.html'
     });
 
     $urlRouterProvider.otherwise('/');
-    // $locationProvider.html5Mode({
-    //   enabled: true,
-    //   requireBase: true,
-    //   rewriteLinks: true
-    // });
+
     angular.extend(toastrConfig, {
         autoDismiss: false,
         containerId: 'toast-container',
