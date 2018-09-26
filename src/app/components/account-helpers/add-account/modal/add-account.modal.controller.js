@@ -5,26 +5,20 @@ export default class AddAccountModalController {
     this._AccountService = AccountService;
 
     this.customerProductOptions = [
-      'Cision PR Edition',
-      'CisionPoint',
-      'Visible Intelligence',
-      'MediaVantage',
-      'HARO',
-      'ProfNet',
-      'OMC',
-      'CNW Access',
-      'MNR',
-      'Others (Please Specify in Notes)'
+      'ProdFake',
+      'NewFake',
+      'FakeProd',
+      'FPR',
+      'Other (Please Specify in Notes)'
     ];
-    
+
     this.prospectProductOptions = [
-      'Meltwater',
-      'TrendKite',
-      'NASDAQ',
-      'BusinessWire',
-      'Others (Please Specify in Notes)'
+      'CompetitorProduct',
+      'ProdComp',
+      'NotOurProduct',
+      'Other (Please Specify in Notes)'
     ];
-    
+
   }
 
   addNewAccount(accountForm) {

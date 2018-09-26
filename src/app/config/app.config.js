@@ -8,12 +8,12 @@ function AppConfig(
     'ngInject';
 
     var config = {
-        apiKey: 'AIzaSyDwKDlKS4wIesup_oJHlxqlV6XQFr3uMPU',
-        authDomain: 'cision-feedback-dev.firebaseapp.com',
-        databaseURL: 'https://cision-feedback-dev.firebaseio.com',
-        projectId: 'cision-feedback-dev',
-        storageBucket: 'cision-feedback-dev.appspot.com',
-        messagingSenderId: '984448149929'
+        apiKey: "AIzaSyDzgjO1R7XC-aJbjUtZWcFWBOfRH3-0ST4",
+        authDomain: "miso-79c0b.firebaseapp.com",
+        databaseURL: "https://miso-79c0b.firebaseio.com",
+        projectId: "miso-79c0b",
+        storageBucket: "miso-79c0b.appspot.com",
+        messagingSenderId: "718267852756"
     };
     firebase.initializeApp(config);
 

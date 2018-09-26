@@ -1,0 +1,105 @@
+navbar + main {
+    margin-top: 50px;
+    padding-top: 20px;
+}
+
+.navbar-main .navbar-nav > li > a.active {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbar {
+    background: linear-gradient(90deg, $navbar-color-1, $navbar-color-2);
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+
+    .navbar-brand {
+        height: $navbar-height;
+        padding: 11px 15px;
+        line-height: 20px;
+        font-size: 18px;
+    }
+
+    .navbar-nav {
+        float: none;
+        margin-right: 0;
+    }
+
+    .nav {
+
+        //override for bootstraps desire to change
+        // the background-color and border-color:
+        //nav item hover state
+        //nav item open state
+        > li:hover > a,
+        > li.open > a {
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+        //nav item open state
+        //nav item selected state
+        > li.open,
+        > li.active {
+            background-color: $navbar-selected-bg;
+
+            > a {
+                border-color: transparent;
+
+                &:before {
+                    display: none;
+                }
+            }
+        }
+        > li > a:hover {
+            color: #fff;
+        }
+        > li > a.active {
+            background-color: $navbar-selected-bg;
+            &:hover {
+                color: #fff;
+            }
+        }
+        //nav item open state
+        > li.open {
+            background-color: $navbar-open-bg;
+
+            > a {
+                color: #fff;
+            }
+        }
+        //nav item selected state
+        > li.active:not(.open) {
+            .navbar-menu-subheader {
+                color: $navbar-text;
+                font-weight: normal;
+            }
+        }
+
+        > li {
+            position: static;
+
+            > a {
+                cursor: pointer;
+                text-transform: uppercase;
+                font-size: 12px;
+                line-height: 20px;
+                background-color: transparent;
+                color: $navbar-text;
+                height: $navbar-height;
+                padding: 17px 20px;
+            }
+        }
+    }
+}
+
+header + main {
+    margin-top: $navbar-height;
+    height: calc(100vh - #{$navbar-height});
+    overflow: auto;
+}
+
+.navbar-header {
+    float: left;
+}
