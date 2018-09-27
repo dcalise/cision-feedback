@@ -1,27 +1,45 @@
 <navbar>
-  <app-header></app-header>
+    <app-header></app-header>
 </navbar>
 
 <main>
-  <div class="home-page">
-
-    <div class="container page">
-      <div class="row">
-
-
-        <!-- Main view -->
-        <div class="col-md-8 col-md-offset-2 body-text">
-
-          <p class="mb-lg">
-            <a ui-sref="app.feature-create" class="btn btn-primary">Submit a New Request</a>
-            <a ui-sref="app.feature-list" class="btn btn-default">View an Existing Request</a>
-          </p>
-
+    <div class="home-page">
+        <div class="container page">
+            <div class="row mt-lg mb-xxl">
+                <div class="col-sm-6">
+                    <a ui-sref="app.feature-create" class="btn btn-primary btn-lg btn-block">Submit a New Request</a>
+                </div>
+                <div class="col-sm-6">
+                    <a ui-sref="app.feature-list" class="btn btn-default btn-lg btn-block">View Request List</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showFeaturesByStatus}"
+                        ng-click="$ctrl.showFeaturesByStatus = !$ctrl.showFeaturesByStatus"
+                    >
+                        <h4>Features By Status</h4>
+                    </div>
+                    <div ng-show="$ctrl.showFeaturesByStatus">
+                        <features-by-status></features-by-status>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showMostValuableFeatures}"
+                        ng-click="$ctrl.showMostValuableFeatures = !$ctrl.showMostValuableFeatures"
+                    >
+                        <h4>Most Valuable Features</h4>
+                    </div>
+                    <div class="col-sm-12"
+                        ng-show="$ctrl.showMostValuableFeatures"
+                    >
+                        <most-valuable-features></most-valuable-features>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- End the row & container divs -->
-      </div>
     </div>
-
-  </div>
 </main>

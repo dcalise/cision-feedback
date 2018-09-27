@@ -11,4 +11,10 @@ homeModule.config(HomeConfig);
 import HomeCtrl from './home.controller';
 homeModule.controller('HomeCtrl', HomeCtrl);
 
+import FeaturesByStatus from './components/features-by-status/features-by-status.component';
+homeModule.component('featuresByStatus', FeaturesByStatus);
+
+import MostValuableFeatures from './components/most-valuable-features/most-valuable-features.component';
+homeModule.component('mostValuableFeatures', MostValuableFeatures);
+
 export default homeModule;
