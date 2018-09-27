@@ -1,23 +1,50 @@
 import Chart from 'chart.js';
 
 class FeaturesByStatusCtrl {
-    constructor() {
+    constructor(AppConstants, FeatureService) {
         'ngInject';
+
+        this._FeatureService = FeatureService;
+        this.statuses = AppConstants.strings.feature.status;
     }
 
     $onInit() {
         const featuresByStatusElement = document.getElementById('featuresByStatus');
 
+        this.statusCounts = {};
+        this.data = [];
+        this._FeatureService._features
+            .$loaded()
+            .then(
+                features => {
+                    this.statuses.forEach(
+                        status => {
+                            this.statusCounts[status] = features
+                                .filter(feature => {
+                                    return feature.status === status
+                                });
+                            }
+                        )
+                    Object.keys(this.statusCounts)
+                        .forEach(statusCount => this.data.push(statusCount.length));
+                    this.buildChart(featuresByStatusElement)
+                }
+            )
+
+        this.$apply;
+    }
+
+    buildChart(chartElement) {
         if (this.featuresByStatusChart) {
-            this.featuresByStatusChart.destroy();
+            chartElement.destroy();
         }
 
-        this.featuresByStatusChart = new Chart(featuresByStatusElement, {
+        this.featuresByStatusChart = new Chart(chartElement, {
             type: 'doughnut',
             data: {
-                labels: ["Received", "Under Review", "Moved to Backlog", "Released"],
+                labels: Object.keys(this.statusCounts),
                 datasets: [{
-                    data: [12, 19, 3, 5],
+                    data: this.data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -38,8 +65,6 @@ class FeaturesByStatusCtrl {
                 }]
             }
         });
-
-        this.$apply;
     }
 }
 
