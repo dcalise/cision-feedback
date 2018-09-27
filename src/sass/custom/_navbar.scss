@@ -1,4 +1,4 @@
-navbar + main {
+main {
     margin-top: 50px;
     padding-top: 20px;
 }
@@ -52,7 +52,8 @@ navbar + main {
                 }
             }
         }
-        > li > a:hover {
+        > li > a:hover,
+        > li > a:focus {
             color: #fff;
         }
         > li > a.active {

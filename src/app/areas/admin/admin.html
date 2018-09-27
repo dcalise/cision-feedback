@@ -1,7 +1,3 @@
-<navbar>
-  <app-header></app-header>
-</navbar>
-
 <main>
   <section class="container labels"
     ng-if="$ctrl.admin === true">
@@ -42,7 +38,7 @@
                 </div>
                 <div class="form-group">
                   <label for="location-description" class="control-label">Description</label>
-                  <input type="text" class="form-control" id="location-description" 
+                  <input type="text" class="form-control" id="location-description"
                     ng-model="$ctrl.locationForm.description">
                 </div>
                 <div class="form-group">
@@ -89,7 +85,7 @@
 
       <div class="col-sm-4">
           <ul class="list-unstyled admin-label-list">
-            <li 
+            <li
               ng-repeat="location in $ctrl.locationAndLabelList"
               ng-if="!location.deleted">
                 {{ location.displayName }}

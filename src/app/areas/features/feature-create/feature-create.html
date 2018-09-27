@@ -1,7 +1,3 @@
-<navbar>
-  <app-header></app-header>
-</navbar>
-
 <main>
   <section class="container">
     <div class="row">
@@ -11,7 +7,7 @@
       </div>
     </div>
   </section>
-  
+
   <section class="container">
     <div class="row">
       <div class="col-md-6 col-sm-12">
@@ -27,7 +23,7 @@
               <textarea type="textarea" class="form-control" id="description" required rows="5"
                 ng-model="$ctrl.featureForm.description"></textarea>
             </div>
-  
+
             <div class="form-group">
               <label for="location" class="control-label">Select C3 user workflow</label>
               <p class="meta">Which area is this feature in reference to?</p>
@@ -42,7 +38,7 @@
                 </option>
               </select>
             </div>
-  
+
             <div class="form-group ml-xl"
               ng-if="$ctrl.locationLabels.length > 0">
               <div class="radio"
@@ -70,9 +66,9 @@
               </div>
 
             </div>
-  
+
           </fieldset>
-          
+
           <add-account
             create-feature="true"
             new-account="$ctrl.newAccount"

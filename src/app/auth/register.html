@@ -1,14 +1,10 @@
-<navbar>
-  <app-header-login></app-header-login>
-</navbar>
-
 <main>
   <section class="container">
     <h1 class="page-title">Register</h1>
   </section>
 
   <section class="container">
-    
+
     <div class="row">
       <div class="col-md-4 col-sm-6">
 
@@ -20,7 +16,7 @@
           data-ng-show="register.confirmPassword.$error.match">
           Passwords do not match!
         </div>
-        
+
 
         <form name="register" ng-submit="!register.confirmPassword.$error.match && $ctrl.submitRegister()">
           <div class="form-group">
