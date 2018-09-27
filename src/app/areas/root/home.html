@@ -13,7 +13,7 @@
                     <a ui-sref="app.feature-list" class="btn btn-default btn-lg btn-block">View Request List</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-xxl">
                 <div class="col-md-6">
                     <div class="section-header"
                         ng-class="{'closed':!$ctrl.showFeaturesByStatus}"
@@ -45,7 +45,7 @@
                         ng-class="{'closed':!$ctrl.showFeaturesByPlatform}"
                         ng-click="$ctrl.showFeaturesByPlatform = !$ctrl.showFeaturesByPlatform"
                     >
-                        <h4>Features By Status</h4>
+                        <h4>Features By Platform</h4>
                     </div>
                     <div ng-show="$ctrl.showFeaturesByPlatform">
                         <features-by-platform></features-by-platform>
@@ -56,7 +56,7 @@
                         ng-class="{'closed':!$ctrl.showAccountsByType}"
                         ng-click="$ctrl.showAccountsByType = !$ctrl.showAccountsByType"
                     >
-                        <h4>Features By Status</h4>
+                        <h4>Accounts By Type</h4>
                     </div>
                     <div ng-show="$ctrl.showAccountsByType">
                         <accounts-by-type></accounts-by-type>
