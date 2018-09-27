@@ -20,7 +20,7 @@ homeModule.component('mostValuableFeatures', MostValuableFeatures);
 import AccountsByType from './components/accounts-by-type/accounts-by-type.component';
 homeModule.component('accountsByType', AccountsByType);
 
-import FeaturesByPlatform from './components/features-by-platform/features-by-platform.component';
-homeModule.component('featuresByPlatform', FeaturesByPlatform);
+import FeaturesByLocation from './components/features-by-location/features-by-location.component';
+homeModule.component('featuresByLocation', FeaturesByLocation);
 
 export default homeModule;

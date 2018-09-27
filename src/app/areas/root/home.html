@@ -42,13 +42,13 @@
             <div class="row">
                 <div class="col-sm-6">
                      <div class="section-header"
-                        ng-class="{'closed':!$ctrl.showFeaturesByPlatform}"
-                        ng-click="$ctrl.showFeaturesByPlatform = !$ctrl.showFeaturesByPlatform"
+                        ng-class="{'closed':!$ctrl.showFeaturesByLocation}"
+                        ng-click="$ctrl.showFeaturesByLocation = !$ctrl.showFeaturesByLocation"
                     >
-                        <h4>Features By Platform</h4>
+                        <h4>Features By Location</h4>
                     </div>
-                    <div ng-show="$ctrl.showFeaturesByPlatform">
-                        <features-by-platform></features-by-platform>
+                    <div ng-show="$ctrl.showFeaturesByLocation">
+                        <features-by-location></features-by-location>
                     </div>
                 </div>
                 <div class="col-sm-6">
