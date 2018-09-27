@@ -26,7 +26,7 @@ class AccountsByTypeCtrl {
                         }
                     )
                     Object.keys(this.typeCounts)
-                        .forEach(typeCount => this.data.push(typeCount.length));
+                        .forEach(key => this.data.push(this.typeCounts[key].length));
                         this.buildChart(accountsByTypeElement)
                 }
             )

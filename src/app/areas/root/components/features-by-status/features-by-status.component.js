@@ -23,10 +23,10 @@ class FeaturesByStatusCtrl {
                                 .filter(feature => {
                                     return feature.status === status
                                 });
-                            }
-                        )
+                        }
+                    )
                     Object.keys(this.statusCounts)
-                        .forEach(statusCount => this.data.push(statusCount.length));
+                        .forEach(key => this.data.push(this.statusCounts[key].length));
                     this.buildChart(featuresByStatusElement)
                 }
             )
@@ -36,7 +36,7 @@ class FeaturesByStatusCtrl {
 
     buildChart(chartElement) {
         if (this.featuresByStatusChart) {
-            chartElement.destroy();
+            this.featuresByStatusChart.destroy();
         }
 
         this.featuresByStatusChart = new Chart(chartElement, {
