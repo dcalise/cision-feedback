@@ -15,7 +15,6 @@ function AuthConfig($stateProvider) {
                             $state.go('app.feature-list');
                         },
                         err => {
-                            console.log(err);
                             return;
                         }
                     );
