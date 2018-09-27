@@ -1,8 +1,9 @@
 class AccountsByTypeCtrl {
-    constructor(AppConstants) {
+    constructor(AppConstants, AccountService) {
         'ngInject';
 
         this.accountTypes = AppConstants.strings.account.accountTypes;
+        this._AccountService = AccountService;
 
         this.data = [21,1,4,62];
     }
@@ -10,10 +11,36 @@ class AccountsByTypeCtrl {
     $onInit() {
         const accountsByTypeElement = document.getElementById('accounts-by-type');
 
-        this.accountsByTypeChart = new Chart(accountsByTypeElement, {
+        this.typeCounts = {};
+        this.data = [];
+        this._AccountService.accounts
+            .$loaded()
+            .then(
+                accounts => {
+                    this.accountTypes.forEach(
+                        type => {
+                            this.typeCounts[type] = accounts
+                                .filter(account => {
+                                    return account.accountType === type
+                                });
+                        }
+                    )
+                    Object.keys(this.typeCounts)
+                        .forEach(typeCount => this.data.push(typeCount.length));
+                        this.buildChart(accountsByTypeElement)
+                }
+            )
+    }
+
+    buildChart(chartElement) {
+        if (this.accountsByTypeChart) {
+            this.accountsByTypeChart.destroy();
+        }
+
+        this.accountsByTypeChart = new Chart(chartElement, {
             type: 'bar',
             data: {
-                labels: this.accountTypes,
+                labels: Object.keys(this.typeCounts),
                 datasets: [{
                     data: this.data,
                     backgroundColor: [
