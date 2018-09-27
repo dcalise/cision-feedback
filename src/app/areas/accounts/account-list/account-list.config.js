@@ -3,7 +3,7 @@ function AccountListConfig($stateProvider) {
 
     $stateProvider.state('app.account-list', {
         url: '/accounts',
-        controller:  'AccountListCtrl',
+        controller: 'AccountListCtrl',
         controllerAs: '$ctrl',
         templateUrl: 'areas/accounts/account-list/account-list.html',
         title: 'Accounts',

@@ -1,5 +1,5 @@
 class ProfileCtrl {
-    constructor(md5, currentAuth, profile, UserService, toastr) {
+    constructor(AppConstants, md5, currentAuth, profile, UserService, toastr) {
         'ngInject';
 
         this._md5 = md5;
@@ -7,6 +7,8 @@ class ProfileCtrl {
         this._profile = profile;
         this._UserService = UserService;
         this._toastr = toastr;
+
+        this.departments = AppConstants.strings.profile.departments;
     }
 
     updateProfile() {

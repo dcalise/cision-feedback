@@ -1,34 +1,29 @@
+const fbConfig = require('./keys/prod.json');
+
 function AppConfig(
-    $httpProvider,
     $stateProvider,
-    $locationProvider,
     $urlRouterProvider,
     toastrConfig
 ) {
     'ngInject';
 
     var config = {
-        apiKey: 'AIzaSyDwKDlKS4wIesup_oJHlxqlV6XQFr3uMPU',
-        authDomain: 'cision-feedback-dev.firebaseapp.com',
-        databaseURL: 'https://cision-feedback-dev.firebaseio.com',
-        projectId: 'cision-feedback-dev',
-        storageBucket: 'cision-feedback-dev.appspot.com',
-        messagingSenderId: '984448149929'
+        apiKey: fbConfig.apiKey,
+        authDomain: fbConfig.authDomain,
+        databaseURL: fbConfig.databaseURL,
+        projectId: fbConfig.projectId,
+        storageBucket: fbConfig.storageBucket,
+        messagingSenderId: fbConfig.messagingSenderId
     };
     firebase.initializeApp(config);
 
-    // $httpProvider.interceptors.push(authInterceptor);
     $stateProvider.state('app', {
         abstract: true,
         templateUrl: 'layout/app-view.html'
     });
 
     $urlRouterProvider.otherwise('/');
-    // $locationProvider.html5Mode({
-    //   enabled: true,
-    //   requireBase: true,
-    //   rewriteLinks: true
-    // });
+
     angular.extend(toastrConfig, {
         autoDismiss: false,
         containerId: 'toast-container',

@@ -1,26 +1,15 @@
 <span
   ng-hide="$ctrl.editing">
-  <span class="label"
-    ng-class="{
-      'label-success': $ctrl.data === 'Released',
-      'label-info': $ctrl.data === 'Moved to Backlog',
-      'label-default': $ctrl.data === 'Received',
-      'label-warning': $ctrl.data === 'Under Review',
-      'label-danger': $ctrl.data === 'Closed'
-    }">
+  <span class="label {{$ctrl.labelClass}}">
     {{$ctrl.data}}
   </span>
   <i class="ion-edit meta ml-xs" ng-show="$ctrl.admin" ng-click="$ctrl.changeStatus()"></i>
 </span>
-<form class="form-inline inline-edit" 
+<form class="form-inline inline-edit"
   ng-show="$ctrl.editing">
   <select class="form-control"
     ng-model="$ctrl.data">
-    <option>Received</option>
-    <option>Under Review</option>
-    <option>Moved to Backlog</option>
-    <option>Released</option>
-    <option>Closed</option>
+    <option ng-repeat="type in $ctrl.statusTypes">{{type}}</option>
   </select>
   <i class="ion-close ml-xs text-danger" ng-click="$ctrl.changeStatus({status:'cancel'})"></i>
   <i class="ion-checkmark ml-xs text-success" ng-click="$ctrl.changeStatus({status:$ctrl.data})"></i>

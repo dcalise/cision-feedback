@@ -13,7 +13,7 @@
                 <editable-field
                   data="$ctrl.account.country"
                   update-field="$ctrl.updateAccount()"
-                  options="['USA','Canada','Other']"
+                  options="$ctrl.countries"
                 ></editable-field>
               </span>
               <h1>
@@ -56,7 +56,7 @@
                   data="$ctrl.account.accountType"
                   update-field="$ctrl.updateAccount()"
                   type="label"
-                  options="['Current customer', 'Prospect in-cycle', 'Prospect loss', 'Lost customer']"
+                  options="$ctrl.accountTypes"
                 ></editable-field>
               </li>
               <li>

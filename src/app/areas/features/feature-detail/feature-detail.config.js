@@ -8,7 +8,7 @@ function FeatureDetailConfig($stateProvider) {
         templateUrl: 'areas/features/feature-detail/feature-detail.html',
         title: 'Feature Detail',
         resolve: {
-            currentAuth: function(AuthService, $state) {
+            currentAuth: function (AuthService, $state) {
                 return AuthService.$requireSignIn().then(auth => {
                     if (!auth.emailVerified) {
                         $state.go('app.profile');
@@ -16,15 +16,15 @@ function FeatureDetailConfig($stateProvider) {
                     return auth;
                 });
             },
-            profile: function(UserService, AuthService) {
+            profile: function (UserService, AuthService) {
                 return AuthService.$requireSignIn().then(auth => {
                     return UserService.getProfile(auth.uid).$loaded();
                 });
             },
-            feature: function(FeatureService, $stateParams) {
+            feature: function (FeatureService, $stateParams) {
                 return FeatureService.getFeature($stateParams.id).$loaded();
             },
-            comments: function($stateParams, CommentService) {
+            comments: function ($stateParams, CommentService) {
                 return CommentService.forFeature($stateParams.id).$loaded();
             }
         }

@@ -11,18 +11,18 @@ export default class UserService {
         this._usersRef = firebase.database().ref('users');
         this._users = $firebaseArray(this._usersRef);
 
-        
+
         this.all = this._users;
-        
+
         this.admin = false;
         AuthService.$requireSignIn().then(auth => {
             this.getProfile(auth.uid)
-            .$loaded()
-            .then(profile => {
-                if (profile.roles && profile.roles.admin === true) {
-                    this.admin = true;
-                }
-            });
+                .$loaded()
+                .then(profile => {
+                    if (profile.roles && profile.roles.admin === true) {
+                        this.admin = true;
+                    }
+                });
         });
     }
 
@@ -42,7 +42,7 @@ export default class UserService {
         let user = firebase.auth().currentUser;
         user
             .sendEmailVerification()
-            .then(success => {
+            .then(() => {
                 this._toastr.success('Verification email sent.')
             })
             .catch(err => {

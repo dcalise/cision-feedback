@@ -12,7 +12,7 @@
 
 
       <div class="row">
-        
+
         <div class="col-md-6" ng-show="!$ctrl._currentAuth.emailVerified">
           <div class="alert alert-danger" role="alert">
             <h4>Your email address hasn't been verified.</h4>
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="row">
 
         <div class="col-md-4 col-sm-6">
@@ -33,7 +33,7 @@
             <input required type="text" class="form-control" readonly
               ng-model="::$ctrl._currentAuth.email">
           </div>
-          
+
           <div class="form-group">
             <label for="first-name" class="control-label">First Name</label>
             <input required type="text" class="form-control" required
@@ -53,19 +53,10 @@
             <select class="form-control"
               id="department"
               ng-model="$ctrl._profile.department">
-              <option>Cision Global Insights</option>
-              <option>Client Development</option>
-              <option>Client services</option>
-              <option>Digital Content Support</option>
-              <option>Marketing</option>
-              <option>New Business</option>
-              <option>Product</option>
-              <option>Product Marketing</option>
-              <option>Research</option>
-              <option>Other</option>
+              <option ng-repeat="department in $ctrl.departments">{{department}}</option>
             </select>
           </div>
-          
+
           <button class="btn btn-default pull-right"
             ng-click="$ctrl.signOut()">
             Sign Out

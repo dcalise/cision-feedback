@@ -1,15 +1,14 @@
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: $padding-large-vertical 0;
   margin-top: ($padding-large-vertical * 7);
-  background: $gray;
+  background: linear-gradient(90deg, lighten($light-blue, 15%), $light-blue);
   color: $footer-text-color;
   z-index: $zindex-navbar;
   a {
     color: $footer-link-color;
     text-decoration: underline;
+    &:hover {
+        color: $off-white;
+    }
   }
 }

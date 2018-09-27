@@ -1,8 +1,6 @@
 <footer>
-  <div class="container">
-    <a class="logo-font" ui-sref="app.home" ng-bind="::$ctrl.appName | lowercase"></a>
-    <span class="attribution">
-      &copy; {{::$ctrl.date | date:'yyyy'}} Cision
-    </span>
+  <div class="container-fluid text-right">
+    <a href="mailto:{{::$ctrl.adminEmail}}">help</a>
+    <a target="_blank" href="{{::$ctrl.githubURL}}">github</a>
   </div>
 </footer>

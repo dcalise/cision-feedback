@@ -8,11 +8,11 @@ componentsModule.component('addAccount', AddAccount);
 import ColumnToggle from './list-helpers/column-toggle.component';
 componentsModule.component('columnToggle', ColumnToggle);
 
+import EditableField from './editable-field/editable-field.component';
+componentsModule.component('editableField', EditableField);
+
 import Filters from './list-helpers/filters/filters.component';
 componentsModule.component('filters', Filters);
-
-import CustomerList from './request-helpers/customer-list.component';
-componentsModule.component('customerList', CustomerList);
 
 import DisplayLabel from './display-label/display-label.component';
 componentsModule.component('displayLabel', DisplayLabel);

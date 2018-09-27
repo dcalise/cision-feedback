@@ -1,5 +1,5 @@
 class LocationControl {
-    constructor(AuthService, UserService, LabelService) {
+    constructor(LabelService) {
         'ngInject';
 
         this._LabelService = LabelService;
@@ -30,8 +30,7 @@ let Location = {
         resetLabelExpiration: '&'
     },
     controller: LocationControl,
-    templateUrl:
-        'areas/features/feature-detail/components/location/location.html'
+    templateUrl: 'areas/features/feature-detail/components/location/location.html'
 };
 
 export default Location;

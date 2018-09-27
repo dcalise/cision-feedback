@@ -1,3 +1,42 @@
+$dark-blue:     #2b4570;
+$light-blue:    #3d7ead;
+$off-white:     #e1efff;
+$dark-green:    #6a9f31;
+$light-green:   #afcb00;
+
+$brand-success: $dark-green;
+$brand-primary: $dark-blue;
+
+$btn-success-bg: $brand-success;
+$btn-success-border: $brand-success;
+$btn-success-color: #fff;
+
+$btn-primary-bg: $brand-primary;
+$btn-primary-border: $brand-primary;
+$btn-primary-color: #fff;
+
+/** transitions **/
+$transition: 600ms;
+$transition-fast: 300ms;
+
+/** navbar **/
+$grid-float-breakpoint: 0;
+$navbar-color-1: $dark-blue;
+$navbar-color-2: darken($light-blue, 10%);
+$navbar-selected-bg: $light-blue;
+$navbar-open-bg: #FFF;
+
+$navbar-text: #FFF;
+$navbar-height: 50px;
+
+$navbar-hover: #1F4366;
+$nav-link-hover-bg : transparent; //override bootstrap variable
+
+$zindex-modals: 2000;
+
+/** Same as bootstrap btn-warning body**/
+$brand-warning: #F0AD4E;
+
 $gray-base:              #000;
 $gray-darker:            lighten($gray-base, 13.5%); // #222
 $gray-dark:              lighten($gray-base, 20%);   // #333
@@ -13,3 +52,5 @@ $footer-link-color:           $gray-lighter;
 $table-bg-hover:                rgba($brand-info, .15);
 $table-bg-active:               $table-bg-hover;
 $table-bg-warning:              rgba($brand-warning, .25);
+
+

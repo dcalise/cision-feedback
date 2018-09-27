@@ -8,7 +8,7 @@ function FeatureListConfig($stateProvider) {
         templateUrl: 'areas/features/feature-list/feature-list.html',
         title: 'Features',
         resolve: {
-            currentAuth: function(AuthService, $state) {
+            currentAuth: function (AuthService, $state) {
                 return AuthService.$requireSignIn().then(auth => {
                     if (!auth.emailVerified) {
                         $state.go('app.profile');
@@ -16,7 +16,7 @@ function FeatureListConfig($stateProvider) {
                     return auth;
                 });
             },
-            profile: function(UserService, AuthService) {
+            profile: function (UserService, AuthService) {
                 return AuthService.$requireSignIn().then(auth => {
                     return UserService.getProfile(auth.uid).$loaded();
                 });

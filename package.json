@@ -1,7 +1,7 @@
 {
-  "name": "cision-feedback",
+  "name": "miso",
   "version": "1.0.0",
-  "description": "Cision Feedback Application",
+  "description": "Miso allows you to log feature requests per customer and weigh the financial value of each request.",
   "author": "dcalise",
   "dependencies": {
     "angucomplete-alt": "^3.0.0",
@@ -19,6 +19,7 @@
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
     "browserify-ngannotate": "^2.0.0",
+    "chart.js": "^2.7.2",
     "cors": "^2.8.1",
     "express": "^4.15.0",
     "firebase": "^3.7.0",
@@ -40,7 +41,7 @@
   },
   "devDependencies": {
     "body-parser": "^1.17.0",
-    "firebase-admin": "^5.1.0",
+    "firebase-admin": "^5.13.1",
     "gulp-sass": "^3.1.0",
     "json2csv": "^3.11.5",
     "nodemon": "^1.11.0"

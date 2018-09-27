@@ -8,7 +8,7 @@ function FeatureCreateConfig($stateProvider) {
         templateUrl: 'areas/features/feature-create/feature-create.html',
         title: 'Create New Feature Request',
         resolve: {
-            currentAuth: function(AuthService, $state) {
+            currentAuth: function (AuthService, $state) {
                 return AuthService.$requireSignIn().then(auth => {
                     if (!auth.emailVerified) {
                         $state.go('app.profile');
@@ -16,7 +16,7 @@ function FeatureCreateConfig($stateProvider) {
                     return auth;
                 });
             },
-            profile: function(UserService, AuthService) {
+            profile: function (UserService, AuthService) {
                 return AuthService.$requireSignIn().then(auth => {
                     return UserService.getProfile(auth.uid).$loaded();
                 });

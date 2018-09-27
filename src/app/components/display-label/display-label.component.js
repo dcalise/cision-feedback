@@ -20,8 +20,8 @@ class DisplayLabelCtrl {
 
     $onChanges(changes) {
         if (changes.expiredLabel.currentValue) {
-          this.fetchDisplayName(this.data, this.isLocation);
-          this.resetLabelExpiration();
+            this.fetchDisplayName(this.data, this.isLocation);
+            this.resetLabelExpiration();
         }
     }
 }

@@ -1,46 +1,69 @@
 <navbar>
-  <app-header></app-header>
+    <app-header></app-header>
 </navbar>
 
 <main>
-  <div class="home-page">
-
-    <div class="container page">
-      <div class="row">
-
-
-        <!-- Main view -->
-        <div class="col-md-8 col-md-offset-2 body-text">
-
-          <h1 class="mb-lg">
-            Cision Product Feedback Forum
-            <small>Great ideas come from everywhere. This forum provides an open channel for anyone across the entire Cision organization to help shape the future of our product strategy.</small>
-          </h1>
-          
-          <p class="mb-lg">
-            <a ui-sref="app.feature-create" class="btn btn-primary">Submit a New Request</a>
-            <a ui-sref="app.feature-list" class="btn btn-default">View an Existing Request</a>
-          </p>
-
-          <p>This form is designed to submit specific product feedback that will input into roadmap for Cision Communications Cloud (C3).</p>
-          
-          <p><strong>Have a product enhancement request? Check the <a ui-sref="app.feature-list">existing requests</a> and do a quick search to see if someone else has already added it!</strong> If product enhancement request has already been submitted, <strong>please link your customer to the request.</strong> If the request has not yet been submitted, click the Submit Feature button to add it!</p>
-          
-          <p>You can search and check if a requested feature has been added to one of the quarter release for C3! This ensures transparency on your product requests.</p>
-          
-          <p>Whenever possible, please make sure to tie your request to an actual customer and account value. This will help the Product team prioritize based on number and size of accounts impacted.</p>
-          
-          <p>The Product team will review new submissions, add comments and follow up with questions. The Product review of feedback submitted via this forum will be completed every 2-weeks. If a feature is committed to a forthcoming product release, tag will be added with proposed quarter for release (e.g. Q4 release).</p>
-          
-          <p>Kindly note that timelines are subject to change as priorities and effort estimate for delivery of a feature may change. Also, this product feedback forum is one of the key inputs to track customer specific product roadmap requests. The Product team intention is to be responsive and provide an open channel of communication on product roadmap.</p>
-          
-          <p>Check back any time to see the status of any request!</p>
-
+    <div class="home-page">
+        <div class="container page">
+            <div class="row mt-lg mb-xxl">
+                <div class="col-sm-6">
+                    <a ui-sref="app.feature-create" class="btn btn-primary btn-lg btn-block">Submit a New Request</a>
+                </div>
+                <div class="col-sm-6">
+                    <a ui-sref="app.feature-list" class="btn btn-default btn-lg btn-block">View Request List</a>
+                </div>
+            </div>
+            <div class="row mb-xxl">
+                <div class="col-md-6">
+                    <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showFeaturesByStatus}"
+                        ng-click="$ctrl.showFeaturesByStatus = !$ctrl.showFeaturesByStatus"
+                    >
+                        <h4>Features By Status</h4>
+                    </div>
+                    <div ng-show="$ctrl.showFeaturesByStatus">
+                        <features-by-status></features-by-status>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showMostValuableFeatures}"
+                        ng-click="$ctrl.showMostValuableFeatures = !$ctrl.showMostValuableFeatures"
+                    >
+                        <h4>Most Valuable Features</h4>
+                    </div>
+                    <div class="col-sm-12"
+                        ng-show="$ctrl.showMostValuableFeatures"
+                    >
+                        <most-valuable-features></most-valuable-features>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                     <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showFeaturesByLocation}"
+                        ng-click="$ctrl.showFeaturesByLocation = !$ctrl.showFeaturesByLocation"
+                    >
+                        <h4>Features By Location</h4>
+                    </div>
+                    <div ng-show="$ctrl.showFeaturesByLocation">
+                        <features-by-location></features-by-location>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                     <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showAccountsByType}"
+                        ng-click="$ctrl.showAccountsByType = !$ctrl.showAccountsByType"
+                    >
+                        <h4>Accounts By Type</h4>
+                    </div>
+                    <div ng-show="$ctrl.showAccountsByType">
+                        <accounts-by-type></accounts-by-type>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- End the row & container divs -->
-      </div>
     </div>
-
-  </div>
 </main>

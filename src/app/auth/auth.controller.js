@@ -17,7 +17,7 @@ class AuthCtrl {
                 this.formData.password
             )
             .then(
-                res => {
+                () => {
                     this.isSubmitting = false;
                     this._$state.go('app.home');
                 },
@@ -29,36 +29,23 @@ class AuthCtrl {
             );
     }
     submitRegister() {
-        let domain = this.formData.email.split('@')[1];
-        if (
-            domain === 'prnewswire.com' ||
-            domain === 'cision.com' ||
-            domain === 'prnewswire.co.uk' ||
-            domain === 'multivu.com' ||
-            domain === 'gorkana.com' ||
-            domain === 'newswire.ca'
-        ) {
-            this.isSubmitting = true;
-            this._AuthService
-                .$createUserWithEmailAndPassword(
-                    this.formData.email,
-                    this.formData.password
-                )
-                .then(
-                    res => {
-                        this.isSubmitting = false;
-                        this._UserService.sendFirebaseEmailVerification();
-                        this._$state.go('app.profile');
-                    },
-                    err => {
-                        this.isSubmitting = false;
-                        this.error = err;
-                    }
-                );
-        } else {
-            this.error.message =
-                "Sorry, you can't register with that email address. Please contact the administrator for for information.";
-        }
+        this.isSubmitting = true;
+        this._AuthService
+            .$createUserWithEmailAndPassword(
+                this.formData.email,
+                this.formData.password
+            )
+            .then(
+                () => {
+                    this.isSubmitting = false;
+                    this._UserService.sendFirebaseEmailVerification();
+                    this._$state.go('app.profile');
+                },
+                err => {
+                    this.isSubmitting = false;
+                    this.error = err;
+                }
+            );
     }
 
     resetPassword() {
