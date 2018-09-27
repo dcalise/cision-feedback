@@ -8,6 +8,8 @@ class HomeCtrl {
     $onInit() {
         this.showMostValuableFeatures = true;
         this.showFeaturesByStatus = true;
+        this.showFeaturesByPlatform = true;
+        this.showAccountsByType = true;
     }
 }
 

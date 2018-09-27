@@ -39,6 +39,30 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-6">
+                     <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showFeaturesByPlatform}"
+                        ng-click="$ctrl.showFeaturesByPlatform = !$ctrl.showFeaturesByPlatform"
+                    >
+                        <h4>Features By Status</h4>
+                    </div>
+                    <div ng-show="$ctrl.showFeaturesByPlatform">
+                        <features-by-platform></features-by-platform>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                     <div class="section-header"
+                        ng-class="{'closed':!$ctrl.showAccountsByType}"
+                        ng-click="$ctrl.showAccountsByType = !$ctrl.showAccountsByType"
+                    >
+                        <h4>Features By Status</h4>
+                    </div>
+                    <div ng-show="$ctrl.showAccountsByType">
+                        <accounts-by-type></accounts-by-type>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
