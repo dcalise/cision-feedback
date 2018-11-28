@@ -1,7 +1,6 @@
 const AppConstants = {
     appName: 'Miso',
-    githubURL: 'https://github.com/dcalise/miso',
-    adminEmail: 'calise@gmail.com',
+    adminEmail: 'alex.kale@cision.com',
     strings: {
         account: {
             countries: [
@@ -16,17 +15,23 @@ const AppConstants = {
                 'Prospect loss'
             ],
             currentPlatforms: [
-                'ProdFake',
-                'NewFake',
-                'FakeProd',
-                'FPR',
-                'Other (Please Specify in Notes)'
+                'Cision PR Edition',
+                'CisionPoint',
+                'Visible Intelligence',
+                'MediaVantage',
+                'HARO',
+                'ProfNet',
+                'OMC',
+                'CNW Access',
+                'MNR',
+                'Others (Please Specify in Notes)'
             ],
             prospectPlatforms: [
-                'CompetitorProduct',
-                'ProdComp',
-                'NotOurProduct',
-                'Other (Please Specify in Notes)'
+                'Meltwater',
+                'TrendKite',
+                'NASDAQ',
+                'BusinessWire',
+                'Others (Please Specify in Notes)'
             ],
             currentRelationships: [
                 'Legacy GAP. Customer will not upgrade to C3 without this feature',
@@ -52,7 +57,7 @@ const AppConstants = {
         },
         profile: {
             departments: [
-                'Global Insights',
+                'Cision Global Insights',
                 'Client Development',
                 'Client services',
                 'Digital Content Support',

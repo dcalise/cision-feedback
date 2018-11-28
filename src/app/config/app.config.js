@@ -1,4 +1,4 @@
-const fbConfig = require('./keys/prod.json');
+const fbConfig = require('./keys/dev.json');
 
 function AppConfig(
     $stateProvider,
@@ -15,6 +15,7 @@ function AppConfig(
         storageBucket: fbConfig.storageBucket,
         messagingSenderId: fbConfig.messagingSenderId
     };
+
     firebase.initializeApp(config);
 
     $stateProvider.state('app', {

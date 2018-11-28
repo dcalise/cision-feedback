@@ -12,7 +12,5 @@ Make sure you have gulp installed globally (`npm install -g gulp`)
 3. `firebase deploy`
 
 ## Firebase console
-https://console.firebase.google.com/project/miso-79c0b/overview
-
-## Demo
-https://miso-79c0b.firebaseapp.com/#!/
+https://console.firebase.google.com/project/cision-feedback-dev/
+https://console.firebase.google.com/project/cision-feedback/

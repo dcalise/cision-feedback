@@ -1,10 +1,33 @@
 {
-    "rules": {
-        ".read": true,
-        ".write": true,
-        "users": {
-            ".read": "auth != null",
-            ".write": "auth != null"
-        }
+  "rules": {
+    "products" : {
+    	".read": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')",
+    	".write": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')"
+    },
+    "locations" : {
+    	".read": "true",
+    	".write": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')"
+    },
+    "labels" : {
+    	".read": "true",
+    	".write": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')"
+    },
+    "features" : {
+    	".read": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')",
+    	".write": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')"
+    },
+    "accounts" : {
+    	".read": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')",
+    	".write": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')" 
+    },
+    "comments" : {
+    	".read": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')",
+    	".write": "auth.token.email.endsWith('@cision.com') || auth.token.email.endsWith('@prnewswire.com') || auth.token.email.endsWith('@prnewswire.co.uk') || auth.token.email.endsWith('@multivu.com') || auth.token.email.endsWith('@gorkana.com') || auth.token.email.endsWith('@newswire.ca')" 
+    },
+    "users" : {
+    	".read": "auth != null",
+    	".write": "auth != null"
     }
+    
+  }
 }
